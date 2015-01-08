@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+
+    \path[node]
+    (0,0)  node (v5) {$v_5$}
+    node[above of=v5] (v1) {$v_1$} 
+    node[left of =v5] (v2) {$v_2$}
+    node[below of=v5] (v3) {$v_3$}
+    node[right of=v5] (v4) {$v_4$}
+    ;
+
+    \path[edge]
+    (v1) edge[bend left]  node {$e_1$} (v2) 
+    (v1) edge[bend right] node {$e_2$} (v2) 
+    (v1) edge node {$e_3$} (v4)
+    (v4) edge node {$e_4$} (v3)
+    (v4) edge[loop right] node[auto] {$e_5$} (v4)
+    ;
+
+\end{tikzpicture}

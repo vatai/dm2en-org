@@ -1,0 +1,24 @@
+#+BEGIN_LATEX
+
+\tikzset{node/.style={
+every node/.style={draw,thick,circle,fill=lightgray,
+inner sep=1pt,outer sep=1pt}}}
+
+\tikzset{inode/.style={
+every node/.style={draw,circle,fill=black,
+inner sep=0,minimum size=1.5mm,}}}
+
+\tikzset{edge/.style={
+every edge/.style={draw},
+every node/.style={auto,inner sep=1pt},
+every loop/.style={every edge/.style,in=-45,out=45,looseness=5}}}
+
+\tikzset{dedge/.style={
+every edge/.style={draw,arrows={none-stealth}},
+every node/.style={auto,inner sep=1pt},
+every loop/.style={every edge/.style,in=-45,out=45,looseness=5}]
+}}
+
+\tikzset{node distance=50pt}
+
+#+END_LATEX

@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+    \draw[inode] node (1) {}
+    node[right of=1]  (2) {}
+    node[below of=2]  (3) {}
+    node[left of=3]   (4) {};
+    \draw[edge,bend left] (1) edge (2)
+    (2) edge (3)
+    (3) edge (4)
+    (4) edge (1)
+    ;
+    \node at ($(1) !0.5! (3)$) {$C_4$};
+\end{tikzpicture}
