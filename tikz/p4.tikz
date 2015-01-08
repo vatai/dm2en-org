@@ -6,6 +6,5 @@
     \draw[edge,bend left] (1) edge (2)
     (2) edge (3)
     (3) edge (4)
-    (4) edge (1)
     ;
 \end{tikzpicture}

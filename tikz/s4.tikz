@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+    \draw[inode] node (1) {}
+    node[right of=1]  (2) {}
+    node[below of=2]  (3) {}
+    node[left of=3]   (4) {}
+    ($(1) !0.5! (3)$) node (5) {};
+
+    \draw[edge] 
+    (2) edge (5)
+    (3) edge (5)
+    (4) edge (5)
+    (1) edge (5)
+    ;
+\end{tikzpicture}

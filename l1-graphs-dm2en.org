@@ -8,16 +8,19 @@
 *** About graphs
 One may think about graphs as "dots connected with lines or arrows"
 \ie undirected or directed graphs.
+
 **** Undirected graph example 					      :BMCOL:
      :PROPERTIES:
      :BEAMER_col: 0.49
      :END:
+#+ATTR_LATEX: :width 6cm
 [[file:tikz/graph1.tikz]]
 **** Directed graph example 					      :BMCOL:
      :PROPERTIES:
      :BEAMER_col: 0.49
      :END:      
 #+LATEX: \tikzset{edge/.append style={arrows={none-stealth}}}
+#+ATTR_LATEX: :width 6cm
 [[file:tikz/graph1.tikz]]
 * Undirected graphs
 ** Basic definitions
@@ -124,7 +127,7 @@ One may think about graphs as "dots connected with lines or arrows"
      - $\forall e \in E$ and $\forall v \in V$ if $v'=f(v)$ and
        $e'=g(e)$ then $v \in \varphi(e) \iff v' \in \varphi'(e')$,
      \ie the $(f,g)$ pair of maps "preserves" the connection relation.
-**** TODO Note
+**** Note
      - The isomorphism of graphs is very important! Because the focus
        of interest is the connection relation between the edges and
        vertices, \ie dots connected with lines, if we ignore the
@@ -132,16 +135,6 @@ One may think about graphs as "dots connected with lines or arrows"
        isomorphic to each other.
      - Isomorphism is used throughout the study of graphs, whenever
        $E$ and $V$ are not defined.
-**** COMMENT , \eg in the following definitions.
-       For example, if we are talking about /the/ complete graph with
-       $n$ vertices, then we bean any graph (with any set $E$ and $V$)
-       which fits the definition, and
-       
-     Because the elements of the $E$ and $V$ are not always important,
-     the following definition contains definitions of classes of
-     graphs, \ie the graphs are not precisely defined (\eg the sets
-     $E$ and $V$ are not defined) but all the graphs which fit the
-     description are isomorphic to each other.
 *** Some well known graphs   
 **** Complete graph, cycle, path, star 			       :B_definition:
     :PROPERTIES:
@@ -160,44 +153,74 @@ One may think about graphs as "dots connected with lines or arrows"
        vertices is $S_n$.
      - The *hyper\-cubes* $H_n$ (described later) with $n$ vertices
        are also isomorphic to each other.
-*** Examples
-    | $K_4$               | $C_4$               |
-    | [[file:./tikz/c4.tikz]] | [[file:./tikz/c4.tikz]] |
-    |                     | a                   |
-
-    #+BEGIN_latex
-    \begin{tikzpicture}
-    \draw[inode] node (1) {}
-    node[right of=1]  (2) {}
-    node[below of=2]  (3) {}
-    node[left of=3]   (4) {};
-    \draw[edge,bend left] (1) edge (2)
-    (2) edge (3)
-    (3) edge (4)
-    (4) edge (1)
-    ;
-    \node at ($(1) !0.5! (3)$) {$C_4$};
-    \end{tikzpicture}
-    #+END_latex
+*** $K_4,C_4,P_4$ and $S_4$
+**** $K_4$ and $C_4$ 						      :BMCOL:
+     :PROPERTIES:
+     :BEAMER_col: 0.25
+     :END:
+     #+BEGIN_CENTER
+     $K_4$
+     [[file:./tikz/k4.tikz]] 
+     $C_4$
+     [[file:./tikz/c4.tikz]] 
+     #+END_CENTER
+**** $P_4$ and $S_4$ 						      :BMCOL:
+     :PROPERTIES:
+     :BEAMER_col: 0.25
+     :END:
+     #+BEGIN_CENTER
+     $P_4$
+     [[file:./tikz/p4.tikz]] 
+     $S_4$
+     [[file:./tikz/s4.tikz]] 
+     #+END_CENTER
 # \end{examp}
-* COMMENT REST
-
-# \begin{defin}[Cartesian product of graphs]
-#   Let $G_i=(\varphi_i,E_i,V_i)$ ($i\in I$) be an indexed family of graphs.  %
-#   The \emph{Cartesian product} of these graphs is the graph $G=(E,V)$, where $V=\times_{i\in I}V_i$, and two vertices are connected if and only if they differ in one component only, and if the index of the \ie differing component is $j$ then the components are connected in $G_j$.  %
-# \end{defin}
-
-# \begin{examp}[Hyper\-cube]
-#   The 0-dimensional hyper\-cube $H_0$ consists of one vertex, the 1-dimensional hyper\-cube $H_1$ consists of two vertices connected with a single edge.  %
-#   For $n>1$ the $n$-dimensional hyper\-cube is obtained from the Cartesian product of $n$ number of $H_1$ hyper\-cubes, \ie $H_n=\times_{i=1}^{n}H_1$.  %
-
-#   An equivalent definition of $H_n$ is as follows: the set of vertices consists of $n$ long strings of $0$'s and $1$'s, and there is an edge between two vertices if they differ only in one element.  %
-# \end{examp}
+**** $P_4$ and $S_4$ 						      :BMCOL:
+     :PROPERTIES:
+     :BEAMER_col: 0.50
+     :END:
+     - Because the graphs $K_n$, $C_n$, $P_n$, $S_n$ are actually
+       classes (sets) of graphs, we do not specify the edges or the
+       vertices.
+     - Any graph isomorphic to \eg $K_4$ as seen on the picture is
+       also a $K_4$ graph.
+*** Cartesian product of graphs
+**** Cartesian product					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G_i=(\varphi_i,E_i,V_i)$ ($i\in I$) be an indexed family of
+     graphs.  The *Cartesian product* of these graphs is the graph
+     $G=(\varphi,E,V)$, where 
+     - $V=\times_{i\in I} V_i=\{(v_1,v_2,\ldots) : v_1 \in V_1 \land
+       v_2 \in V_2 \land \cdots \}$,
+     - $\varphi(e)=\{v,v'\}$ if and only if there is a $j\in I$ so that
+       - $\{i \in I : v_i \neq v'_i \}=\{j\}$ and
+       - $\exists e_j \in E_j$ and $\varphi_j(e_j)=\{v_j,v'_j\}$
+     \ie two vertices are connected if and only if they differ in one
+     component only, and if the index of the differing component is
+     $j$ then the components are connected in $G_j$. 
+*** The hyper\-cube
+**** The hyper\-cube 						  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     - The 0-dimensional hyper\-cube $H_0$ consists of one vertex. 
+     - The 1-dimensional hyper\-cube $H_1$ consists of two vertices
+       connected with a single edge.  
+     - For $n>1$, the $n$-dimensional hyper\-cube is obtained from the
+       Cartesian product of $n$ number of $H_1$ hyper\-cubes, \ie
+       \[H_n=\times_{i=1}^{n}H_1.\]
+     An equivalent definition of $H_n$ is: 
+     - $V$ contains $n$ long strings of $0$'s and $1$'s, and
+       there is an edge between two vertices if they differ only in one
+       element.  
 
 # \begin{defin}[Bipartite graphs]
 #   A the set of vertices $V$ of a \emph{bipartite graph} can be split into two non-empty, disjoint sets so that $V'\cup V''=V$, and each edge has one endpoint in $V'$ and the other in $V''$.  %
 # \end{defin}
-
+** Subgraphs
+* COMMENT REST
 # \begin{defin}[Sub\-graph]
 #   The graph $G'=(\varphi',E',V')$ is a \emph{sub\-graph} of $G=(\varphi,E,V)$ (or $G$ is a \emph{super\-graph} of $G'$) if $E'\subset E$, $V'\subset V$ and $\varphi' \subset \varphi$.  %
 #   If a sub\-graph $G'$ contains all the edges with endpoints in $V'$, \ie $G'$ is the largest graph with edges in $V'$, then $G'$ is an \emph{saturated} sub\-graph induced by $V'$, of a graph $G$ if it has the same vertex set as $G$. 
