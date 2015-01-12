@@ -114,7 +114,7 @@ One may think about graphs as "dots connected with lines or arrows"
        - $\deg(v_3)=1$
        - $\deg(v_4)=4$
        - $\deg(v_5)=0$
-** Isomorphic grapsh
+** Isomorphic graphs
 *** Isomorphism
 **** Isomorphism of graphs				       :B_definition:
      :PROPERTIES:
@@ -184,6 +184,25 @@ One may think about graphs as "dots connected with lines or arrows"
        vertices.
      - Any graph isomorphic to \eg $K_4$ as seen on the picture is
        also a $K_4$ graph.
+*** Bipartite graphs
+****  Bipartite graph					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+      A $G=(\varphi,E,V)$ graph is a bipartite graph, if $\exists V',
+      V'' \subset V$ so that
+      - $V' \cap V'' = \emptyset$,
+      - $V' \cup V'' = V$ and
+      - for every edge $e\in E$, $\varphi(e) \cap V' \neq \emptyset$
+        and $\varphi(e) \cap V'' \neq \emptyset$
+      \ie the set of vertices $V$ of a *bipartite graph* can be split
+      into two non-empty, disjoint sets so that $V'\cup V''=V$, and
+      each edge has one endpoint in $V'$ and the other in $V''$.
+
+      #+BEGIN_CENTER
+      #+ATTR_LATEX: :width 2cm
+      [[file:./tikz/bp.tikz]]
+      #+END_CENTER
 *** Cartesian product of graphs
 **** Cartesian product					       :B_definition:
      :PROPERTIES:
@@ -210,186 +229,336 @@ One may think about graphs as "dots connected with lines or arrows"
        connected with a single edge.  
      - For $n>1$, the $n$-dimensional hyper\-cube is obtained from the
        Cartesian product of $n$ number of $H_1$ hyper\-cubes, \ie
-       \[H_n=\times_{i=1}^{n}H_1.\]
+       \[ H_n = H_{n-1} \times H_1.\]
      An equivalent definition of $H_n$ is: 
      - $V$ contains $n$ long strings of $0$'s and $1$'s, and
        there is an edge between two vertices if they differ only in one
        element.  
+** Sub\-graphs
+*** Sub\-graphs
+**** Sub\-graph, saturated sub\-graph 			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:      
+     - $G'=(\varphi',E',V')$ is a *sub\-graph* of $G=(\varphi,E,V)$
+       (or $G$ is a *super\-graph* of $G'$) if $E'\subset E$,
+       $V'\subset V$ and $\varphi' \subset \varphi$.
 
-# \begin{defin}[Bipartite graphs]
-#   A the set of vertices $V$ of a \emph{bipartite graph} can be split into two non-empty, disjoint sets so that $V'\cup V''=V$, and each edge has one endpoint in $V'$ and the other in $V''$.  %
-# \end{defin}
-** Subgraphs
-* COMMENT REST
-# \begin{defin}[Sub\-graph]
-#   The graph $G'=(\varphi',E',V')$ is a \emph{sub\-graph} of $G=(\varphi,E,V)$ (or $G$ is a \emph{super\-graph} of $G'$) if $E'\subset E$, $V'\subset V$ and $\varphi' \subset \varphi$.  %
-#   If a sub\-graph $G'$ contains all the edges with endpoints in $V'$, \ie $G'$ is the largest graph with edges in $V'$, then $G'$ is an \emph{saturated} sub\-graph induced by $V'$, of a graph $G$ if it has the same vertex set as $G$. 
-
-#   If $G'=(\varphi',E',V')$ is a sub\-graph of $G=(\varphi,E,V)$, then the \emph{complement graph} of $G'$ with regards to $G$ is the graph $(\varphi|_{E\setminus E'},E\setminus E',V)$.  %
-#   If $G'$ is a simple graph the default graph for $G$ is $K_n$ where $n$ is the number of vertices in $G'$, \ie the connected vertices in the complement graph of $G'$ are exactly the ones which are not connected in $G'$.  %
-
-#   Let $G=(\varphi,E,V)$ be a graph. If $E'\subset E$, then by \emph{deleting the set of edges $E'$} the sub\-graph $G'=(\varphi|_{E\setminus E'},E\setminus E',V)$ is obtained.  %
-#   If $V'\subset V$, then the sub\-graph obtained by \emph{deleting the set of vertices $V'$} is $G'=(\varphi|_{E\setminus E'},E',V')$, where $E'$ is the subset of edges which have either endpoint in $V'$.  %
-# \end{defin}
-# !!!!!!! route = trail !!!!!!!!!!!!!!!
-# \begin{defin}[Walks, lines, routes and circles]
-#   Let $G=(\varphi,E,V)$ be a graph.  %
-#   An $n$ long \emph{walk} from $v$ to $v'$ is a finite series $v_0,e_1,v_1,\ldots,v_{n-1},e_n,v_n$, where the edge $e_i$ connects the vertices $v_{i-1}$ and $v_i$, $v_0=v$ and $v_n=v'$.  %
-#   If $v=v'$ the walk is \emph{closed}, otherwise it is \emph{opened}.  %
-#   If all the edges in a walk from $v$ to $v'$ are different, then it is a \emph{line}.  %
-#   If this walk is closed then the line is also \emph{closed}, otherwise it is \emph{opened}.  %
-#   If all the vertices $v_0,v_1,\ldots,v_n$ are different in a walk, it is called a \emph{route}.  %
-#   An at least 1 long closed line is a \emph{circle} if all the vertices in the line are different with the exception of the beginning and the end.  %
-
-#   The \emph{distance} between two vertices of a graph is the minimum of the lengths of walks between them if there exists a walk between them, otherwise it is $+\infty$.  %
-#   The \emph{diameter} of a graph is the supremum (least upper bound) of the distances between all the vertices in the graph.  %
-# \end{defin}
-
-# \begin{examp}
-#   A walk of length 0 is a route.  %
-#   Walks of length 1 are routes if they are not loops.  %
-#   A route can not contain loops, parallel edges or the same edge more than once.  %
-#   Ergo, routes are also lines.  %
-
-#   Circles of length 1 are loop edges, circles of length 2 contain two vertices and two parallel edges.  %
-#   Circles of length 3, 4 \etc are sometimes referred to as a triangle, square etc.  %
-# \end{examp}
-
-# \begin{propo}
-#   With the notation from the previous paragraphs, for each graph $G$, if a walk connects the different vertices $v$ and $v'$, by deleting the adequate $e_i$, $v_i$ pairs a route between $v$ and $v'$ can be obtained in $G$.  %
-# \end{propo}
-
-# \begin{proof}
-#   If $v_i=v_j$, $i<j$, then let us delete $e_{i+1},v_{i+1},e_{i+2},v_{i+2},\ldots,e_j,v_j$ from the walk, and repeat this procedure until all the vertices in the remaining walk are all different.  %
-#   Because the length of the walk decreases after each step, the procedure eventually comes to a halt.  %
-# \end{proof}
-
-# \begin{propo}
-#   In every graph $G$, every closed line of at least one length is the union of circles with disjoint edges.  %
-# \end{propo}
-
-# \begin{proof}
-#   If there are no repeating vertices on the line, except the first and the last one, then it is a circle and we are done.  %
-#   Otherwise going from the first occurrence of a repeating vertex to the second occurrence yields a shorter closed line than the original.  %
-#   Deleting this closed line, leaves us with another closed line, also shorter from the original.  %
-#   We repeat this procedure on these shorter closed lines until they contain circles.  %
-#   Eventually we obtain closed lines without repeating vertices, \ie circles.  %
-# \end{proof}
-
-# \begin{defin}[Connected graphs]
-#   A graph is \emph{connected} if there exists a walk between any two vertices of the graph.  %
-#   An equivalent definition is that each pair of vertices is connected with a route.  %
+ Let $G'$ be a sub\-graph of $G$.
+**** Induced sub\-graph
+     - If $G'$ contains all the edges with endpoints in $V'$ (\ie $G'$
+       is the largest sub\-graph with edges connected to $V'$), then
+       $G'$ is a *saturated (or full) sub\-graph induced by $V'$*, of
+       a graph $G$ if it has the same vertex set as $G$.
+*** Complement graph
+**** Complement graph					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - The *complement graph of $G'$ with regards to $G$* is the graph
+       $(\varphi|_{E\setminus E'},E\setminus E',V)$. 
+     - If $G$ is a simple graph with $n$ vertices, then the
+       *complement of $G$* is the complement of $G$ with regards to
+       $K_n$, \ie the complement of a simple graph is the graph with
+       the same vertices and the edges missing from the original
+       graph.
+       
+     In the example below we have a simple graph, its complement, and
+     the complete graph:
   
-#   The relation on the set of vertices which is defined on two vertices if and only if the two vertices are connected via a walk is an equivalence relation (reflexive, transitive and symmetrical).  %
-#   The sub\-graphs spanned by the classes generated by this equivalence relation are the \emph{components} of the original graph.  %
-#   Two vertices can not be adjacent so each edge belongs to only one component.  %
-#   A graph is connected if and only if it consists of one component.  %
-# \end{defin}
+     #+BEGIN_CENTER
+     [[file:./tikz/comp.tikz]]
+     #+END_CENTER
+*** Deleting edges end vertices
+**** Deleting edges end vertices			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G=(\varphi,E,V)$ be a graph. 
+     - If $E'\subset E$, the sub\-graph $G'=(\varphi|_{E\setminus
+       E'},E\setminus E',V)$ is obtained by *deleting the set of edges
+       $E'$*.
+     - If $V'\subset V$, then $G'=(\varphi|_{E\setminus E'},E',V')$ is
+       the sub\-graph obtained by *deleting the set of vertices $V'$*,
+       where $E'=\{e\in E : \varphi(e) \cap V' \neq \emptyset\}$ \ie
+       the subset of edges which have either endpoint in $V'$.
+*** Walks, trails, routes
+**** Walks, trails, routes				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G=(\varphi,E,V)$ be a graph.  
+     - An $n$ long *walk* from vertex $v$ to vertex $v'$ is a finite
+       series $v_0,e_1,v_1,\ldots,v_{n-1},e_n,v_n$, where $v_0=v$ and
+       $v_n=v'$ and $\varphi(e_) = \{v_{i-1},v_i\}$, \ie the edge
+       $e_i$ connects the vertices $v_{i-1}$ and $v_i$. 
+       - If $v=v'$ the walk is *closed*, otherwise it is *open*.
+     - If all the edges in a walk from $v$ to $v'$ are different, then
+       it is a *trail* (or a *line*).  
+       - If this walk is closed then the trail is also *closed trail*,
+         otherwise it is *open*.
+     - If all the vertices $v_0,v_1,\ldots,v_n$ are different in a
+       walk, it is called a *route* or a *path*. 
+       - An /at least 1 long/ closed trail is a *circle* (or *cycle*)
+         if all the vertices in the trail are different with the
+         exception of the beginning and the end.
+*** Distance, diameter
+**** Distance						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *distance* between two vertices $v$ and $v'$ is
+     the minimum length of the walks between them (if there exists a
+     walk between them, otherwise it is $+\infty$). 
+**** Diameter						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *diameter* of a graph is the supremum (least upper bound) of
+     the distances between all the vertices in the graph.  (For a
+     finite graph, you can use simply the maximum of the lengths).
+*** Examples
+**** Examples and clarification					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     - A walk of length 0 is a route.
+     - Walks of length 1 are routes if they are not loops.
+     - A route can not contain loops, parallel edges or the same edge
+       more than once.  Ergo, routes are also trails.
 
-# \begin{defin}[Trees]
-#   A tree is a connected graph which contains no circles.  %
-# \end{defin}
+     - Circles of length 1 are loop edges, circles of length 2 contain
+       two vertices and two parallel edges.
+     - Circles of length 3, 4 \etc are sometimes referred to as a
+       triangle, square etc.
+*** Walk to route
+**** Walk to route 						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     With the previous notation, for each graph $G$, for each walk
+     between $v$ and $v'$, a route between $v$ and $v'$ can be
+     obtained in $G$ by deleting the adequate $e_i$, $v_i$ pairs.
 
-# \begin{theor}
-#   The following statements are equivalent for the simple graph $G$:
-#   \begin{enumerate}
-#   \item $G$ is a tree;
-#   \item $G$ is connected, the remaining sub\-graph after deleting an edge is disconnected;
-#   \item if $v$ and $v'$ are different vertices of $G$, then there exists exactly one route between $v$ and $v'$;
-#   \item $G$ does not contain any circle, but the graph obtained by adding an edge between two of its vertices has a circle.
-#   \end{enumerate}
-# \end{theor}
-# \begin{proof}
-#   If deleting an edge with endpoints $v$ and $v'$ would leave the graph connected, that would mean there is a route between $v$ and $v'$, so returning that edge would introduce a circle, so 1 implies 2.  %
-#   If there were two different routes between $v$ and $v'$, then let the vertices in the first route be $v,v_1,v_2,\ldots$ and in the second one $v,v_1',v_2',\ldots$, and let $k$ be the smallest index for which $v_k\neq v_k'$.  %
-#   Deleting the edge with endpoints $v_{k-1}$ and $v_k$ would leave the graph connected, because in all walks which went over that edge, the edge can be replaced with the walk $v_{k-1},v_k',v_{k+1}',\ldots,v',\ldots,v_{k+1},v_k$.  %
-#   We have proven that 2 implies 3.  %
-#   If there is a circle $v,v',\ldots,v$ in the graph, then there are two routes from $v$ to $v'$, so 3 implies 1.  %
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     If $v_i=v_j$, $i<j$, then let us delete
+     $e_{i+1},v_{i+1},e_{i+2},v_{i+2},\ldots,e_j,v_j$ from the walk,
+     and repeat this procedure until all the vertices in the remaining
+     walk are all different.  Because the length of the walk decreases
+     after each step, the procedure eventually comes to a halt.
+*** Closed trails are made up of disjoint circles
+**** Closed trails are made up of disjoint circles 		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:      
+     In every graph $G$, every closed trail of at least one length is
+     the union of circles with disjoint edges.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - If there are no repeating vertices on the trail, except the first
+       and the last one, then it is a circle and we are done.  
+     - Otherwise there is at least one vertex recurring on the trail.
+       At this vertex the trail can be split into two (shorter) closed
+       trails. 
+     - By repeating this procedure on the two closed sub\-trails, we
+       obtain shorter and shorter closed trail, until we are left with
+       only circles.
+** Trees
+*** Connected graphs, trees
+**** Connectedness, components 				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A graph is *connected* if there exists a walk (or equivalently a route) between any two
+       vertices of the graph.
+     - The relation on $V$ defined on two vertices if and only if they
+       are connected via a walk (or route) is an equivalence relation
+       (reflexive, transitive and symmetrical).  The sub\-graphs
+       spanned by the classes generated by this equivalence relation
+       are the *components* of the original graph.
+       - Two vertices from different components can not be adjacent so
+	 each edge belongs to only one component.  
+       - A graph is connected if and only if it consists of one
+         component.
+**** Tree						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A *tree* is a connected graph which contains no circles.
+*** Alternative definitions of trees
+**** Alternative definitions of trees				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     The following statements are equivalent for the simple graph $G$:
+     1) $G$ is a tree (\ie connected and without circles);
+     2) $G$ is connected, the remaining sub\-graph after deleting an
+	edge is disconnected;
+     3) if $v$ and $v'$ are different vertices of $G$, then there
+	exists exactly one route between $v$ and $v'$;
+     4) $G$ does not contain any circle, but the graph obtained by
+	adding an edge between two of its vertices has a circle.
+*** Proof (part 1)
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+    - $1\Rightarrow 2$: If the edge between $v$ and $v'$ is deleted,
+      and the graph is connected, then there is a route between $v$
+      and $v'$ in the sub\-graph, so returning that edge would
+      introduce a circle.
 
-#   Finally, if a graph is a tree, it has no circles.  %
-#   Adding a loop, adds a circle, or if we add a new edge with endpoints $v\neq v'$, then combining this edge with the route from $v$ to $v'$ again introduces a circle.  %
-#   Conversely, if 4 is true, we have to show that for any $v\neq v'$ there is a route from $v$ to $v'$.  %
-#   Add a virtual edge to the graph with endpoints $v$ and $v'$.  %
-#   The new graph contains a circle and the virtual edge is part of that circle.  %
-#   So deleting the virtual edge from the circle leaves us with a route from $v$ to $v'$.
-# \end{proof}
+    - $2\Rightarrow3$: If there were two different routes between $v$
+      and $v'$: $v=v_0,v_1,v_2,\ldots,v_n=v'$ and
+      $v=v_0',v_1',v_2',\ldots,v_m' = v'$.  Let $k=\min\{i : v_i\neq
+      v_i'\}$.  Deleting the edge between $v_{k-1}$ and $v_k$ would
+      leave the graph connected, because in all walks, that edge can
+      be replaced with the walk
+      $v_{k-1},v_k',v_{k+1}',\ldots,v_m'=v'=v_n,v_{n-1}\ldots,v_{k+1},v_k$.
+    
+    - $3\Rightarrow 1$: If there is a circle $v,v',\ldots,v$ in the
+      graph, then there are two routes from $v$ to $v'$.
+*** Proof (part 2)
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+    - $1\Rightarrow 4$: A tree has no circles and adding a loop, adds
+      a circle. Adding a new edge with endpoints $v\neq v'$ and
+      combining this edge with the route from $v$ to $v'$ again
+      introduces a circle.
 
-# \begin{theor}
-#   If a finite graph $G$ contains no circles, but contains edges, then there are at least two vertices with degree one.  %
-# \end{theor}
-# \begin{proof}
-#   There are routes of maximal length in $G$.  %
-#   Let this be a route from $v$ to $v'$, and it has to have length of at least 1.  %
-#   We will show that $v$ and $v'$ have degree 1.  %
-#   If they would not have degree 1, there would be at least one more edge connected to them.  %
-#   If that edge would lead to a vertex not on the route, the route would not be of maximal length.  %
-#   If it would lead to a vertex on the route, the graph would contain a circle.
-# \end{proof}
+    - $4\Rightarrow1$: Add a temporary edge to the graph with
+      endpoints $v$ and $v'$.  The temporary edge is part of a circle.
+      So deleting the temporary edge from the circle leaves us with a
+      route from $v$ to $v'$ in the original graph. Since this is true
+      for each vertex pair $v$, $v'$, the graph is connected.
+*** Two vertices with degree one
+**** Two vertices with degree one				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If a finite graph $G$ contains no circles, but contains edges,
+     then there are at least two vertices with degree one.  
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - $\deg(v)=1=\deg(v')$ if there is a route of maximal length the
+       graph from $v$ to $v'$.
+     - If $\deg(v)\neq 1$ then there is an $e$ not part of that route,
+       so that $\varphi(e)=\{v,w\}$.
+       - If $w$ is not on the route, the route is not of maximal
+         length.
+       - If $w$ is on the route, the graph would contain a circle.
+*** Number of edges in a tree
+**** Alternative definitions of trees 				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     The following statements are equivalent for the simple finite
+     graph $G$ with $n$ vertices:
+     1) $G$ is a tree;
+     2) $G$ has no circles and has $n-1$ edges;
+     3) $G$ is connected and has $n-1$ edges.
+*** Proof
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     For $n=1$ it is trivial.  Suppose $G$ is a tree and $n>1$, and
+     let $v_n$ be a vertex in $G$ which has only one adjacent vertex
+     $v_{n-1}$.  
+     - $1\Rightarrow 2$: Delete vertex $v_n$: the remaining graph $G'$
+       is a tree, because $v_n$ can only an endpoint of any route in
+       $G$.
+     - $2\Rightarrow 3$: $G$ is connected because there is a route
+       from $v_n$ to $v_{n-1}$ and (by induction) there is a route
+       from $v_{n-1}$ to any other vertex in $G'$. 
+     - $3\Rightarrow 1$:
+       If $G$ would have a circle, then deleting any edge from the circle would leave us with a connected graph.  
+       Continue deleting the edges until no circles are left, \ie until a tree is obtained.  
+       If we deleted $k$ edges, than we obtain a tree with $n$ vertices and $n-k-1$ edges.
+       But since 1 implies 2, only $k=0$ is possible.  
+*** Spanning tree
+**** Spanning tree					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *spanning tree* of $G$ is a sub\-graph $T$ which is a tree
+     and has the same set of vertices as $G$.  (Of course only
+     connected graphs have spanning trees.)
+**** COMMENT TODO Example
+**** Spanning trees 						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Every connected graph has a spanning tree.
+**** Proof
+     - Keep deleting edges of circles while there are circles.
+     - The graph remains connected.
+     - After a finite number of steps, the process halts: the
+       remaining graph has no circles and it is connected.
+*** Number of circles
+**** Number of circles 						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A finite connected graph $G=(\varphi, E, V)$ contains at least
+     $\card{E}-\card{V}+1$ circles with different sets of edges.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - Let $T$ be a spanning tree of $G$.
+     - It has $\card{V}-1$ edges.
+     - Let $E'$ be the set of edges of $G$ which are not in $T$.
+     - If $e\in E'$, then adding this edge to $T$ introduces a circle
+       $C_e$.
+     - Of course, $C_e$ is part of the original graph.
+     - The edge $e$ is on the circle $C_e$, but if $e\neq e'\in E'$,
+       then $e$ is not in $C_{e'}$, so the sets of edges of each
+       circle $C_e$ for each $e\in E'$ are mutually different.
+*** Remarks
+    - The set of edges of each circle $C_e$ is uniquely defined by
+      each $e\in E'$, because if adding an edge to the spanning tree
+      $T$ would yield two different circles, that would mean that
+      there were two different routes between the end points off the
+      added edge in $T$, so $T$ wouldn't be a tree.  
 
-# \begin{theor}
-#   The following statements are equivalent for the simple finite graph $G$ with $n$ vertices:
-#   \begin{enumerate}
-#   \item $G$ is a tree;
-#   \item $G$ has no circles and has $n-1$ edges;
-#   \item $G$ is connected and has $n-1$ edges;
-#   \end{enumerate}
-# \end{theor}
-# \begin{proof}
-#   For $n=1$ it is trivial.  %
-#   Suppose $G$ is a tree and $n>1$, and let $v_n$ be a vertex in $G$ which has only one adjacent vertex $v_{n-1}$.  %
-#   Delete vertex $v_n$: the remaining graph $G'$ is a tree, because $v_n$ can only an endpoint of any route in $G$.
-#   So this shows that by induction 1 implies 2.  %
-#   Similarly we can show that 2 implies 3: using the previous notation, $G$ is connected because there is a rout from $v_n$ to $v_{n-1}$ and (by induction) there is a route from $v_{n-1}$ to any other vertex in $G'$.  %
-#   Finally suppose 3 is true.  %
-#   If $G$ would have a circle, then deleting any edge from the circle would leave us with a connected graph.  %
-#   Continue deleting the edges until no circles are left, \ie until a tree is obtained.  %
-#   If we deleted $k$ edges, than we obtain a tree with $n$ vertices and $n-k-1$ edges.  %
-#   But since 1 implies 2, only $k=0$ is possible.  %
-# \end{proof}
+    - This system of circles is the *basic circle system* determined
+      by the spanning tree $T$.
 
-# \begin{defin}[Spanning tree] 
-#   The \emph{spanning tree} of $G$ is its sub\-graph $T$ which is a tree and has the same set of vertices as $G$.  %
-#   (Of course only connected graphs have spanning trees.)
-# \end{defin}
-
-# % TODO Example
-
-# \begin{propo}
-#   Every connected graph has a spanning tree.
-# \end{propo}
-# \begin{proof}
-#   Keep deleting edges of circles while there are circles in the graph.  %
-#   The graph remains connected.  %
-#   After a finite number of steps, the process halts: the remaining graph has no circles and it is connected.  %
-# \end{proof}
-
-# \begin{propo}
-#   In a finite connected graph $G=(\varphi, E, V)$ contains at least $\card{E}-\card{V}+1$ circles with different sets of edges.  
-# \end{propo}
-# \begin{proof}
-#   Let $T$ be a spanning tree of $G$.  %
-#   It has $\card{V}-1$ edges.  %
-#   Let $E'$ be the set of edges of $G$ which are not in $T$.  %
-#   If $e\in E'$, then adding this edge to $T$ introduces a circle $C_e$.  %
-#   Of course, $C_e$ is contained in the original graph.  %
-#   The edge $e$ is on the circle $C_e$, but if $e\neq e'\in E'$, then $e$ is not in $C_{e'}$, so the sets of edges of each circle $C_e$ for each $e\in E'$ are mutually different.  %
-# \end{proof}
-
-# \begin{remark}
-#   The set of edges of each circle $C_e$ is uniquely defined by each $e\in E'$, because if adding an edge to the spanning tree $T$ would yield two different circles, that would mean that there were two different routes between the end points off the added edge in $T$, so $T$ wouldn't be a tree.  %
-#   This system of circles is the \emph{basic circle system} determined by the spanning tree $T$.  %
-#   There might be other circles in the graph, but it can be shown that all circles can be systematically expressed using the basic circle system.  
-#   The boundary given in the theorem is only a lower bound, \eg the graph defined by the edges of a tetrahedron has more than $\card{E}-\card{V}-1$ edges.  
-# \end{remark}
-
-# \begin{defin}[Cut]
-#   Let $G=(\varphi, E, V)$ a graph.  %
-#   If $v',v''$ are vertices, $V'\subset V$, and for each route from $v'$ to $v''$, there exists a vertex $v\in V'$ which is on that route, then $V'$ \emph{separates} (or \emph{cuts}) $v'$ and $v''$.  %
-#   If $E'\subset E$, and for each route from $v'$ to $v''$ there is an edge $e\in E'$ which is on that route, then $E'$ \emph{separates} $v'$ and $v''$.  %
-#   If there are vertices which are separated by a set of edges $E'$, then $E'$ is a \emph{separating set of edges}.  %
-#   If a separating set of edges has no trivial subset which is also a separating set, it is called a \emph{cut}.  %
-#   % TODO example
-# \end{defin}
+    - There might be other circles in the graph, but it can be shown
+      that all circles can be systematically expressed using the basic
+      circle system.
+      
+    - The boundary given in the theorem is only a lower bound, \eg the
+      graph defined by the edges of a tetrahedron has more than
+      $\card{E}-\card{V}-1$ edges.
+*** Cut sets
+**** Cut set						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G=(\varphi, E, V)$ a graph.  
+     - If $v',v''$ are vertices, $V'\subset V$, and for each route
+       from $v'$ to $v''$, there exists a vertex $v\in V'$ which is on
+       that route, then $V'$ *separates (or cuts) $v'$ and $v''$*.
+       
+     - If $E'\subset E$, and for each route from $v'$ to $v''$ there
+       is an edge $e\in E'$ which is on that route, then *$E'$
+       separates $v'$ and $v''$*.  
+     - If there are vertices which are separated by a set of edges
+       $E'$, then $E'$ is a *separating set of edges*. 
+     - If a separating set of edges has no trivial subset which is
+       also a separating set, it is called a *cut*.
+**** COMMENT TODO example
 
 # \begin{propo}
 #   In a finite connected graph $G=(\varphi, E, V)$ there are at least $\card{E}-\card{V}+1$ cuts.  %
@@ -403,6 +572,7 @@ One may think about graphs as "dots connected with lines or arrows"
 #   As a matter of fact, $(E\setminus E')\cup \{e\}$ contains exactly one cut, because deleting $e$ from $E'$ separates $T$ into two components.  %
 #   The cut consists of exactly those edges which have one endpoint in each graph.  %
 # \end{proof}
+* COMMENT REST
 
 # \begin{defin}[Forests]
 #   A graph without circles is a \emph{forest}.  %
@@ -412,29 +582,29 @@ One may think about graphs as "dots connected with lines or arrows"
 #   Forest and spanning forests relate to unconnected graphs as trees and spanning trees relate to connected graphs.  %
 # \end{defin}
 
-# \begin{defin}[Euler line]
-#   In a finite graph, a line form $v$ to $v'$ or a closed line is an \emph{Euler line} if it contains all edges of the graph.  %
-#   If $v\neq v'$ then at each occurrence of $v$ on the line, there are exactly two edges connected to $v$ except for the first occurrence, so the degree of $v$ is odd.  %
+# \begin{defin}[Euler trail]
+#   In a finite graph, a trail form $v$ to $v'$ or a closed trail is an \emph{Euler trail} if it contains all edges of the graph.  %
+#   If $v\neq v'$ then at each occurrence of $v$ on the trail, there are exactly two edges connected to $v$ except for the first occurrence, so the degree of $v$ is odd.  %
 #   Similarly, the degree of $v'$ is also odd while the degrees of all remaining vertices are even, and if $v=v'$ then the degrees of all vertices are even.  %
 # \end{defin}
 
 # \begin{propo}
-#   A finite connected graph contains a closed Euler line if and only if all vertices have even degrees.  %
-#   If a finite connected graph contains $2s$ number of vertices with odd degrees, where $s\in \N^+$, then the graph is made up of $s$ number of lines with mutually disjoint edges.  %
+#   A finite connected graph contains a closed Euler trail if and only if all vertices have even degrees.  %
+#   If a finite connected graph contains $2s$ number of vertices with odd degrees, where $s\in \N^+$, then the graph is made up of $s$ number of trails with mutually disjoint edges.  %
 # \end{propo}
 # \begin{proof}
 #   The proof is constructive.  %
 #   First, suppose $s=0$ (\ie all vertices have even degree).  %
-#   Start off with a vertex $v$ which can be considered a closed line with no edges.  %
-#   We extend this closed line into a longer closed line, until all edges are used up.  %
+#   Start off with a vertex $v$ which can be considered a closed trail with no edges.  %
+#   We extend this closed trail into a longer closed trail, until all edges are used up.  %
 #   If there are edges which are unused, then because the graph is connected, there is a vertex $v'$ which is connected to unused edges.  %
 #   Let us start from $v'$ on one of these edges, always choosing unused  edges.  %
 #   Because all vertices are connected to an even number of unused edges, we can only get stuck if we return to $v'$.  %
-#   Adding this closed line to the previous one results in a longer closed line containing all edges.
+#   Adding this closed trail to the previous one results in a longer closed trail containing all edges.
   
 #   For $s>0$ connect vertices with odd degrees in pairs with virtual edges.  %
-#   The graph with the virtual edges contains a closed Euler line.  %
-#   Deleting the $s$ number of virtual edges, brakes up the closed line  into $s$ number of open lines.  %
+#   The graph with the virtual edges contains a closed Euler trail.  %
+#   Deleting the $s$ number of virtual edges, brakes up the closed trail  into $s$ number of open trails.  %
 # \end{proof}
 
 # \begin{defin}[Hamilton route]
@@ -497,6 +667,7 @@ One may think about graphs as "dots connected with lines or arrows"
 #   However this greedy strategy does not always give optimal results with all algorithms, \eg see TSP (traveling salesman problem).  %
 # \end{remark}
 
+* COMMENT TODO Directed graphs						   
 
 # \subsection{Directed graphs}
 # \begin{defin}[Directed graph]
@@ -555,17 +726,17 @@ One may think about graphs as "dots connected with lines or arrows"
 #   If $G=(\psi, E, V)$ is directed graph, $V'\subset V$ then let $E'$ be the set of edges which has its tail or head endpoint in $V'$ then the sub\-graph obtained by deleting the set of vertices $V'$ is $G'=(\psi\vert_{E\setminus E'}, E\setminus E', V\setminus V')$.  %
 # \end{defin}
 
-# \begin{defin}[Directed walks, lines, routes and circles]
+# \begin{defin}[Directed walks, trails, routes and circles]
 #   Let $G=(\psi, E, V)$ be a directed graph.  %
 #   An \emph{$n$ long directed walk from $v$ to $v'$} in $G$ is a finite sequence $v_0,e_1,v_1,e_2,v_2,\ldots,v_{n-1},e_n,v_n$, where the $\psi(e_i)=(v_{i-1},v_i)$ for each $1\le i \le n$ with $v_0=v$ and $v_n=v'$.  %
 #   It is enough to list only the edges, because they determine the vertices in the walk.  %
 #   If $v=v'$ then it is a \emph{closed directed walk}, otherwise it is an \emph{open directed walk}.  %
 
-#   If all the edges differ in a directed walk, then it is a \emph{directed line}.  %
-#   If the directed walk is closed, then it is a \emph{closed directed line}, otherwise it is an \emph{open directed line}.  %
+#   If all the edges differ in a directed walk, then it is a \emph{directed trail}.  %
+#   If the directed walk is closed, then it is a \emph{closed directed trail}, otherwise it is an \emph{open directed trail}.  %
   
 #   A directed walk is a \emph{directed route} if all the $v_0,v_1,\ldots,v_n$ vertices are different.  %
-#   A directed line of length of at least one is a \emph{directed circle}, if the first and the last vertex are equal but otherwise vertices of the line are different.  %
+#   A directed trail of length of at least one is a \emph{directed circle}, if the first and the last vertex are equal but otherwise vertices of the trail are different.  %
   
 #   The relation that there is a directed walk from $v$ to $v'$ is equivalent with the relation that there is a directed route from $v$ to $v'$.  %
 #   This relation is transitive.  %
@@ -693,5 +864,4 @@ One may think about graphs as "dots connected with lines or arrows"
 
 # \end{theor}
 
-* COMMENT TODO Directed graphs						   
 

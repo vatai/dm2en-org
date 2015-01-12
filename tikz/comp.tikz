@@ -1,0 +1,42 @@
+       \begin{tikzpicture}
+       \path[inode] 
+        (0,0) node (a1) {1}
+       +(2,0) node (a2) {2}
+       +(2,2) node (a3) {3}
+       +(0,2) node (a4) {4}
+       ;
+
+       \path[inode] 
+        (6,0) node (b1) {1}
+       +(2,0) node (b2) {2}
+       +(2,2) node (b3) {3}
+       +(0,2) node (b4) {4}
+       ;
+
+       \path[inode] 
+        (12,0) node (1) {1}
+       +(2,0) node (2) {2}
+       +(2,2) node (3) {3}
+       +(0,2) node (4) {4}
+       ;
+
+       \path[edge]
+       (a1) edge (a2)
+       (a1) edge (a4)
+       (a2) edge (a3)
+       (a3) edge (a4)
+       ;
+
+       \path[edge]
+       (b1) edge (b3)
+       (b2) edge (b4)
+       ;
+       \path[edge]
+       (1) edge[red] (2)
+       (1) edge[blue] (3)
+       (1) edge[red] (4)
+       (2) edge[red] (3)
+       (2) edge[blue] (4)
+       (3) edge[red] (4)
+       ;
+       \end{tikzpicture}

@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+      \path[inode] 
+      (0,0) node (l1) {}
+      ++(0,.4) node (l2) {}
+      ++(0,.4) node (l3) {}
+      ++(0,.4) node (l4) {}
+      (1,-0.2) node (r1) {}
+      ++(0,.4) node (r2) {}
+      ++(0,.4) node (r3) {}
+      ++(0,.4) node (r4) {}
+      ++(0,.4) node (r5) {}
+      ;
+      \path 
+      (l1) edge (r1)
+      (l1) edge (r3)
+      (l2) edge (r4)
+      (l3) edge (r2)
+      (l3) edge (r1)
+      (l3) edge (r3)
+      (l3) edge (r5)
+      (l4) edge (r4)
+      ;
+\end{tikzpicture}
