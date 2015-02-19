@@ -1,5 +1,10 @@
 # -*- mode:org; mode: flyspell; -*-
+# #+LATEX_HEADER: \usepackage[override]{xcolor}
+# #+LATEX_CLASS: article
+# #+LATEX_HEADER: \usepackage[]{beamerarticle}
+
 #+SETUPFILE: l-common.org
+
 
 #+TITLE: Discrete mathematics II. - Graphs
 #+INCLUDE: tikz/graph-common.org
@@ -19,7 +24,7 @@ One may think about graphs as "dots connected with lines or arrows"
      :PROPERTIES:
      :BEAMER_col: 0.49
      :END:      
-#+LATEX: \tikzset{edge/.append style={arrows={none-stealth}}}
+#+LATEX: \tikzset{edge/.append style={->,>=stealth}}
 #+ATTR_LATEX: :width 6cm
 [[file:tikz/graph1.tikz]]
 * Undirected graphs
@@ -86,7 +91,6 @@ One may think about graphs as "dots connected with lines or arrows"
       - starting from an empty graph, the introduction of each new edge
        	increases the sum by $2$, ergo there is an even number of
        	vertices with odd degrees.
-
 *** Example							  :B_example:
     :PROPERTIES:
     :BEAMER_env: example
@@ -95,7 +99,8 @@ One may think about graphs as "dots connected with lines or arrows"
      :PROPERTIES:
      :BEAMER_col: 0.5
      :END:
-     [[./tikz/graph1.tikz]]
+     #+ATTR_LATEX: :height 4cm
+     [[file:./tikz/graph1.tikz]]
 **** Values 							      :BMCOL:
      :PROPERTIES:
      :BEAMER_col: 0.5
@@ -160,9 +165,11 @@ One may think about graphs as "dots connected with lines or arrows"
      :END:
      #+BEGIN_CENTER
      $K_4$
-     [[file:./tikz/k4.tikz]] 
+     #+ATTR_LATEX: :height 2.5cm
+     [[file:tikz/k4.tikz]]
      $C_4$
-     [[file:./tikz/c4.tikz]] 
+     #+ATTR_LATEX: :height 2.5cm
+     [[file:tikz/c4.tikz]]
      #+END_CENTER
 **** $P_4$ and $S_4$ 						      :BMCOL:
      :PROPERTIES:
@@ -170,11 +177,12 @@ One may think about graphs as "dots connected with lines or arrows"
      :END:
      #+BEGIN_CENTER
      $P_4$
+     #+ATTR_LATEX: :height 2.5cm
      [[file:./tikz/p4.tikz]] 
      $S_4$
+     #+ATTR_LATEX: :height 2.5cm
      [[file:./tikz/s4.tikz]] 
      #+END_CENTER
-# \end{examp}
 **** $P_4$ and $S_4$ 						      :BMCOL:
      :PROPERTIES:
      :BEAMER_col: 0.50
@@ -299,7 +307,7 @@ One may think about graphs as "dots connected with lines or arrows"
          otherwise it is *open*.
      - If all the vertices $v_0,v_1,\ldots,v_n$ are different in a
        walk, it is called a *route* or a *path*. 
-       - An /at least 1 long/ closed trail is a *circle* (or *cycle*)
+       - An /at least 1 long/ closed trail is a *cycle* (or *circle*)
          if all the vertices in the trail are different with the
          exception of the beginning and the end.
 *** Distance, diameter
@@ -327,9 +335,9 @@ One may think about graphs as "dots connected with lines or arrows"
      - A route can not contain loops, parallel edges or the same edge
        more than once.  Ergo, routes are also trails.
 
-     - Circles of length 1 are loop edges, circles of length 2 contain
+     - Cycles of length 1 are loop edges, cycles of length 2 contain
        two vertices and two parallel edges.
-     - Circles of length 3, 4 \etc are sometimes referred to as a
+     - Cycles of length 3, 4 \etc are sometimes referred to as a
        triangle, square etc.
 *** Walk to route
 **** Walk to route 						  :B_theorem:
@@ -349,25 +357,25 @@ One may think about graphs as "dots connected with lines or arrows"
      and repeat this procedure until all the vertices in the remaining
      walk are all different.  Because the length of the walk decreases
      after each step, the procedure eventually comes to a halt.
-*** Closed trails are made up of disjoint circles
-**** Closed trails are made up of disjoint circles 		  :B_theorem:
+*** Closed trails are made up of disjoint cycles
+**** Closed trails are made up of disjoint cycles 		  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:      
      In every graph $G$, every closed trail of at least one length is
-     the union of circles with disjoint edges.
+     the union of cycles with disjoint edges.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      - If there are no repeating vertices on the trail, except the first
-       and the last one, then it is a circle and we are done.  
+       and the last one, then it is a cycle and we are done.  
      - Otherwise there is at least one vertex recurring on the trail.
        At this vertex the trail can be split into two (shorter) closed
        trails. 
      - By repeating this procedure on the two closed sub\-trails, we
        obtain shorter and shorter closed trail, until we are left with
-       only circles.
+       only cycles.
 ** Trees
 *** Connected graphs, trees
 **** Connectedness, components 				       :B_definition:
@@ -389,20 +397,20 @@ One may think about graphs as "dots connected with lines or arrows"
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     A *tree* is a connected graph which contains no circles.
+     A *tree* is a connected graph which contains no cycles.
 *** Alternative definitions of trees
 **** Alternative definitions of trees				  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
      The following statements are equivalent for the simple graph $G$:
-     1) $G$ is a tree (\ie connected and without circles);
+     1) $G$ is a tree (\ie connected and without cycles);
      2) $G$ is connected, the remaining sub\-graph after deleting an
 	edge is disconnected;
      3) if $v$ and $v'$ are different vertices of $G$, then there
 	exists exactly one route between $v$ and $v'$;
-     4) $G$ does not contain any circle, but the graph obtained by
-	adding an edge between two of its vertices has a circle.
+     4) $G$ does not contain any cycle, but the graph obtained by
+	adding an edge between two of its vertices has a cycle.
 *** Proof (part 1)
 **** Proof 							    :B_proof:
      :PROPERTIES:
@@ -411,7 +419,7 @@ One may think about graphs as "dots connected with lines or arrows"
     - $1\Rightarrow 2$: If the edge between $v$ and $v'$ is deleted,
       and the graph is connected, then there is a route between $v$
       and $v'$ in the sub\-graph, so returning that edge would
-      introduce a circle.
+      introduce a cycle.
 
     - $2\Rightarrow3$: If there were two different routes between $v$
       and $v'$: $v=v_0,v_1,v_2,\ldots,v_n=v'$ and
@@ -421,21 +429,21 @@ One may think about graphs as "dots connected with lines or arrows"
       be replaced with the walk
       $v_{k-1},v_k',v_{k+1}',\ldots,v_m'=v'=v_n,v_{n-1}\ldots,v_{k+1},v_k$.
     
-    - $3\Rightarrow 1$: If there is a circle $v,v',\ldots,v$ in the
+    - $3\Rightarrow 1$: If there is a cycle $v,v',\ldots,v$ in the
       graph, then there are two routes from $v$ to $v'$.
 *** Proof (part 2)
 **** Proof 							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-    - $1\Rightarrow 4$: A tree has no circles and adding a loop, adds
-      a circle. Adding a new edge with endpoints $v\neq v'$ and
+    - $1\Rightarrow 4$: A tree has no cycles and adding a loop, adds
+      a cycle. Adding a new edge with endpoints $v\neq v'$ and
       combining this edge with the route from $v$ to $v'$ again
-      introduces a circle.
+      introduces a cycle.
 
     - $4\Rightarrow1$: Add a temporary edge to the graph with
-      endpoints $v$ and $v'$.  The temporary edge is part of a circle.
-      So deleting the temporary edge from the circle leaves us with a
+      endpoints $v$ and $v'$.  The temporary edge is part of a cycle.
+      So deleting the temporary edge from the cycle leaves us with a
       route from $v$ to $v'$ in the original graph. Since this is true
       for each vertex pair $v$, $v'$, the graph is connected.
 *** Two vertices with degree one
@@ -443,7 +451,7 @@ One may think about graphs as "dots connected with lines or arrows"
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     If a finite graph $G$ contains no circles, but contains edges,
+     If a finite graph $G$ contains no cycles, but contains edges,
      then there are at least two vertices with degree one.  
 **** Proof 							    :B_proof:
      :PROPERTIES:
@@ -455,7 +463,7 @@ One may think about graphs as "dots connected with lines or arrows"
        so that $\varphi(e)=\{v,w\}$.
        - If $w$ is not on the route, the route is not of maximal
          length.
-       - If $w$ is on the route, the graph would contain a circle.
+       - If $w$ is on the route, the graph would contain a cycle.
 *** Number of edges in a tree
 **** Alternative definitions of trees 				  :B_theorem:
      :PROPERTIES:
@@ -464,7 +472,7 @@ One may think about graphs as "dots connected with lines or arrows"
      The following statements are equivalent for the simple finite
      graph $G$ with $n$ vertices:
      1) $G$ is a tree;
-     2) $G$ has no circles and has $n-1$ edges;
+     2) $G$ has no cycles and has $n-1$ edges;
      3) $G$ is connected and has $n-1$ edges.
 *** Proof
 **** Proof							    :B_proof:
@@ -481,8 +489,8 @@ One may think about graphs as "dots connected with lines or arrows"
        from $v_n$ to $v_{n-1}$ and (by induction) there is a route
        from $v_{n-1}$ to any other vertex in $G'$. 
      - $3\Rightarrow 1$:
-       If $G$ would have a circle, then deleting any edge from the circle would leave us with a connected graph.  
-       Continue deleting the edges until no circles are left, \ie until a tree is obtained.  
+       If $G$ would have a cycle, then deleting any edge from the cycle would leave us with a connected graph.  
+       Continue deleting the edges until no cycles are left, \ie until a tree is obtained.  
        If we deleted $k$ edges, than we obtain a tree with $n$ vertices and $n-k-1$ edges.
        But since 1 implies 2, only $k=0$ is possible.  
 *** Spanning tree
@@ -500,17 +508,17 @@ One may think about graphs as "dots connected with lines or arrows"
      :END:
      Every connected graph has a spanning tree.
 **** Proof
-     - Keep deleting edges of circles while there are circles.
+     - Keep deleting edges of cycles while there are cycles.
      - The graph remains connected.
      - After a finite number of steps, the process halts: the
-       remaining graph has no circles and it is connected.
-*** Number of circles
-**** Number of circles 						  :B_theorem:
+       remaining graph has no cycles and it is connected.
+*** Number of cycles
+**** Number of cycles 						  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
      A finite connected graph $G=(\varphi, E, V)$ contains at least
-     $\card{E}-\card{V}+1$ circles with different sets of edges.
+     $\card{E}-\card{V}+1$ cycles with different sets of edges.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -518,25 +526,25 @@ One may think about graphs as "dots connected with lines or arrows"
      - Let $T$ be a spanning tree of $G$.
      - It has $\card{V}-1$ edges.
      - Let $E'$ be the set of edges of $G$ which are not in $T$.
-     - If $e\in E'$, then adding this edge to $T$ introduces a circle
+     - If $e\in E'$, then adding this edge to $T$ introduces a cycle
        $C_e$.
      - Of course, $C_e$ is part of the original graph.
-     - The edge $e$ is on the circle $C_e$, but if $e\neq e'\in E'$,
+     - The edge $e$ is on the cycle $C_e$, but if $e\neq e'\in E'$,
        then $e$ is not in $C_{e'}$, so the sets of edges of each
-       circle $C_e$ for each $e\in E'$ are mutually different.
+       cycle $C_e$ for each $e\in E'$ are mutually different.
 *** Remarks
-    - The set of edges of each circle $C_e$ is uniquely defined by
+    - The set of edges of each cycle $C_e$ is uniquely defined by
       each $e\in E'$, because if adding an edge to the spanning tree
-      $T$ would yield two different circles, that would mean that
+      $T$ would yield two different cycles, that would mean that
       there were two different routes between the end points off the
       added edge in $T$, so $T$ wouldn't be a tree.  
 
-    - This system of circles is the *basic circle system* determined
+    - This system of cycles is the *basic cycle system* determined
       by the spanning tree $T$.
 
-    - There might be other circles in the graph, but it can be shown
-      that all circles can be systematically expressed using the basic
-      circle system.
+    - There might be other cycles in the graph, but it can be shown
+      that all cycles can be systematically expressed using the basic
+      cycle system.
       
     - The boundary given in the theorem is only a lower bound, \eg the
       graph defined by the edges of a tetrahedron has more than
@@ -549,319 +557,646 @@ One may think about graphs as "dots connected with lines or arrows"
      Let $G=(\varphi, E, V)$ a graph.  
      - If $v',v''$ are vertices, $V'\subset V$, and for each route
        from $v'$ to $v''$, there exists a vertex $v\in V'$ which is on
-       that route, then $V'$ *separates (or cuts) $v'$ and $v''$*.
-       
+       that route, then *$V'$ separates (or cuts) $v'$ and $v''$*.
      - If $E'\subset E$, and for each route from $v'$ to $v''$ there
        is an edge $e\in E'$ which is on that route, then *$E'$
        separates $v'$ and $v''$*.  
+     \ie if you remove $V'$ (or $E'$), $v'$ and $v''$ will be
+     separated, so there is no route connecting them.
      - If there are vertices which are separated by a set of edges
        $E'$, then $E'$ is a *separating set of edges*. 
      - If a separating set of edges has no trivial subset which is
-       also a separating set, it is called a *cut*.
+       also a separating set, it is called a *cut set*.
 **** COMMENT TODO example
+*** Number of cut sets
+**** Number of cut sets 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     In a finite connected graph $G=(\varphi, E, V)$ there are at
+     least $\card{E}-\card{V}+1$ cut sets.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $T$ be a spanning tree of $G$ and $E'$ the set of its edges.
+     - If we remove an edge $e\in E'$ from $T$ it will be separated
+       into two components: $T_1$ and $T_2$.
+     - $\card{E'}=\card{V}-1$ and for each edge $e\in E'$ the set
+       $E_e=(E\setminus E')\cup\{e\}$ is a separating set (of the entire
+       graph) so it contains at least one cut set.
+       - $E_e$ is a separating set because all the routes from $T_1$
+         to $T_2$ either go through $e$ or one of the edges in
+         $E\setminus E'$.
+     - Let this cut set be $C_e$, so that $e\in C_e$ and $C_e\subset
+       E_e$, then for each $e\in E'$ the cut sets $C_e$ are different.
+       - Moreover, $E_e$ contains exactly one cut set which contains
+         $e$ and the edges from $E\setminus E'$ which have one end in
+         $T_1$ and the other in $T_2$.
+*** Forests
+**** Forest 						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A graph without cycles is a *forest*.  
+     - The components of a forest are trees, and trees are connected
+       forests.  
+     - A sub\-graph, which consists of spanning trees of the
+       components of its super\-graph is a *spanning forest* of the
+       super\-graph.
+     - The number of edges of a finite forest is: $\card{V}-C$ where
+       $C$ is the number of components.
+     - Forest and spanning to unconnected graphs are the same as trees
+       and spanning trees to connected graphs.
+** Special walks
+*** Euler trails
+**** Euler trail					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     In a finite graph, a trail form $v$ to $v'$ or a closed trail is
+     an *Euler trail* if it contains all edges of the graph.  
 
-# \begin{propo}
-#   In a finite connected graph $G=(\varphi, E, V)$ there are at least $\card{E}-\card{V}+1$ cuts.  %
-# \end{propo}
-# \begin{proof}
-#   Let $T$ be a spanning tree of $G$ and $E'$ the set of its edges.  %
-#   We can construct $E_e$ ($e\in E'$) cuts so that $e\in E_e$, but $E_e$ does not contain any other $e'\in E'$ edges.  %
-#   The set $E\setminus E'$ is not a separating set of edges, however $(E\setminus E')\cup\{e\}$ is a separating set.  %
-#   Therefore each of these sets contains at least one cut, let it be $E_e$.  %
-#   This set obviously contains $e$ and doesn't contain other $e'\in E'$ edges.  %
-#   As a matter of fact, $(E\setminus E')\cup \{e\}$ contains exactly one cut, because deleting $e$ from $E'$ separates $T$ into two components.  %
-#   The cut consists of exactly those edges which have one endpoint in each graph.  %
-# \end{proof}
-* COMMENT REST
+     - If $v\neq v'$ then at each occurrence of $v$ on the trail,
+       there are exactly two edges connected to $v$ except for the
+       first occurrence, so the degree of $v$ is odd.  Similarly, the
+       degree of $v'$ is also odd while the degrees of all remaining
+       vertices are even.
+     - If $v=v'$ then the degrees of all vertices are even.
+*** Euler trails
+**** Decomposition of finite connected graphs  		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A finite connected graph contains a closed Euler trail if and
+     only if all vertices have even degrees.  If a finite connected
+     graph contains $2s$ number of vertices with odd degrees, where
+     $s\in \N^+$, then the graph is made up of $s$ number of trails
+     with mutually disjoint edges.
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     For $s=0$ \ie $\forall d(v)$ even, the proof is constructive.
+     1. A vertex $v\in V$ is  a closed trail with no edges.  
+     2. Extend this closed trail into a longer closed trail, until all
+	edges are used up.  
+	1. If there is an unused edge, there is a vertex $v'$ connected
+           to it.
+	2. Start a trail from $v'$ always choosing unused edges.
+	3. Because all vertices are connected to an even number of
+           unused edges, we can only get stuck (\ie can not continue) if
+           we return to $v'$.  
+	4. Adding this closed trail to the previous one results in a
+           longer closed trail.
+*** Proof (part 2)
+**** Proof for $s>0$  
+     Let $s>0$.  
+     1. Connect the $2s$ number of vertices with odd degrees in pairs
+	with $s$ number of temporary edges.
+     2. The graph including the temporary edges contains a closed Euler
+	trail (because every vertex has even degrees).  
+     3. Deleting the $s$ number of virtual edges, brakes up the closed
+	Euler trail into $s$ number of open trails with mutually
+	disjoint sets of edges.
+*** Hamilton routes
+**** Hamilton route 					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A route from $v$ to $v'$ is a *Hamiltonian route* if it contains
+     all vertices of a graph.  
+**** Hamiltonian cycle, Hamiltonian graph		       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A *Hamiltonian cycle* (or Hamiltonian circuit) is a cycle which
+     contains all vertices of the graph.  A graph is a *Hamiltonian
+     graph* if it contains a Hamiltonian cycle.
+**** Ore's theorem						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $G$ be a (finite and simple) graph with $n\ge 3$ vertices.
+     If $\deg(v) + \deg(w) \ge n$ for every pair of non-adjacent
+     vertices $v$ and $w$, then $G$ is Hamiltonian.
+*** Proof of Ore's theorem
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Indirect proof: if a graph is not Hamiltonian, then $\deg(v) +
+     \deg(w) < n$ for at least one pair of non-adjacent vertices $v$
+     and $w$.
+     - For each $G$ graph which is non-Hamiltonian, there is a
+       non-Hamiltonian graph $H$ which is a super\-graph of $G$, but
+       adding any edge to $H$ would introduce a Hamiltonian cycle.
+     - Let $x$ and $y$ be any two non-adjacent vertices in $H$.
+     - Adding the edge between $x$ and $y$ introduces a Hamiltonian cycle, ergo
+       there is a Hamiltonian route $x=v_1,v_1,\ldots,v_n=y$. 
+     - For each index $i$ ($2 \le i \le n$), consider the two possible
+       edges in $H$ from $v_1$ to $v_i$ and from $v_{i-1}$ to $v_n$.
+*** Proof of Ore's theorem
+**** Proof part 2
+     - For each index $i$ in the range $2 \le i \le n$, consider the two
+       possible edges in $H$ from $v_1$ to $v_i$ and from $v_{i-1}$ to
+       $v_n$.
+     - At most one of these two edges can be present in $H$,
+       otherwise the cycle $v_1, v_2, \ldots, v_{i-1}, v_n,
+       v_{n-1}. \ldots, v_i$ would be a Hamiltonian cycle.
+     - The total number of edges connected to either $v_1$ or $v_n$ is
+       at most equal to the number of choices of $i$, which is $n-1$.
+     - So in $H$, $\deg(v) + \deg(w)<n$.
+     - The degree of vertices in $G$ are at most equal to the degrees
+       in $H$, so $\deg(v) + \deg(w)<n$ is also true in $G$.
+*** 
+**** Consequence of Ore's theorem 				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If a finite simple graph $G$ with $n\ge 3$ vertices has
+     $\deg(v)\ge n/2$ for all vertices $v$, then $G$ is Hamiltonian.
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Because $\deg(v)\ge n/2$ for all vertices, $\deg(v)+\deg(w)\ge
+     n/2 + n/2=n$, therefore by Ore's theorem, $G$ is Hamiltonian.  
+** Labeling of graphs
+*** Labeled and weighted graphs
+**** Labeled and weighted graphs 			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - In practice, edges and/or vertices hold additional data.
+     - If $G=(\varphi, E, V)$ is a graph, $L_e$ and $L_v$ are the sets
+       of labels (for edges and vertices respectively), furthermore
+       the labeling maps of edges and vertices are $\ell_e\colon E \to
+       L_e$ and $\ell_v \colon V \to L_v$, then $(\varphi, E, V,
+       \ell_e, L_e, \ell_v, L_v)$ is *labeled graph*.
+     - Sometimes only the edges or only the vertices are labeled, then
+       the adequate elements are omitted.
+     - Sometimes the word *coloring* is used instead of labeling, and
+       the labels are colors.
+*** Kruskal's algorithm
+**** Weighted graphs
+     Often $L_e=\R$ or $L_v=\R$, and in this case the term *weighted
+     graph* is used and the weight map $w$ connects the elements of
+     the graph to their *weights*.  In a $(\varphi, E, V, w)$ graph
+     with weighted edges, the weight of $E' \subset E$ is
+     $w(E')=\sum_{e\in E'}w(e)$, and in a graph with weighted
+     vertices, the weight of $V' \subset V$ is $w(V')=\sum_{v\in
+     V'}w(v)$.
+**** Kruskal's algorithm					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $G=(\varphi,E,V)$ be a finite weighted graph.
+     1. Initialize: $E'=\emptyset$.
+     2. Terminate?: If there is a cycle in $E'$, then the edges in $E'$
+        are the edges of a minimal weight spanning forest.
+     3. Loop: Let $e=\{e\in E\setminus E':w(e)=\min\{w(e):e\in
+        E\setminus E'\}\}$ \ie an unused edge with minimal weight and
+        set $E':=E\cup\{e\}$. Go to step 2.
+*** Proof of Kruskal's algorithm
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     It is enough to restrict the proof to one component only.  
+     - It is clear, that the result will be a spanning tree $T$.
+     - Suppose a $T'$ spanning tree with minimal weight, which has the
+       most possible common edges with $T$, and with smaller weight
+       than $T$ (then $T$ is not a spanning tree with minimal weight).
+     - Let $e'$ be an edge of $T'$ which is not an edge of $T$.
+     - If $e'$ is added to $T$ than this will add exactly one $C$
+       cycle.
+     - For all $e$ edges of the $C$ cycle, it is true that $w(e)\le
+       w(e')$, because if $w(e)>w(e')$ then the algorithm would have
+       chosen $e'$ instead of $e$.
+     - If we omit $e'$ from $T'$, then it will not be connected, it
+       will separate into two components.
+*** Proof of Kruskal's algorithm
+**** Part 2 of the proof 					    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - There has to be one more edge $e''$ on the cycle $C$ which
+       connects the two components ($e''$ is obviously not from $T'$),
+       and if we exchange $e'$ for $e''$ in $T'$ we get another tree
+       $T''$.
+     - We have shown that $w(e'')\le w(e')$.
+     - If $w(e'')<w(e')$, than the weight of $T''$ would be strictly
+       less than the weight of $T'$, and that would imply that $T'$ is
+       not a spanning tree of minimal weight, which leads to a
+       contradiction.
+     - On the other hand, $w(e'')=w(e')$ would imply that $T''$ has
+       more common edges with $T$ than $T'$, which is again a
+       contradiction.
+*** Remarks
+**** Remark
+     - Kruskal's algorithm is an example of a *greedy algorithm*,
+       because it always chooses the best possible solution.
+     - However this greedy strategy does not always give optimal
+       results with all algorithms, \eg see TSP (traveling salesman
+       problem).  
+       - TSP is equivalent to finding a Hamiltonian path in a graph.
+* Directed graphs
+** Basic definitions
+*** Directed graph
+    You can imagine directed graphs as a set of dots connected with arrows.  
+**** Directed graph					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A *directed graph* $G=(\psi, E, V)$ is a triplet with $E$ as the
+     set of edges, $V$ as the set of vertices, and $\psi\colon E \to
+     V\times V$.  If $\psi(e)=(v,v')$, then $v$ is the *tail endpoint*
+     and $v'$ is the *head endpoint* of the edge $e$.
+**** Remarks
+     - Some authors, define $E\subset V\times V$, or a bit
+       inaccurately, omit the connection map and use the $G=(E,V)$
+       notation.
+     - For every directed graph $G=(\psi, E, V)$ there is a
+       *corresponding undirected graph* $G'=(\varphi, E, V)$ which can
+       be obtained by ``forgetting'' the direction, \ie if $\psi(e) =
+       (v,v')$ then $\varphi=\{v,v'\}$.
+       It is also said that $G$ is an *orientation* of $G'$.  One
+       graph usually has multiple orientations.
+*** Other definitions
+    Most of the definitions, \eg labels, weights \etc, from undirected
+    graphs can be extended onto directed graphs by considering the
+    corresponding undirected graph.
+**** Transpose, strictly parallel, $E^+(S)$ and $E^-(S)$,      :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - The *transpose* of the graph $G=(\psi, E, V)$ is $G'=(\psi', E,
+       V)$ for which $\psi(e)=(v,v')$ if and only if
+       $\psi'(e)=(v',v)$.  (Of course, the reversed loop is equal to
+       itself.)
+     - The edges $e_1\neq e_2$, are *strictly parallel* if
+       $\psi(e_1)=\psi(e_2)$.
+     - Let $S\subset V$, then $E^+(S)$ the set of edges with tail
+       endpoints in $S$ and head endpoints in $V\setminus S$, or
+       $E^+(S)=\{e\in E : \exists v \exists v' ( v\in S \land v'\in V
+       \setminus S \land (v,v')=\psi(e)) \}$
+     - $E^-(S)$ is the set of edges with tail endpoints in $V\setminus
+       S$ and head endpoints in $S$ or $E^-(S)=\{e\in E : \exists v
+       \exists v' ( v\in S \land v'\in V \setminus S \land
+       (v',v)=\psi(e)) \}$
+     - $E(S) = E^+(S)\cup E^-(S)$ and $E^+(S)=E^-(V \setminus S)$.
+*** Degrees of vertices
+**** Out\-degree and in\-degree, sink and source	       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - The *out\-degree* of the vertex $v\in V$ is
+       $d^+(v)=\card{\{e\in E : \exists v' (v'\in V \land
+       (v,v')=\psi(e) )\}}$ (sometimes $\deg^+(v)$ or $\delta^+(v)$),
+       \ie the number of edges with tail endpoint $v$.  If $d^+(v)=0$
+       then $v$ is a *sink*.
+     - The *in\-degree* of the vertex $v\in V$ is $d^-(v)=\card{\{e\in
+       E : \exists v' (v'\in V \land (v',v)=\psi(e) )\}}$ (sometimes
+       $\deg^-(v)$ or $\delta^-(v)$), \ie the number of edges with
+       head endpoint $v$.  If $d^-(v)=0$ then $v$ is a *source*.
+     - A in a finite directed graph, then \[ \sum_{v\in V}d^+(v) =
+       \sum_{v\in V}d^-(v) = \card{E} \] since each edge increases
+       both sums by one (by introducing one tail and one head
+       endpoint).
+** Isomorphic graphs
+*** Isomorphism for directed graphs
+**** Isomorphism for directed graphs			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The graphs $G=(\psi, E, V)$ and $G'=(\psi', E', V')$ are
+     *isomorphic* if $\exists f\colon E \to E'$ bijection and $\exists
+     g\colon V\to V'$ bijection, so $\forall e\in E$ $\psi(e)=(v,v')
+     \iff \psi(f(e))=(g(v),g(v'))$ \ie the $(f,g)$ pair preserves the
+     ``tail'' and ``head endpoint'' relations.
+**** Some special graphs 					  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Again we can talk about a class (or set) of graphs as one graph,
+     \eg $\vec{C}_n$ is the directed cycle of $n$ vertices,
+     $\vec{P}_n$ is the $n$ long directed path, $\vec{S}_n$ is the
+     directed star, with $n$ vertices with zero in\-degrees and one
+     out\-degrees and one vertex with $n$ in\-degrees and zero
+     out\-degrees, $\vec{K}_n$ is the directed complete graph.
 
-# \begin{defin}[Forests]
-#   A graph without circles is a \emph{forest}.  %
-#   The components of a forest are trees, and trees are connected forests.  %
-#   A sub\-graph, which consists of spanning trees of the components of its super\-graph is a \emph{spanning forest} of the super\-graph.  %
-#   The number of edges of a finite forest is the difference of the number of vertices and the number of components.  %
-#   Forest and spanning forests relate to unconnected graphs as trees and spanning trees relate to connected graphs.  %
-# \end{defin}
+** Representation of graphs
+*** List representation
+**** List representation
+     A directed graphs can be represented with an array of lists.
+     - After enumerating the vertices, each entry in the array is a
+       list of $(n,n')$ pairs, where $n$ is the number of $v$ and
+       $n'$ the number of $v'$.
+     - Additional information van be stored with the list entries.
+     - For undirected graphs, each edge is stored two times, once for
+       each endpoint.
+*** Matrix representation
+    An $m \times n$ matrix is a table of $m$ rows and $n$ columns, and
+    the $i$-th row and $j$-th column is $a_{i,j}$ ($1 \le i \le m$ and
+    $1 \le j \le n$).  
 
-# \begin{defin}[Euler trail]
-#   In a finite graph, a trail form $v$ to $v'$ or a closed trail is an \emph{Euler trail} if it contains all edges of the graph.  %
-#   If $v\neq v'$ then at each occurrence of $v$ on the trail, there are exactly two edges connected to $v$ except for the first occurrence, so the degree of $v$ is odd.  %
-#   Similarly, the degree of $v'$ is also odd while the degrees of all remaining vertices are even, and if $v=v'$ then the degrees of all vertices are even.  %
-# \end{defin}
+    Let $G=(\psi,E,V)$ be a directed graph, $E=\{e_1,e_2,\ldots,e_m\}$,
+    $V=\{v_1,v_2,\ldots,v_n\}$.
+**** Incidence matrix
+     - The *incidence matrix* of $G$ is an $n \times m$ matrix, where $1
+       \le i \le n$, $1 \le j \le m$ and $a_{i,j}=1$ if $v_i$ is a tail
+       endpoint of $e_j$ and $a_{i,j}=-1$ if $v_i$ is a head endpoint of
+       $e_j$.
+     - If $G$ is undirected, then the elements of the matrix are
+       $\lvert a_{i,j} \rvert$.
+**** Adjacency matrix
+     - The *adjacency matrix* for $G$ is an $n \times n$ matrix where
+       $1 \le i,j \le n$ and $a_{i,j}$ is the number of edges from
+       $v_i$ to $v_j$.
+     - If $G$ is undirected, $a_{i,i}$ is the number of loop edges
+       connected to $v_i$ and $a_{i,j}$ is the number of edges
+       connecting $v_i$ and $v_j$.
+** Sub\-graphs
+*** Sub\-graphs
+**** Directed sub\-graphs				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - The graph $G'=(\psi', E', V')$ is a *directed sub\-graph* of
+       $G=(\psi, E, V)$ if $E'\subset E$, $V' \subset V$ and
+       $\psi'\subset \psi$.  It also said that $G$ is a *directed
+       super\-graph* of $G'$.
+     - If $E'$ contains all edges with both tail and head endpoints in
+       $V'$, then $G'$ is a *saturated* sub\-graph induced by $V'$.
+     - If $G'=(\psi, E', V')$ is a directed sub\-graph of $G=(\psi, E,
+       V)$, then the *complement* of $G'$ with respect to $G$ is the
+       graph $(\psi\vert_{E\setminus E'}, E\setminus E', V)$.  If $G$
+       is not explicitly stated, then it is understood to be the
+       complement with respect to the complete graph.
+*** Deleting edges and vertices
+**** Deleting edges and vertices from graphs 		       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G=(\psi, E, V)$ be a directed graph.
+     - If $E'\subset E$, then the sub\-graph obtained by deleting the
+       set of edges $E'$ is $G'=(\psi\vert_{E\setminus E'}, E\setminus
+       E', V)$.
+     - If $V'\subset V$, then let $E'=\{e\in E : \exists v \exists v'
+       (\psi(e)=(v,v') \lor \psi(e)=(v',v)) \land v\in V'\}$ then the
+       sub\-graph obtained by deleting the set of vertices $V'$ is
+       $G'=(\psi\vert_{E\setminus E'}, E\setminus E', V\setminus V')$.
+*** Walks, trails, routes 
+**** Directed walks, trails, routes and cycles		       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G=(\psi, E, V)$ be a directed graph.  
+     - An *directed walk of length $n$ from $v$ to $v'$* in $G$ is a
+       finite sequence $v_0,e_1,v_1,e_2,v_2,\ldots,v_{n-1},e_n,v_n$,
+       where the $\psi(e_i)=(v_{i-1},v_i)$ for each $1\le i \le n$
+       with $v_0=v$ and $v_n=v'$.
+     - If $v=v'$ then it is a *closed directed walk*, otherwise it is
+       an *open directed walk*.
+     - If all the edges differ in a directed walk, then it is a
+       *directed trail*.
+     - If the directed walk is closed, then it is a *closed directed
+       trail*, otherwise it is an *open directed trail*.
+     - A directed walk is a *directed route* if all the
+       $v_0,v_1,\ldots,v_n$ vertices are different.  
+     - A directed trail of at least one length is a *directed cycle*,
+       if all the vertices are different except the first and the last
+       one.
+*** Strong connectivity    
+**** Strong connectivity				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A directed graph is *strongly connected* if between any pair of
+       vertices $(v,v')$ there is a directed route from $v$ to $v'$
+       (and as a consequence, there has to be also a directed route
+       from $v'$ to $v$).
+     - On the vertices of a given directed graph, the relation that
+       there is a directed route from one vertex to another and from
+       the other one to the first, is an equivalence relation,
+       therefore it defines a classification of the vertices.
+     - A directed sub\-graph induced by the vertices in one such class
+       is a *strong component* of the directed graph.
+     - Unlike with undirected graphs, not all edges belong to a
+       component.
+     - A graph is strongly connected if and only if all of it's
+       vertices belong to one class, \ie it has only one strong
+       component.
+** Directed trees
+*** Directed trees
+**** Directed tree					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A *directed tree* is a directed graph which is an (undirected)
+       tree, and exactly one vertex with in\-degree 0 and all the
+       other vertices with in\-degree 1. (A directed tree can be
+       defined as the traverse of the above defined graph.)
+     - The vertex with in\-degree 0 is the *root* of a tree. 
+     - Using induction on the length of a route, it can be shown, that
+       there is exactly one (directed) route to each vertex from the
+       root.  The length of this route is the *depth* of the vertex.
+     - The maximum of the depths of vertices is the *height* the tree.
+     - If there is an edge with $v$ as its tail endpoint and $v'$ as
+       its head endpoint, then $v$ is the *parent* of $v'$ and $v'$ is
+       a *child* of $v$, If two vertices have the same parent then
+       they are *siblings*.
+     - The vertices of a directed tree with out\-degree 0 are the
+       *leaves*.
+*** Sub\-tree, rooted tree
+**** Sub\-tree						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - For each vertex $v$ there is a unique set of vertices to which
+       there leads a directed route from $v$.  The directed sub\-graph
+       induced by these vertices is a directed tree with $v$ as its
+       root, and this directed sub\-graph is the *directed sub\-tree*
+       with $v$ as its root.
+**** Rooted tree					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - An undirected tree with a vertex designated as the root is a
+       *rooted tree*.
+       - There exists exactly one orientation of that tree which is a
+	 directed tree with the same root vertex as the designated one:
+	 each vertex is the head endpoint of the last edge of the one
+	 route from the designated root vertex to the mentioned vertex
+	 (which will be the tail endpoint for all the other edges).
+       - Therefore designating a root vertex is equivalent with
+	 providing an orientation of a directed tree.
+*** Binary trees, ternary trees, $q$-ary trees
+**** $q$-ary tree
+     - A *$q$-ary tree* is a directed tree with edges labeled with
+       non-negative integers less then $q$, so that all edges coming
+       from the same vertex have different labels.
+     - The most notable case is $q=2$ \ie the *binary tree*: here
+       *left edge*, or *left child* and *right edge* or *right child*
+       are used instead of labels $0$ and $1$.
+       - We remark, that if two $q$-ary trees differ only in the labels,
+	 they are still considered not equal, \eg in a binary tree with
+	 only one edge, it's important if it's a left or a right edge.
+     - Directed trees are usually drawn with the root at the top.
+       [fn::This isn't consistent with the name ``tree'', but it's
+       consistent with the way we think about them, a parent is above
+       the children etc.]
+*** Dijkstra's algorithm
+**** Dijkstra's algorithm 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     In a graph $(\psi, E, V, w)$ with weighted
+     edges, with all edges having positive weights, let $s\in V$ and
+     $T\subset V$.  
 
-# \begin{propo}
-#   A finite connected graph contains a closed Euler trail if and only if all vertices have even degrees.  %
-#   If a finite connected graph contains $2s$ number of vertices with odd degrees, where $s\in \N^+$, then the graph is made up of $s$ number of trails with mutually disjoint edges.  %
-# \end{propo}
-# \begin{proof}
-#   The proof is constructive.  %
-#   First, suppose $s=0$ (\ie all vertices have even degree).  %
-#   Start off with a vertex $v$ which can be considered a closed trail with no edges.  %
-#   We extend this closed trail into a longer closed trail, until all edges are used up.  %
-#   If there are edges which are unused, then because the graph is connected, there is a vertex $v'$ which is connected to unused edges.  %
-#   Let us start from $v'$ on one of these edges, always choosing unused  edges.  %
-#   Because all vertices are connected to an even number of unused edges, we can only get stuck if we return to $v'$.  %
-#   Adding this closed trail to the previous one results in a longer closed trail containing all edges.
+     The following algorithm calculates a function (or table) on the set
+     of vertices $d:V \to \R$, which maps the minimal weight of directed routes
+     from $s$ to each vertex $t\in T$ (or $+\infty$ if there is no
+     route).  
   
-#   For $s>0$ connect vertices with odd degrees in pairs with virtual edges.  %
-#   The graph with the virtual edges contains a closed Euler trail.  %
-#   Deleting the $s$ number of virtual edges, brakes up the closed trail  into $s$ number of open trails.  %
-# \end{proof}
-
-# \begin{defin}[Hamilton route]
-#   A route from $v$ to $v'$ is a Hamilton route if it contains all vertices of a graph.
-#   A Hamilton circle is a circle of the graph which contains all vertices of the graph.  
-#   A graph is said to be Hamiltonian if it contains a Hamilton route.
-# \end{defin}
-
-# \begin{theor}[Ore's theorem]
-#   Let $G$ be a (finite and simple) graph with $n\ge 3$ vertices.  %
-#   If $\deg(v) + \deg(w) \ge n$ for every pair of non-adjacent vertices $v$ and $w$, then $G$ is Hamiltonian.
-# \end{theor}
-# \begin{proof}
-#   It is equivalent to show that every non-Hamiltonian graph $G$ does not obey the condition of the theorem \ie $\deg(v) + \deg(w) \ge n$ for every pair of non-adjacent vertices $v$ and $w$.  %
-#   Accordingly, let $G$ be a graph on $n\ge 3$ vertices that is not Hamiltonian, and let $H$ be formed from $G$ by adding edges one at a time that do not create a Hamiltonian cycle, until no more edges can be added.  %
-#   Let $x$ and $y$ be any two non-adjacent vertices in $H$.  %
-#   Then adding the edge with endpoints $x$ and $y$ to $H$ would create at least one new Hamiltonian cycle, and the other circles in such a cycle must form a Hamiltonian path $v_1,v_2,\ldots,v_n$ in $H$ with $x = v_1$ and $y = v_n$.  %
-#   For each index $i$ in the range $2 \le i \le n$, consider the two possible edges in $H$ from $v_1$ to $v_i$ and from $v_i − 1$ to $v_n$.  %
-#   At most one of these two edges can be present in $H$, for otherwise the cycle $v_1,v_2,\ldots,v_{i−1},v_n,v_{n-1}...v_i$ would be a Hamiltonian cycle.  %
-#   Thus, the total number of edges connected to either $v_1$ or $v_n$ is at most equal to the number of choices of $i$, which is $n−1$.  %
-#   Therefore, $H$ does not obey condition of the theorem, which requires that this total number of edges ($\deg(v_1) + \deg(v_n)$) be greater than or equal to $n$.   %
-#   Since the vertex degrees in $G$ are at most equal to the degrees in $H$, it follows that $G$ also does not obey the condition $\deg(v) + \deg(w) \ge n$ for every pair of non-adjacent vertices $v$ and $w$.
-# \end{proof}
-
-# \begin{theor}
-#   If a finite simple graph $G$ with $n\ge 3$ vertices has $\deg(v)\ge n/2$ for all vertices $v$, then $G$ is Hamiltonian.  %
-# \end{theor}
-# \begin{proof}
-#   Because $\deg(v)\ge n/2$ for all vertices, $\deg(v)+\deg(w)\ge n/2 + n/2=n$, therefore by Ore's theorem, $G$ is Hamiltonian.  %
-# \end{proof}
-
-# \begin{defin}[Labeled and weighted graphs]
-#   In practice, edges and/or vertices of the graph hold additional data.  %
-#   If $G=(\varphi, E, V)$ is a graph, $L_e$ and $L_v$ are the sets of labels (for edges and vertices respectively), furthermore the labeling maps of edges and vertices are $\ell_e\colon E \to L_e$ and $\ell_v \colon V \to L_v$, then $(\varphi,E,V,\ell_e,L_e,\ell_v,L_v)$ is \emph{labeled graph}.  %
-#   This is a general definition, sometimes only the edges or only the vertices are labeled, then the adequate elements are omitted.  %
-#   Sometimes the word \emph{coloring} is used instead of labeling, and the labels are colors.  %
-#   Often $L_e=\R$ or $L_v=\R$, and in this case the term \emph{weighted graph} is used and the weight map $w$ connects the elements of the graph to their weights.  %
-#   In a $(\varphi, E, V, w)$ graph with weighted edges, the weight of $E'\subset E$ is $\sum_{e\in E'}w(e)$, and similarly in a graph with weighted vertices the weight of $V'\subset V$ is $\sum_{v\in V'}w(v)$.  %
-# \end{defin}
-
-# \begin{theor}[Kruskal's algorithm]
-#   In a finite graph with weighted edges, staring with the empty graph containing all the vertices, and expanding this graph, always choosing an edge with minimal weight, as long as possible without introducing a circle, a spanning fores with minimal weight is obtained as the result.  %
-# \end{theor}
-# \begin{proof}
-#   It is enough to restrict the proof to one component only.  %
-#   It is clear, that the result will be a spanning tree, let's call it $T$.  %
-#   Suppose a $T'$ spanning tree with minimal weight, which has the most possible common edges with $T$, has smaller weight than $T$, \ie $T$ is not a spanning tree of minimal weight.  %
-#   Let $e'$ be an edge of $T'$ which is not an edge of $T$.  %
-#   If $e'$ is added to $T$ than this will add exactly one $C$ circle.  %
-#   For all $e$ edges of the $C$ circle, it is true that $w(e)\le w(e')$, because if $w(e)>w(e')$ then the algorithm would have chosen $e'$ instead of $e$.  %
-#   If we omit $e'$ from $T'$, then it will not be connected, it will separate into two components.  %
-#   There has to be one more edge $e''$ on the circle $C$ which connects the two components ($e''$ is obviously not from $T'$), and if we exchange $e'$ for $e''$ in $T'$ we get another tree, let's call it $T''$.  %
-#   We have shown that $w(e'')\le w(e')$.  %
-#   If $w(e'')<w(e')$, than the weight of $T''$ would be strictly less than the weight of $T'$, and that would imply that $T'$ is not a spanning tree of minimal weight, which leads to a contradiction.  %
-#   On the other hand, $w(e'')=w(e')$ would imply that $T''$ has more common edges with $T$ than $T'$, which is again a contradiction.  %
-# \end{proof}
-
-# \begin{remark}
-#   Kruskal's algorithm is an example of a \emph{greedy algorithm}, because it always chooses the best possible solution.  %
-#   However this greedy strategy does not always give optimal results with all algorithms, \eg see TSP (traveling salesman problem).  %
-# \end{remark}
-
-* COMMENT TODO Directed graphs						   
-
-# \subsection{Directed graphs}
-# \begin{defin}[Directed graph]
-#   You can imagine directed graphs as a set of dots connected with arrows.  %
-#   To be more precise, a \emph{directed graph} $G=(\psi, E, V)$ is a triplet with (again) $E$ as the set of edges, $V$ as the set of vertices, and $\psi\colon E \to V\times V$.  %
-#   If $\psi(e)=(v,v')$, then $v$ is the \emph{tail endpoint} and $v'$ is the \emph{head endpoint} of the edge $e$.  %
-
-#   For every directed graph $G=(\psi, E, V)$ has a underlying undirected graph $G'=(\varphi, E, V)$ which can be obtained by ``forgetting'' the direction, \ie $\psi(e) = (v,v')$ if and only if $\varphi=\{v,v'\}$.  %
-#   Now we can extend most of our definitions, \eg labels, weights \etc, from undirected onto directed ones by considering the corresponding undirected graph.  %
-#   It is also said that $G$ is an \emph{orientation} of $G'$.  %
-#   Of course a graph usually has multiple orientations.  %
-#   The reverse of the graph $G=(\psi, E, V)$ is $G'=(\psi', E, V)$ for which $\psi(e)=(v,v')$ if and only if $\psi'(e)=(v',v)$.  %
-#   (Of course, the reversed loop is equal to itself.)
-
-#   Sometimes, a bit inaccurately, the connection map is omitted from the notation and the $G=(E,V)$ notation is used.  %
-#   Some authors define $E\subset V\times V$.  %
-
-#   If $\psi(e_1)=\psi(e_2)$ for $e_1\neq e_2$, then $e_1$ and $e_2$ are \emph{strictly parallel}.  %
-  
-#   If $G=(\psi, E, V)$ is a directed graph, and $S\subset V$, then $E^+(S)$ is the set of edges with tail endpoints in $S$ and head endpoints in $V\setminus S$, and $E^-(S)$ is the set of edges with tail endpoints in $V\setminus S$ and head endpoints in $S$.  %
-#   $E(S)$ is the union of the disjoint sets $E^+(S)$ and $E^-(S)$ and $E^+(S)=E^-(V\setminus S)$.  %
-  
-#   If a vertex is the tail endpoint of a finite number of edges, then this number is the \emph{out\-degree} of the vertex.  %
-#   Similarly, if a vertex is the head endpoint of a finite number of edges, then this number is the \emph{in\-degree} of the vertex.  %
-#   If the out\-degree of a vertex is zero, then it is called a \emph{sink}, if the in\-degree of a vertex is zero, then it is called a \emph{source}.  %
-#   The out\-degree of $v\in V$ is usually denoted by $\deg^+(v)$ or $d^+(v)$, its in\-degree is denoted by $\deg^-(v)$ or $d^-(v)$.  %
-
-#   If $G=(\psi, E, V)$ is a finite directed graph, then
-#   \begin{equation*}
-#     \sum_{v\in V}d^+(v) = \sum_{v\in V}d^-(v) = \card{E}
-#   \end{equation*}
-#   since each edge increases both sums by one (by introducing one tail and one head endpoint).  %
-# \end{defin}
-
-# \begin{defin}[Isomorphism for directed graphs]
-#   The graphs $G=(\psi, E, V)$ and $G'=(\psi', E', V')$ are \emph{isomorphic} if there is an $f\colon E \to E'$ bijection and $g\colon V\to V'$ bijection, so that for each edge $e\in E$ a vertex $v\in V$ is the tail endpoint of $e$ if and only if $g(v)$ is a tail endpoint of $f(e)$, and $v$ is a head endpoint of $e$ if and only if $g(v)$ is a head endpoint of $f(e)$, \ie the $(f,g)$ pair preserves the ``tail'' and ``head endpoint'' relations..  %
-# \end{defin}
-
-# \begin{examp}
-#   Again we can talk about a class (or set) of graphs as one graph, \eg   $\vec{C}_n$ is the directed circle of $n$ vertices, $\vec{P}_n$ is   the $n$ long directed path, $\vec{S}_n$ is the directed star, with   $n$ vertices with zero in\-degrees and one out\-degrees and one   vertex with $n$ in\-degrees and zero out\-degrees, $\vec{K}_n$ is   the directed complete graph.  %
-# \end{examp}
-
-# A $(\psi, E, V)$ directed graphs can be represented using lists in a table/array.  %
-# After enumerating the vertices, each entry in the table is a list of $(n,n')$ pairs, where $n$ is the number of $v$ and $n'$ the number of $v'$.  %
-# Additional information van be stored with the list entries.  %
-# For undirected graphs, each edge is stored two times, once for each endpoint.  %
-
-# \begin{defin}[Directed sub\-graphs]
-#   The graph $G'=(\psi', E', V')$ is a \emph{directed sub\-graph} of $G=(\psi, E, V)$ if $E'\subset E$, $V' \subset V$ and $\psi'\subset \psi$.  %
-#   It also said that $G$ is a \emph{directed super\-graph} of $G'$.  %
-#   If $E'$ contains all edges with both tail and head endpoints in $V'$, then $G'$ is a \emph{saturated} sub\-graph induced by $V'$.  %
-#   If $G'=(\psi, E', V')$ is a directed sub\-graph of $G=(\psi, E, V)$, then the complement of $G'$ with respect to $G$ is the graph $(\psi\vert_{E\setminus E'}, E\setminus E', V)$.  %
-#   If $G$ is not explicitly stated, then it is understood to be the complement with respect to the complete graph.  %
-
-#   If $G=(\psi, E, V)$ is directed graph, $E'\subset E$ then the sub\-graph obtained by deleting the set of edges $E'$ is $G'=(\psi\vert_{E\setminus E'}, E\setminus E', V)$.  %
-#   If $G=(\psi, E, V)$ is directed graph, $V'\subset V$ then let $E'$ be the set of edges which has its tail or head endpoint in $V'$ then the sub\-graph obtained by deleting the set of vertices $V'$ is $G'=(\psi\vert_{E\setminus E'}, E\setminus E', V\setminus V')$.  %
-# \end{defin}
-
-# \begin{defin}[Directed walks, trails, routes and circles]
-#   Let $G=(\psi, E, V)$ be a directed graph.  %
-#   An \emph{$n$ long directed walk from $v$ to $v'$} in $G$ is a finite sequence $v_0,e_1,v_1,e_2,v_2,\ldots,v_{n-1},e_n,v_n$, where the $\psi(e_i)=(v_{i-1},v_i)$ for each $1\le i \le n$ with $v_0=v$ and $v_n=v'$.  %
-#   It is enough to list only the edges, because they determine the vertices in the walk.  %
-#   If $v=v'$ then it is a \emph{closed directed walk}, otherwise it is an \emph{open directed walk}.  %
-
-#   If all the edges differ in a directed walk, then it is a \emph{directed trail}.  %
-#   If the directed walk is closed, then it is a \emph{closed directed trail}, otherwise it is an \emph{open directed trail}.  %
-  
-#   A directed walk is a \emph{directed route} if all the $v_0,v_1,\ldots,v_n$ vertices are different.  %
-#   A directed trail of length of at least one is a \emph{directed circle}, if the first and the last vertex are equal but otherwise vertices of the trail are different.  %
-  
-#   The relation that there is a directed walk from $v$ to $v'$ is equivalent with the relation that there is a directed route from $v$ to $v'$.  %
-#   This relation is transitive.  %
-#   If the corresponding strict relation is anti-symmetric -- which is equivalent with the fact that there is no directed circle in the graph -- then the relation is an ordering.  %
-# \end{defin}
-
-# \begin{defin}[Strong connectivity]
-#   A directed graph is \emph{strongly connected} if between any pair of vertices $(v,v')$ there is a directed route from $v$ to $v'$ (and as a consequence, by changing the roles, there is also a directed route from $v'$ to $v$).  %
-#   On the vertices of a given directed graph, the relation that there is a directed route from one vertex to another and from the other one to the first, is an equivalence relation, therefore it defines a classification of the vertices.  %
-#   A directed sub\-graph induced by the vertices in one such class is a \emph{strong component} of the directed graph.  %
-#   Unlike with undirected graphs, not all edges belong to a component.  %
-#   A graph is strongly connected if and only if all of it's vertices belong to one class, \ie it has only one strong component.  %
-# \end{defin}
-
-# \begin{defin}[Directed tree]
-#   A \emph{directed tree} is a directed graph which is an (undirected) tree, and exactly one vertex with in\-degree 0 and all the other vertices with in\-degree 1.  %
-#   The one vertex with in\-degree 0 is the \emph{root} of a tree. (Some authors define the tree the other way around, with the root having out\-degree 0 and all the other vertices having out\-degree 1.)
-#   Using induction on the length of a route, it can be shown, that there is exactly one route to each vertex from the root, and this route is also a directed route.  %
-#   The length of this route is the \emph{depth} of the vertex.  %
-#   The maximum of the depths of vertices is the \emph{height} the tree.  %
-#   If there is an edge with $v$ as its tail endpoint and $v'$ as its head endpoint, then $v$ is the \emph{parent} of $v'$ and $v'$ is a \emph{child} of $v$,  %
-#   If two vertices have the same parent then they are \emph{siblings}.  %
-#   For each vertex $v$ there is a unique set of vertices to which there leads a directed route from $v$.  %
-#   The directed sub\-graph induced by these vertices is a directed tree with $v$ as its root, and this directed sub\-graph is the \emph{directed sub\-tree} with $v$ as its root.  %
-#   The vertices of a directed tree with out\-degree 0 are the \emph{leaves}.  %
-
-#   An undirected tree with a vertex designated as the root is a \emph{rooted tree}.  %
-#   There exists exactly one orientation of that tree which is a directed tree with the same root vertex as the designated one:  each vertex is the head endpoint of the last edge of the one route from the designated root vertex to the mentioned vertex (which will be the tail endpoint for all the other edges).  %
-#   Therefore designating a root vertex is equivalent with providing an orientation of a directed tree.  %
-
-#   A \emph{$q$-ary tree} is a directed tree with labeled edges, with non-negative integers less then $q$ as labels, so that all edges coming from the same vertex have different labels.  %
-#   The most notable case is $q=2$ \ie the binary tree: here \emph{left edge}, or \emph{left child} and \emph{right edge} or \emph{right child} are used instead of labels $0$ and $1$.  %
-#   We remark, that if two $q$-ary trees differ only in the labels, they are still considered not equal, \eg in a binary tree with only one edge, it's important if it's a left or a right edge.  %
-
-#   Directed trees are usually drawn with the root at the top.  %
-#   This isn't consistent with the name ``tree'', but it's consistent with the way we think about them, a parent is above the children etc.  %
-
-# \end{defin}
-
-
-# \begin{theor}
-#   Dijkstra's algorithm: In a graph $(\psi, E, V, w)$ with weighted
-#   edges, with all edges having positive weights, let $s\in V$ and
-#   $T\subset V$.  %
-#   The following algorithm calculates a function (or table) on the set
-#   of vertices $d:V \to \R$, which maps the minimal weight of directed routes
-#   from $s$ to each vertex $t\in T$ (or $+\infty$ if there is no
-#   route).  %
-  
-#   \begin{enumerate}
-#   \item Initialization: Let $S=\emptyset$, $H=\{s\}$, and $d(s)=0$;
-#     for every other vertex $v$ let $d(v)=+\infty$.  %
-#     ($S$ is the set of ``finished'' vertices, $H$ is the set of
-#     vertices ``being processed''.)
-#   \item Done? If $T\subset S$ or $H=\emptyset$, then the algorithm
-#     terminates.  %
-#   \item Expanding $S$: Let $t\in H$ be chosen with minimal value of
-#     $d(t)$.  %
-#     Put $t$ in $S$, and for each edge $e$ coming from $t$ to $v\in
-#     V\setminus S$, if $d(t)+w(e)<d(v)$, then let $d(v)=d(t)+w(e)$ and
-#     if $v\not\in H$, then put $v$ into $H$.  %
-#     Go to 2.
-#   \end{enumerate}
-# \end{theor}
-  
-# \begin{proof}
-#   The proof is by induction on the number of elements of $S$, by showing that for every $t\in S$ the value of $d(t)$ is the minimal weight of the directed routes from $s$ to $t$, and if $v\in H$, then every directed walk from $s$ to $v$, which has every vertex in $S$ except $v$, has weight at least $d(v)$.  %
-#   After the first initialization step, this is trivially true.  %
-#   Suppose $t\in H$ was chosen in the third step, and consider an arbitrary directed walk from $s$ to $t$.  %
-#   Let $W$ be its weight.  %
-#   We will show, that $W\ge d(t)$.  %
-#   Let $t'$ be the first vertex on the directed walk which is not in $S$.  %
-#   For the weight $W'$ of the sub-walk from $s$ to $t'$ it is true that $W'\le W$, and by the second part of the induction hypothesis $W'\ge d(t')$, and because we chose $t$ to have minimal value of $d(t)$ we have $d(t)\le d(t')$, so $W\ge d(t)$ concludes the proof of the first part of our statement.  %
-#   After updating the value of $d(v)$ in the third step, if a walk goes from $s$ to $v$ and its last vertex is not in $S$, then let $v'$ be the vertex before the last and $e$ the last edge.  %
-#   Since $v'\in S$ and the weight of the sub-walk from $s$ to $v'$ is at least $d(v')$, the weight of the entire walk has to be at least $d(v')+w(e)$, and when $v'$ is added to $S$ it can be set at most to this value, and after it can only decrease.  %
-# \end{proof}
-
-
-# \begin{defin}[Drawing graphs]
-#   Let $X\subset \R^n$.  %
-#   A \emph{curve} in $X$ is a continuous mapping $\gamma$ from the closed interval $[0,1]$ into $X$.  %
-#   The tail endpoint of a curve is $\gamma(0)$ and the head endpoint is $\gamma(1)$.  %
-#   If only the two endpoints of a curve are equal, then it is a \emph{simple curve}.  %
-#   The \emph{drawing} of a directed graph $G=(\psi, E, V)$ in $X$ is when each vertex of the graph is mapped to a different point of $X$ and the edges are mapped to simple curves in $X$ which do not intersect; more precisely, the drawing of $G$ in $X$ is a pair of functions $(f,g)$ where $f\colon V\to X$ injection and $g$ maps a simple curve $g_e$ to each edge $e\in E$ so that the endpoints of the edge are the corresponding endpoints of the curve, and $\rng(f)$ and the sets $g_e(]0,1[)$ (for $e\in E$) are mutually disjoint.  %
-#   The drawing of an undirected graph in $X$ is the drawing of an orientation of that graph.  %
-#   If there is a drawing of a graph $G$ in $X$, then we say $G$ can be drawn in $X$.  %
-#   (Drawing a graph can be generalized to any metric space.)  %
-# \end{defin}
-
-# Obviously, not all graphs can be drawn, \eg it is possible that a graph has so many vertices that there is no injective map $f\colon V\to X$.  %
-# That is why we are only considering finite graphs.  %
-# The statements about drawing graphs are only about simple graphs, but they can easily be extended to non-simple graphs as well.  %
-# We are concerned only about drawing graphs in the plane, sphere and in the (three dimensional) space.  %
-
-# \begin{propo}
-#   Any finite simple graph can be drawn in $\R^3$.  %
-# \end{propo}
-# \begin{proof}
-#   If it has at most three vertices, the statement is trivial.  %
-#   We proceed by induction on the number of vertices: select a vertex $v$, and the sub\-graph induced by the rest of the vertices can be drawn in $\R^3$.  %
-#   Each three of the images of these vertices in $\R^3$ defines a plane.  %
-#   Choose the image of $v$ so that it is not on any of these planes.  %
-#   Let the images of edges connected to $v$ be linear functions.  %
-# \end{proof}
-
-# \begin{theor}
-#   A simple finite graph $G=(\psi, E, V)$ can be drawn on a sphere $X\subset \R^3$ if and only if it can be drawn on the plane.  %
-# \end{theor}
-
-# \begin{defin}[Faces]
-#   An open subset $X$ of $\R^n$ is a \emph{face } (or a \emph{region}) if any two points of $X$ there exists a simple curve in $X$ with those two points as its endpoints.  %
-# \end{defin}
-
-# \begin{theor}[Euler's theorem]
-#   Let $(f,g)$ be a drawing in the plane of a simple connected graph $G=(\psi, E, V)$.  %
-#   Then the complement set of $G'=\cup_{e\in E} \rng(g_e)$ is the union of $2+\card{E}-\card{V}$ number of pairwise disjoint faces.  %
-# \end{theor}
-
-# \begin{defin}[Topologically isomorphic graphs]
-#   The finite graphs $G$ and $G'$ are \emph{topologically isomorphic} if they can be converted to isomorphic graphs using the following transformation or its inverse: delete a vertex with degree two and connect its neighboring vertices with an edge.  %
-# \end{defin}
-
-# \begin{theor}[Kuratowski's theorem]
-#   A simple and finite graph can be drawn in a plane if and only if it has no sub\-graph topologically isomorphic to the $K_5$ complete graph with 5 vertices or the $K_{3,3}$ ``three houses, three wells'' graph.  %
-
-# \end{theor}
-
-
+     1. Initialization: Let $S=\emptyset$, $H=\{s\}$, and $d(s)=0$;
+        for every other vertex $v$ let $d(v)=+\infty$.  ($S$ is the
+        set of ``finished'' vertices, $H$ is the set of vertices
+        ``being processed''.)
+     2. Terminate?: If $T\subset S$ or $H=\emptyset$, then terminate.
+     3. Expand $S$: Let $t\in H$ be chosen with minimal value of
+        $d(t)$.  Put $t$ in $S$, and for each edge $e$ coming from $t$
+        to $v\in V\setminus S$, if $d(t)+w(e)<d(v)$, then let
+        $d(v)=d(t)+w(e)$ and if $v\not\in H$, then put $v$ into
+        $H$. Go to 2.
+*** Proof of Dijkstra's algorithm
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - The proof is by induction on the number of elements of $S$, by
+       showing that 
+       1. for every $t\in S$ the value of $d(t)$ is the minimal weight
+          of the directed routes from $s$ to $t$, and
+       2. if $v\in H$, then every directed walk from $s$ to $v$, which
+          has every vertex in $S$ except $v$, has weight at least
+          $d(v)$.
+     - After the first initialization step, this is trivially true.
+     - Let $t\in H$ (chosen in the third step), and consider an
+       arbitrary directed walk with weight $W$ from $s$ to $t$. We
+       will show, that $W\ge d(t)$.
+*** Proof of Dijkstra's algorithm
+**** Proof part 2
+     - Let $t'$ be the first vertex on the walk which is not in $S$
+       and $W'$ the weight of the sub\-walk from $s$ to $t'$.  
+     - $W'\le W$, and by the second part of the induction
+       hypothesis $W'\ge d(t')$, and because we chose $t$ to have
+       minimal value of $d(t)$ we have $d(t)\le d(t')$, so $W\ge d(t)$
+       concludes the proof of the first part of our statement.  
+     - After updating the value of $d(v)$ in the third step, if a walk
+       goes from $s$ to $v$ and its last vertex is not in $S$, then
+       let $v'$ be the vertex before the last and $e$ the last edge.
+     - Since $v'\in S$ and the weight of the sub-walk from $s$ to $v'$
+       is at least $d(v')$, the weight of the entire walk has to be at
+       least $d(v')+w(e)$, and when $v'$ is added to $S$ it can be set
+       at most to this value, and after it can only decrease.
+* Planar graphs, chromatic number
+** Drawing graphs in a plane
+*** Planar graphs
+**** Planar graph					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A *planar graph* is a graph that can be embedded in the plane
+       ($\R^2$), \ie, it can be drawn on the plane in such a way that
+       its edges intersect only at their endpoints. (Drawing a graph can
+       be generalized to any metric space, \eg $\R^n$)
+     - Obviously, not all graphs can be drawn, \eg it is possible that
+       a graph has so many vertices that there is no injective map
+       $f\colon V\to X$.  That is why we are only considering finite
+       graphs.
+     - The statements about drawing graphs are only about simple
+       graphs, but they can easily be extended to non-simple graphs as
+       well.
+     - We are concerned only about drawing graphs in the plane, sphere
+       and in the (three dimensional) space.
+*** Drawing graphs
+**** Drawing in $\R^3$ 						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Any finite simple graph can be drawn in $\R^3$.  
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - If it has at most three vertices, the statement is trivial.
+     - We proceed by induction on the number of vertices: select a
+       vertex $v$, and the sub\-graph induced by the rest of the
+       vertices can be drawn in $\R^3$.
+     - Each three of the images of these vertices in $\R^3$ defines a
+       plane.  Choose the image of $v$ so that it is not on any of
+       these planes.  Let the images of edges connected to $v$ be
+       linear functions.
+*** Drawing in the plane
+**** Drawing on a sphere 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A simple finite graph $G=(\psi, E, V)$ can be drawn on the
+     surface of a sphere (in $\R^3$) if and only if it can be drawn on
+     the plane.
+**** Faces						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     An open subset $X$ of $\R^n$ is a *face* (or a *region*) if any
+     two points of $X$ there exists a simple curve in $X$ with those
+     two points as its endpoints.
+**** Euler's theorem 						  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(f,g)$ be a drawing in the plane of a simple connected graph
+     $G=(\psi, E, V)$.  Then the complement set of $G'=\cup_{e\in E}
+     \rng(g_e)$ is the union of $2+\card{E}-\card{V}$ number of
+     pairwise disjoint faces.
+*** Topologival isomorphism
+**** Topologically isomorphic graphs 			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The finite graphs $G$ and $G'$ are *topologically isomorphic* if
+     they can be converted to isomorphic graphs using the following
+     transformation or its inverse: delete a vertex with degree two
+     and connect its neighboring vertices with an edge.
+**** Kuratowski's theorem 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A simple and finite graph can be drawn in a plane if and only if
+     it has no sub\-graph topologically isomorphic to the $K_5$
+     complete graph with 5 vertices or the $K_{3,3}$ ``three houses,
+     three wells'' graph.
+** Chromatic number
+*** Chromatic number
+**** $k$-coloring 					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A *$k$-coloring* of a graph $G$ is a vertex coloring using only
+     $k$ colors, such that no two adjacent vertices receive the same
+     color.
+**** Chromatic number					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *chromatic number* of a graph is the smallest value of $k$
+     possible to obtain a $k$-coloring of the graph.
+**** Four color theorem 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Every planar graph is 4-colorable.

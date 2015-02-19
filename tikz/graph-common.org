@@ -16,7 +16,7 @@ every loop/.style={every edge/.style,in=-45,out=45,looseness=5}}}
 \tikzset{dedge/.style={
 every edge/.style={draw,arrows={none-stealth}},
 every node/.style={auto,inner sep=1pt},
-every loop/.style={every edge/.style,in=-45,out=45,looseness=5}]
+every loop/.style={every edge/.style,in=-45,out=45,looseness=5}
 }}
 
 \tikzset{node distance=50pt}
