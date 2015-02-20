@@ -7,6 +7,7 @@
 
 
 #+TITLE: Discrete mathematics II. - Graphs
+#+SHORT_TITLE: Graphs
 #+INCLUDE: tikz/graph-common.org
 
 * Introduction
