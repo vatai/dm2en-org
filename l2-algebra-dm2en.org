@@ -1,0 +1,37 @@
+# -*- mode:org; mode: flyspell; -*-
+# #+LATEX_HEADER: \usepackage[override]{xcolor}
+# #+LATEX_CLASS: article
+# #+LATEX_HEADER: \usepackage[]{beamerarticle}
+
+#+SETUPFILE: l-common.org
+
+#+TITLE: Discrete mathematics II. - Algebra
+#+SHORT_TITLE: Algebra
+
+* Algebraic structures
+** Set and one operation
+*** asd
+**** Grupoid
+     Let $G$ be a set, if $\otimes:G\times G \to G$ is a binary operation on
+     $G$, then the pair $(G,\otimes)$ is a *groupoud*.
+**** Semigroup
+     Let $(G,\otimes)$ be a groupoid, if the operation is associative
+     \ie $a \otimes (b \otimes c) = (a \otimes b) \otimes c$ for every
+     element $a,b,c\in G$, then $(G,\otimes)$ is a *semigroup*.
+**** Monoid
+     Let $(G,\otimes)$ be a semigroup, the element $e\in G$ for which
+     $e \otimes g=g$ (for all $g\in G$) is a
+
+     which is an *identity element* (or *unit element* for
+     multiplication or *zero element* for addition) 
+**** Group
+
+**** Abelian group     
+** Sets with two operations
+*** Ring, Gaussian ring, Euclidean ring, Integral domain, 
+**** Ring
+**** Gaussian ring or UFD
+**** Euclidean ring
+**** Skew field
+**** Integral domain
+**** Field

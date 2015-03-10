@@ -1,7 +1,7 @@
 # -*- mode:org; mode: flyspell; -*-
-# #+LATEX_HEADER: \usepackage[override]{xcolor}
-# #+LATEX_CLASS: article
-# #+LATEX_HEADER: \usepackage[]{beamerarticle}
+
+#+BEGIN_COMMENT
+#+END_COMMENT
 
 #+SETUPFILE: l-common.org
 
@@ -77,8 +77,8 @@ One may think about graphs as "dots connected with lines or arrows"
       S)$.
 *** Degree of a vertex
     - The *degree* of a vertex $v\in V$ is \[ \deg(v) = \card{ \{ e \in
-      E : v \in \varphi{e} \} } + \card{ \{e \in E : \card{\varphi(e)}
-      = 1 \} } \] \ie the number of edges connected to $v$ counting the
+      E : v \in \varphi(e) \} } + \card{ \{e \in E : \varphi(e)
+      = \{v\} \} } \] \ie the number of edges connected to $v$ counting the
       loops twice. Sometimes the notations $d(v)$ or $\delta(v)$ is
       used.
     - A graph is *$n$-regular* (for $n\in\N$) if $v\in V \rightarrow
@@ -346,7 +346,7 @@ One may think about graphs as "dots connected with lines or arrows"
      :BEAMER_env: theorem
      :END:
      With the previous notation, for each graph $G$, for each walk
-     between $v$ and $v'$, a route between $v$ and $v'$ can be
+     between $v$ and $v'$ ($v\neq v'$), a route between $v$ and $v'$ can be
      obtained in $G$ by deleting the adequate $e_i$, $v_i$ pairs.
 
 **** Proof							    :B_proof:

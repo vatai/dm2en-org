@@ -1,9 +1,9 @@
-#+OPTIONS: H:3 -:t tags:nil ^:nil toc:nil
-#+STARTUP: beamer
-
+#+OPTIONS: H:3 -:t tags:nil ^:nil toc:nil num:nil
+# #+STARTUP: beamer
 #+LATEX_CLASS: article
-#+LATEX_CLASS_OPTIONS: [a4paper]
 #+LATEX_HEADER: \usepackage[]{beamerarticle}
+
+#+LATEX_CLASS_OPTIONS: [a4paper,twocolumn]
 
 #+AUTHOR: Emil Vatai
 #+EMAIL: vatai@inf.elte.hu
