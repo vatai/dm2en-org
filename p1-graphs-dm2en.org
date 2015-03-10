@@ -161,22 +161,22 @@
   36. Show that after a tennis tournament all the players can stand in a
       line so that every player has defeated the person standing
       immediately in front off him/her.  
-  #  \item 37 TODO
-  #  \item 38 TODO
-  - Which of these graphs can be drawn so that their edges don't intersect:\\
-    (a) the edges of a 3d cube; \hspace{5mm} 
-    (b) $K_n$ for $n=3,4,5,\ldots$; \hspace{5mm}
-    (c) ``three houses, three wells'' \ie $K_{3,3}$ \hspace{5mm}
-    (d) the Petersen graph.
-  - How many edges does a planar graph with $n$ vertices have if all of its faces are triangles.  
-  - Show that a planar graph with at least $n\ge3$ vertices has at most $3n-6$ edges.  
-  - Prove that if the graph $G$ has 11 vertices, then either $G$ or its complement is not planar!
-  - Draw a planar graph with 8 vertices so its complement is also planar!  
-  - Show that a simple planar graph can not have all vertices with degree at least 6.
-  - At most how many edges does a planar graph have if all of its circles are at least $k$ long.  
-  - On an international conference representatives of 5 countries are sitting at a table.  
-    That there are at least two of them not from neighbouring countries!
-  - Show that the faces of a planar graph can be coloured with two colours so that adjacent faces have different colours if and only if the graph contains a closed Euler line.  
+      #  \item 37 TODO
+      #  \item 38 TODO
+  37. Which of these graphs can be drawn so that their edges don't intersect:\\
+      (a) the edges of a 3d cube; \hspace{5mm} 
+      (b) $K_n$ for $n=3,4,5,\ldots$; \hspace{5mm}
+      (c) ``three houses, three wells'' \ie $K_{3,3}$ \hspace{5mm}
+      (d) the Petersen graph.
+  38. How many edges does a planar graph with $n$ vertices have if all of its faces are triangles.  
+  39. Show that a planar graph with at least $n\ge3$ vertices has at most $3n-6$ edges.  
+  40. Prove that if the graph $G$ has 11 vertices, then either $G$ or its complement is not planar!
+  41. Draw a planar graph with 8 vertices so its complement is also planar!  
+  42. Show that a simple planar graph can not have all vertices with degree at least 6.
+  43. At most how many edges does a planar graph have if all of its circles are at least $k$ long.  
+  44. On an international conference representatives of 5 countries are sitting at a table.  
+      That there are at least two of them not from neighbouring countries!
+  45. Show that the faces of a planar graph can be coloured with two colours so that adjacent faces have different colours if and only if the graph contains a closed Euler line.  
 
 ** COMMENT Solutions
    1. We drew this in the notebook.
