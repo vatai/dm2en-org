@@ -753,12 +753,13 @@ One may think about graphs as "dots connected with lines or arrows"
      :BEAMER_env: theorem
      :END:
      Let $G=(\varphi,E,V)$ be a finite weighted graph.
-     1. Initialize: $E'=\emptyset$.
-     2. Terminate?: If there is a cycle in $E'$, then the edges in $E'$
-        are the edges of a minimal weight spanning forest.
-     3. Loop: Let $e=\{e\in E\setminus E':w(e)=\min\{w(e):e\in
-        E\setminus E'\}\}$ \ie an unused edge with minimal weight and
-        set $E':=E\cup\{e\}$. Go to step 2.
+     1. Initialize: $E'\gets \emptyset$.
+     2. Terminate?: If $E'\cup \{e\}$ contains a cycle for any $e\in
+        E\setminus E'$, then the edges in $E'$ are the edges of a
+        minimal weight spanning forest.
+     3. Expand $E'$: Let $e\in E\setminus E'$ an edge with
+        $w(e)=\min\{w(e'):e'\in E\setminus E'\}$ \ie an unused edge
+        with minimal weight and set $E'\gets E'\cup\{e\}$. Go to step 2.
 *** Proof of Kruskal's algorithm
 **** Proof							    :B_proof:
      :PROPERTIES:
@@ -1076,25 +1077,24 @@ One may think about graphs as "dots connected with lines or arrows"
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     In a graph $(\psi, E, V, w)$ with weighted
-     edges, with all edges having positive weights, let $s\in V$ and
-     $T\subset V$.  
+     Let $(\psi, E, V, w)$ be a directed weighted graph with $w(e)>0$
+     for each $e\in E$, $s\in V$ and $T\subset V$.
 
-     The following algorithm calculates a function (or table) on the set
-     of vertices $d:V \to \R$, which maps the minimal weight of directed routes
-     from $s$ to each vertex $t\in T$ (or $+\infty$ if there is no
-     route).  
+     The following algorithm calculates $d(v)=$ the minimal weight of
+     directed routes from $s$ to $v$, for each $v\in T$ (or $+\infty$
+     if there is no route).
   
-     1. Initialization: Let $S=\emptyset$, $H=\{s\}$, and $d(s)=0$;
-        for every other vertex $v$ let $d(v)=+\infty$.  ($S$ is the
-        set of ``finished'' vertices, $H$ is the set of vertices
-        ``being processed''.)
+     1. Initialization: $S\gets \emptyset$ ($S$ is the set of
+        ``finished'' vertices), $H\gets \{s\}$, $H$ is the set of
+        vertices ``being processed'') and $d(s)\gets 0$; $v\in
+        V\setminus \{v\}$ $d(v)\gets +\infty$.  , .)
      2. Terminate?: If $T\subset S$ or $H=\emptyset$, then terminate.
-     3. Expand $S$: Let $t\in H$ be chosen with minimal value of
-        $d(t)$.  Put $t$ in $S$, and for each edge $e$ coming from $t$
-        to $v\in V\setminus S$, if $d(t)+w(e)<d(v)$, then let
-        $d(v)=d(t)+w(e)$ and if $v\not\in H$, then put $v$ into
-        $H$. Go to 2.
+     3. Expand $S$: Let $t\in H$ so that $d(t)=\min\{d(t'):t'\in H\}$.
+        $S\gets S\cup \{t\}$ and $H\gets H\setminus \{t\}$, and for
+        each edge $e$ coming from $t$ to $v\in V\setminus S$, 
+	- if $d(t)+w(e)<d(v)$, then $d(v)\gets d(t)+w(e)$ 
+	- if $v\not\in H$, then put $v$ into $H$.
+     4. Go to 2.
 *** Proof of Dijkstra's algorithm
 **** Proof							    :B_proof:
      :PROPERTIES:
