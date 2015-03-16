@@ -10,24 +10,32 @@
 
 * Algebraic structures
 ** Set and one operation
-*** asd
+*** Reminder
 **** Grupoid
-     Let $G$ be a set, if $\otimes:G\times G \to G$ is a binary operation on
-     $G$, then the pair $(G,\otimes)$ is a *groupoud*.
+     $(G,\cdot)$ is a *groupoid* if is a set and $\cdot : G \times G
+     \to G$ binary operation \ie $\forall a,b\in G \exists c = a\cdot
+     b \in G$.
 **** Semigroup
-     Let $(G,\otimes)$ be a groupoid, if the operation is associative
-     \ie $a \otimes (b \otimes c) = (a \otimes b) \otimes c$ for every
-     element $a,b,c\in G$, then $(G,\otimes)$ is a *semigroup*.
+     $(G,\cdot)$ is a *semigroup* if it is a groupoid and the
+     operation is /associative/ \ie $\forall a,b,c \in G = a\cdot
+     (b\cdot c) = (a \cdot b) \cdot c$.
 **** Monoid
-     Let $(G,\otimes)$ be a semigroup, the element $e\in G$ for which
-     $e \otimes g=g$ (for all $g\in G$) is a
-
-     which is an *identity element* (or *unit element* for
-     multiplication or *zero element* for addition) 
-**** Group
-
+     $(G,\cdot)$ is a *monoid* if it is a semigroup and it has an
+     /element of unity/ (sometimes referred to as the /neutral
+     element/, /unit element/, /zero element/) \ie $\exists e \in G$
+     so that $\forall g\in G e\cdot g=g=g\cdot e$.
 **** Abelian group     
-** Sets with two operations
+     A group is an *Abelian group* if the operation is /commutative/
+     \ie $\forall a,b \in G a\cdot b = b \cdot a$.
+*** Subgroups
+**** Sub\-semigroups and sub\-groups
+     Let $(G,\cdot)$ be a groupoid and $H\subset G$.  
+     - $H$ is a sub\-group (or sub\-semigroup) if the $\cdot$
+       operation restricted to $H\times H$ makes a group (semigroup).
+
+     - If $(G,\cdot)$ is a group (or a semigroup) then it is a
+       super\-group (super\-semigroup) of $H$.
+** COMMENT Sets with two operations
 *** Ring, Gaussian ring, Euclidean ring, Integral domain, 
 **** Ring
 **** Gaussian ring or UFD
