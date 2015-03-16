@@ -989,6 +989,29 @@ One may think about graphs as "dots connected with lines or arrows"
      - A graph is strongly connected if and only if all of it's
        vertices belong to one class, \ie it has only one strong
        component.
+*** Example
+    #+BEGIN_LaTeX
+    \begin{tikzpicture}[node]
+    \draw
+    (0,0)     node (v1) {$v_1$} 
+    ++(0,2)   node (v2) {$v_2$} 
+    ++(2,-1)  node (v3) {$v_3$} 
+    ++(2,0)   node (vp3) {$v_3'$}
+    ++(2,1)   node (vp2) {$v_2'$}
+    ++(0,-2)  node (vp1) {$v_1'$}
+    ;
+    \draw[->] 
+    (v1) edge (v2) (v2) edge (v3) (v3) edge (v1) 
+    (v3) edge (vp3) 
+    (vp1) edge (vp2) (vp2) edge (vp3) (vp3) edge (vp1)
+    ;
+    \end{tikzpicture}
+    #+END_LaTeX
+*** Comparison between connected and strongly connected graphs
+    The above graph is connected but not /strongly/ connected.
+    $\{v_1,v_2,v_3\}$ and $\{v_1',v_2',v_3'\}$ are the two /strong/
+    components of the graph, and the edge between $v_3$ and $v_3'$
+    does not belong to either of them.
 ** Directed trees
 *** Directed trees
 **** Directed tree					       :B_definition:
