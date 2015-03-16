@@ -23,7 +23,7 @@ All graphs are simple and finite if not stated otherwise.
      1) 2 vertices, each with degrees 2, 3 or 4?
      2) 3 vertices, each with degrees 2, 3 or 4?
   7. Show that the number of vertices with odd degrees is even.
-  8. Draw the following graph!  Specify five points on a circle!
+  8. Draw the following graph!  Specify five points on a cycle!
      These points define $\binom{5}{2}$ chords which will be the
      vertices of the graph.  Two vertices in the graph are connected
      if and only if the corresponding chords don't have a common
@@ -31,10 +31,10 @@ All graphs are simple and finite if not stated otherwise.
   9. Which $C_n$'s are sub\-graphs of the Petersen graph?
   10. How many graphs with 3, 4 or 5 vertices are isomorphic to their
       own complement?
-  11. Prove that any closed walk of odd length contains a circle.  Is
+  11. Prove that any closed walk of odd length contains a cycle.  Is
       this true for closed walks of even length.
   12. Show that if all vertices in a graph have degrees of at least
-      two, then the graph contains a circle!
+      two, then the graph contains a cycle!
   13. Show that if there is a route from $a$ to $b$ and a route from
       $b$ to $c$ then there is a route from $a$ to $c$.
   14. Six contestants are competing in a tournament.  Prove that at
@@ -46,10 +46,10 @@ All graphs are simple and finite if not stated otherwise.
   16. Is it true, that either the graph $G$ or its complement is
       always connected?
   17. In a tree, let us denote the number of vertices with degree 1
-      with $d_1$, and with degree more than 2 with $c$.  Show that if
-      there are at least two vertices in the graph $d_1>c+2$ is true.
+      with $f_1$, and with degree more than 2 with $c$.  Show that if
+      there are at least two vertices in the graph $f_1>c+2$ is true.
   18. Show that in a connected finite graph, each two routes of
-      maximum length have ate least one common vertex.
+      maximum length have at least one common vertex.
   19. Show that in a finite tree there is a vertex through which all
       the routes of maximum length go through.
   20. If the number of vertices in a graph is $n\ge1$, at least how
@@ -161,7 +161,7 @@ All graphs are simple and finite if not stated otherwise.
       \end{tikzpicture}
   27. Can you jump with a knight on a $9\times9$ chess board, touching
       all the squares and returning to the starting one at the end.
-  28. Show that a pack of dominoes can be arranged in a circle.
+  28. Show that a pack of dominoes can be arranged in a cycle.
   29. Show that the Petersen graph is not Hamiltonian but deleting a
       vertex makes it Hamiltonian.
   30. Show that if a graph is Hamiltonian, then deleting one edge
@@ -169,22 +169,22 @@ All graphs are simple and finite if not stated otherwise.
   31. Show that if there are $k$ vertices which if removed brake the
       graph up into more than $k$ components, then the original graph
       is not Hamiltonian.
-  32. Show that if removing an edge from the circle $K$ of a finite
+  32. Show that if removing an edge from the cycle $K$ of a finite
       connected graph produces a route of maximum length, then $K$ was
-      a Hamilton circle.
+      a Hamilton cycle.
   33. For all $n\ge 5$ show that there exists a graph $G$ with $n$
       vertices, 
       1) so that both $G$ and $\overline{G}$ is Hamiltonian;
       2) so that neither $G$ nor $\overline{G}$ are Hamiltonian.
   34. One hundred friends arrive at a hotel.  Each night they are
       seated at the same table.  Also each evening they get into a
-      quarrel with their neighbours and get angry at each other (until
+      quarrel with their neighbors and get angry at each other (until
       the end of their lives).  Also, every evening they select their
       seats so that they don't sit next to someone who they are angry
       with.  When they can't sit down like this at the table, they all
       go home.  Show that they stay at the hotel for at least 25 days.
   35. Show that any graph not containing loops can be directed in a
-      way that the resulting directed graph has no directed circle.
+      way that the resulting directed graph has no directed cycle.
   36. Show that after a tennis tournament all the players can stand in
       a line so that every player has defeated the person standing
       immediately in front off him/her.
@@ -207,10 +207,10 @@ All graphs are simple and finite if not stated otherwise.
   42. Show that a simple planar graph can not have all vertices with
       degree at least 6.
   43. At most how many edges does a planar graph have if all of its
-      circles are at least $k$ long.
+      cycles are at least $k$ long.
   44. On an international conference representatives of 5 countries
       are sitting at a table.  That there are at least two of them not
-      from neighbouring countries!
+      from neighboring countries!
   45. Show that the faces of a planar graph can be coloured with two
       colours so that adjacent faces have different colours if and
       only if the graph contains a closed Euler line.
@@ -311,40 +311,64 @@ All graphs are simple and finite if not stated otherwise.
       -- (1*72:1)  node{}
       ;
       \end{tikzpicture}
-* COMMENT Old solution
-  6. Indirect proof:
-     - If $G$ is not connected, it has at least two components.
-     - The smaller component has at most $n$ vertices.
-     - A component with $n$ vertices in a simple graph must have
-       $d(v)\le n-1$ for all vertices, which is a contradiction (to
-       $d(v)\ge n$ for all vertices).
-     This will not be true for only $d(v)\ge n-1$.  For example:
-     $n=1$, $2n+1=3$.  Then $3$ isolated vertices, \ie $d(v)=0=n-1$
-     for each vertex, and the graph has 3 components, ergo it is not
-     connected.
-  7. If $G$ is connected we are done!  If $G$ is disconnected there
-     are at least two components.  Any vertices $v$ and $v'$ are
-     either in one component or in different components.
-     - If $v$ and $v'$ are in different components, there and edge
-       between them in $\overline{G}$.
-     - If $v$ and $v'$ are in the same component, then there is at
-       least one more component with at least one vertex in it, let's
-       it be the vertex $z$.  $z$ is not connected to $v$ nor $v'$ so
-       in $G$, so in $\overline{G}$ there is and route from $v$
-       through $z$ to $v'$.
-  8. Start of from any vertex $v_0$, and continue on unused
-     (untouched) edges and unused vertices.  Since the graph is
-     finite, we can do this finite many times.  If the vertexes
-     visited are $v_0,v_1,\ldots,v_s$ \ie $v_s$ is the last possible
-     vertex visited, then all the neighbors of $v_s$ are already
-     visited.  Let $v_k$ be the vertex with the least index which is
-     adjacent to $v_s$.  So $v_s,v_k,v_{k+1},\ldots,v_s$ is a cycle,
-     and since $d(v_s)\ge k$, so at least $k$ adjacent vertices and
-     $v_s$ make at least $k+1$ vertices.
-  10. Reformulate the problem to the domain of graphs: we need to
+  11. Since the graph is finite, the following algorithm terminates in
+      finite many steps and finds a cycle in the graph.
+      1) Initialization: $S \gets$ closed cycle.
+      2) Terminate?: if all the vertices in $S$ are different, we have
+         a cycle, we are finished.
+      3) Divide the closed walk: otherwise there is $i\neq j$ so that
+         $v_i=v_j$.  At his vertex $S$ can be divided into two
+         /shorter/ closed cycles, one even and one with odd length and
+         let $S\gets$ the closed cycle with odd length.
+      4) Go to the second step.
+  12. Since the graph is finite, the following algorithm terminates in
+      finite many steps and finds a cycle in the graph.
+      1) Initialization: Let $R \gets \{v\}$ for some vertex $v$.
+      2) Terminate?: if the last vertex added to $R$ has unused edge
+         going back to $R$, adding that edge, gives us a cycle and we
+         are done.
+      3) Expand $R$: Since every vertex $v$ has $d(v)\ge 2$, after
+         ``entering'' the vertex there has to be an unused ``leaving''
+         edge from that vertex. Expand $R$ with that edge and the
+         other unused vertex at its endpoint.
+  13. If the route from $a$ to $b$ is
+      $a=v_0,e_1,v_1,\ldots,e_n,v_n=b$, and the route from $b$ to $c$
+      is $b=v'_0,e'_1,v'_1,\ldots,e'_n,v'_n=c$ then we have a /walk/
+      (not a route) from $a$ to $c$, but we have learned (see
+      lectures) that from every walk, by deleting $e_i,v_i$ pairs we
+      can obtain a route with the same endpoints.
+  14. Reformulate the problem to the domain of graphs: we need to
       prove for each 6 vertex simple graph $G$, there is triangle in
-      $G$ or $\overline{G}$.
-  11. Proofs:
+      $G$ or $\overline{G}$.  In $G\cup \overline{G}$ each vertex has
+      $d(v)=5$ so in $G$ or $\overline{G}$, $v$ has at least $3$
+      neighbors $v_1, v_2$ and $v_3$, let's suppose it is in $G$.
+      Then if there is an edge in $G$ between two of the neighboring
+      vertices, lets say $v_1$ and $v_2$ then there is a triangle
+      $v,v_1,v2$ in $G$. Otherwise, if non of the edges are present
+      between $v_1, v_2$ and $v_3$, then all three edges are present
+      in $\overline{G}$ \ie there is a triangle $v_1, v_2, v_3$ in
+      $\overline{G}$.
+  15. Indirect proof:
+      - If $G$ is not connected, it has at least two components.
+      - The smaller component has at most $n$ vertices.
+      - A component with $n$ vertices in a simple graph must have
+	$d(v)\le n-1$ for all vertices, which is a contradiction (to
+	$d(v)\ge n$ for all vertices).
+      This will not be true for only $d(v)\ge n-1$.  For example:
+      $n=1$, $2n+1=3$.  Then $3$ isolated vertices, \ie $d(v)=0=n-1$
+      for each vertex, and the graph has 3 components, ergo it is not
+      connected.
+  16. If $G$ is connected we are done!  If $G$ is disconnected there
+      are at least two components.  Any vertices $v$ and $v'$ are
+      either in one component or in different components.
+      - If $v$ and $v'$ are in different components, there and edge
+	between them in $\overline{G}$.
+      - If $v$ and $v'$ are in the same component, then there is at
+        least one more component with at least one vertex in it, let's
+        it be the vertex $z$.  $z$ is not connected to $v$ nor $v'$ in
+        $G$, so in $\overline{G}$ there is a route from $v$ through
+        $z$ to $v'$.
+  17. Proofs:
       - Let $n=\card{V}$ \ie the number of vertices and
 	\[f_i=\card{\{v\in V:d(v)=i\}}\] \ie $f_i$ is the number of
 	vertices with degree $i$, with $d=\max\{d(v):v\in V\}$ then:
@@ -367,6 +391,17 @@ All graphs are simple and finite if not stated otherwise.
 	c &= f_3 + f_4 + \cdots +f_d \\
 	&\le f_3 + 2f_4 + \cdots + (d-2)f_d 
 	\end{align*}
+  18. 
+* COMMENT Old solution
+  8. Start of from any vertex $v_0$, and continue on unused
+     (untouched) edges and unused vertices.  Since the graph is
+     finite, we can do this finite many times.  If the vertexes
+     visited are $v_0,v_1,\ldots,v_s$ \ie $v_s$ is the last possible
+     vertex visited, then all the neighbors of $v_s$ are already
+     visited.  Let $v_k$ be the vertex with the least index which is
+     adjacent to $v_s$.  So $v_s,v_k,v_{k+1},\ldots,v_s$ is a cycle,
+     and since $d(v_s)\ge k$, so at least $k$ adjacent vertices and
+     $v_s$ make at least $k+1$ vertices.
   12. Let $v_1,v_2,\ldots,v_m$ and $u_1,u_2,\ldots,u_m$ be the
       vertices of two routes of maximal length.
   13. 
