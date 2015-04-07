@@ -214,7 +214,6 @@ All graphs are simple and finite if not stated otherwise.
   45. Show that the faces of a planar graph can be coloured with two
       colours so that adjacent faces have different colours if and
       only if the graph contains a closed Euler line.
-
 * Solutions
   1. We did this for the practical session.
   2. No.  The possible degrees are: $0,1,2,\ldots,n-1$ (if
@@ -533,17 +532,41 @@ All graphs are simple and finite if not stated otherwise.
   37. The 3d cube, $K_3$ and $K_4$ are planar graphs \ie the can be
       drawn so that their edges don't intersect.  The others are not,
       use Kuratowski's theorem.
-  38. $3n-6$
-  39. planar implies $\card{E}\le 3n-6$
-  40. $n\ge11$ then $G$ or its complement is not planar.
-  41. A planar graph with 8 vertices so that its complement is also
-      planar.
-  42. 
-  43. 
-  44. 
-  45. 
+  38. Let $e$ be the number of edges, $f$ the number of faces and $n$
+      the number of vertices.  In a planar graph, if all regions are
+      triangles, then each region is surrounded by 3 edges and every
+      edge separates 2 regions.  Therefore the ratio of edges to
+      regions $e:f=3:2$ or $e/f=3/2$ so $f=2e/3$.  Euler's formula
+      says, $n+f=e+2$ so 
+      \begin{align*}
+      n+f&=e+2\\
+      n+\frac{2}{3}e&=e+2\\
+      n-2&=\frac{1}{3}e\\
+      e&=3n-6
+      \end{align*}
+  39. As shown in the previous problem, a planar graph, with all faces
+      triangles, the number of edges is $3n-6$ (where $n=\card{V}$).
+      In general, if a graph is planar, each face if not a triangle,
+      it can be split up into triangles by adding more edges,
+      resulting in a graph with triangles for all faces, ergo the
+      original triangle must have had $\le 3n-6$ edges.
+* COMMENT Problems to be solved
+  40. Prove that if the graph $G$ has 11 or more vertices, then either
+      $G$ or its complement is not planar!
+  41. Draw a planar graph with 8 vertices so its complement is also
+      planar!
+  42. Show that a simple planar graph can not have all vertices with
+      degree at least 6.
+  43. At most how many edges does a planar graph have if all of its
+      cycles are at least $k$ long.
+  44. On an international conference representatives of 5 countries
+      are sitting at a table.  That there are at least two of them not
+      from neighboring countries!
+  45. Show that the faces of a planar graph can be coloured with two
+      colours so that adjacent faces have different colours if and
+      only if the graph contains a closed Euler line.
 
-*  Old solution
+* COMMENT Old solution
   8. Start of from any vertex $v_0$, and continue on unused
      (untouched) edges and unused vertices.  Since the graph is
      finite, we can do this finite many times.  If the vertexes
