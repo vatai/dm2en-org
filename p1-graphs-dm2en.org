@@ -166,7 +166,7 @@ All graphs are simple and finite if not stated otherwise.
       vertex makes it Hamiltonian.
   30. Show that if a graph is Hamiltonian, then deleting one edge
       always leaves it connected.
-  31. Show that if there are $k$ vertices which if removed brake the
+  31. Show that if there are $k$ vertices which if removed split the
       graph up into more than $k$ components, then the original graph
       is not Hamiltonian.
   32. Show that if removing an edge from the cycle $K$ of a finite
@@ -391,8 +391,159 @@ All graphs are simple and finite if not stated otherwise.
 	c &= f_3 + f_4 + \cdots +f_d \\
 	&\le f_3 + 2f_4 + \cdots + (d-2)f_d 
 	\end{align*}
-  18. 
-* COMMENT Old solution
+  18. Let $v_1,v_2,\ldots,v_m$ and $u_1,u_2,\ldots,u_m$ be the
+      vertices of two routes of maximal length. Since the graph is
+      connected there is a route from $v_1$ to $u_1$. Then there is a
+      sub\-route (with at least one edge) with no edges from the first
+      or the second route of maximal length.  Let $v_i$ be the first
+      and $u_j$ the last vertex of this sub\-route.  Then $v_i$
+      divides the first and $u_j$ divides the second route of maximal
+      length into two parts.  Selecting the longer parts from both
+      routes and the sub\-route in the middle we get a longer route
+      than the routes of maximal length which is a contradiction.
+  19. Sketch: Take one route of maximal length, and find its middle
+      point $w$.  Then $w$ is an element of each route with maximal
+      length.  We know from the previous exercise, that any route of
+      maximal length has (at least one) common point with the first
+      route of maximal length, and we need to show that $w$ is one of
+      these ``common'' points.  Using indirect proof, there are two
+      major cases, first $w$ is `before' the common section, and the
+      second that $w$ is `after' the common section.  In both cases,
+      if we select the part containing $w$ from the first route,
+      combine it with the common section, and add a part of the second
+      route from the common section to the end (there are two such
+      parts, add the one which is longer).
+  20. For the number of separating edges see /cut sets/ from the
+      lectures.
+  21. We need to show that $c+n\ge n$ where:
+      - $c$ is the number of components 
+      - $e$ is the number of edges and 
+      - $n$ is the number of vertices in the graph.  
+      Let $e_i$ be the number of edges and $n_i$ the number of
+      vertices in the $i$-th component (where $1\le i \le n$).  We
+      know that a spanning tree of the $i$-th component has $n_i-1$
+      edges so $n_i - 1 \le e_i$ (because a spanning tree is a
+      sub\-graph).  If we take the sum on all of the previous
+      equations we have 
+      \begin{align*}
+      \sum_{i=1}^c (n_i - 1) &\le \sum_{i=1}^e_i \\
+      \sum_{i=1}^c n_i - \sum_{i=1}^c 1 &\le \sum_{i=1}^e_i \\
+      n - c &\le e 
+      \end{align*}
+  22. Yes.  The first graph contains an open Euler trail, and the
+      second a closed Euler line.
+  23. Yes.  A square and a triangle connecting at one vertex (like a
+      fish).
+  24. Yes.  It is a closed walk.  We can obtain it by ``doubling''
+      each edge, and making all vertices having even degree.  Then
+      there is a closed Euler trail in the ``doubled'' graph, which
+      contains all the edges of the original graph exactly twice.
+  25. If $d(v)=4$ for all $v\in V$ then there is a closed Euler line
+      in the graph.  Coloring the edges of this closed Euler line we
+      provide a coloring demanded by the problem.  If the closed Euler
+      line with a red edge, it will leave with a blue edge (and vice
+      versa).  Every vertex is visited two times by the closed Euler
+      line, thus it will have two red and two blue edges.
+
+      This is true for the first/last vertex of the of the closed
+      Euler line.  Since $\sum d(v)= 4 \card{V} = 2\card{E}$ we have
+      $\card{E} = 2 \card{V}$.  Let's say we start with blue, then
+      because there is an even number of edges in the graph, the last
+      line in the closed Euler line will be red.
+  26. The first and the third graph is not Hamiltonian.  Both of these
+      graphs are similar: if we remove the $k$ number of vertices with
+      $d(v)=4$ from the middle cycle the graph will be separated into
+      the inner cycle, the outer cycle and $k$ isolated vertices from
+      the middle (for $k=4$ and $5$).  By problem 31 there is no
+      Hamilton cycle in these graphs.  
+      
+      However, there is a Hamilton cycle in the second graph.
+      Informally: start from the top, go down two edges on the right
+      side, go one edge to the right most vertex, then across two
+      edges, then two edges to the center, from there two steps to the
+      lower left vertex and back up (in two steps).
+  27. No.  Representation using graphs: $V$ is the set of squares.
+      $v_1,v_2\in V$ are connected iff the knight can jump from $v_1$
+      to $v_2$.  We need to find a Hamilton cycle, and from a white
+      square we can only jump to a black square (and vice versa).  So
+      the vertices of the Hamilton cycle need to alternate between
+      black and white, but this is impossible because $\card{E}=81$ is
+      odd.
+  28. 
+  29. The Petersen graph is not Hamiltonian.  If you delete any of the
+      vertices from it, it is not hard to find a Hamiltonian cycle.
+  30. If the graph is Hamiltonian, it contains a Hamilton cycle which
+      contains all the vertices of the graph. If we delete an edge
+      fond in the Hamilton cycle, all vertices are still connected
+      because we are left with a Hamilton route.  If the edge was not
+      in the Hamilton cycle, the vertices will remain connected by the
+      Hamilton cycle.
+  31. Suppose indirectly there is a Hamilton cycle in the graph.  If
+      we delete any $k$ vertices from a cycle, it will be split up
+      into $\le k$ components, which is a contradiction to splitting it up
+      into $\ge k+1$ components.
+  32. Suppose indirectly, that $K$ was not a Hamilton cycle.  Then
+      there is a vertex $w$ not in $K$.  Because the graph is
+      connected, there is a route from $w$ to any vertex of $K$.  Let
+      $v$ be the first vertex in $K$ on a route from $w$ to some
+      vertex in $K$.  The problem states that if we delete any edge
+      from $K$ we get a route of maximal length, so if we delete an
+      edge in $K$ with $v$ as an endpoint, we can extend the remaining
+      route with the segment of the route to $w$, which would be a
+      longer route than a route of maximal length, which gives us a
+      contradiction.
+  33. 
+      1) The $n$ long cycle is a good example.  For $n=5$ and $6$
+         should be done manually (for $n=5$ it is trivial, for $n=6 it
+         is a bit tricky).  For $n\ge 6$, the complement has $d(v)\ge
+         n/2$ so by Dirac's theorem, there has to be a Hamilton cycle.
+      2) The star is not Hamiltonian because you can only go one way
+         from the center. Neither its complement Hamiltonian because
+         the center becomes an isolated vertex.
+  34. The vertices are the people, the edges are friendships and a
+      seating is a Hamiltonian cycle.  In the beginning the visit
+      $d(v)=99$ for each vertex, and after $k$ evenings it
+      $d(v)=99-k2$. So after $24$ evenings, $d(v)=99-2\cdot 24=51\ge
+      100/2$.  So after 24 evenings, there will still be a Hamiltonian
+      cycle in the graph because of Dirac's theorem, so they can stay
+      for the 25 day, after which we will have $d(v)=49$ for every
+      $v$.
+  35. Put all the vertices of the graph on a horizontal straight line
+      and make the orientation of each edge go from left to right.
+  36. The players are vertices, and there is an arrow (a directed
+      edge) from $v_1$ to $v_2$ if $v_1$ beat $v_2$.  After the
+      tournament, we have an orientation of a(n undirected) complete
+      graph and we need to find a Hamiltonian route in it.  
+
+      We prove this by induction on the number of vertices $=n$.
+      - For $n\le2$ it is trivial.
+      - Suppose it is true for $n$ and we have the Hamiltonian route
+        $v_1,v_2,\ldots v_n$.  If we add a new vertex $v$, then there
+        are three options:
+	1) $v$ beat $v_1$ (\ie $(v,v_1)\in\psi$), and then
+           $v,v_1,\ldots,v_n$ is a Hamiltonian route,
+	2) $v$ was beaten by $v_n$ (\ie $(v_n,v)\in\psi$) then
+           $v_1,\ldots,v_n,v$ is a Hamiltonian route,
+	3) otherwise $v$ was beaten by $v_1$ and $v$ beat $v_n$.  If
+           $k$ is the smallest index so that $v_{k}$ beaten by $v$
+           (\ie $k=\min\{j: (v,v_j)\in\psi\}$), then $1<k\le n$ and
+           $v_{k-1}$ beat $v$ (\ie $(v_{k-1},v_k)\in\psi$), so
+           $v_1,\ldots,v_{k-1},v,v_{k},\ldots,v_n$ is a Hamiltonian
+           cycle.
+  37. The 3d cube, $K_3$ and $K_4$ are planar graphs \ie the can be
+      drawn so that their edges don't intersect.  The others are not,
+      use Kuratowski's theorem.
+  38. $3n-6$
+  39. planar implies $\card{E}\le 3n-6$
+  40. $n\ge11$ then $G$ or its complement is not planar.
+  41. A planar graph with 8 vertices so that its complement is also
+      planar.
+  42. 
+  43. 
+  44. 
+  45. 
+
+*  Old solution
   8. Start of from any vertex $v_0$, and continue on unused
      (untouched) edges and unused vertices.  Since the graph is
      finite, we can do this finite many times.  If the vertexes
