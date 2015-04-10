@@ -1,0 +1,6 @@
+#+INCLUDE: inc-test.org
+# Set no title
+#+BIND: org-latex-title-command ""
+* First sample test - Discrete mathematics 2.
+* COMMENT Solutions
+
