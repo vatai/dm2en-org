@@ -550,22 +550,38 @@ All graphs are simple and finite if not stated otherwise.
       it can be split up into triangles by adding more edges,
       resulting in a graph with triangles for all faces, ergo the
       original triangle must have had $\le 3n-6$ edges.
-* COMMENT Problems to be solved
-  40. Prove that if the graph $G$ has 11 or more vertices, then either
-      $G$ or its complement is not planar!
-  41. Draw a planar graph with 8 vertices so its complement is also
-      planar!
-  42. Show that a simple planar graph can not have all vertices with
-      degree at least 6.
-  43. At most how many edges does a planar graph have if all of its
-      cycles are at least $k$ long.
-  44. On an international conference representatives of 5 countries
-      are sitting at a table.  That there are at least two of them not
-      from neighboring countries!
-  45. Show that the faces of a planar graph can be coloured with two
-      colours so that adjacent faces have different colours if and
-      only if the graph contains a closed Euler line.
-
+  40. If a graph is planar, it has at most $3n-6$ edges, the number of
+      edges of $G$ and $\overline{G}$ together is $n(n-1)/2$, so if
+      both are planar then
+      \begin{align*}
+      n(n-1)/2 & \le 2\cdot (3n-6)\\
+      n^2 - n & \le 12n -24\\
+      n^2 -13n + 24 &\le 0.
+      \end{align*}
+      Since $n_{1,2}=(11\pm\sqrt{169-96})/2=(11\pm\sqrt{73})/2$, and
+      $n=(11+\sqrt{73})/2\approx 10.77$ and $n=(11-\sqrt{73})/2\approx
+      2.22$.  So if both $G$ and $\overline{G}$ are planar then
+      $2.22<n<10.77$ has to be true, that is, if $n\ge11$ then $G$ or
+      $\overline{G}$ is not planar.
+  41. See this in the footnote
+      [fn::http://math.stackexchange.com/questions/480512/maximum-value-for-v-in-planar-self-complementary-graph]
+  42. Let $n=\card{V}$ and $e=\card{E}$.  Then $2e=\sum_{v\in V}
+      d(v)\ge 6n$, ergo $e \ge 3n$ but in a planar graph $e\le 3n-6$
+      which is a contradiction.
+  43. As with problem 38: $e/f \ge k/2$ so $f \le 2e/k$ and $n+f=e+2$
+      so 
+      \begin{align*}
+      e=n+f-2 & \le n + \frac{2e}{k} -2\\
+      e\left(1-\frac{2}{k}\right) & \le n - 2\\
+      e & \le \frac{k(n-2)}{k-2}
+      \end{align*}
+  44. In a graph representation the capitals of the countries are the
+      vertices and two graphs are connected iff the are neighbouring
+      countries.  If all 5 of them were from neighbouring countries
+      every vertex would have $d(v)=4$, so $\sum_{v\in V} d(v) =
+      5\cdot 4 = 20 = 2\card{E}$ so $\card{E}=10$.  But for a planar
+      graph, $10= \card{E} \le 3n-6 = 3\cdot 5 - 6 = 9$ which is a
+      contradiction.
 * COMMENT Old solution
   8. Start of from any vertex $v_0$, and continue on unused
      (untouched) edges and unused vertices.  Since the graph is
