@@ -1,3 +1,5 @@
+# Org-Mode config
+#+OPTIONS: toc:nil num:nil
 
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [a4paper]
@@ -16,5 +18,3 @@
 
 #+LATEX_HEADER: \def\ie{i.e.\ }
 
-# Org-Mode config
-#+OPTIONS: toc:nil num:nil

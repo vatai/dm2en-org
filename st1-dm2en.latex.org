@@ -1,0 +1,42 @@
+# -*- mode: org; mode: flyspell -*-
+#+INCLUDE: inc-test.org
+# Set no title
+#+BIND: org-latex-title-command ""
+
+* First sample test - Discrete mathematics 2.
+  1. Draw a simple 7 vertex graphs with the following degrees or prove
+     that such a graph doesn't exist:
+     #+ATTR_LATEX: :environment inparaenum
+     1) $6, 5, 5, 5, 3, 2, 2$;
+     2) $6, 5, 5, 5, 3, 3, 3$;
+     3) $6, 5, 5, 5, 3, 5, 2$;
+     4) $6, 4, 4, 4, 2, 2, 0$.
+  2. Six contestants are competing in a tournament.  Prove that at
+     any moment there are three players who all played against each
+     other, or three players who didn't play with the other two.
+  3. Show, that each connected graph contains a walk which contains
+     each edge exactly twice.  Is it a closed walk?
+  4. Show that $(E,\cdot)$ is a group where
+     $E=\cup_{n\in\mathbb{N}}\{x\in\mathbb{C}:x^n=1\}$ and the
+     operation is the usual multiplication defined on complex numbers.
+  5. Show that if the inverse of every element in a group is the
+     element itself, then the group is commutative.
+  6. Show that $\varphi$ is a homo\-morphism from $(G,\cdot)$ to
+     $(G',*)$ where $G&=\mathbb{R}\setminus\{0\}$ with the usual
+     multiplication defined on the real numbers and
+     $G'&=\left\{(\begin{smallmatrix}a & a \\ a &
+     a\end{smallmatrix}) : a\neq 0, a\in \mathbb{R} \right\}$ with the
+     matrix multiplication for $\mathbb{R}^{2\times2}$ matrices.
+     
+* Solutions
+  1. 
+     1) Not possible, see the argument for exercise 5.
+     2) Possible, try to draw it.  First draw $K_4$ (the will be the
+        vertices with degrees $6, 5, 5, 5$), and connect the remaining
+        edges from the $6$ degree vertex to the last three vertices.
+        The rest is up to you!
+     3) Not possible, $\sum_{v\in V}d(v)$ is odd, see lectures.
+     4) Not possible, see exercise 2 in p1-graphs-dm2.pdf.
+  2. See exercise 14.
+  3. See exercise 24.
+
