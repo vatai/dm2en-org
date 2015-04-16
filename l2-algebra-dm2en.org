@@ -14,7 +14,7 @@
 **** Grupoid
      $(G,\cdot)$ is a *groupoid* if is a set and $\cdot : G \times G
      \to G$ binary operation \ie $\forall a,b\in G \exists c = a\cdot
-     b \in G$.
+     b \in G$.  This property is /closure/ under the operation $\cdot$.
 **** Semigroup
      $(G,\cdot)$ is a *semigroup* if it is a groupoid and the
      operation is /associative/ \ie $\forall a,b,c \in G = a\cdot
@@ -24,17 +24,343 @@
      /element of unity/ (sometimes referred to as the /neutral
      element/, /unit element/, /zero element/) \ie $\exists e \in G$
      so that $\forall g\in G e\cdot g=g=g\cdot e$.
-**** Abelian group     
+**** Abelian group
      A group is an *Abelian group* if the operation is /commutative/
      \ie $\forall a,b \in G a\cdot b = b \cdot a$.
+*** Homo\-morphisms
+**** Structure (or operation) preserving functions
+     Let $(G,\cdot)$ and $(H,\otimes)$ be two grupoids, and
+     $\varphi:G\to G'$.  The map (\ie function) $\varphi$ is structure
+     preserving if for each $a,b \in G$: \[ \varphi(a\cdot b) =
+     \varphi(a) \otimes \varphi(b) \]
+**** Names of structure preserving maps
+     - A structure preserving map $\varphi:G\to G'$ is a
+       *homo\-morphism*:
+       - if it is injective it is a *mono\-morphism*,
+       - if it is surjective it is an *epi\-morphism*,
+       - if it is bijective it is an *iso\-morphism*;
+       - if $G=G'$ then it is an *endo\-morphism* and
+	 - if it is also an is also bijective it is an *auto\-morphism*.
+*** Homo\-morphic image of a group
+**** Statements							  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $\varphi:G\to G'$ be a homo\-morphism, and $\varphi(G)$ is
+     the image of $G$ under $\varphi$, then:
+     1. If $G$ is a semi\-group, then $\varphi(G)$ is also a
+        semi\-group.
+     2. If $e\in G$ is an element of unity in $G$ then $\varphi(e)$ is
+        an element of unity in $G'$, ergo if $G$ is a monoid, then
+        $\varphi(G)$ is also a monoid.
+     3. If $g^{-1}\in G$ is the inverse of $g\in G$, then
+        $\varphi(g^{-1})$ is the inverse of $\varphi(g)$, ergo if $G$
+        is a group $\varphi(G)$ is also a group.
+     4. If $G$ is commutative then $\varphi(G)$ is also commutative.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     The proof is pretty simple, we just need to use the structure
+     preserving property of $\varphi$, \eg if we write $\varphi(x)=x'$
+     (for simplicity), then $a'(b'c')=a'(ab)'=(a(bc))'=
+     ((ab)c)'=(ab)'c'=(a'b')c'$.  Or for the unit element, $e'a' =
+     (ea)' = a'$. And so on \ldots
+*** Other ways to define groups
+**** Equivalent definitions					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ be a semi\-group, then the following are
+     equivalent:
+     1. $G$ is a group.
+     2. $G\neq\emptyset$ and for every $a,b\in G$ there is a unique
+        $x,y\in G$ so that $ax=b$ and $ya=b$.
+     3. $G\neq\emptyset$ and for every $a,b\in G$ there exists a $x,y\in G$ so
+        that $ax=b$ and $ya=b$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $1\Rightarrow 2$: $x=a^{-1}b$, $y=ba^{-1}$. $2\Rightarrow 3$ is
+     trivial.  $3 \Rightarrow 1$: Let $a\in G$, then $\exists e\in G$
+     so that $ae=a$.  For every $b\in G$ $\exists y\in G$ so that
+     $ya=b$.  From this we have $be=yae=ya=b$ \ie $be=b$ for each
+     $b\in G$ (similarly $eb=b$ for each $b$), ergo $e$ is the element
+     of unity \ie $G$ is a monoid.  For $e$ and every $a$ there is
+     $ax=e$, \ie $x=a^{-1}$.
 *** Subgroups
 **** Sub\-semigroups and sub\-groups
      Let $(G,\cdot)$ be a groupoid and $H\subset G$.  
      - $H$ is a sub\-group (or sub\-semigroup) if the $\cdot$
-       operation restricted to $H\times H$ makes a group (semigroup).
+       operation restricted to $H\times H$ makes a group
+       (semigroup).
+     - If $(G,\cdot)$ is a group (or a semigroup) then it
+       is a over\-group (over\-semigroup) of $H$. If $H=G$ or
+       $H=\{e\}$ then $H$ is a *trivial subgroup*.  If $H\neq G$ then
+       $H$ is a *proper subgroup* of $G$.
+**** Equivalent definitions					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ be a group and $H \subset G$, then the following
+     are equivalent:
+     1. $H \le G$ \ie $H$ is a sub\-group of $G$.
+     2. The operation is a $\cdot : H\times H \to H$ function, the
+        element of unit $e$ of $G$ is also an element of unity of $H$
+        and $H^{-1}\subset H$.
+     3. $H\neq\emptyset$, $HH\subset H$ and $H^{-1}\subset H$.
+     4. $H\neq\emptyset$ and $H^{-1}H\subset H$.
+*** Equivalent definitions
+**** Notation
+     $H^{-1}=\{h^{-1} : h\in H\}$, $HH'=\{hh':h\in H,h'\in H'\}$ and
+     $gH=\{gh:h\in H\}$. Example: $\{1,2,3\}\cdot
+     \{2,3\}=\{2,3,4,6,9\}$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $1\Rightarrow2$: the operations is obviously $\cdot : H\times
+     H\to H$.  Let $f$ be the element of unity in $H$ and $e$ the
+     element of unity in $G$. Then $hf=h=he$ so $e=f$.  And for every
+     $h\in H$ there is a $h^{-1}\in H$ but since the inverse of $h$ is
+     unique $H^{-1}\subset H$.
 
-     - If $(G,\cdot)$ is a group (or a semigroup) then it is a
-       super\-group (super\-semigroup) of $H$.
+     $2\Rightarrow 3$: $e\in H$ so $H\neq\emptyset$ and $\cdot :
+     H\times H\to H$ so $HH\subset H$.
+
+     $3\Rightarrow 4$: $H^{-1}\subset H$ so $H^{-1}H \subset HH
+     \subset H$.
+
+     $4\Rightarrow 1$: $h\in H$ so $e=h^{-1}h \in H^{-1}H \subset H$.
+     $h\in H$ (and $e\in H$) so $h^{-1}e \in H^{-1}H \subset H$ so
+     every $h\in H$ has an inverse, the inverse in $G$.
+     $(h_1^{-1})^{-1}=h_1$ so if $h_1,h_2\in H$ then
+     $h_1h_2=(h_1^{-1})^{-1}h_2 \in H^{-1}H \subset H$ has closure
+     under the group operation.
+*** Remarks and corollary
+**** Remarks
+     The subsets in 3 and 4 are actually equations, so in 3 $HH\subset
+     H$, $H^{-1}\subset H$ and in 4 $H^{-1}H\subset H$ is actually
+     $HH=H$, $H^{-1}=H$ and in 4 $H^{-1}H=H$.  This is true because,
+     $H=eH\subset HH$, $h=(h^{-1})^{-1}$ so $H\subset H^{-1}$ and
+     $e=e^{-1}$ so $H= eH = e^{-1}H \subset H^{-1}H$.
+**** Corollary							  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     $H_i\le G$ for each $i\in I$, then $H=\cup_{i\in I} H_i\le G$ \ie
+     the intersection of sub\-groups is also a sub\-groups.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $e\in H_i$ for each $i\in H$ so $e\in H$.  $H^{-1}\subset
+     H_i^{-1}$, so $H^{-1} H \subset H_i^{-1} H_i \subset H_i$ for
+     each $i\in I$ so $H^{-1} H \subset H$.
+*** Remarks and examples
+**** Klein group						  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     The group with element $G=\{e,a,b,c\}$ with the operation defined
+     in the following table is the *Klein group*:
+     | $\cdot$ | $e$ | $a$ | $b$ | $c$ |
+     |---------+-----+-----+-----+-----|
+     | /       | <   |     |     |     |
+     | $e$     | $e$ | $a$ | $b$ | $c$ |
+     | $a$     | $a$ | $e$ | $c$ | $b$ |
+     | $b$     | $b$ | $c$ | $e$ | $a$ |
+     | $c$     | $c$ | $b$ | $a$ | $e$ |
+**** Remark
+     The union of subgroups is not always a subgroup.  \Eg $\{e,a\}$
+     and $\{e,b\}$ are subgroups of the Klein group but $\{e,a,b\}$ is
+     not a subgroup because $ab=c$.
+*** Generated subgroup
+**** The subgroup generated by a subset			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - Let $(G,\cdot)$ be a group and $K\subset G$.  Then the
+       *subgroup generated by the subset $K$* is $\langle K
+       \rangle=\cup\{H\le G : K \subset H\}$ \ie the intersection of
+       all subgroups of which $K$ is a subset of or the ``smallest''
+       subgroup of $G$ containing $K$.  For finitely generated groups
+       we can omit the set braces \ie $\langle \{ a, b, c \}
+       \rangle=\langle a,b,c \rangle$.
+     - If $\langle K \rangle=G$ then $K$ is a *generating subset* of
+       $G$.
+     - If $G$ has a generating subset of one element then $G$ is a
+       *cyclic group*.  The element $g$ generating the group is the
+       *generator* of the group \ie $\langle g \rangle = G$ for cyclic
+       groups.
+*** Dihedral group
+**** An example of groups
+     See these resources for detailed examples:
+     - https://en.wikipedia.org/wiki/Dihedral_group (\eg the example
+       with the stop sign is $D_8$),
+     - http://mathworld.wolfram.com/DihedralGroup.html.
+     Informal definition:
+     - $D_n$ is the set of transformations of the equilateral $n$
+       sided polygon (triangle, square, pentagon \etc) onto themselves
+       \ie transformations which leave them in place.  The group
+       operation is function composition.
+     - The group is generated by two elements \ie $D_n=\langle
+       \varepsilon, \tau \rangle$ where $\varepsilon$ is the rotation
+       by $2\pi/n$ rad counterclockwise and $\tau$ is the mirror
+       transformation around the vertical axis.
+     - The basic rules:
+       - the element of unity $e$ is the identity function $id(x)=x$,
+       - $\varepsilon^n=e$, $\varepsilon^{-k}=\varepsilon^{n-k}$,
+         $\tau^2=e$, so $\tau^{-1}=\tau$, $\tau \circ \varepsilon ^k =
+         \varepsilon^{n-k} \circ \tau$.
+*** Propositions
+**** Generating a subgroup 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     $\langle K \rangle = \{g_1g_2\cdots g_n : n\in\N, g_i\in K\cup
+     K^{-1} \text{ for } 1\le i \le n\}$.
+
+     Important note: the empty product (\ie when $n=0$) is the unit
+     element.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let RHS be the right hand side of the above equation.
+     - RHS has closure under multiplication $e$ is in RHS and the
+       inverse of any element of RHS is also in RHS, so RHS is a
+       subgroup and $K$ is a subset of RHS, so $\langle K \rangle$ is
+       a subset of RHS.
+     - On the other hand every $h\in \langle K \rangle$ is also an
+       element of RHS, so $\langle K \rangle$ is a subset of RHS.
+*** Generated subgroups of cyclic groups
+**** Corollary 							  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $G$ be a cyclic group and $g\in G$ then $\langle g \rangle =
+     \{g^k:k\in\Z\}$.  The homo\-morphic image of a cyclic group is
+     also cyclic and the image of the generator is the generator of
+     the homo\-morphic image of the group.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     The first statement folows from the previous theorem.  Using
+     induction $\varphi(g^n)=\varphi(g)^n$ for every $n\in\N$.
+     $\varphi(h^{-1}) = \varphi(h)^{-1}$ so
+     $\varphi(g^n)=\varphi(g)^n$ is true for every $n\in\Z$, therefore
+     $\varphi(\langle g \rangle) = \langle\varphi(g)\rangle$.
+*** Order
+    Let $(G,\cdot)$ and $g\in G$.
+    - The *order of the group* is $\lvert G \rvert$ \ie the number of
+      element of the group if this number if finite, $\infty$
+      otherwise.
+    - The *order of the element $g$* is $\lvert g \rvert = \min\{
+      n\in\N^+ : g^n=e \}$ if such a number exists, $\infty$
+      otherwise.  Sometimes, the order an element is written as $o(g)$
+      or $o_*(g)$ (where $*$ is the group operations).
+*** Structure of cyclic groups
+**** Structure of cyclic groups 				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ a cyclic group.
+     1. If $\lvert G \rvert=\infty$, then $(G,\cdot)$ is isomorphic to
+        $(\Z,+)$.
+     2. If $\lvert G \rvert=n$, then $(G,\cdot)$ is isomorphic to
+        $(\Z_n,+)$.
+     Specially: Cyclic groups are commutative.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $g$ be a generator of $G$ \ie $\langle g \rangle=G$ and
+     $\varphi(k)=g^k$.  $\varphi$ is a homo\-morphism.
+     - $\varphi(\Z)=G$, so $\varphi$ is an epi\-morphism (surjective).
+       If $\varphi$ is also injective, then $\Z$ and $G$ are
+       isomorphic.
+     - If it is not injective, then there is $i>j$ so that
+       $\varphi(i)=\varphi(j)$ \ie $g^i=g^j$, so $g^{i-j}=e$.  Let
+       $n=\lvert g \rvert$, so $n$ is finite.  Then $0\le r < n$ and
+       $g^r=e$ implies $r=0$, so $e,g,g^2,\ldots,g^{n-1}$ are $n$
+       different elements (otherwise $0\le j<i \le n-1$ would result
+       $g^r=e$ with $0<r=i-j$).
+*** Part 2 of the proof
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $\tilde{\varphi}:\Z_n\to G$, where $\tilde{\varphi}(
+     \tilde{k} )= g^k =\varphi(k)$ for $\tilde{k}\in\Z_n$.
+     - Because $e,g,g^2,\ldots,g^{n-1}$ are all different and $\langle
+       g \rangle=G$, $\tilde{\varphi}$ is a bijection between $\Z_n$
+       and $G$, because both have $n$ elements.
+     - $i\equiv j \pmod{n}$ means $i=nk+j$, so $g^{nk+j} =
+       (g^n)^k\cdot g^j = g^j$ \ie $\varphi(i) = \varphi(j)$, \ie
+       $\varphi$ is constant on the elements of one residue classes,
+       which justifies the above definition.
+     - It is also a homo\-morphism because
+       $\tilde{\varphi}(\tilde{i} + \tilde{j}) = \tilde{\varphi}(
+       \widetilde{i+j} ) = g^{i+j} = g^i \cdot g^j = \tilde{\varphi}(
+       \tilde{i} ) \cdot \tilde{\varphi}(\tilde{j})$
+**** Remark
+     - $\lvert g \rvert = n < \infty$ implies $\lvert\langle g
+       \rangle\rvert = n$.
+     - From now on, $G=\langle g \rangle$ means $G$ is a cyclic group
+       with the generator element $g$.
+*** Subgroups of a cyclic group
+**** Subgroup of a cyclic group					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     $G=\langle g \rangle \land H\le G \Rightarrow \exists h\in G:
+     \langle h \rangle=H$ \ie every subgroup of cyclic group is also
+     cyclic.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     If $H=\{e\}$, $H$ is cyclic, we are done.  Otherwise $\exists k
+     \in\Z$, $k\neq 0$ so that $g^k\in H$. $g^k \in H$ implies
+     $(g^k)^{-1} = g^{-k}$, therefore $g^{-k}\in H$ is also true, so
+     we can suppose $k>0$.  If \[d=\min\{k\in\N^+ : g^k=e\}\] then it
+     can be proven that $\langle g^d \rangle = H$.  Elements of $G$
+     can be written as $g^j$, elements of $\langle g^d \rangle$ can be
+     written as $(g^d)^i=g^{di}$ for some $i,j\in\Z$.  $g^d\in H$
+     implies $\langle g^d \rangle \subset H$.  If $g^j\in H$ for
+     $j\in\Z$ then, $i=\lfloor j/d\rfloor$, $r=j \bmod d$.  Then
+     $j=dq+r$, and $g^r=g^{j-dq}=g^j(g^d)^{-q}$.  $g^j\in H$ and
+     $g^d\in H$ implies $g^r\in H$, that is $r=0$, so $g^j=(g^d)^i$
+     for $i=q\in\Z$.
+*** Subgroups of finite cyclic groups
+**** Subgroups of finite cyclic groups				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $G=\langle g \rangle$ and $\lvert G \rvert=n<\infty$.
+     1. If $a\in\Z$, $d=(a,n)$ then $\langle g^a \rangle =
+        \{g^d,g^{2d},\ldots,g^{md}\}$ which is the unique subgroup of
+        $G$ of order $m$.
+     2. If $H\le G$ then $H=\langle g^{d'} \rangle$ for some $d'\mid
+        n$.
+     3. $G$ has $\varphi(n)$ number of generators.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     2.: Let $H\le G$ and $d'=\min\{n\in\N^+:d^n\in H\}$.  From the
+     previous proof for $j=n$ in $g^j\in H$ we have $n=md'$ which is
+     the unique subgroup of order $m$ for $d'\mid n$.  1.: If
+     $d=(a,n)$ then $d\mid a$ ergo $g^a=(g^d)^j$ (for some integer $j$) so
+     $\langle g^d\rangle \subset \langle g^a \rangle$.  By the
+     extended Euclidean algorithm $d=ax+ny$, so
+     $g^d=g^{ax+ny}=(g^a)^x(g^n)^y=(g^a)^x$, so $\langle g^a \rangle
+     \subset \langle g^d \rangle$ ergo $\langle g^a \rangle = \langle
+     g^d \rangle$. 3.: Powers of $g$ relative prime to $n$ generate
+     $G$.
 ** COMMENT Sets with two operations
 *** Ring, Gaussian ring, Euclidean ring, Integral domain, 
 **** Ring
