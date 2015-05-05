@@ -1,35 +1,48 @@
 # -*- mode:org; mode: flyspell; -*-
-# #+LATEX_HEADER: \usepackage[override]{xcolor}
-# #+LATEX_CLASS: article
-# #+LATEX_HEADER: \usepackage[]{beamerarticle}
+
 
 #+SETUPFILE: l-common.org
 
 #+TITLE: Discrete mathematics II. - Algebra
 #+SHORT_TITLE: Algebra
 
-* Algebraic structures
-** Set and one operation
+* Groups
+** Definitions and examples
 *** Reminder
-**** Grupoid
+**** Grupoid						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      $(G,\cdot)$ is a *groupoid* if is a set and $\cdot : G \times G
      \to G$ binary operation \ie $\forall a,b\in G \exists c = a\cdot
      b \in G$.  This property is /closure/ under the operation $\cdot$.
-**** Semigroup
+**** Semigroup						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      $(G,\cdot)$ is a *semigroup* if it is a groupoid and the
      operation is /associative/ \ie $\forall a,b,c \in G = a\cdot
      (b\cdot c) = (a \cdot b) \cdot c$.
-**** Monoid
+**** Monoid						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      $(G,\cdot)$ is a *monoid* if it is a semigroup and it has an
      /element of unity/ (sometimes referred to as the /neutral
      element/, /unit element/, /zero element/) \ie $\exists e \in G$
      so that $\forall g\in G e\cdot g=g=g\cdot e$.
-**** Abelian group
+**** Abelian group					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      A group is an *Abelian group* if the operation is /commutative/
      \ie $\forall a,b \in G a\cdot b = b \cdot a$.
 *** Homo\-morphisms
-**** Structure (or operation) preserving functions
-     Let $(G,\cdot)$ and $(H,\otimes)$ be two grupoids, and
+**** Structure (or operation) preserving functions	       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G,\cdot)$ and $(G',\otimes)$ be two grupoids, and
      $\varphi:G\to G'$.  The map (\ie function) $\varphi$ is structure
      preserving if for each $a,b \in G$: \[ \varphi(a\cdot b) =
      \varphi(a) \otimes \varphi(b) \]
@@ -89,6 +102,7 @@
      $b\in G$ (similarly $eb=b$ for each $b$), ergo $e$ is the element
      of unity \ie $G$ is a monoid.  For $e$ and every $a$ there is
      $ax=e$, \ie $x=a^{-1}$.
+** Subgroups
 *** Subgroups
 **** Sub\-semigroups and sub\-groups
      Let $(G,\cdot)$ be a groupoid and $H\subset G$.  
@@ -235,6 +249,7 @@
        a subset of RHS.
      - On the other hand every $h\in \langle K \rangle$ is also an
        element of RHS, so $\langle K \rangle$ is a subset of RHS.
+** Cyclic groups
 *** Generated subgroups of cyclic groups
 **** Corollary 							  :B_theorem:
      :PROPERTIES:
@@ -361,11 +376,718 @@
      \subset \langle g^d \rangle$ ergo $\langle g^a \rangle = \langle
      g^d \rangle$. 3.: Powers of $g$ relative prime to $n$ generate
      $G$.
-** COMMENT Sets with two operations
+** Co\-sets
+*** Co\-sets
+**** Co\-sets						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G,\cdot)$ be a group, $H\le G$ a subgroup, and let us
+     define the following two relations for $a,b\in G$:
+     \begin{align*}
+     a \sim_R b &\iff ab^{-1}\in H & a \sim_L b &\iff b^{-1}a \in H
+     \end{align*}
+     Both $\sim_R$ and $\sim_L$ are equivalence relations over $G$,
+     \ie they define a classification of $G$.  The equivalence classes
+     defined by the $\sim_R$ relation are the *right co\-sets* and the
+     classes defined by $\sim_L$ are the *left co\-sets*.
+**** Proposition
+     Right co\-sets are $\{Ha : a \in G\}$ and left co\-sets are
+     $\{aH : a \in G\}$.
+**** Proof
+     $b\in Ha \iff \exists h\in H: b=ha \iff ba^{-1} = h \in H \iff
+     ab^{-1} \in H^{-1} = H \iff a\sim_R b$. Similarly for $\sim_L$.
+*** Lagrange theorem
+**** Index						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Then number of left and right co\-sets of $G$ is the same because
+     of the $Ha \mapsto (Ha)^{-1} = a^{-1}H$ bijection between
+     them. This number, if $<\infty$, is the *index* of $H$ in $G$,
+     and is written as $[G:H]$.
+**** Lagrange							  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $(G,\cdot)$ be a group, $\card{G}<\infty$, $H\le G$, then
+     $\card{H}\cdot[G:H]=\card{G}$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let's work with right co\-sets. $\varphi_a(h)=ha$ is a bijection
+     from $H$ to the right co\-sets of $H$ in $G$.  For every $a\in G:
+     \card{Ha} = \card{H}$, multiplied by the number of co\-sets \ie
+     the index $[G:H]$ gives all the elements of $G=\cup_{a\in G} Ha$
+*** Consequences
+**** Corollary
+     Let $(G,\cdot)$ is a group, $\card{G}<\infty$: if $g\in G$ then
+     $\card{g}=o(g)\mid \card{G}$.
+**** Corollary
+     Let $(G,\cdot)$ is a group, if $\card{G}=p<\infty$ and $p$ is
+     prime, then $\exists g\in G$ so that $\langle g\rangle = G$ \ie G
+     is cyclic! This is true, because $\forall g\in G$ if $g\neq e$
+     then $(\card{g},p)=1$ ergo $\langle g \rangle = G$.
+**** Group with prime order					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ be a group, $G\neq\{e\}$. The group has prime order
+     $\card{G}=p$ iff $G$ has only trivial subgroups.
+** Normal subgroups
+*** Normal subgroups
+    Usually we can't say anything about the product of co\-sets.  It
+    would be nice if the classification would be compatible with the
+    operation \ie to have $NaNb=Nab$ for every $a,b\in G$.
+**** Normal subgroup					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G,\cdot)$ be a group. The subgroup $N\le G$ is a *normal
+     subgroup* of $G$ if $aN=Na$ for each $a\in G$ \ie if the left and
+     the right co\-set are the same.  We write $N \lhd G$.
+**** Properties
+     - The co\-sets of $N$ are compatible with the operation.
+     - Every subgroup in an Abelian group is a normal subgroup.
+     - $G$ and $\{e\}$ are *trivial* normal subgroups. $N$ is a
+       *proper* normal subgroup if $N\lhd G$ and $N\neq G$.
+     - If $[G:N]=2$ then $N\lhd G$ since there are only two co\-sets
+       $N$ and $G\setminus N$ \ie $a\in N \iff aN=N$ and $a \not\in N
+       \iff aN=G\setminus N$.
+*** Equivalent definitions
+**** Equivalent definitions					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $N\le G$.  The following statements are equivalent:
+     1. $N\lhd G$ \ie $N$ is a normal subgroup.
+     2. $\forall a\in G : a^{-1}Na = N$.
+     3. $\forall a\in G : a^{-1}Na \subset N$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - $1 \iff 2$: $aN=Na$ implies $N=(a^{-1}a)N=a^{-1}(aN)=a^{-1}Na$
+       and $a^{-1}Na = N$ implies $Na = a(a^{-1}Na) = aN$.  
+     - $2 \iff 3$: $2 \Rightarrow 3$ is trivial.  $a^{-1}Na \subset N$
+       for every $a\in G$ including $a^{-1}$, so $aNa^{-1} \subset N$
+       is also true, so $N=a^{-1}(a N a^{-1})a \subset
+       a^{-1}Na$ is also true.
+*** Theorems
+**** Corollary
+    $N_i \lhd G (i\in I) \Rightarrow \cap _{i\in I} N_i = N \lhd G$
+    \ie the intersection of normal subgroups is also a normal
+    subgroup.
+**** Co\-sets of normal subgroups				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ be a group.
+     1. If $N \lhd G$, then the co\-sets of $N$ in $G$ are compatible
+        with the operation and the operation.
+     2. If $N \lhd G$, then the operation between the co\-sets is the
+        operation between them as sets (see notation before the proof
+        of the equivalent definitions of subgroups).
+     3. If a classification of $G$ is compatible with the operation,
+        then the class of the unit element is a normal subgroup of $G$
+        and the other classes are the co\-sets of this normal
+        subgroup.
+*** Quotient group
+**** Corollary
+     Let $N \lhd G$.  The co\-sets of $N$ in $G$ form a group with the set
+     operation.
+**** Quotient group					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The group of co\-sets of $N$ in $G$ mentioned above is the
+     *quotient group of $G$ by $N$*, and is written as $G/N$.
+
+     If $\card{G}<\infty$ then $\card{G/N}=[G:N]$.
+**** Kernel of a homo\-morphism 			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G$ and $G'$ be groups, and $\varphi : G \to G'$ a
+     homo\-morphism.  The kernel of $\varphi$ is $\ker (\varphi)
+     =\varphi^{-1}(e')=\{g\in G : \varphi(g)=e \}$.
+*** Homo\-morphism theorem
+**** Homo\-morphism theorem 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\cdot)$ be a group.
+     - For each homo\-morphism $\varphi$ from $G$, $\ker(\varphi) \lhd
+       G$ and $G/\ker(\varphi)$ is iso\-morphic with $\varphi(G)$.
+     - For each normal subgroup $N\lhd G$, there exists a
+       homo\-morphism $\varphi$ from $G$ so that $N=\ker(\varphi)$ \eg
+       the $\varphi : G \to G/N$ so that $\varphi(a)=Na$.
+*** The fundamental theorem of finite Abelian groups
+**** Cartesian product of groups 			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G_i, *_i)$ be groupoids for each $i\in I$.  The *Cartesian
+     product* of these groupoids is $(G,*)$ where $G=\times_{i\in
+     I}G_i$ and if $a,b\in G$ then $(a*b)_i=a_i*_ib_i$.  If $G_i$ is a
+     group for every $i\in I$, then $G$ is also a group. \Eg if
+     $I=\{1,2,\ldots,n\}$ then $a=(a_1,a_2,\ldots,a_n)$,
+     $b=(b_1,b_2,\ldots,b_n)$ then $a*b = (a_1*b_1, a_2*b_2, \ldots,
+     a_n*b_n)$.
+**** Fundamental theorem of finite Abelian groups 		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A finite Abelian group is iso\-morphic to the Cartesian product
+     of finite number of cyclic groups.
+
+     Each term can be chosen so that its orders is a prime power, and
+     these prime powers can be uniquely determined.
+* Rings
+** Definitions and examples
 *** Ring, Gaussian ring, Euclidean ring, Integral domain, 
-**** Ring
-**** Gaussian ring or UFD
-**** Euclidean ring
-**** Skew field
-**** Integral domain
-**** Field
+**** Ring						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - $(R,+,\cdot)$ is a *ring* if $(R,+)$ is an Abelian group,
+       $(R,\cdot)$ is a semigroup, and /multiplication is distributive
+       with respect to addition/ (for both sides) \ie $a\cdot (b+c) =
+       a\cdot b + a\cdot c)$ and $(a+b)\cdot c = a\cdot c + b\cdot c$.
+
+     - The unit element of $(R,+)$ is called the *zero element* and
+       written as $0$.  If the multiplication is /commutative/, $R$ is
+       a *commutative ring*. If there is a unit element for
+       multiplication $R$ is a *ring with unity*.
+**** Integral domain					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A commutative ring $(R,+,\cdot)$ with no /zero divisors/ is an
+       *integral domain* \ie $a\neq0 \land b\neq0 \Rightarrow ab\neq
+       0$.
+*** Relation between different kinds of rings
+    #+BEGIN_SRC ditaa :file rings.eps :eps t :cmdline
+                                 +-------+  
+                                 | Rings |   
+                                 +---+---+
+                                     ^
+                                     |
+                         +-----------+------------+                           
+                         |                        |  
+      +------------------+----------+   +---------+---------+                   
+      | Rings with no zero divisors |   | Commutative rings |
+      +------------------+---+------+   +---------+---------+
+                         ^   ^                    ^
+                         |   |                    |
+                         |   |           +--------+--------+
+                         |   +-----------+ Integral domain |
+                         |               +--------+--------+
+                         |                        ^
+                         |                        |
+                         |               +--------+--------+
+                         |               | Integral domain |
+                         |               |   with unity    |
+                         |               +--------+--------+
+                         |                        ^
+                         |                        |
+                         |             +----------+----------+
+                         |             | Gaussian ring (UFD) |
+                         |             +----------+----------+
+                 +-------+----+                   ^
+                 | Skew field |                   |
+                 +-------+----+           +-------+--------+
+                         ^                | Euclidean ring |
+                         |                +-------+--------+
+                         |                        ^
+                         |                        |
+                         +-----------+------------+
+                                     |
+                                 +---+---+
+                                 | Field |
+                                 +-------+
+    #+END_SRC
+*** Examples
+**** Zero ring
+     The trivial ring $R=\{0\}$ which contains only the zero element
+     is the *zero ring*.
+**** Rng of square zeros
+     Any $(R,+)$ Abelian group (with the unit element $0$) can be made
+     into a ring, by defining multiplication of any element $x,y\in R$
+     to be $x\cdot y=0$.  This multiplication is distributive:
+     $0=a\cdot (b + c)=a\cdot b + a\cdot c=0 + 0=0$.  
+**** Notation
+     Remember, for $n\in \N$ and $r\in R$ we define: \[
+     nr=\underbrace{r+r+\cdots+r}_{n \text{ times}} \text{ and }
+     r^n=\underbrace{r\cdot r\cdots r}_{n \text{ times}} \]
+** Homo\-morphisms
+*** Ring Homo\-morphisms
+**** Structure (or operation) preserving functions	       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(R,+,*)$ and $(R',+',*')$ be two sets with two operations
+     each, and $\varphi:R\to R'$.  The map (\ie function) $\varphi$ is
+     structure preserving if for each $a,b \in G$: \[ \varphi(a + b) =
+     \varphi(a) +' \varphi(b) \text{ and } \varphi(a * b) = \varphi(a)
+     *' \varphi(b) \]
+**** Names of structure preserving maps
+     - A structure preserving map $\varphi:G\to G'$ is a
+       *homo\-morphism*:
+       - if it is injective it is a *mono\-morphism*,
+       - if it is surjective it is an *epi\-morphism*,
+       - if it is bijective it is an *iso\-morphism*;
+       - if $G=G'$ then it is an *endo\-morphism* and
+	 - if it is also an is also bijective it is an *auto\-morphism*.
+*** Homo\-morphic image of a ring
+**** Statements							  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $\varphi:R\to R'$ be a ring homo\-morphism, and $\varphi(R)$
+     is the image of $R$ under $\varphi$, then:
+     1. If $R$ is a ring, then $\varphi(R)$ is also a ring.
+     2. If $e\in R$ is an element of unity in $(R,\cdot)$ then
+        $\varphi(e)$ is an element of unity in $(R',\cdot)$.
+     3. If $r^{-1}\in R$ is the inverse of $r\in R$, then
+        $\varphi(r^{-1})$ is the inverse of $\varphi(r)$.
+     4. If $R$ is commutative then $\varphi(R)$ is also commutative.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We have proven that, if $R$ is a ring, then $\varphi(R)$ is an
+     Abelian group with addition, and similarly a semi\-group with
+     multiplication.  We only need to prove distributivity: let
+     $x'=\varphi(x)$, then $(a\cdot(b+c))'=a'\cdot(b+c)'=a'\cdot b' +
+     a'\cdot c' = (a\cdot b)' + (a\cdot c)'= (a\cdot b + a\cdot c)'$.
+** Character
+*** Character of a ring
+**** Additive order of elements					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     In a ring, without zero divisors, the order of all non-zero
+     elements is the same, and if it is finite then it is a prime
+     number.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $(R,+,\cdot)$ be a ring, $o_+(x)=\min\{n\in\N^+:nx=0\}$ the
+     additive order of $x\in R$.
+     - Let $0\neq a\in R$, $n=o_+(a)$. Then $n(ab)=(na)b=0b=0$, but
+       also $n(ab)=a(nb)$, so $0=a(nb)$, and since $a\neq 0$, $nb=0$.
+       Therefore $o_+(b) \le o_+(a)$.  By swapping $a$ and $b$ we have
+       $o_+(a)\le o_+(b)$, ergo $o_+(a) = o_+(b)$ for any $a,b\neq 0$.
+     - The additive order of non-zero elements is finite or infinite
+       at the same time.  Let $n=o_+(a)$, suppose $n=mk$ and $m<n$.
+       $0=na=(mk)a=k(ma)$, and by the definition of the additive order
+       $am\neq 0$, so $o_+(am)=k=n$ (because every non-zero element
+       has the same additive order), so $m=1$ has to be true.
+*** Character of a ring
+**** Character						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *character of a ring* is the additive order of non-zero
+     element, if this is a finite value, and $0$ if otherwise \ie if
+     $a\in R$, $a\neq0$ and $n=o_+(a)$ \[
+     \operatorname{char}(R)=\begin{cases}n & \text{if } n=\infty \\ 0
+     & \text{if } n=\infty\end{cases} \]
+     
+     If $n=\operatorname{char}(R)>0$, then $n$ is prime and so: \[
+     (a+b)^n = \sum_{k=0}^{n} \binom{n}{k}a^{k}b^{n-k} = a^n+b^n \]
+     since for any $k$, if $0<k<n$, then $\binom{n}{k}= \frac{n\cdot
+     (n-1)\cdots (n-k+1)}{k\cdot(k-1)\cdots1}$ is an integer, and
+     since $n$ is prime it does not divide the nominator, but it
+     divides the numerator, so $\binom{n}{k}=0$ if $0<k<n$.
+** Sub\-rings and ideals
+*** Sub\-rings
+**** Sub\-ring
+     Let $(R,+,\cdot)$ be a set with two operations and $S\subset R$.
+     - $S$ is a sub\-ring of $R$ if both operations restricted to
+       $S\times S$ makes a ring, written as $S\le R$.
+     - If $(R,+,\cdot)$ is a ring then it is an extension of $S$. If
+       $S=R$ or $S=\{0\}$ then $S$ is a *trivial sub\-ring*.  If
+       $S\neq R$ then $S$ is a *proper sub\-ring* of $R$.
+**** Equivalent definitions					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(R,+,\cdot)$ be a ring and $S \subset R$, then the following
+     are equivalent:
+     1. $S \le R$ \ie $S$ is a sub\-ring of $R$.
+     2. $a,b\in S$ implies $a-b\in S$ and $ab\in S$.
+     3. $S-S\subset S$ and $SS\subset S$.
+*** Ideals
+**** Ideal						       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be a ring and $I\le R$.  If $r\in R$ and $a\in I$ implies:
+     - $ar\in I$, then $I$ is a *right ideal*,
+     - $ra\in I$, then $I$ is a *left ideal*,
+     - $ar\in I$ and $ra\in I$ (\ie left and right ideal) then $I$ is
+       an *ideal*.
+     - $R$ and $\{0\}$ are *trivial ideals*.  The ideal $I\neq R$ is a
+       *proper ideal*.
+     - A ring containing only trivial ideals is a *simple ring*.
+**** Equivalent definitions
+     - $I$ is a right ideal $\iff I-I\subset I$ and $IR\subset I$.
+     - $I$ is a left ideal $\iff I-I\subset I$ and $RI\subset I$.
+     - $I$ is and ideal $\iff I-I\subset I$, $IR\subset I$ and
+       $RI\subset I$.
+*** Ideals
+**** Ideal generated by a subset
+     - The intersection of ideals is also an ideal.  Let $R$ be a ring
+       and $A\subset R$.  Then the *ideal generated by the subset $A$*
+       is the intersection of all ideals containing $A$, written as
+       $(A)=\cap\{I\le R\text{ ideal}: A \subset I\}$.
+
+     - If $A$ has only one element \ie $A=\{a\}$ then we write $(a)$
+       instead of $(\{a\})$ and $(a)$ is called a *principal ideal*.
+**** Ideals in $\Z$						  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let $R=\Z$, then $(R,+,\cdot)$ is a ring, and for any $m\in\Z$,
+     $I=m\Z=\{mk:k\in\Z\}$ is a ring, since if $a\in I$, $a$ is a
+     multiple of $m$, \ie there is a $k\in\Z$ so that $a=mk$, and for
+     any $r\in\Z$, $ra=mka\in I$ is also true.
+*** Equivalence classes
+**** Equivalence (or residue) classes			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be a ring, and $I$ an additive subgroup of $R$.  Let's
+     define the relation $\sim$ as follows: $a\sim b \iff a-b\in I$.
+     Then we say $a$ is congruent $b$ modulo $I$.  As seen with
+     groups, the equivalence classes generated by the equivalence
+     relation $\sim$ are the sets $I+r$ for each $r\in R$, and these
+     classes are the *equivalence (or residue) classes of $I$ in $R$*.
+**** Residue classes of ideals					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(R,+,\cdot)$ be ring.
+     1. If $I$ is an ideal in $R$, then the classification of $R$ by
+        $I$ is compatible with both operations \ie if $(I+a)+(I+b) =
+        (I+(a+b))$ and $(I+a)(I+b)=(I+ab)$.
+     2. If $\sim$ is a relation/classification of $R$ with is
+        compatible with both operations, then the class of the zero
+        element $\tilde{0}$ is an ideal in $R$.
+*** Quotient ring
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     1. Let $I$ be an ideal in $R$.  From groups, we know that the
+        classification is compatible with addition.  For multiplication:
+	$(I+a)(I+b)=II+aI+Ib+ab \subset I+ab$.
+     2. Let $\sim$ be a relation, and also a classification of $R$
+        which is compatible with both operations, and let $\tilde{x}$
+        be the class of $x$ \ie $\tilde{x}=\{y:x\sim y\}$.  From group
+        theory we know that the classification by the normal subgroup
+        $I=\tilde{0}$, we need to show that $I$ is an ideal.  Since
+        $0\in I$, $\tilde{x} I \subset I$ for every class $\tilde{x}$,
+        and since the union of classes is $R$, $RI\subset I$, \ie $I$
+        is an ideal.
+**** Quotient ring 					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The residue classes of the ideal $I$ in $R$ also make a ring, and
+     this is the *quotient (or factor) ring of $R$ modulo $I$*,
+     written as $R/I$.
+*** Remarks
+**** Remark
+     In the first part of the proof, the $\subset$ can be a proper
+     subset, \ie not equality. Example: Let $R=\Z$, $I=8\Z$, and
+     $(8\Z+4)(8\Z+4) = 64\Z + 32\Z + 32\Z + 16 = 32\Z+16$, but $8\Z
+     +4\cdot 4 = 8\Z + 16 = 8\Z$, so $32\Z+16 \subsetneq 16\Z
+     \subsetneq 8\Z$
+**** Homo\-morphism kernel				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $\varphi : R \to R'$ be a ring homo\-morphism.  Then the
+     *kernel of the homo\-morphism* is $\ker(\varphi)=\{x\in R:
+     \varphi(x)=0 \}$.
+*** Homo\-morphism theorem for rings
+**** Homo\-morphism theorem for rings 				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(R,+,\cdot)$ be a ring.
+     - For each homo\-morphism $\varphi$ from $R$, $\ker(\varphi)$ is
+       an ideal in $R$ and $R/\ker(\varphi)$ is iso\-morphic with
+       $\varphi(R)$.
+     - For each ideal $I$ in $R$, there exists a
+       homo\-morphism $\varphi$ from $R$ so that $I=\ker(\varphi)$ \eg
+       the $\varphi : R \to R/I$ so that $\varphi(a)=I+a$.
+**** Principal ideals in commutative rings 			  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $R$ is a commutative ring with a unit element, and $a\in R$,
+     then $(a)=aR$, and as special cases $(0)=\{0\}$ and $(e)=R$.
+*** Proof and corollary
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $aR-aR \subset aR$ and $aRaR\subset aR$ (\ie closure for both
+     operations), so $aR$ is an ideal $a\in R$, so $(a) \subset aR$.
+
+     $a\in (a)$ and since it is an ideal for any $r\in R$, $ra=ar\in
+     (a)$ is also true ergo $aR\subset (a)$.
+**** Corollary
+    Let $R$ be an integral domain with a unit element, then:
+    - $(a) \subset (b) \iff b \mid a$;
+    - $(a) = (b) \iff a$ and $b$ are associated;
+    - $(a) = R \iff a$ is the unit element.
+** Unique factorization domains
+*** Unique factorization domain
+**** Unique factorization domain or UFD			       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     An integral domain with a unit element $(R,+,\cdot)$ is a *unique
+     factorization domain* or *UFD* for short if all non-zero and
+     non-unit elements can be written as a product of irreducible
+     elements and a unit, and this product is unique up to associative
+     elements and order \ie for every $x\in R$ can be written as: \[ x
+     = \varepsilon \cdot p_1 \cdot p_2 \cdots p_n \] where
+     $\varepsilon$ is a unit in $R$ and $p_i$ ($1\le i \le n$) are all
+     irreducible elements of $r$, and if there is an $\varepsilon'$
+     unit and irreducible elements $q_j$ ($1\le j \le m$) so that
+     $x=\varepsilon\cdot q_1 \cdot q_2 \cdots q_m$ then $m=n$ and
+     there is a permutation $\sigma$ of $\{1,2,\ldots,n\}$ so that
+     $p_i$ and $q_{\sigma(i)}$ are associated elements.
+*** Unique factorization domain
+**** Remarks
+     In a UFD, if we group the associated irreducible element we can
+     write each element $x$ of the UDF \[ x = \varepsilon
+     \prod_{i=1}^r p_i^{\alpha_i} \] where $\varepsilon$ is a unit,
+     $p_i$ are /different/ irreducible elements, $\alpha_i\in\N^+$
+     which is the *canonical representation* of $x$.  This is
+     important because from this representation we can easily
+     determine the divisors of $x$ which would be \[ \Bigl\{
+     \varepsilon' \prod_{i=1}^r p_i ^{\beta_i}: \varepsilon' \text{ is
+     a unit, } 0\le \beta_i \le \alpha_i, \beta_i \in \N, 1\le i \le r
+     \Bigr\}. \] 
+*** Reading the gcd and lcm
+**** GCD and LCM
+     Using the canonical representation, we can also determine the
+     /greatest common divisor/ and the /least common multiple/ of two
+     elements, \ie if \[ x = \varepsilon \prod_{i=1}^r p_i^{\alpha_i}
+     \text{ and } y = \varepsilon' \prod_{i=1}^r p_i^{\beta_i} \]
+     (here we allow $\alpha_i, \beta_i = 0$), then \[
+     \gcd(x,y)=\varepsilon'' \prod_{i=1}^r
+     p_i^{\min\{\alpha_i,\beta_i\}} \text{ and }
+     \operatorname{lcm}(x,y) = \varepsilon'' \prod_{i=1}^r
+     p_i^{\max\{\alpha_i,\beta_i\}} \]
+**** UFD							  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     $\Z$ with the usual addition and multiplication is a UFD.
+*** Prime and irreducible elements
+**** Reminder
+     Let $R$ be an integral domain with a unit element.  The element
+     $p\in R$ is a *prime element* if $p\mid ab$ implies $p\mid a$ or
+     $\mid b$ for any $a,b\in R$.  The element $r\in R$ is
+     *irreducible* if it is written as a product of two other
+     elements, \ie $r=r_1r_2$, then $r_1$ and $r_2$, then $r_1$ or
+     $r_2$ is a unit and the other one is associated with $r$.
+**** A prime is always irreducible				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be an integral domain with a unit element.  If $p\in R$
+     is a prime, then $p$ is also irreducible.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     If $p$ is prime and $p=xy$, then $p\mid xy$ and if $p\mid x$ then
+     $\exists z\in R$, so $x=pz=x(yz)$ so $yz=e$ and $x=p$.
+*** Prime and irreducible elements in UFDs
+**** An irreducible element in a UFD is also a prime		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be a UFD.  If $p\in R$ is irreducible, then $p$ is also
+     prime, ergo $p$ prime $\iff p$ irreducible in a UFD.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     If $p$ is irreducible and $p\mid ab$, then if $ab=0$ then $a$ or
+     $b$ is $0$, and $p\mid 0$.  Otherwise, if $ab\neq 0$, then
+     $\exists d\in R$ so that $pd=ab$.  In this equations, if we write
+     $d$ as a product of irreducible elements, $ab$ will be equal to a
+     product which contains $p$, ergo if we write $a$ and $b$ as a
+     product of irreducible elements, $p$ divides either $a$ or $b$
+     \ie $p$ is prime.
+**** A ring where prime $\neq$ irreducible 			  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subset \C$ is an example of an
+     integral domain with an element of unity which is not a UFD, \ie
+     there are irreducible elements which are not prime.
+*** Integral domain with prime $\neq$ irreducible
+**** A ring where prime $\neq$ irreducible 			  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subset \C$.  
+     - The square of the absolute value of an element $c=a+i\sqrt{5}b$
+       is $\lvert c \rvert^2=a^2+5b^2$.
+     - For any integer $n\in\Z$, the value of $k^2 \bmod 5$ can be
+       $0$, $1$ or $4$ (these are quadratic residues $\bmod5$),
+       because $(5k)^2 = 5\cdot5k^2$, $(5k\pm1)^2 = 5\cdot(5k^2\pm
+       2k) + 1$ and $(5k\pm2)^2=5\cdot(5k^2\pm 5k) + 4$
+     - Ergo, for each $c\in R$, $\lvert c \rvert^2$ can only be 0,1,4.
+     - $9=3\cdot 3$ but also $9=(2+i\sqrt{5})\cdot(2-i\sqrt{5})$.
+     - $3\nmid 2\mp i\sqrt5$ nor $2 \pm i\sqrt5 \nmid 3$.  $3$, $2\pm
+       i\sqrt5$ are irreducible, because $\lvert 3 \rvert ^2 = \lvert
+       2\pm i\sqrt5\rvert ^2=9$, and if $d$ would divide any of the
+       above elements, $\lvert d \rvert ^2$ would divide $9$.  But
+       only the trivial divisors of $9$ are possible \ie only 1 and 9
+       are quadratic residues $\bmod 5$.
+** Euclidean domains
+*** Euclidean domain
+**** Euclidean domain					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be an integral domain with a unit element. $R$ is an
+     *Euclidean domain* with the function $\varphi:R\setminus\{0\}\to
+     \N$ if, for any element $a,b\in R$
+     - if $b\neq 0$, there are element $q,r\in R$ so that $a=qb+r$ and
+       either $r=0$ or $r\neq 0$ and $\varphi(r)<\varphi(b)$, and
+     - $\max\{\varphi(a),\varphi(b)\}\le \varphi(ab)$.
+**** Euclidean domain						  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     - $\Z$ with the function $\varphi(n)=\lvert n \rvert$.
+     - The ring of polynomials over rational numbers $\Q[x]$ (see
+       later), with $\varphi(f)=\delta(f)$ \ie the degree of a
+       polynomial.
+*** Euclidean domain
+**** Divisibility and $\varphi$					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be an Euclidean domain with $\varphi$.
+     1. $e$ is a unit $\iff \varphi(e) =\min\{\varphi(x):x\in R\}$.
+     2. Let $a,b\in R$ non-zero elements.  
+        1. $a\mid b \Rightarrow \varphi(a) \le \varphi(b)$ and 
+	2. $a$ and $b$ are associated $\iff \varphi(a) = \varphi(b)$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     - 1. $\Leftarrow$: If $\varphi(e) =\min\{ \varphi(x): x\in R\}$,
+       then by dividing any element by $e$ gives a reminder $0$.
+     - 2. first: if $a\mid b$, then $\exists c: ac=b$, so
+       $\varphi(a)\le \varphi(ac) = \varphi(b)$.
+     - 1. $\Rightarrow$: $e$ is a unit, $\varphi(a)=\min\{\varphi(x)\}
+       \Rightarrow e \mid a \Rightarrow \varphi(e)\le \varphi(a)$.
+     - 2. second: $a,b$ are associated $\Rightarrow \varphi(a)\le
+       \varphi(b) \land \varphi(b) \le \varphi(a)$.
+     - $a\mid b \land \varphi(a)=\varphi(b)\Rightarrow a=bq+r \land
+       r=0$, because if $r\neq0$, $\varphi(r) = \varphi(a-bq) =
+       \varphi(a(e-cq)) \ge \varphi(a)=\varphi(b)$: contradiction.
+*** Extended Euclidean algorithm in Euclidean domains
+**** Extended Euclidean algorithm				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be a Euclidean domain.  For any $a,b\in R$, there is a
+     $d=\gcd(a,b)\in R$ and there are $x,y\in R:ax+by=d$.
+     1. Init: $x_0\gets e$, $y_0\gets 0$, $r_0 \gets a$, $x_1\gets 0$,
+        $y_1\gets e$, $r_1 \gets b$.
+     2. Term: If $r_{n+1}=0$, $x\gets x_n$, $y\gets y_n$,
+        $d\gets r_n$ and stop!
+     3. Loop: calculate $r_{n+2}$ and $q_{n+1}$ so that $r_n=q_{n+1}
+        r_{n+1}+r_{n+2}$ and $x_{n+2} = x_{n} - q_{n+1}x_{n+1}$,
+        $y_{n+2} = y_{n} - q_{n+1}y_{n+1}$. $n\gets n+1$ and go to 2.
+     Termination: $\varphi(r_1) > \varphi(r_2) > \ldots \ge 0$, it
+     terminates eventually.  
+     
+     Invariant: $r_{n-1} = q_n r_n \Rightarrow r_n \mid r_{n-1}$,
+     $r_{n-2} = q_{n-1}r_{n-1} \Rightarrow r_n \mid r_{n-2}$, and by
+     induction $d=r_n\mid r_{n-1}, r_n \mid r_{n-2}, \ldots, r_n \mid
+     r_1=b$ and $r_n \mid r_0 = a$, and $ax_n+by_n=r_n$ is always
+     true.
+*** Euclidean domains are UFDs
+**** Irreducible elements are also prime			  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be a Euclidean domain.  If $p\in R$ is irreducible, $p$
+     is prime.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $p$ be irreducible, $p\mid ab$ and $p\nmid a$.  $\gcd(p,a)=e$
+     unit, by the extended Euclidean algorithm, there are $x,y\in R$
+     so that, $xp+ya=e$, so $p\mid e^{-1}xpb + e^{-1}yab=b$.
+*** Euclidean domains are UFDs
+**** Euclidean domains are UFDs					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     A Euclidean domain is also a unique factorization domain.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We want to show that there is a unique factorization (up to
+     associated elements and commutativity).
+     - The factorization exists: if $a$ is not irreducible, $a=bc$ and
+       $\varphi(a) \ge \max\{ \varphi(b), \varphi(c) \}$.  Continue by
+       induction on $\max\{\varphi(x)\}$, because either
+       - the number of elements with $\varphi(a)=\max\{\varphi(x)\}$
+         is reduced, or
+       - the value of $\max\{\varphi(x)\}$ is reduced.
+     - The factorization is unique: Let $a$ be an element with minimal
+       value of $\varphi(a)$ so it has two different factorizations,
+       $a=p_1p_2\cdots p_n$ and $a=q_1q_2\cdots q_m$.  $p_1 \mid a
+       \Rightarrow \exists j: p_1 \mid q_j$. Since $q_j$ is
+       irreducible $p_1$ and $q_j$ are associated, so the
+       factorization of $a'=a/p_1$ is also not unique which is a
+       contradiction, because $\varphi(a')<\varphi(a)$ which is
+       minimal.
+*** Field of fractions
+**** Field of fractions					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R\neq \{0\}$ be an integral domain. On $R\times (R\setminus
+     \{0\})$ the 
+     - equivalence relation (classification): $(a,b) \sim (a',b') \iff
+       ab'=a'b$, 
+     is compatible with the following operations
+     - addition: $(a,b) + (a',b') = (ab'+a'b,bb')$ and
+     - multiplication: $(a,b)\cdot (a',b') = (a\cdot a', b\cdot b')$ 
+     and the classes make a field called the *field of fractions of
+     R*.
+**** Remark
+     - The field of fractions $K$ to the integral domain $R$ is the same
+       as the rational numbers $\Q$ are to integers.
+     - A pair $(a,b)$ in $K$ is basically the fraction $\frac{a}{b}$.
+*** COMMENT TODO
+**** Skew field, Field
+     - A ring $(R,+,\cdot)$ is a *skew field*, if
+       $(R\setminus\{0\},\cdot)$ is a /group/.
+     - A ring $(R,+,cdot)$ a *field*, if $(R\setminus\{0\},\cdot)$ is
+       a /group/.
+     
