@@ -18,3 +18,8 @@
 
 #+LATEX_HEADER: \def\ie{i.e.\ }
 
+#+LATEX_HEADER: \newcommand{\N}{\mathbb{N}}
+#+LATEX_HEADER: \newcommand{\Z}{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand{\Q}{\mathbb{Q}}
+#+LATEX_HEADER: \newcommand{\R}{\mathbb{R}}
+#+LATEX_HEADER: \newcommand{\C}{\mathbb{C}}

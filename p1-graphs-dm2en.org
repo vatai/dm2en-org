@@ -2,218 +2,226 @@
 
 #+SETUPFILE: p-common.org
 #+INCLUDE: tikz/graph-common.org
-#+LATEX_HEADER: \usepackage[margin=1.5cm]{geometry}
 
 #+TITLE: Discrete mathematics II. practice - Graphs
 #+SHORT_TITLE: Graphs
 All graphs are simple and finite if not stated otherwise.
 * Problems
-  1. Draw all mutually not isomorphic graphs with 3, 4 and 5 vertices.
-     Which of them are connected, which are regular graphs?
-  2. Does a graph exist (with at least two vertices) with all vertices
-     having different degrees?
-  3. Can you find a group of people so each one of them has a different
-     number of mutual friends (inside the group)?
-  4. Are there graphs (arbitrary or simple) with 9 vertices with the
-     following values for the degrees:
-     1) $7,7,7,6,6,6,5,5,5$;
-     2) $6,6,5,4,4,3,2,2,1$?
-  5. Is there a graph with 8 vertices with degrees $6,6,6,6,3,3,2,2$?
-  6. How many mutually not isomorphic graphs are there with:
-     1) 2 vertices, each with degrees 2, 3 or 4?
-     2) 3 vertices, each with degrees 2, 3 or 4?
-  7. Show that the number of vertices with odd degrees is even.
-  8. Draw the following graph!  Specify five points on a cycle!
-     These points define $\binom{5}{2}$ chords which will be the
-     vertices of the graph.  Two vertices in the graph are connected
-     if and only if the corresponding chords don't have a common
-     endpoint.  The obtained graph is called the Petersen graph.
-  9. Which $C_n$'s are sub\-graphs of the Petersen graph?
-  10. How many graphs with 3, 4 or 5 vertices are isomorphic to their
-      own complement?
-  11. Prove that any closed walk of odd length contains a cycle.  Is
-      this true for closed walks of even length.
-  12. Show that if all vertices in a graph have degrees of at least
-      two, then the graph contains a cycle!
-  13. Show that if there is a route from $a$ to $b$ and a route from
-      $b$ to $c$ then there is a route from $a$ to $c$.
-  14. Six contestants are competing in a tournament.  Prove that at
-      any moment there are three players who all played against each
-      other, or three players who didn't play with the other two.
-  15. Show that if a graph has $2n$ vertices and all of them have
-      degree at least $n$, then the graph is connected!  What happens
-      if we allow vertices with degree $n-1$?
-  16. Is it true, that either the graph $G$ or its complement is
-      always connected?
-  17. In a tree, let us denote the number of vertices with degree 1
-      with $f_1$, and with degree more than 2 with $c$.  Show that if
-      there are at least two vertices in the graph $f_1>c+2$ is true.
-  18. Show that in a connected finite graph, each two routes of
-      maximum length have at least one common vertex.
-  19. Show that in a finite tree there is a vertex through which all
-      the routes of maximum length go through.
-  20. If the number of vertices in a graph is $n\ge1$, at least how
-      many separating edges (edges which separate the graph into more
-      components if they are removed) are there in the graph?  At
-      least how many separating vertices?  For both cases provide an
-      example where the number of separating edges (or vertices)
-      equals to the bound.
-  21. Show that in a finite graph the sum of the number of components
-      and the number of edges is not less than the number of vertices.
-  22. Can you draw the following graphs without lifting your pen and
-      not going over any line more than once (is there an Euler line
-      or closed line in the graph).
+1. Draw all mutually not isomorphic graphs with 3, 4 and 5 vertices.
+   Which of them are connected, which are regular graphs?
+2. Does a graph exist (with at least two vertices) with all vertices
+   having different degrees?
+3. Can you find a group of people so each one of them has a different
+   number of mutual friends (inside the group)?
+4. Are there graphs (arbitrary or simple) with 9 vertices with the
+   following values for the degrees:
+   #+ATTR_LATEX: :environment inparaenum
+   1) $7,7,7,6,6,6,5,5,5$;
+   2) $6,6,5,4,4,3,2,2,1$?
+5. Is there a graph with 8 vertices with degrees $6,6,6,6,3,3,2,2$?
+6. How many mutually not isomorphic graphs are there with:
+   #+ATTR_LATEX: :environment inparaenum
+   1) 2 vertices, each with degrees 2, 3 or 4?
+   2) 3 vertices, each with degrees 2, 3 or 4?
+7. Show that the number of vertices with odd degrees is even.
+8. Draw the following graph!  Specify five points on a cycle!
+   These points define $\binom{5}{2}$ chords which will be the
+   vertices of the graph.  Two vertices in the graph are connected
+   if and only if the corresponding chords don't have a common
+   endpoint.  The obtained graph is called the Petersen graph.
+9. Which \(C_n\)'s are sub\-graphs of the Petersen graph?
+10. How many graphs with 3, 4 or 5 vertices are isomorphic to their
+    own complement?
+11. Prove that any closed walk of odd length contains a cycle.  Is
+    this true for closed walks of even length.
+12. Show that if all vertices in a finite graph have degrees of at
+    least two, then the graph contains a cycle! More generally: Show
+    that if each vertex in a finite graph has degree at least $k$
+    (with $k \ge 2$), then the graph contains a cycle at least $k+1$
+    long.
+13. Show that if there is a path from $a$ to $b$ and a path from
+    $b$ to $c$ then there is a path from $a$ to $c$.
+14. Six contestants are competing in a tournament.  Prove that at
+    any moment there are three players who all played against each
+    other, or three players who didn't play with the other two.
+15. Show that if a graph has $2n$ vertices and all of them have
+    degree at least $n$, then the graph is connected!  What happens
+    if we allow vertices with degree $n-1$?
+16. Is it true, that either the graph $G$ or its complement is
+    always connected?
+17. In a tree, let us denote the number of vertices with degree 1
+    with $f_1$, and with degree more than 2 with $c$.  Show that if
+    there are at least two vertices in the graph $f_1>c+2$ is true.
+18. Show that in a connected finite graph, each two paths of
+    maximum length have at least one common vertex.
+19. Show that in a finite tree there is a vertex through which all
+    the paths of maximum length go through.
+20. If the number of vertices in a graph is $n\ge1$, at least how
+    many separating edges (edges which separate the graph into more
+    components if they are removed) are there in the graph?  At
+    least how many separating vertices?  For both cases provide an
+    example where the number of separating edges (or vertices)
+    equals to the bound.
+21. Show that in a finite graph the sum of the number of components
+    and the number of edges is not less than the number of vertices.
+22. Can you draw the following graphs without lifting your pen and
+    not going over any line more than once (is there an Euler line
+    or closed line in the graph).
 
-      \begin{tikzpicture}[scale=0.5]
-      \draw[inode] (0,0) node{} 
-      -- ++(0,1)  node{} 
-      -- ++(-2,0) node{} 
-      -- ++(0,3)  node{}
-      -- ++(4,0)  node{} 
-      -- ++(0,-3) node{}
-      -- ++(-2,0) node{} 
-      -- ++(0,1)  node{}
-      -- ++(-1,0) node{} 
-      -- ++(0,1)  node{}
-      -- ++(2,0)  node{} 
-      -- ++(0,-1) node{}
-      -- ++(-1,0) node{} 
-      -- ++(0,1)  node{}
-      -- ++(0,1)  node{} 
-      -- ++(0,1)  node{};
-      \end{tikzpicture}
-
-      \begin{tikzpicture}[scale=0.8,inode]
-      \def\n{3}
-      \foreach \x in {0,...,\n}{
-      \draw (0,\x) -- (\n,\x);
-      \draw (\x,0) -- (\x,\n);
-      \foreach \y in {0,...,\n}{
-      \node at (\x,\y) {};
-      }
-      }
-      \draw (0,1) -- (1,0);
-      \draw (2,0) -- (3,1);
-      \draw (0,2) -- (1,3);
-      \draw (2,3) -- (3,2);
-      \end{tikzpicture}
-  23. Does a graph exist which contains a closed Euler line and has an
-      even number of vertices and odd number of edges.
-  24. Show, that each connected graph contains a walk which contains
-      each edge exactly twice.  Is it a closed walk?
-  25. Show that if all vertices have degree 4 then the edges can be
-      coloured red and blue so that each vertex is connected to two
-      red and two blue edges.
-  26. Are the following graphs Hamiltonian (or a Hamilton route):
-
-      \begin{tikzpicture}[scale=0.65,inode]
-      \foreach \s in {0+45,90+45,180+45,270+45}{
-      \node at (\s:1) {};
-      \node at (\s:2) {};
-      \node at (\s:3) {};
-      \node at (\s+45:1.41) {};
-      \draw [-] 
-      (\s:1) -- ({\s+90}:1)
-      (\s:2) -- ({\s+90}:2)
-      (\s:3) -- ({\s+90}:3)
-      (\s:1) -- ({\s}:3);
-      }
-      \end{tikzpicture}
-
-      \begin{tikzpicture}[scale=0.9]
-      \filldraw
-      (0:0) circle (3pt);
-      \filldraw
-      (0:1) circle (3pt)
-      (72:1) circle (3pt)
-      (144:1) circle (3pt)
-      (216:1) circle (3pt)
-      (288:1) circle (3pt);
-      \filldraw
-      (0:2) circle (3pt)
-      (72:2) circle (3pt)
-      (144:2) circle (3pt)
-      (216:2) circle (3pt)
-      (288:2) circle (3pt);
+    #+BEGIN_LaTeX
+    \tikzset{node/.style={
+    every node/.style={draw,thick,circle,fill=lightgray,
+    inner sep=1pt,outer sep=1pt}}}
       
-      \foreach \s in {0,72,144,216,288}{
-      \draw [-] (\s:2) -- ({\s+72}:2);
-      \draw [-] (\s:0) -- ({\s}:1);
-      \draw [-] (\s:2) -- ({\s+72}:1);
-      \draw [-] (\s:1) -- ({\s+72}:2);
-      }
-      \end{tikzpicture}
-
-      \begin{tikzpicture}[scale=0.65]
-      \foreach \s in {0,72,144,216,288}{
-      \filldraw 
-      (\s:1) circle (3pt)
-      (\s:2) circle (3pt)
-      ({\s+36}:1.63) circle (3pt)
-      (\s:3) circle (3pt);
+    \tikzset{inode/.style={
+    every node/.style={draw,circle,fill=gray,
+    inner sep=0,minimum size=1.5mm,}}}
       
-      \draw [-] 
-      (\s:1) -- ({\s+72}:1)
-      (\s:2) -- ({\s+72}:2)
-      (\s:3) -- ({\s+72}:3)
-      (\s:1) -- ({\s}:3);
-      }
-      \end{tikzpicture}
-  27. Can you jump with a knight on a $9\times9$ chess board, touching
-      all the squares and returning to the starting one at the end.
-  28. Show that a pack of dominoes can be arranged in a cycle.
-  29. Show that the Petersen graph is not Hamiltonian but deleting a
-      vertex makes it Hamiltonian.
-  30. Show that if a graph is Hamiltonian, then deleting one edge
-      always leaves it connected.
-  31. Show that if there are $k$ vertices which if removed split the
-      graph up into more than $k$ components, then the original graph
-      is not Hamiltonian.
-  32. Show that if removing an edge from the cycle $K$ of a finite
-      connected graph produces a route of maximum length, then $K$ was
-      a Hamilton cycle.
-  33. For all $n\ge 5$ show that there exists a graph $G$ with $n$
-      vertices, 
-      1) so that both $G$ and $\overline{G}$ is Hamiltonian;
-      2) so that neither $G$ nor $\overline{G}$ are Hamiltonian.
-  34. One hundred friends arrive at a hotel.  Each night they are
-      seated at the same table.  Also each evening they get into a
-      quarrel with their neighbors and get angry at each other (until
-      the end of their lives).  Also, every evening they select their
-      seats so that they don't sit next to someone who they are angry
-      with.  When they can't sit down like this at the table, they all
-      go home.  Show that they stay at the hotel for at least 25 days.
-  35. Show that any graph not containing loops can be directed in a
-      way that the resulting directed graph has no directed cycle.
-  36. Show that after a tennis tournament all the players can stand in
-      a line so that every player has defeated the person standing
-      immediately in front off him/her.
-      #  \item 37 TODO
-      #  \item 38 TODO
-  37. Which of these graphs can be drawn so that their edges don't
-      intersect:
-      1) the edges of a 3d cube; 
-      2) $K_n$ for $n=3,4,5,\ldots$; 
-      3) ``three houses, three wells'' \ie $K_{3,3}$;
-      4) the Petersen graph.
-  38. How many edges does a planar graph with $n$ vertices have if all
-      of its faces are triangles.
-  39. Show that a planar graph with at least $n\ge3$ vertices has at
-      most $3n-6$ edges.
-  40. Prove that if the graph $G$ has 11 or more vertices, then either
-      $G$ or its complement is not planar!
-  41. Draw a planar graph with 8 vertices so its complement is also
-      planar!
-  42. Show that a simple planar graph can not have all vertices with
-      degree at least 6.
-  43. At most how many edges does a planar graph have if all of its
-      cycles are at least $k$ long.
-  44. On an international conference representatives of 5 countries
-      are sitting at a table.  That there are at least two of them not
-      from neighboring countries!
-  45. Show that the faces of a planar graph can be coloured with two
-      colours so that adjacent faces have different colours if and
-      only if the graph contains a closed Euler line.
+    \tikzset{edge/.style={
+    every edge/.style={draw},
+    every node/.style={auto,inner sep=1pt},
+    every loop/.style={every edge/.style,in=-45,out=45,looseness=5}}}
+      
+    \tikzset{dedge/.style={
+    every edge/.style={draw,arrows={none-stealth}},
+    every node/.style={auto,inner sep=1pt},
+    every loop/.style={every edge/.style,in=-45,out=45,looseness=5}
+    }}
+      
+    \tikzset{node distance=50pt}
+      
+    \begin{tikzpicture}[scale=0.5]
+    \draw[inode] (0,0) node{} 
+    -- ++(0,1)  node{} -- ++(-2,0) node{} -- ++(0,3)  node{} -- ++(4,0)  node{} 
+    -- ++(0,-3) node{} -- ++(-2,0) node{} -- ++(0,1)  node{} -- ++(-1,0) node{} 
+    -- ++(0,1)  node{} -- ++(2,0)  node{} -- ++(0,-1) node{} -- ++(-1,0) node{} 
+    -- ++(0,1)  node{} -- ++(0,1)  node{} -- ++(0,1)  node{};
+    \end{tikzpicture} 
+    \hspace{1cm}
+    \begin{tikzpicture}[scale=0.8,inode]
+    \draw (0,1) -- (1,0); \draw (2,0) -- (3,1);
+    \draw (0,2) -- (1,3); \draw (2,3) -- (3,2);
+    \def\n{3}
+    \foreach \x in {0,...,\n}{
+    \draw (0,\x) -- (\n,\x);
+    \draw (\x,0) -- (\x,\n);
+    }
+    \foreach \x in {0,...,\n}{
+    \foreach \y in {0,...,\n}{
+    \node at (\x,\y) {};
+    }
+    }
+    \end{tikzpicture}
+    #+END_LaTeX
+23. Does a graph exist which contains a closed Euler line and has an
+    even number of vertices and odd number of edges.
+24. Show, that each connected graph contains a walk which contains
+    each edge exactly twice.  Is it a closed walk?
+25. Show that if all vertices have degree 4 then the edges can be
+    coloured red and blue so that each vertex is connected to two
+    red and two blue edges.
+26. Do the following graphs contain a Hamilton cycle or a Hamilton path:
+
+    #+BEGIN_LaTeX
+    \begin{tikzpicture}[scale=0.65,inode]
+    \foreach \s in {0+45,90+45,180+45,270+45}{
+    \draw [-] 
+    (\s:1) -- ({\s+90}:1)
+    (\s:2) -- ({\s+90}:2)
+    (\s:3) -- ({\s+90}:3)
+    (\s:1) -- ({\s}:3);
+    \node at (\s:1) {};
+    \node at (\s:2) {};
+    \node at (\s:3) {};
+    \node at (\s+45:1.41) {};
+    }
+    \end{tikzpicture}
+    \hspace{1cm}
+    \begin{tikzpicture}[scale=0.9,inode]
+    \foreach \s in {0,72,144,216,288}{
+    \draw [-] (\s+90:2) -- ({\s+72+90}:2);
+    \draw [-] (\s+90:0) -- ({\s+90}:1);
+    \draw [-] (\s+90:2) -- ({\s+72+90}:1);
+    \draw [-] (\s+90:1) -- ({\s+72+90}:2);
+    }
+    \node at (0,0) {};
+    \foreach \s in {0,72,144,216,288}{
+    \node at ({\s+90}:1) {};
+    \node at ({\s+90}:2) {};
+    }
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}[scale=0.65,inode]
+    \foreach \s in {0,72,144,216,288}{
+    \draw [-] 
+    ({\s+90}:1) -- ({\s+72+90}:1)
+    ({\s+90}:2) -- ({\s+72+90}:2)
+    ({\s+90}:3) -- ({\s+72+90}:3)
+    ({\s+90}:1) -- ({\s+90}:3);
+    }
+    \foreach \s in {0,72,144,216,288}{
+    \node at ({\s+90}:1) {};
+    \node at ({\s+90}:2) {};
+    \node at ({\s+36+90}:1.63) {};
+    \node at ({\s+90}:3) {};
+    }
+    \end{tikzpicture}
+    #+END_LaTeX
+27. Can you jump with a knight on a $9\times9$ chess board, touching
+    all the squares and returning to the starting one at the end.
+28. Show that a pack of dominoes can be arranged in a cycle.
+29. Show that the Petersen graph is not Hamiltonian but deleting a
+    vertex makes it Hamiltonian.
+30. Show that if a graph is Hamiltonian, then deleting one edge
+    always leaves it connected.
+31. Show that if there are $k$ vertices which if removed split the
+    graph up into more than $k$ components, then the original graph
+    is not Hamiltonian.
+32. Show that if removing an edge from the cycle $K$ of a finite
+    connected graph produces a path of maximum length, then $K$ was
+    a Hamilton cycle.
+33. For all $n\ge 5$ show that there exists a graph $G$ with $n$
+    vertices, 
+    1) so that both $G$ and $\overline{G}$ is Hamiltonian;
+    2) so that neither $G$ nor $\overline{G}$ are Hamiltonian.
+34. One hundred friends arrive at a hotel.  Each night they are
+    seated at the same table.  Also each evening they get into a
+    quarrel with their neighbors and get angry at each other (until
+    the end of their lives).  Also, every evening they select their
+    seats so that they don't sit next to someone who they are angry
+    with.  When they can't sit down like this at the table, they all
+    go home.  Show that they stay at the hotel for at least 25 days.
+35. Show that any graph not containing loops can be directed in a
+    way that the resulting directed graph has no directed cycle.
+36. Show that after a tennis tournament all the players can stand in
+    a line so that every player has defeated the person standing
+    immediately in front off him/her.
+    #  \item 37 TODO
+    #  \item 38 TODO
+37. Which of these graphs can be drawn so that their edges don't
+    intersect:
+    1) the edges of a 3d cube; 
+    2) $K_n$ for $n=3,4,5,\ldots$; 
+    3) ``three houses, three wells'' \ie $K_{3,3}$;
+    4) the Petersen graph.
+38. How many edges does a planar graph with $n$ vertices have if all
+    of its faces are triangles.
+39. Show that a planar graph with at least $n\ge3$ vertices has at
+    most $3n-6$ edges.
+40. Prove that if the graph $G$ has 11 or more vertices, then either
+    $G$ or its complement is not planar!
+41. Draw a planar graph with 8 vertices so its complement is also
+    planar!
+42. Show that a simple planar graph can not have all vertices with
+    degree at least 6.
+43. At most how many edges does a planar graph have if all of its
+    cycles are at least $k$ long.
+44. On an international conference representatives of 5 countries
+    are sitting at a table.  That there are at least two of them not
+    from neighboring countries!
+45. Show that the faces of a planar graph can be coloured with two
+    colours so that adjacent faces have different colours if and
+    only if the graph contains a closed Euler line.
 * Solutions
   1. We did this for the practical session.
   2. No.  The possible degrees are: $0,1,2,\ldots,n-1$ (if
@@ -330,12 +338,19 @@ All graphs are simple and finite if not stated otherwise.
          ``entering'' the vertex there has to be an unused ``leaving''
          edge from that vertex. Expand $R$ with that edge and the
          other unused vertex at its endpoint.
-  13. If the route from $a$ to $b$ is
-      $a=v_0,e_1,v_1,\ldots,e_n,v_n=b$, and the route from $b$ to $c$
+      The general case has a similar algorithm: Start with a vertex,
+      and continue using unused edges and unused vertices constructing
+      a path. If you are stuck, it means you are in a vertex with only
+      visited neighbours!  So the path has at least $k+1$ vertices
+      (the $k$ neighbours and the vertex itself). Adding the edge,
+      which goes to the neighbour, which appears first in the path
+      will give us the cycle we are looking for!
+  13. If the path from $a$ to $b$ is
+      $a=v_0,e_1,v_1,\ldots,e_n,v_n=b$, and the path from $b$ to $c$
       is $b=v'_0,e'_1,v'_1,\ldots,e'_n,v'_n=c$ then we have a /walk/
-      (not a route) from $a$ to $c$, but we have learned (see
+      (not a path) from $a$ to $c$, but we have learned (see
       lectures) that from every walk, by deleting $e_i,v_i$ pairs we
-      can obtain a route with the same endpoints.
+      can obtain a path with the same endpoints.
   14. Reformulate the problem to the domain of graphs: we need to
       prove for each 6 vertex simple graph $G$, there is triangle in
       $G$ or $\overline{G}$.  In $G\cup \overline{G}$ each vertex has
@@ -365,7 +380,7 @@ All graphs are simple and finite if not stated otherwise.
       - If $v$ and $v'$ are in the same component, then there is at
         least one more component with at least one vertex in it, let's
         it be the vertex $z$.  $z$ is not connected to $v$ nor $v'$ in
-        $G$, so in $\overline{G}$ there is a route from $v$ through
+        $G$, so in $\overline{G}$ there is a path from $v$ through
         $z$ to $v'$.
   17. Proofs:
       - Let $n=\card{V}$ \ie the number of vertices and
@@ -391,26 +406,26 @@ All graphs are simple and finite if not stated otherwise.
 	&\le f_3 + 2f_4 + \cdots + (d-2)f_d 
 	\end{align*}
   18. Let $v_1,v_2,\ldots,v_m$ and $u_1,u_2,\ldots,u_m$ be the
-      vertices of two routes of maximal length. Since the graph is
-      connected there is a route from $v_1$ to $u_1$. Then there is a
-      sub\-route (with at least one edge) with no edges from the first
-      or the second route of maximal length.  Let $v_i$ be the first
-      and $u_j$ the last vertex of this sub\-route.  Then $v_i$
-      divides the first and $u_j$ divides the second route of maximal
+      vertices of two paths of maximal length. Since the graph is
+      connected there is a path from $v_1$ to $u_1$. Then there is a
+      sub\-path (with at least one edge) with no edges from the first
+      or the second path of maximal length.  Let $v_i$ be the first
+      and $u_j$ the last vertex of this sub\-path.  Then $v_i$
+      divides the first and $u_j$ divides the second path of maximal
       length into two parts.  Selecting the longer parts from both
-      routes and the sub\-route in the middle we get a longer route
-      than the routes of maximal length which is a contradiction.
-  19. Sketch: Take one route of maximal length, and find its middle
-      point $w$.  Then $w$ is an element of each route with maximal
-      length.  We know from the previous exercise, that any route of
+      paths and the sub\-path in the middle we get a longer path
+      than the paths of maximal length which is a contradiction.
+  19. Sketch: Take one path of maximal length, and find its middle
+      point $w$.  Then $w$ is an element of each path with maximal
+      length.  We know from the previous exercise, that any path of
       maximal length has (at least one) common point with the first
-      route of maximal length, and we need to show that $w$ is one of
+      path of maximal length, and we need to show that $w$ is one of
       these ``common'' points.  Using indirect proof, there are two
       major cases, first $w$ is `before' the common section, and the
       second that $w$ is `after' the common section.  In both cases,
-      if we select the part containing $w$ from the first route,
+      if we select the part containing $w$ from the first path,
       combine it with the common section, and add a part of the second
-      route from the common section to the end (there are two such
+      path from the common section to the end (there are two such
       parts, add the one which is longer).
   20. For the number of separating edges see /cut sets/ from the
       lectures.
@@ -419,14 +434,14 @@ All graphs are simple and finite if not stated otherwise.
       - $e$ is the number of edges and 
       - $n$ is the number of vertices in the graph.  
       Let $e_i$ be the number of edges and $n_i$ the number of
-      vertices in the $i$-th component (where $1\le i \le n$).  We
-      know that a spanning tree of the $i$-th component has $n_i-1$
+      vertices in the \(i\)-th component (where $1\le i \le n$).  We
+      know that a spanning tree of the (i\)-th component has $n_i-1$
       edges so $n_i - 1 \le e_i$ (because a spanning tree is a
       sub\-graph).  If we take the sum on all of the previous
-      equations we have 
+      equations we have
       \begin{align*}
-      \sum_{i=1}^c (n_i - 1) &\le \sum_{i=1}^e_i \\
-      \sum_{i=1}^c n_i - \sum_{i=1}^c 1 &\le \sum_{i=1}^e_i \\
+      \sum_{i=1}^c (n_i - 1) &\le \sum_{i=1}^c e_i \\
+      \sum_{i=1}^c n_i - \sum_{i=1}^c 1 &\le \sum_{i=1}^c e_i \\
       n - c &\le e 
       \end{align*}
   22. Yes.  The first graph contains an open Euler trail, and the
@@ -474,7 +489,7 @@ All graphs are simple and finite if not stated otherwise.
   30. If the graph is Hamiltonian, it contains a Hamilton cycle which
       contains all the vertices of the graph. If we delete an edge
       fond in the Hamilton cycle, all vertices are still connected
-      because we are left with a Hamilton route.  If the edge was not
+      because we are left with a Hamilton path.  If the edge was not
       in the Hamilton cycle, the vertices will remain connected by the
       Hamilton cycle.
   31. Suppose indirectly there is a Hamilton cycle in the graph.  If
@@ -483,19 +498,20 @@ All graphs are simple and finite if not stated otherwise.
       into $\ge k+1$ components.
   32. Suppose indirectly, that $K$ was not a Hamilton cycle.  Then
       there is a vertex $w$ not in $K$.  Because the graph is
-      connected, there is a route from $w$ to any vertex of $K$.  Let
-      $v$ be the first vertex in $K$ on a route from $w$ to some
+      connected, there is a path from $w$ to any vertex of $K$.  Let
+      $v$ be the first vertex in $K$ on a path from $w$ to some
       vertex in $K$.  The problem states that if we delete any edge
-      from $K$ we get a route of maximal length, so if we delete an
+      from $K$ we get a path of maximal length, so if we delete an
       edge in $K$ with $v$ as an endpoint, we can extend the remaining
-      route with the segment of the route to $w$, which would be a
-      longer route than a route of maximal length, which gives us a
+      path with the segment of the path to $w$, which would be a
+      longer path than a path of maximal length, which gives us a
       contradiction.
   33. 
       1) The $n$ long cycle is a good example.  For $n=5$ and $6$
-         should be done manually (for $n=5$ it is trivial, for $n=6 it
-         is a bit tricky).  For $n\ge 6$, the complement has $d(v)\ge
-         n/2$ so by Dirac's theorem, there has to be a Hamilton cycle.
+         should be done manually (for $n=5$ it is trivial, for $n=6$
+         it is a bit tricky).  For $n\ge 6$, the complement has
+         $d(v)\ge n/2$ so by Dirac's theorem, there has to be a
+         Hamilton cycle.
       2) The star is not Hamiltonian because you can only go one way
          from the center. Neither its complement Hamiltonian because
          the center becomes an isolated vertex.
@@ -512,17 +528,17 @@ All graphs are simple and finite if not stated otherwise.
   36. The players are vertices, and there is an arrow (a directed
       edge) from $v_1$ to $v_2$ if $v_1$ beat $v_2$.  After the
       tournament, we have an orientation of a(n undirected) complete
-      graph and we need to find a Hamiltonian route in it.  
+      graph and we need to find a Hamiltonian path in it.  
 
       We prove this by induction on the number of vertices $=n$.
       - For $n\le2$ it is trivial.
-      - Suppose it is true for $n$ and we have the Hamiltonian route
+      - Suppose it is true for $n$ and we have the Hamiltonian path
         $v_1,v_2,\ldots v_n$.  If we add a new vertex $v$, then there
         are three options:
 	1) $v$ beat $v_1$ (\ie $(v,v_1)\in\psi$), and then
-           $v,v_1,\ldots,v_n$ is a Hamiltonian route,
+           $v,v_1,\ldots,v_n$ is a Hamiltonian path,
 	2) $v$ was beaten by $v_n$ (\ie $(v_n,v)\in\psi$) then
-           $v_1,\ldots,v_n,v$ is a Hamiltonian route,
+           $v_1,\ldots,v_n,v$ is a Hamiltonian path,
 	3) otherwise $v$ was beaten by $v_1$ and $v$ beat $v_n$.  If
            $k$ is the smallest index so that $v_{k}$ beaten by $v$
            (\ie $k=\min\{j: (v,v_j)\in\psi\}$), then $1<k\le n$ and
@@ -593,6 +609,6 @@ All graphs are simple and finite if not stated otherwise.
      and since $d(v_s)\ge k$, so at least $k$ adjacent vertices and
      $v_s$ make at least $k+1$ vertices.
   12. Let $v_1,v_2,\ldots,v_m$ and $u_1,u_2,\ldots,u_m$ be the
-      vertices of two routes of maximal length.
+      vertices of two paths of maximal length.
   13. 
   14. 

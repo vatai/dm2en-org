@@ -1,6 +1,5 @@
 # -*- mode:org; mode: flyspell; -*-
 
-
 #+SETUPFILE: l-common.org
 
 #+TITLE: Discrete mathematics II. - Algebra
@@ -13,9 +12,10 @@
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     $(G,\cdot)$ is a *groupoid* if is a set and $\cdot : G \times G
-     \to G$ binary operation \ie $\forall a,b\in G \exists c = a\cdot
-     b \in G$.  This property is /closure/ under the operation $\cdot$.
+     $(G,\cdot)$ is a *groupoid* if $G$ is a set and $\cdot : G \times
+     G \to G$ binary operation \ie $\forall a,b\in G \exists c \in G$
+     so that $c = a\cdot b$.  This property is called /closure/ under
+     the operation $\cdot$.
 **** Semigroup						       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -23,14 +23,19 @@
      $(G,\cdot)$ is a *semigroup* if it is a groupoid and the
      operation is /associative/ \ie $\forall a,b,c \in G = a\cdot
      (b\cdot c) = (a \cdot b) \cdot c$.
+*** Reminder
 **** Monoid						       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      $(G,\cdot)$ is a *monoid* if it is a semigroup and it has an
      /element of unity/ (sometimes referred to as the /neutral
-     element/, /unit element/, /zero element/) \ie $\exists e \in G$
-     so that $\forall g\in G e\cdot g=g=g\cdot e$.
+     element/, /identity element/, /unit element/, /zero element/) \ie
+     $\exists e \in G$ so that $\forall g\in G e\cdot g=g=g\cdot e$.
+**** Group
+     A monoid $(G,\cdot)$ with the identity element $e$ is a *group*
+     if $\forall g \in G \exists g^{-1}$ so that $gg^{-1} = g^{-1}g =
+     e$.
 **** Abelian group					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -46,14 +51,15 @@
      $\varphi:G\to G'$.  The map (\ie function) $\varphi$ is structure
      preserving if for each $a,b \in G$: \[ \varphi(a\cdot b) =
      \varphi(a) \otimes \varphi(b) \]
+*** Homo\-morphisms
 **** Names of structure preserving maps
-     - A structure preserving map $\varphi:G\to G'$ is a
-       *homo\-morphism*:
-       - if it is injective it is a *mono\-morphism*,
-       - if it is surjective it is an *epi\-morphism*,
-       - if it is bijective it is an *iso\-morphism*;
-       - if $G=G'$ then it is an *endo\-morphism* and
-	 - if it is also an is also bijective it is an *auto\-morphism*.
+     Let $\varphi:G\to G'$ be a *homo\-morphism*:
+     - if $\varphi$ is injective it is a *mono\-morphism*,
+     - if $\varphi$ is surjective it is an *epi\-morphism*,
+     - if $\varphi$ is bijective it is an *iso\-morphism*;
+     - if $G=G'$ then $\varphi$ is an *endo\-morphism* and
+     - if $G=G'$ and $\varphi$ is also an is also bijective it is an
+       *auto\-morphism*.
 *** Homo\-morphic image of a group
 **** Statements							  :B_theorem:
      :PROPERTIES:
@@ -70,6 +76,7 @@
         $\varphi(g^{-1})$ is the inverse of $\varphi(g)$, ergo if $G$
         is a group $\varphi(G)$ is also a group.
      4. If $G$ is commutative then $\varphi(G)$ is also commutative.
+*** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -91,6 +98,7 @@
         $x,y\in G$ so that $ax=b$ and $ya=b$.
      3. $G\neq\emptyset$ and for every $a,b\in G$ there exists a $x,y\in G$ so
         that $ax=b$ and $ya=b$.
+*** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -105,73 +113,82 @@
 ** Subgroups
 *** Subgroups
 **** Sub\-semigroups and sub\-groups
-     Let $(G,\cdot)$ be a groupoid and $H\subset G$.  
-     - $H$ is a sub\-group (or sub\-semigroup) if the $\cdot$
-       operation restricted to $H\times H$ makes a group
-       (semigroup).
-     - If $(G,\cdot)$ is a group (or a semigroup) then it
-       is a over\-group (over\-semigroup) of $H$. If $H=G$ or
-       $H=\{e\}$ then $H$ is a *trivial subgroup*.  If $H\neq G$ then
-       $H$ is a *proper subgroup* of $G$.
+     Let $(G,\cdot)$ be a groupoid and $H\subseteq G$.  
+     - $H$ is a *sub\-group* (or *sub\-semigroup*) if the $\cdot$
+       operation restricted to $H\times H$ makes a *group* (or
+       *semigroup*) with $H$.
+     - If $G$ is also a group then $G$ is a over\-group of $H$ and
+       then we can write $H \le G$.
+     - If $H=G$ or $H=\{e\}$ then $H$ is a *trivial subgroup*.
+     - If $H\neq G$ then $H$ is a *proper subgroup* of $G$.
+*** Equivalent definitions
 **** Equivalent definitions					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(G,\cdot)$ be a group and $H \subset G$, then the following
+     Let $(G,\cdot)$ be a group and $H \subseteq G$, then the following
      are equivalent:
      1. $H \le G$ \ie $H$ is a sub\-group of $G$.
      2. The operation is a $\cdot : H\times H \to H$ function, the
         element of unit $e$ of $G$ is also an element of unity of $H$
-        and $H^{-1}\subset H$.
-     3. $H\neq\emptyset$, $HH\subset H$ and $H^{-1}\subset H$.
-     4. $H\neq\emptyset$ and $H^{-1}H\subset H$.
+        and $H^{-1}\subseteq H$.
+     3. $H\neq\emptyset$, $HH\subseteq H$ and $H^{-1}\subseteq H$.
+     4. $H\neq\emptyset$ and $H^{-1}H\subseteq H$.
+     Notation: $H^{-1}=\{h^{-1} : h\in H\}$, $HH'=\{hh':h\in H,h'\in
+     H'\}$ 
 *** Equivalent definitions
-**** Notation
-     $H^{-1}=\{h^{-1} : h\in H\}$, $HH'=\{hh':h\in H,h'\in H'\}$ and
-     $gH=\{gh:h\in H\}$. Example: $\{1,2,3\}\cdot
-     \{2,3\}=\{2,3,4,6,9\}$.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     $1\Rightarrow2$: the operations is obviously $\cdot : H\times
-     H\to H$.  Let $f$ be the element of unity in $H$ and $e$ the
-     element of unity in $G$. Then $hf=h=he$ so $e=f$.  And for every
-     $h\in H$ there is a $h^{-1}\in H$ but since the inverse of $h$ is
-     unique $H^{-1}\subset H$.
+     - $1\Rightarrow2$: the operations is obviously $\cdot : H\times
+       H\to H$.  Let $e'$ be the element of unity in $H$ and $e$ the
+       element of unity in $G$. Then $he'=h=he$ for each $h$.
+       Multiplying with $h^{-1}$ we get so $e=e'$.  And since $H$ is a
+       group, $h\in H$ implies $h^{-1} \in H$ so $H^{-1}\subseteq H$.
 
-     $2\Rightarrow 3$: $e\in H$ so $H\neq\emptyset$ and $\cdot :
-     H\times H\to H$ so $HH\subset H$.
+     - $2\Rightarrow 3$: $e\in H$ so $H\neq\emptyset$ and $\cdot :
+       H\times H\to H$ so $HH\subseteq H$.
 
-     $3\Rightarrow 4$: $H^{-1}\subset H$ so $H^{-1}H \subset HH
-     \subset H$.
+     - $3\Rightarrow 4$: $H^{-1}\subseteq H$ so $H^{-1}H \subseteq HH
+       \subseteq H$.
 
-     $4\Rightarrow 1$: $h\in H$ so $e=h^{-1}h \in H^{-1}H \subset H$.
-     $h\in H$ (and $e\in H$) so $h^{-1}e \in H^{-1}H \subset H$ so
-     every $h\in H$ has an inverse, the inverse in $G$.
-     $(h_1^{-1})^{-1}=h_1$ so if $h_1,h_2\in H$ then
-     $h_1h_2=(h_1^{-1})^{-1}h_2 \in H^{-1}H \subset H$ has closure
-     under the group operation.
+     - $4\Rightarrow 1$: $h\in H$ so $e=h^{-1}h \in H^{-1}H \subseteq
+       H$.  $h\in H$ (and $e\in H$) so $h^{-1} = h^{-1}e \in H^{-1}H
+       \subseteq H$ so every $h\in H$ has an inverse, the inverse in
+       $G$.  $(h_1^{-1})^{-1}=h_1$ so if $h_1,h_2\in H$ then
+       $h_1h_2=(h_1^{-1})^{-1}h_2 \in H^{-1}H \subseteq H$ has closure
+       under the group operation.
 *** Remarks and corollary
 **** Remarks
-     The subsets in 3 and 4 are actually equations, so in 3 $HH\subset
-     H$, $H^{-1}\subset H$ and in 4 $H^{-1}H\subset H$ is actually
-     $HH=H$, $H^{-1}=H$ and in 4 $H^{-1}H=H$.  This is true because,
-     $H=eH\subset HH$, $h=(h^{-1})^{-1}$ so $H\subset H^{-1}$ and
-     $e=e^{-1}$ so $H= eH = e^{-1}H \subset H^{-1}H$.
-**** Corollary							  :B_theorem:
+     The subsets in 3 and 4 are actually equations, so in 3 $HH\subseteq
+     H$, $H^{-1}\subseteq H$ and in 4 $H^{-1}H\subseteq H$ is actually
+     $HH=H$, $H^{-1}=H$ and in 4 $H^{-1}H=H$.  
+**** Proof
+     This is true because, 
+     - $H=eH\subseteq HH$, 
+     - $h=(h^{-1})^{-1}$ so $H\subseteq H^{-1}$ and
+     - $e=e^{-1}$ so $H= eH = e^{-1}H \subseteq H^{-1}H$.
+     
+     Notation: $gH = \{ gh : h \in H\}$ 
+*** Intersection of sub\-groups is a sub\-group
+**** Intersection of subgroups 					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     $H_i\le G$ for each $i\in I$, then $H=\cup_{i\in I} H_i\le G$ \ie
+     $H_i\le G$ for each $i\in I$, then $H=\cap_{i\in I} H_i\le G$ \ie
      the intersection of sub\-groups is also a sub\-groups.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     $e\in H_i$ for each $i\in H$ so $e\in H$.  $H^{-1}\subset
-     H_i^{-1}$, so $H^{-1} H \subset H_i^{-1} H_i \subset H_i$ for
-     each $i\in I$ so $H^{-1} H \subset H$.
+     $H \subseteq H_i$ and $H^{-1}\subseteq H_i^{-1}$, so $H^{-1} H
+     \subseteq H_i^{-1} H_i \subseteq H_i$ for each $i\in I$ so
+     $H^{-1} H \subseteq H$.
+**** Remark
+     The union of subgroups is not always a subgroup.  \Eg $\{e,a\}$
+     and $\{e,b\}$ are subgroups of the Klein group (see next slide)
+     but $\{e,a,b\}$ is not a subgroup because $ab=c$.
 *** Remarks and examples
 **** Klein group						  :B_example:
      :PROPERTIES:
@@ -186,48 +203,99 @@
      | $a$     | $a$ | $e$ | $c$ | $b$ |
      | $b$     | $b$ | $c$ | $e$ | $a$ |
      | $c$     | $c$ | $b$ | $a$ | $e$ |
-**** Remark
-     The union of subgroups is not always a subgroup.  \Eg $\{e,a\}$
-     and $\{e,b\}$ are subgroups of the Klein group but $\{e,a,b\}$ is
-     not a subgroup because $ab=c$.
 *** Generated subgroup
 **** The subgroup generated by a subset			       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     - Let $(G,\cdot)$ be a group and $K\subset G$.  Then the
-       *subgroup generated by the subset $K$* is $\langle K
-       \rangle=\cup\{H\le G : K \subset H\}$ \ie the intersection of
-       all subgroups of which $K$ is a subset of or the ``smallest''
-       subgroup of $G$ containing $K$.  For finitely generated groups
-       we can omit the set braces \ie $\langle \{ a, b, c \}
-       \rangle=\langle a,b,c \rangle$.
-     - If $\langle K \rangle=G$ then $K$ is a *generating subset* of
+     Let $(G,\cdot)$ be a group and $K\subseteq G$.  
+     - Then the *subgroup generated by the subset $K$* is \[\langle K
+       \rangle=\bigcap\{H\le G : K \subseteq H\}\] \ie the
+       intersection of all subgroups containing $K$ or the
+       ``smallest'' subgroup of $G$ containing $K$.  
+     - If $\langle K \rangle=G$ then $K$ is a *generating set* of
        $G$.
-     - If $G$ has a generating subset of one element then $G$ is a
-       *cyclic group*.  The element $g$ generating the group is the
-       *generator* of the group \ie $\langle g \rangle = G$ for cyclic
-       groups.
+*** Cyclic groups
+**** Remark 
+    For finitely generated groups we can omit the set braces \ie
+    $\langle \{ a, b, c \} \rangle=\langle a,b,c \rangle$.
+**** Cyclic group					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     If $G$ has a generating subset of one element then $G$ is a
+     *cyclic group*.  The element $g$ generating the group is the
+     *generator* of the group \ie if $\exists g \in G$ so that
+     $\langle g \rangle = G$ for cyclic groups.
 *** Dihedral group
-**** An example of groups
-     See these resources for detailed examples:
-     - https://en.wikipedia.org/wiki/Dihedral_group (\eg the example
-       with the stop sign is $D_8$),
-     - http://mathworld.wolfram.com/DihedralGroup.html.
-     Informal definition:
-     - $D_n$ is the set of transformations of the equilateral $n$
-       sided polygon (triangle, square, pentagon \etc) onto themselves
-       \ie transformations which leave them in place.  The group
-       operation is function composition.
-     - The group is generated by two elements \ie $D_n=\langle
-       \varepsilon, \tau \rangle$ where $\varepsilon$ is the rotation
-       by $2\pi/n$ rad counterclockwise and $\tau$ is the mirror
-       transformation around the vertical axis.
-     - The basic rules:
-       - the element of unity $e$ is the identity function $id(x)=x$,
-       - $\varepsilon^n=e$, $\varepsilon^{-k}=\varepsilon^{n-k}$,
-         $\tau^2=e$, so $\tau^{-1}=\tau$, $\tau \circ \varepsilon ^k =
-         \varepsilon^{n-k} \circ \tau$.
+**** Example: dihedral groups
+     $D_n$ is the set of transformations of the equilateral $n$ sided
+     polygon onto itself \ie transformations leaving it in place.  The
+     group operation is function composition (\ie performing the two
+     transformations one after the other).
+**** Graphical representation
+     #+BEGIN_LaTeX
+     \begin{tikzpicture}[scale=1]
+     \foreach \i in {0,...,3}
+     { 
+     \foreach \j [evaluate=\j as \ji using {int(mod(4+\j-\i,4)+1)}] in {0,...,3}{
+     \draw (2*\i+0.5,0) ++ (-\j*360/4+135:0.8) node (\i\j) {\ji}; };
+     \foreach \j [evaluate=\j as \jj using {int(mod(\j+1,4))}] in {0,...,3} {
+     \draw (\i\j) edge (\i\jj); };
+     \node at (2*\i+0.5,0) {$\varphi^{\i}$};
+
+     \foreach \j [evaluate=\j as \ji using {int(mod(4+\j-\i,4)+1)}] in {0,...,3}{
+     \draw (2*\i+0.5,-1.7) ++ (\j*360/4+45:0.8) node (\i\j) {\ji}; };
+     \foreach \j [evaluate=\j as \jj using {int(mod(\j+1,4))}] in {0,...,3} {
+     \draw (\i\j) edge (\i\jj); };
+     \node at (2*\i+0.5,-1.7) {$\tau \circ \varphi^{\i}$};
+     \draw[dashed,red] (2*\i+0.5,-1.7) ++ (\i*180/4+90:1) -- ++ (\i*180/4+90+180:2);
+     };
+     \end{tikzpicture}
+     #+END_LaTeX
+*** Dihedral group continued
+**** Elements of $D_n$
+     $D_n$ has $2n$ elements: $n$ obtained by $n$ different rotations,
+     and $n$ obtained by the mirror/flip transformations on $n$
+     different axes, which are[fn:: this is the same as taking all
+     rotations at flipping them on a fixed axis]: for odd $n$ going
+     through the $n$ vertices and the centre of the opposite side; for
+     even $n$, $n/2$ going through two opposite vertices, and $n/2$
+     going through centerpoints of two opposite sides.
+     #+BEGIN_CENTER
+     #+BEGIN_LaTeX
+     \begin{tikzpicture}
+     \def\n{5}
+     \foreach \i  in {0,...,\n}{
+     \draw (\i*360/\n+90:1) -- (\i*360/\n+90+360/\n:1); 
+     \draw[red,dashed] (\i*360/\n+90:1.1) -- (\i*360/\n-90:1.1);
+     };
+     \begin{scope}[xshift=3cm]
+     \def\n{6}
+     \draw[gray,dotted] (0,0) -- (1,0) -- (1,1);
+     \foreach \i  in {0,...,\n}{
+     \draw (\i*360/\n+90:1) -- (\i*360/\n+90+360/\n:1); 
+     \draw[red,dashed] (\i*180/\n+90:1.1) -- (\i*180/\n-90:1.1);
+     };
+     \end{scope}
+     \end{tikzpicture}
+     #+END_LaTeX
+     #+END_CENTER
+*** Dihedral group continued
+**** Generating the dihedral group
+     The group is generated by two elements \ie $D_n=\langle
+     \varepsilon, \tau \rangle$ where $\varepsilon$ is the rotation by
+     $2\pi/n$ in a fixed direction and $\tau$ is the mirror
+     transformation around a fixed axis.
+     - the element of unity $e$ is the identity function which leaves
+       everything in place,
+     - $\varepsilon^n=e$, $\varepsilon^{-k}=\varepsilon^{n-k}$,
+	 $\tau^2=e$, so $\tau^{-1}=\tau$, $\tau \circ \varepsilon ^k =
+	 \varepsilon^{n-k} \circ \tau$.
+   Links: http://mathworld.wolfram.com/DihedralGroup.html,
+   https://en.wikipedia.org/wiki/Dihedral_group (\eg the example with
+   the stop sign is $D_8$).
+    
 *** Propositions
 **** Generating a subgroup 					  :B_theorem:
      :PROPERTIES:
@@ -236,19 +304,19 @@
      $\langle K \rangle = \{g_1g_2\cdots g_n : n\in\N, g_i\in K\cup
      K^{-1} \text{ for } 1\le i \le n\}$.
 
-     Important note: the empty product (\ie when $n=0$) is the unit
-     element.
+     Note: the empty product (\ie when $n=0$) is the unit element.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      Let RHS be the right hand side of the above equation.
-     - RHS has closure under multiplication $e$ is in RHS and the
-       inverse of any element of RHS is also in RHS, so RHS is a
-       subgroup and $K$ is a subset of RHS, so $\langle K \rangle$ is
-       a subset of RHS.
-     - On the other hand every $h\in \langle K \rangle$ is also an
-       element of RHS, so $\langle K \rangle$ is a subset of RHS.
+     - $\langle K \rangle \subseteq RHS$: RHS has closure under
+       multiplication, $e$ is in RHS and the inverse of any element of
+       RHS is also in RHS, so RHS is a subgroup and $K$ is a subset of
+       RHS, so $\langle K \rangle$ is a subset of RHS.
+     - $RHS \subseteq \langle K \rangle$: On the other hand every
+       $h\in \langle K \rangle$ is also an element of RHS, so $\langle
+       K \rangle$ is a subset of RHS.
 ** Cyclic groups
 *** Generated subgroups of cyclic groups
 **** Corollary 							  :B_theorem:
@@ -288,22 +356,24 @@
      2. If $\lvert G \rvert=n$, then $(G,\cdot)$ is isomorphic to
         $(\Z_n,+)$.
      Specially: Cyclic groups are commutative.
+*** Proof (part 1)
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      Let $g$ be a generator of $G$ \ie $\langle g \rangle=G$ and
-     $\varphi(k)=g^k$.  $\varphi$ is a homo\-morphism.
-     - $\varphi(\Z)=G$, so $\varphi$ is an epi\-morphism (surjective).
-       If $\varphi$ is also injective, then $\Z$ and $G$ are
-       isomorphic.
+     $\varphi(k)=g^k$.  $\varphi:\mathbb{Z} \to G$ is a
+     homo\-morphism.
+     - $\varphi(\Z)=G$, so $\varphi$ is an epi\-morphism (it is
+       surjective, as see in the previous theorem).  If $\varphi$ is
+       also injective, then $\Z$ and $G$ are isomorphic.
      - If it is not injective, then there is $i>j$ so that
-       $\varphi(i)=\varphi(j)$ \ie $g^i=g^j$, so $g^{i-j}=e$.  Let
-       $n=\lvert g \rvert$, so $n$ is finite.  Then $0\le r < n$ and
-       $g^r=e$ implies $r=0$, so $e,g,g^2,\ldots,g^{n-1}$ are $n$
-       different elements (otherwise $0\le j<i \le n-1$ would result
-       $g^r=e$ with $0<r=i-j$).
-*** Part 2 of the proof
+       $\varphi(i)=\varphi(j)$ \ie $g^i=g^j$, so $g^{i-j}=e$, so
+       $n=\lvert g \rvert$ is finite.  Then $0\le r < n$ and $g^r=e$
+       implies $r=0$, so $e,g,g^2,\ldots,g^{n-1}$ are $n$ different
+       elements (otherwise $0\le j<i \le n-1$ would result $g^r=e$
+       with $0<r=i-j$).
+*** Proof (part 2)
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -321,35 +391,37 @@
        $\tilde{\varphi}(\tilde{i} + \tilde{j}) = \tilde{\varphi}(
        \widetilde{i+j} ) = g^{i+j} = g^i \cdot g^j = \tilde{\varphi}(
        \tilde{i} ) \cdot \tilde{\varphi}(\tilde{j})$
+*** Subgroups of a cyclic group
 **** Remark
      - $\lvert g \rvert = n < \infty$ implies $\lvert\langle g
        \rangle\rvert = n$.
      - From now on, $G=\langle g \rangle$ means $G$ is a cyclic group
        with the generator element $g$.
-*** Subgroups of a cyclic group
 **** Subgroup of a cyclic group					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     $G=\langle g \rangle \land H\le G \Rightarrow \exists h\in G:
+     $G=\langle g \rangle$ and $H \le G$ implies $\exists h\in G:
      \langle h \rangle=H$ \ie every subgroup of cyclic group is also
      cyclic.
+*** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      If $H=\{e\}$, $H$ is cyclic, we are done.  Otherwise $\exists k
      \in\Z$, $k\neq 0$ so that $g^k\in H$. $g^k \in H$ implies
-     $(g^k)^{-1} = g^{-k}$, therefore $g^{-k}\in H$ is also true, so
-     we can suppose $k>0$.  If \[d=\min\{k\in\N^+ : g^k=e\}\] then it
-     can be proven that $\langle g^d \rangle = H$.  Elements of $G$
-     can be written as $g^j$, elements of $\langle g^d \rangle$ can be
-     written as $(g^d)^i=g^{di}$ for some $i,j\in\Z$.  $g^d\in H$
-     implies $\langle g^d \rangle \subset H$.  If $g^j\in H$ for
-     $j\in\Z$ then, $i=\lfloor j/d\rfloor$, $r=j \bmod d$.  Then
-     $j=dq+r$, and $g^r=g^{j-dq}=g^j(g^d)^{-q}$.  $g^j\in H$ and
-     $g^d\in H$ implies $g^r\in H$, that is $r=0$, so $g^j=(g^d)^i$
-     for $i=q\in\Z$.
+     $(g^k)^{-1} = g^{-k} \in H$, so we can assume $k>0$.  We will
+     show that if $d=\min\{k\in\N^+ : g^k=e\}$ then $\langle g^d
+     \rangle = H$.
+
+     - $\langle g^d \rangle \subseteq H$: since $g^d \in H$.
+     - $H \subseteq \langle g^d \rangle$: if $g^j \in H$, and
+       $q=\lfloor j/d \rfloor$, $r= j \bmod d$ \ie $j=qd+r$, where $0
+       \le r < d$. $g^j \in H$ and $g^d \in H$ implies $g^r = g^{j-qd}
+       = g^j (g^d)^q \in H$ and since $d$ is minimal positive integer
+       so that $g^d \in H$, $r$ has to be $0$ \ie $g^j =
+       g^{qd}=(g^d)^q \in \langle g^d \rangle$.
 *** Subgroups of finite cyclic groups
 **** Subgroups of finite cyclic groups				  :B_theorem:
      :PROPERTIES:
@@ -362,20 +434,23 @@
      2. If $H\le G$ then $H=\langle g^{d'} \rangle$ for some $d'\mid
         n$.
      3. $G$ has $\varphi(n)$ number of generators.
+*** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
+     1.: If $d=(a,n)$ then $d\mid a$ ergo $g^a=(g^d)^j$ (for some
+     integer $j$) so $\langle g^d\rangle \subseteq \langle g^a
+     \rangle$.  By the extended Euclidean algorithm $d=ax+ny$, so
+     $g^d=g^{ax+ny}=(g^a)^x(g^n)^y=(g^a)^x$, so $\langle g^a \rangle
+     \subseteq \langle g^d \rangle$ ergo $\langle g^a \rangle =
+     \langle g^d \rangle$.
+     
      2.: Let $H\le G$ and $d'=\min\{n\in\N^+:d^n\in H\}$.  From the
      previous proof for $j=n$ in $g^j\in H$ we have $n=md'$ which is
-     the unique subgroup of order $m$ for $d'\mid n$.  1.: If
-     $d=(a,n)$ then $d\mid a$ ergo $g^a=(g^d)^j$ (for some integer $j$) so
-     $\langle g^d\rangle \subset \langle g^a \rangle$.  By the
-     extended Euclidean algorithm $d=ax+ny$, so
-     $g^d=g^{ax+ny}=(g^a)^x(g^n)^y=(g^a)^x$, so $\langle g^a \rangle
-     \subset \langle g^d \rangle$ ergo $\langle g^a \rangle = \langle
-     g^d \rangle$. 3.: Powers of $g$ relative prime to $n$ generate
-     $G$.
+     the unique subgroup of order $m$ for $d'\mid n$.  
+
+     3.: Powers of $g$ relative prime to $n$ generate $G$.
 ** Co\-sets
 *** Co\-sets
 **** Co\-sets						       :B_definition:
@@ -387,54 +462,62 @@
      \begin{align*}
      a \sim_R b &\iff ab^{-1}\in H & a \sim_L b &\iff b^{-1}a \in H
      \end{align*}
-     Both $\sim_R$ and $\sim_L$ are equivalence relations over $G$,
-     \ie they define a classification of $G$.  The equivalence classes
-     defined by the $\sim_R$ relation are the *right co\-sets* and the
-     classes defined by $\sim_L$ are the *left co\-sets*.
+     Both $\sim_R$ and $\sim_L$ are equivalence relations over $G$, so
+     they define a classification of $G$.  \Eg $\sim_R$ is reflexive:
+     $aa^{-1}=e \in H$; $\sim_R$ is symmetric: $ab^{-1} \in H$ implies
+     $(ab^{-1})^{-1} = ba^{-1} \in H$; $ab^{-1} \in H$ and $bc^{-1}
+     \in H$ imply $ab^{-1}bc^{-1} = a c^{-1} \in H$.
+
+     The equivalence classes defined by the $\sim_R$ relation are the
+     *right co\-sets* and the classes defined by $\sim_L$ are the
+     *left co\-sets*.
+*** Index
 **** Proposition
-     Right co\-sets are $\{Ha : a \in G\}$ and left co\-sets are
-     $\{aH : a \in G\}$.
-**** Proof
-     $b\in Ha \iff \exists h\in H: b=ha \iff ba^{-1} = h \in H \iff
-     ab^{-1} \in H^{-1} = H \iff a\sim_R b$. Similarly for $\sim_L$.
-*** Lagrange theorem
+     Right co\-sets are of the form $Ha$ and left co\-sets are of the
+     form $aH$ form some $a \in G$: $b\in Ha \iff \exists h\in H: b=ha
+     \iff ba^{-1} = h \in H \iff ab^{-1} \in H^{-1} = H \iff a\sim_R
+     b$. Similarly for $\sim_L$.  
+
 **** Index						       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      Then number of left and right co\-sets of $G$ is the same because
-     of the $Ha \mapsto (Ha)^{-1} = a^{-1}H$ bijection between
+     $Ha \mapsto (Ha)^{-1} = a^{-1}H$ is a bijection between
      them. This number, if $<\infty$, is the *index* of $H$ in $G$,
      and is written as $[G:H]$.
+*** Lagrange theorem
 **** Lagrange							  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     If $(G,\cdot)$ be a group, $\card{G}<\infty$, $H\le G$, then
-     $\card{H}\cdot[G:H]=\card{G}$.
+     If $(G,\cdot)$ be a group, $\lvert G \rvert<\infty$, $H\le G$,
+     then $\lvert H \rvert \cdot [G:H] = \lvert G \rvert$.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      Let's work with right co\-sets. $\varphi_a(h)=ha$ is a bijection
      from $H$ to the right co\-sets of $H$ in $G$.  For every $a\in G:
-     \card{Ha} = \card{H}$, multiplied by the number of co\-sets \ie
-     the index $[G:H]$ gives all the elements of $G=\cup_{a\in G} Ha$
+     \lvert Ha \rvert = \lvert H \rvert$, multiplied by the number of
+     co\-sets \ie the index $[G:H]$ gives all the elements of
+     $G=\cup_{a\in G} Ha$
 *** Consequences
 **** Corollary
-     Let $(G,\cdot)$ is a group, $\card{G}<\infty$: if $g\in G$ then
-     $\card{g}=o(g)\mid \card{G}$.
+     Let $(G,\cdot)$ is a group, $\lvert G \rvert<\infty$: if $g\in G$
+     then $\lvert g \rvert =o(g)\mid \lvert G \rvert$.
 **** Corollary
-     Let $(G,\cdot)$ is a group, if $\card{G}=p<\infty$ and $p$ is
-     prime, then $\exists g\in G$ so that $\langle g\rangle = G$ \ie G
-     is cyclic! This is true, because $\forall g\in G$ if $g\neq e$
-     then $(\card{g},p)=1$ ergo $\langle g \rangle = G$.
+     Let $(G,\cdot)$ is a group, if $\lvert G \rvert = p < \infty$ and
+     $p$ is prime, then $\exists g\in G$ so that $\langle g\rangle =
+     G$ \ie G is cyclic! This is true, because $\forall g\in G$ if
+     $g\neq e$ then $(\lvert g \rvert, p)=1$ ergo $\langle g \rangle =
+     G$.
 **** Group with prime order					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(G,\cdot)$ be a group, $G\neq\{e\}$. The group has prime order
-     $\card{G}=p$ iff $G$ has only trivial subgroups.
+     Let $(G,\cdot)$ be a group, $G\neq\{e\}$. The group has prime
+     order $\lvert G \rvert = p$ iff $G$ has only trivial subgroups.
 ** Normal subgroups
 *** Normal subgroups
     Usually we can't say anything about the product of co\-sets.  It
@@ -463,16 +546,16 @@
      Let $N\le G$.  The following statements are equivalent:
      1. $N\lhd G$ \ie $N$ is a normal subgroup.
      2. $\forall a\in G : a^{-1}Na = N$.
-     3. $\forall a\in G : a^{-1}Na \subset N$.
+     3. $\forall a\in G : a^{-1}Na \subseteq N$.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      - $1 \iff 2$: $aN=Na$ implies $N=(a^{-1}a)N=a^{-1}(aN)=a^{-1}Na$
        and $a^{-1}Na = N$ implies $Na = a(a^{-1}Na) = aN$.  
-     - $2 \iff 3$: $2 \Rightarrow 3$ is trivial.  $a^{-1}Na \subset N$
-       for every $a\in G$ including $a^{-1}$, so $aNa^{-1} \subset N$
-       is also true, so $N=a^{-1}(a N a^{-1})a \subset
+     - $2 \iff 3$: $2 \Rightarrow 3$ is trivial.  $a^{-1}Na \subseteq N$
+       for every $a\in G$ including $a^{-1}$, so $aNa^{-1} \subseteq N$
+       is also true, so $N=a^{-1}(a N a^{-1})a \subseteq
        a^{-1}Na$ is also true.
 *** Theorems
 **** Corollary
@@ -504,7 +587,7 @@
      The group of co\-sets of $N$ in $G$ mentioned above is the
      *quotient group of $G$ by $N$*, and is written as $G/N$.
 
-     If $\card{G}<\infty$ then $\card{G/N}=[G:N]$.
+     If $\lvert G \rvert < \infty$ then $\lvert G/N \rvert=[G:N]$.
 **** Kernel of a homo\-morphism 			       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -544,7 +627,7 @@
 
      Each term can be chosen so that its orders is a prime power, and
      these prime powers can be uniquely determined.
-* Rings
+* COMMENT Rings
 ** Definitions and examples
 *** Ring, Gaussian ring, Euclidean ring, Integral domain, 
 **** Ring						       :B_definition:
@@ -706,7 +789,7 @@
 ** Sub\-rings and ideals
 *** Sub\-rings
 **** Sub\-ring
-     Let $(R,+,\cdot)$ be a set with two operations and $S\subset R$.
+     Let $(R,+,\cdot)$ be a set with two operations and $S\subseteq R$.
      - $S$ is a sub\-ring of $R$ if both operations restricted to
        $S\times S$ makes a ring, written as $S\le R$.
      - If $(R,+,\cdot)$ is a ring then it is an extension of $S$. If
@@ -716,11 +799,11 @@
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(R,+,\cdot)$ be a ring and $S \subset R$, then the following
+     Let $(R,+,\cdot)$ be a ring and $S \subseteq R$, then the following
      are equivalent:
      1. $S \le R$ \ie $S$ is a sub\-ring of $R$.
      2. $a,b\in S$ implies $a-b\in S$ and $ab\in S$.
-     3. $S-S\subset S$ and $SS\subset S$.
+     3. $S-S\subseteq S$ and $SS\subseteq S$.
 *** Ideals
 **** Ideal						       :B_definition:
      :PROPERTIES:
@@ -735,16 +818,16 @@
        *proper ideal*.
      - A ring containing only trivial ideals is a *simple ring*.
 **** Equivalent definitions
-     - $I$ is a right ideal $\iff I-I\subset I$ and $IR\subset I$.
-     - $I$ is a left ideal $\iff I-I\subset I$ and $RI\subset I$.
-     - $I$ is and ideal $\iff I-I\subset I$, $IR\subset I$ and
-       $RI\subset I$.
+     - $I$ is a right ideal $\iff I-I\subseteq I$ and $IR\subseteq I$.
+     - $I$ is a left ideal $\iff I-I\subseteq I$ and $RI\subseteq I$.
+     - $I$ is and ideal $\iff I-I\subseteq I$, $IR\subseteq I$ and
+       $RI\subseteq I$.
 *** Ideals
 **** Ideal generated by a subset
      - The intersection of ideals is also an ideal.  Let $R$ be a ring
-       and $A\subset R$.  Then the *ideal generated by the subset $A$*
+       and $A\subseteq R$.  Then the *ideal generated by the subset $A$*
        is the intersection of all ideals containing $A$, written as
-       $(A)=\cap\{I\le R\text{ ideal}: A \subset I\}$.
+       $(A)=\cap\{I\le R\text{ ideal}: A \subseteq I\}$.
 
      - If $A$ has only one element \ie $A=\{a\}$ then we write $(a)$
        instead of $(\{a\})$ and $(a)$ is called a *principal ideal*.
@@ -785,14 +868,14 @@
      :END:
      1. Let $I$ be an ideal in $R$.  From groups, we know that the
         classification is compatible with addition.  For multiplication:
-	$(I+a)(I+b)=II+aI+Ib+ab \subset I+ab$.
+	$(I+a)(I+b)=II+aI+Ib+ab \subseteq I+ab$.
      2. Let $\sim$ be a relation, and also a classification of $R$
         which is compatible with both operations, and let $\tilde{x}$
         be the class of $x$ \ie $\tilde{x}=\{y:x\sim y\}$.  From group
         theory we know that the classification by the normal subgroup
         $I=\tilde{0}$, we need to show that $I$ is an ideal.  Since
-        $0\in I$, $\tilde{x} I \subset I$ for every class $\tilde{x}$,
-        and since the union of classes is $R$, $RI\subset I$, \ie $I$
+        $0\in I$, $\tilde{x} I \subseteq I$ for every class $\tilde{x}$,
+        and since the union of classes is $R$, $RI\subseteq I$, \ie $I$
         is an ideal.
 **** Quotient ring 					       :B_definition:
      :PROPERTIES:
@@ -803,11 +886,11 @@
      written as $R/I$.
 *** Remarks
 **** Remark
-     In the first part of the proof, the $\subset$ can be a proper
+     In the first part of the proof, the $\subseteq$ can be a proper
      subset, \ie not equality. Example: Let $R=\Z$, $I=8\Z$, and
      $(8\Z+4)(8\Z+4) = 64\Z + 32\Z + 32\Z + 16 = 32\Z+16$, but $8\Z
-     +4\cdot 4 = 8\Z + 16 = 8\Z$, so $32\Z+16 \subsetneq 16\Z
-     \subsetneq 8\Z$
+     +4\cdot 4 = 8\Z + 16 = 8\Z$, so $32\Z+16 \subseteqneq 16\Z
+     \subseteqneq 8\Z$
 **** Homo\-morphism kernel				       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -838,14 +921,14 @@
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     $aR-aR \subset aR$ and $aRaR\subset aR$ (\ie closure for both
-     operations), so $aR$ is an ideal $a\in R$, so $(a) \subset aR$.
+     $aR-aR \subseteq aR$ and $aRaR\subseteq aR$ (\ie closure for both
+     operations), so $aR$ is an ideal $a\in R$, so $(a) \subseteq aR$.
 
      $a\in (a)$ and since it is an ideal for any $r\in R$, $ra=ar\in
-     (a)$ is also true ergo $aR\subset (a)$.
+     (a)$ is also true ergo $aR\subseteq (a)$.
 **** Corollary
     Let $R$ be an integral domain with a unit element, then:
-    - $(a) \subset (b) \iff b \mid a$;
+    - $(a) \subseteq (b) \iff b \mid a$;
     - $(a) = (b) \iff a$ and $b$ are associated;
     - $(a) = R \iff a$ is the unit element.
 ** Unique factorization domains
@@ -936,7 +1019,7 @@
      :PROPERTIES:
      :BEAMER_env: example
      :END:
-     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subset \C$ is an example of an
+     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subseteq \C$ is an example of an
      integral domain with an element of unity which is not a UFD, \ie
      there are irreducible elements which are not prime.
 *** Integral domain with prime $\neq$ irreducible
@@ -944,7 +1027,7 @@
      :PROPERTIES:
      :BEAMER_env: example
      :END:
-     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subset \C$.  
+     Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subseteq \C$.  
      - The square of the absolute value of an element $c=a+i\sqrt{5}b$
        is $\lvert c \rvert^2=a^2+5b^2$.
      - For any integer $n\in\Z$, the value of $k^2 \bmod 5$ can be

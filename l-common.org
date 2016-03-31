@@ -1,10 +1,12 @@
-#+OPTIONS: H:3 -:t tags:nil ^:nil toc:nil
+#+OPTIONS: H:3 -:t tags:nil ^:nil toc:t
 #+STARTUP: beamer
+#+BEAMER_THEME: Montpellier
+#+BEAMER_COLOR_THEME: beaver
 
-#+OPTIONS: toc:t
-#+LATEX_CLASS: article
-#+LATEX_CLASS_OPTIONS: [a4paper]
-#+LATEX_HEADER: \usepackage[]{beamerarticle}
+# #+OPTIONS: toc:t
+# #+LATEX_CLASS: article
+# #+LATEX_CLASS_OPTIONS: [a4paper]
+# #+LATEX_HEADER: \usepackage[]{beamerarticle}
 
 #+AUTHOR: Emil Vatai
 #+EMAIL: vatai@inf.elte.hu
@@ -34,4 +36,4 @@
 #+LATEX_HEADER: \def\C{\mathbb{C}}
 #+LATEX_HEADER: \DeclareMathOperator{\dmn}{dmn}
 #+LATEX_HEADER: \DeclareMathOperator{\rng}{rng}
-#+LATEX_HEADER: \newcommand{\card}[1]{\left\lvert #1 \right\rvert}
+# #+LATEX_HEADER: \newcommand{\card}[1]{\left\lvert #1 \right\rvert}

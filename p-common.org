@@ -4,10 +4,16 @@
 #+LATEX_HEADER: \usepackage[]{beamerarticle}
 
 #+LATEX_CLASS_OPTIONS: [a4paper,twocolumn]
+#+LATEX_HEADER: \usepackage[margin=1.5cm]{geometry}
 
 #+AUTHOR: Emil Vatai
 #+EMAIL: vatai@inf.elte.hu
 #+LANGUAGE: en
+
+#+LATEX_HEADER: \usepackage[]{paralist}
+#+LaTeX_HEADER: \let\itemize\compactitem
+#+LaTeX_HEADER: \let\description\compactdesc
+#+LaTeX_HEADER: \let\enumerate\compactenum  
 
 #+LATEX_HEADER: \usepackage[]{lmodern}
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
