@@ -1,0 +1,186 @@
+# -*- mode:org; mode: flyspell; -*-
+
+#+SETUPFILE: p-common.org
+
+#+TITLE: Discrete mathematics II. practice - Groups
+#+SHORT_TITLE: Groups
+
+* Reminder: groupoid, semi\-group, monoid, group, Abelian group 
+  Let $G$ be a set.  
+  - $(G,\cdot)$ is a *groupoid* if $\cdot$ is a *binary operation* of
+    type $\cdot : G \times G \to G$.  Remember in $f: X \to Y$ the
+    ``:'' means $\operatorname{dmn}(f) = X$.
+  - The $(G,\cdot)$ group is a *semi\-group* if $\cdot$ is
+    *associative* \ie $a(bc) = (ab)c$ (for each $a,b,c\in G$).
+  - The $(G,\cdot)$ semi\-group is a *monoid* if there is a $e \in G$
+    *element of unity* \ie $\exists e \in G \, \forall g \in G : eg =
+    ge = g$
+  - The monoid $(G,\cdot)$ is a *group* if all the elements are
+    *invertable* \ie $\forall g \in G \, \exists g^{-1} \in G :
+    gg^{-1} = g^{-1}g = e$.
+  - The group $(G,\cdot)$ is an *abelian group* if the operation is
+    *commutative* \ie $ab = ba$ for each $a,b \in G$.
+  Note: I should be writing $a \cdot (b \cdot c) = \ldots$, but that
+  would take too much time so from now on $a \cdot b = ab$.
+
+* Problems
+  1. Examine the following examples, if they form/make a groupoid,
+     semi\-group, monoid, group or abelian group?
+     1) $(\mathbb{Z}, \circ)$ where $a \circ b = (a+b)/2$;
+     2) $(\mathbb{Q}, \circ)$ where $a \circ b = (a+b)/2$;
+     3) $(A, \circ)$ where $A$ is the set of $f : [0,1] \to
+	\mathbb{R}$ functions, and $(f \circ g)(x) = \max\{f(x),
+	g(x)\}$;
+     4) $(\mathbb{R}, /)$ \ie real numbers with division;
+     5) $(\mathbb{R}\setminus \{0\}, / )$ \ie non-zero real numbers
+        with division.
+  2. Show that the complex \(n\)-th roots of unity form an abelian
+     group with the complex multiplication.
+  3. Show that the set of all complex \(n\)-th roots of unity (for all
+     $n \in \mathbb{N}$) is an abelian group.
+  4. 
+     1) Examine the $\bmod 5$ residue classes \ie $\mathbb{Z}_5$
+        residue classes with multiplication as the operation.
+     2) Examine the $\bmod 5$ residue class except the class
+        represented by $0$ \ie $\mathbb{Z}^*_5 = \mathbb{Z}_5\setminus
+        \{\overline{0}\}$ residue classes with multiplication as the
+        operation.
+* Solutions
+  1. 
+     1) Not a groupoid, because $\circ$ is not a $\circ : \mathbb{Z}
+        \times \mathbb{Z} \to \mathbb{Z}$ operation, \eg $0 \circ 1 =
+        (0+1)/2 = 1/2 \not\in \mathbb{Z}$;
+     2) It is a groupoid, because if $a$ and $b$ are rational, then so
+        is $a+b$ and $(a+b)/2$.  But it is not a semi\-group because
+        $a \circ (b \circ c) = a \circ ( (b+c)/2 ) = (a+ (b+c)/2 )/2 =
+        a/2 + (b+c)/4$ but $(a \circ b) \circ c = ((a+b)/2) \circ c
+        =((a+b)/2 +c)/2 = (a+b)/4 + c/2$ \eg $a=0, b=0, c=1$ gives $0
+        \circ (0 \circ 1) =1/4$ and $(0 \circ 0) \circ 1 = 1/2$.
+     3) It is a groupoid, use common sense -- the $\circ$ of two
+        functions from $A$ is also a function from $A$!  It is also a
+        semi\-group because $\max$ is associative $(f \circ (g \circ
+        h))(x) = \max \{ f(x), (g\circ h)(x) \} = \max \{ f(x), \max
+        \{ g(x), h(x)\} \} = \max\{ f(x), g(x), h(x) \} = \ldots = ((f
+        \circ g) \circ h)(x)$ (HW: fill in the $\ldots$ part).
+        #+LATEX_HEADER: \usepackage{pgfplots}
+        #+BEGIN_LaTeX
+	\begin{tikzpicture}
+	\begin{axis}[domain=-1.57:1.57,legend pos=south east]
+	\addplot[mark=none,color=blue] {sin(deg(x))}; 
+	\addplot[color=red] {cos(deg(x))}; 
+	\addplot {max(cos(deg(x)),sin(deg(x)))}; 
+	\legend{$f(x)$,$g(x)$,$(f\circ g)(x)$}
+	\end{axis}
+	\end{tikzpicture}
+        #+END_LaTeX
+     4) It is not a groupoid, because division is not an operation
+        because $(x,0) \not \in \operatorname{dmn}(/)$ \ie you can not
+        divide with zero or $x/0$ is not defined!
+     5) It is a groupoid, because if $x,y$ are non-zero real numbers
+        then so is $x/y$. But it is not a semi\-group because $(ac)/b
+        = a/(b/c) \neq (a/b)/c = a/(bc)$.
+     6) 
+  2. $E_n = \{ w \in \mathbb{C} : w^n = 1 \}$ is the set of \(n\)-th
+     roots of unity, usually we write $E_n = \{ \varepsilon_0,
+     \varepsilon_1, \ldots, \varepsilon_{n-1} \}$ where $\varepsilon_k
+     = \cos \frac{2\pi k }{n} + i \sin \frac{2\pi k }{n}$ where
+     $k=0,1,\ldots, n-1$, so $\lvert \varepsilon_k \rvert = 1$ and the
+     angle is $k$ times one \(n\)-th of a circle \ie $\frac{2\pi
+     k}{n}$.
+     #+BEGIN_LaTeX
+     \begin{tikzpicture}
+     %\draw[color=gray,dotted] (0,0) -- (1,0) -- (1,1);
+     \draw[gray,dotted] (-1.5,0) -- (1.5,0) (0,-1.5) -- (0,1.5);
+     \draw (0,0) circle (1);
+     \def\n{8}
+     \foreach[evaluate=\k as \kd using int(\k-1)] \k in {1,...,\n}{
+     \def\mydeg{360/\n*\kd};
+     \draw (\mydeg:0.9) -- (\mydeg:1.1);
+     \node at (\mydeg:1.5) {$\varepsilon_{\kd}$};
+     };
+     \end{tikzpicture}
+     #+END_LaTeX
+     - If you have $\varepsilon, \varepsilon' \in E_n$ then
+	  $\varepsilon^n = 1$ and $\varepsilon'^n = 1$ so $(\varepsilon
+	  \varepsilon')^n = \varepsilon^n \varepsilon'^n = 1
+	  \cdot 1 = 1$ so $\varepsilon \varepsilon' \in E_n$ is also true
+	  \ie it's a groupoid.  
+     - It is a semi\-group because multiplication
+       in complex numbers is associative.  
+     - It is a monoid because $\varepsilon_0 = 1$ is an element of
+       unity.
+     - If $\varepsilon_j, \varepsilon_k \in E_n$ then $\varepsilon_j
+       \varepsilon_k = \varepsilon_r$ where $r = (j+k) \bmod n$
+       because \[\varepsilon_j = \cos \frac{2\pi j }{n} + i \sin
+       \frac{2\pi j }{n}\] and \[\varepsilon_k = \cos \frac{2\pi k
+       }{n} + i \sin \frac{2\pi k }{n}\] so 
+       \begin{align*}
+       \varepsilon_j \varepsilon_k 
+       &= \cos \frac{2\pi j + 2\pi k }{n} + 
+       i \sin \frac{2\pi j + 2\pi k }{n} \\
+       &= \cos \frac{2\pi (j + k) }{n} + 
+       i \sin \frac{2\pi (j + k) }{n} \\
+       &= \cos \frac{2\pi r + 2\pi qn }{n} + 
+       i \sin \frac{2\pi r + 2\pi qn }{n} \\
+       &= \cos \frac{2\pi r }{n} + 
+       i \sin \frac{2\pi r }{n}
+       \end{align*}
+       where $q=\lfloor (i+j)/n\rfloor$. So for each $\varepsilon_k$
+       if $r = (n-k) \bmod n$ \ie $r = n-k$ if $k\neq 0$ and $r=0$ if
+       $k=0$ then $\varepsilon_k \varepsilon_r = \varepsilon_0 =
+       1$, since $0 = k+((n-k) \bmod n) \bmod n$.
+     - It is an abelian group, because the multiplication is
+       commutative in $\mathbb{C}$ also.
+  3. Now the set is \[E=\bigcup_{n \in \mathbb{N}} E_n = \{w \in
+     \mathbb{C} : \exists n \in \mathbb{N} : w^n = 1\}\]
+     - This is a groupoid because if $\varepsilon_1, \varepsilon_2 \in
+       E$ then $\exists n_1, n_2 \in \mathbb{N}$ so that
+       $\varepsilon_1^{n_1} = 1$ and $\varepsilon_2^{n_2}=1$.  Then
+       $(\varepsilon_1\varepsilon_2)^{n_1n_2} =
+       \varepsilon_1^{n_1n_2}\varepsilon_2^{n_1n_2} =
+       (\varepsilon_1^{n_1})^{n_2} (\varepsilon_2^{n_2})^{n_1} =
+       1^{n_2}\cdot 1^{n_1} = 1$, so $\varepsilon_1\varepsilon_2 \in
+       E_{n_1n_2} \subseteq E$.
+     - Multiplication is associative in $\mathbb{C}$, so $(E,\cdot)$
+       is a semi\-group.
+     - $1\in E$ so there is an element of unity, \ie $(E,\cdot)$ is a
+       monoid.
+     - $(E,\cdot)$ is a group, because if $\varepsilon \in E$ then
+       there is a positive integer $n$ for which $\varepsilon \in
+       E_n$, and in the previous exercise we saw that $\varepsilon$
+       has an inverse $\varepsilon^{-1} \in E_n$ so $\varepsilon^{-1}
+       \in E$ is also true because $E_n \subseteq E$.
+     - The operation is commutative in $\mathbb{C}$ so $(E,\cdot)$ is
+       an abelian group.
+  4. The residue classes $\bmod 5$ are $\{\overline{0}, \overline{1},
+     \overline{2}, \overline{3}, \overline{4} \mod 5 \}$, where
+     $\overline{0}$ is the residue class $\bmod 5$ represented by $0$.
+     1) The multiplication for residue classes is defined as
+        $\overline{a} \cdot \overline{b} = \overline{a\cdot b}$, \ie
+        the product of residue classes is the residue class
+        represented by the product of the representatives.  It can be
+        shown that the multiplication is independent of the choice of
+        the representative \ie the product of residue classes are also
+        residue classes.  The multiplication table for $\mathbb{Z}_5$:
+	| $( \mathbb{Z}_5, \cdot )$ | $\overline{0}$ | $\overline{1}$ | $\overline{2}$ | $\overline{3}$ | $\overline{4}$ |
+	| $\overline{0}$            | $\overline{0}$ | $\overline{0}$ | $\overline{0}$ | $\overline{0}$ | $\overline{0}$ |
+	| $\overline{1}$            | $\overline{0}$ | $\overline{1}$ | $\overline{2}$ | $\overline{3}$ | $\overline{4}$ |
+	| $\overline{2}$            | $\overline{0}$ | $\overline{2}$ | $\overline{4}$ | $\overline{1}$ | $\overline{3}$ |
+	| $\overline{3}$            | $\overline{0}$ | $\overline{3}$ | $\overline{1}$ | $\overline{4}$ | $\overline{2}$ |
+	| $\overline{4}$            | $\overline{0}$ | $\overline{4}$ | $\overline{3}$ | $\overline{2}$ | $\overline{1}$ |
+* COMMENT 
+  4. $\varphi(n) = \overline{n \bmod 5}$ is a homo\-morphism from
+     $\mathbb{Z}$ to $\mathbb{Z}_5$.  If $\overline{x},\overline{y}
+     \in \mathbb{Z}_5$, then \[\overline{x} = \{5q+x : q \in
+     \mathbb{Z} \} \text{ and } \overline{y} = \{5s+y : s \in
+     \mathbb{Z} \}\] so 
+     \begin{align*}
+     \overline{x} + \overline{y} =& 
+     \{ (5q + x) + (5s+y) : q \in \mathbb{Z} \land \mathbb{Z} \}\\
+     =& \{ 5(q+s) + (x+y) : q \in \mathbb{Z} \land \mathbb{Z} \}\\
+     =& \{ 5r + z : r \in \mathbb{Z} \}\\
+     \overline{x} \cdot \overline{y} =& 
+     \{ (5q+x)\cdot (5s+y) : q \in \mathbb{Z} \land s \in \mathbb{Z} \} \\
+     =& \{25qs + 5(qy+sx) + xy : q,s \in \mathbb{Z}\} \\
+     =& \{ 5r + z : r \in \mathbb{Z} \} = \overline{xy}
+     \end{align*}
