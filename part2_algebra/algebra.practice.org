@@ -1,6 +1,6 @@
 # -*- mode:org; mode: flyspell; -*-
 
-#+SETUPFILE: p-common.org
+#+SETUPFILE: ../include/practice.h.org
 
 #+TITLE: Discrete mathematics II. practice - Groups
 #+SHORT_TITLE: Groups
@@ -106,7 +106,7 @@
 	\{ g(x), h(x)\} \} = \max\{ f(x), g(x), h(x) \} = \ldots = ((f
 	\circ g) \circ h)(x)$ (HW: fill in the $\ldots$ part).
 	#+LATEX_HEADER: \usepackage{pgfplots}
-	#+BEGIN_LaTeX
+	#+BEGIN_EXPORT latex
 	\begin{tikzpicture}
 	\begin{axis}[domain=-1.57:1.57,legend pos=south east]
 	\addplot[mark=none,color=blue] {sin(deg(x))}; 
@@ -115,7 +115,7 @@
 	\legend{$f(x)$,$g(x)$,$(f\circ g)(x)$}
 	\end{axis}
 	\end{tikzpicture}
-	#+END_LaTeX
+	#+END_EXPORT
      4) It is not a groupoid, because division is not an operation
 	because $(x,0) \not \in \operatorname{dmn}(/)$ \ie you can not
 	divide with zero or $x/0$ is not defined!
@@ -130,7 +130,7 @@
      $k=0,1,\ldots, n-1$, so $\lvert \varepsilon_k \rvert = 1$ and the
      angle is $k$ times one \(n\)-th of a circle \ie $\frac{2\pi
      k}{n}$.
-     #+BEGIN_LaTeX
+     #+BEGIN_EXPORT latex
      \begin{tikzpicture}
      %\draw[color=gray,dotted] (0,0) -- (1,0) -- (1,1);
      \draw[gray,dotted] (-1.5,0) -- (1.5,0) (0,-1.5) -- (0,1.5);
@@ -142,7 +142,7 @@
      \node at (\mydeg:1.5) {$\varepsilon_{\kd}$};
      };
      \end{tikzpicture}
-     #+END_LaTeX
+     #+END_EXPORT
      - If you have $\varepsilon, \varepsilon' \in E_n$ then
 	  $\varepsilon^n = 1$ and $\varepsilon'^n = 1$ so $(\varepsilon
 	  \varepsilon')^n = \varepsilon^n \varepsilon'^n = 1

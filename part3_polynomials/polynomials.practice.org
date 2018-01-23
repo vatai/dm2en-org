@@ -1,0 +1,59 @@
+# -*- mode:org; mode: flyspell; -*-
+
+#+SETUPFILE: ../include/practice.h.org
+
+#+TITLE: Discrete mathematics II. practice - Polynomials
+#+SHORT_TITLE: Polynomials
+
+* Problems
+  #+BEGIN_SRC python :results output
+    def mul(f,g,p):
+      n,m = len(f)-1,len(g)-1
+      h = [ 0 for i in range(n+m+1) ]
+      for i in range(n+1):
+        for j in range(m+1):
+          k = i+j
+          h[k] = f[i] * g[j] % p
+      return h
+    def add(f,g,p):
+      n,m = len(f)-1, len(g)-1
+      if(n<m): f,g,n,m = g,f,m,n
+      # m <= n
+      h = f.copy()
+      for i in range(m+1): h[i] += g[i]
+
+    def invmod(a,p):
+      for i in range(p):
+        if (i*a) % p == 1: 
+          return i
+      return 0
+    
+    # return mul([1,2,3],[3,4,5],10000)
+    # return invmod(3,7)
+    def polydiv(f,g,p):
+      f,g = list(f),list(g)
+      n,m = len(f)-1, len(g)-1 #deg(f), deg(g)
+      if n < m: return 0,f
+      inv = invmod(g[m],p)
+      q,r = [],f.copy()
+      # i = n-m .. 0
+      for i in reversed(range(n-m+1)):
+        # eliminate f[i+m]
+        qi = (inv * r[i+m]) % p
+        q.insert(0, qi)
+        for j in range(m+1):
+          k = i + j
+	  r[k] = (r[k] - qi*g[j]) % p
+        del r[len(r)-1]
+      return q,r
+
+    q,r = polydiv(reversed([1,2,3]),reversed([3,4,5]),11)
+    print(q)
+    print(list(reversed(r)))
+  #+END_SRC
+
+  #+RESULTS:
+  : [4]
+  : [8, 5]
+
+* Solutions

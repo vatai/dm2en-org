@@ -1,0 +1,99 @@
+# -*- mode: org; mode: flyspell -*-
+#+INCLUDE: inc-test.org
+# Set no title
+#+BIND: org-latex-title-command ""
+#+TITLE:
+
+* Discrete mathematics 2. First test 2016-04-13
+  1. Draw a simple 8 vertex graphs with the following degrees or prove
+     that such a graph doesn't exist:
+     #+ATTR_LATEX: :environment inparaenum
+     1) 6, 6, 6, 5, 4, 3, 1, 1;
+     2) 7, 7, 5, 5, 4, 4, 4, 3;
+     3) 7, 3, 3, 4, 4, 4, 1, 0.
+     4) 6, 6, 5, 4, 4, 4, 4, 3;
+  2. Let $T=(\varphi,E,V)$ be a *tree* with $V=\{1,2,\ldots,n\}$ where
+     $n \in \mathbb{N}$ and $p=[\,]$ an empty list.  Find the vertex
+     $v$ with $\deg(v) = 1$ and with the smallest value, write the
+     value of the (unique) vertex adjacent to $v$ at the end of the
+     list $p$ and delete $v$ from the graph. Repeat this procedure
+     until there is only one vertex left in the graph!  The list $p$
+     obtained at the end should be of length $n-1$ with $n$ as its
+     last element - this is the Prüfer code of the tree graph $T$.
+     Determine (and draw) the spanning tree with minimal weight (you
+     can use Kruskal's algorithm) of the following graphs and find
+     their Prüfer code:
+
+     #+ATTR_LATEX: :environment inparaenum
+     1) 
+	#+BEGIN_LaTeX
+	\begin{tikzpicture}
+	\foreach \i 
+	in {0,1,2}{
+	\foreach[evaluate=\j as \ij using int(\j*3+\i+1)] \j 
+	in {0,1,2}{ \draw (\i, \j) node[draw] (\ij) {\ij}; } };
+	\draw 
+	(3) edge[below] node{10} (2)
+	(1) edge[left]  node{3}  (4)
+	(4) edge[above] node{9}  (5)
+	(2) edge[left]  node{3}  (5)
+	(5) edge[above] node{8}  (6)
+	(6) edge[right] node{9}  (3)
+	(6) edge[right] node{4}  (9)
+	(9) edge[above] node{5}  (8)
+	(7) edge[left]  node{8}  (4)
+	;
+	\end{tikzpicture}
+	#+END_LaTeX
+     2) 
+	#+BEGIN_LaTeX
+	\begin{tikzpicture}
+	\foreach \i 
+	in {0,1,2}{
+	\foreach[evaluate=\j as \ij using int(\j*3+\i+1)] \j 
+	in {0,1,2}{ \draw (\i, \j) node[draw] (\ij) {\ij}; } };
+	\draw 
+	(1) edge[below] node{1}  (2)
+	(1) edge[left]  node{2}  (4)
+	(6) edge[above] node{3}  (5)
+	(2) edge[right] node{4}  (5)
+	(2) edge[below] node{5}  (7)
+	(6) edge[right] node{6}  (3)
+	(6) edge[right] node{7}  (9)
+	(9) edge[above] node{8}  (8)
+	(7) edge[above] node{9}  (8)
+	(2) edge[below] node{10}  (3)
+	(5) edge[left]  node{11}  (8)
+	(7) edge[left]  node{12}  (4)
+	;
+	\end{tikzpicture}
+	#+END_LaTeX
+     3) Then try to find the tree with Prüfer code \(p=[56456569]\)!
+
+  3. Show that a graph is bipartite if and only if it contains only
+     circles of even length.
+  4. Consider the multiplicative groups $(\mathbb{Z}^*_{7},\cdot)$ and
+     $(\mathbb{Z}^*_{14},\cdot)$.  What is their order? Are they
+     cyclic?  If they are cyclic, find a generator! Are they
+     isomorphic? If they are isomorphic find an isomorphism between
+     them!
+  5. Let $(G,\cdot)$ be a group, $e \in G$ its identity element and
+     $f,g \in G$. Show that if $f^2 = e$, $g^6 = e$ and $fg = g^4f$,
+     then $g^3 = e$ and $fg = gf$.
+  6. In the dihedral group $D_n$ for $n=15$ and the elements of the
+     group $g_1=\varepsilon^6 \circ \tau^3 \circ \varepsilon^5 \circ
+     \tau^8 \circ \varepsilon^{13} \circ \tau^{21}$ and $g_2=\tau^2
+     \circ \varepsilon^{44} \circ \tau$ answer the following
+     questions:
+     #+ATTR_LATEX: :environment inparaenum
+     1) What is the order of $D_n$?
+     2) Simplify $g_1$, $g_2$ and $g_1\circ g_2$.
+     3) What are the sub\-group $\langle g_1 \rangle$, $\langle g_2
+        \rangle$, $\langle g_1\circ g_2 \rangle$ and $\langle g_1, g_2
+        \rangle$?
+     4) What is the order of the elements $g_1$, $g_2$ and $g_1\circ
+        g_2$?
+
+
+\vfill
+

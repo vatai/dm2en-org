@@ -1,7 +1,7 @@
 # -*- mode:org; mode: flyspell; -*-
 
-#+SETUPFILE: p-common.org
-#+INCLUDE: tikz/graph-common.org
+#+SETUPFILE: ../include/practice.h.org
+#+INCLUDE: ../tikz/graph-common.org
 
 #+TITLE: Discrete mathematics II. practice - Graphs
 #+SHORT_TITLE: Graphs
@@ -68,7 +68,7 @@ All graphs are simple and finite if not stated otherwise.
     not going over any line more than once (is there an Euler line
     or closed line in the graph).
 
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     \tikzset{node/.style={
     every node/.style={draw,thick,circle,fill=lightgray,
     inner sep=1pt,outer sep=1pt}}}
@@ -112,7 +112,7 @@ All graphs are simple and finite if not stated otherwise.
     }
     }
     \end{tikzpicture}
-    #+END_LaTeX
+    #+END_EXPORT
 23. Does a graph exist which contains a closed Euler line and has an
     even number of vertices and odd number of edges.
 24. Show, that each connected graph contains a walk which contains
@@ -122,7 +122,7 @@ All graphs are simple and finite if not stated otherwise.
     red and two blue edges.
 26. Do the following graphs contain a Hamilton cycle or a Hamilton path:
 
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     \begin{tikzpicture}[scale=0.65,inode]
     \foreach \s in {0+45,90+45,180+45,270+45}{
     \draw [-] 
@@ -166,7 +166,7 @@ All graphs are simple and finite if not stated otherwise.
     \node at ({\s+90}:3) {};
     }
     \end{tikzpicture}
-    #+END_LaTeX
+    #+END_EXPORT
 27. Can you jump with a knight on a $9\times9$ chess board, touching
     all the squares and returning to the starting one at the end.
 28. Show that a pack of dominoes can be arranged in a cycle.

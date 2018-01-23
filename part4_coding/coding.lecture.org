@@ -1,0 +1,21 @@
+# -*- mode:org; mode: flyspell; -*-
+
+#+SETUPFILE: ../include/lecture.h.org
+
+#+TITLE: Discrete mathematics II. - Coding
+#+SHORT_TITLE: Coding
+
+* Introduction to information theory
+** A model of communicotion
+*** Communication channel
+*** Entropy
+*** Jensen-inequality
+*** Upper bound of entropy
+* Variable-length codes
+** Source coding
+*** A general definition of coding
+*** Per-letter (or letter\-wise)
+* Error-correction codes
+** Assumptions
+** Error detection
+** Error correction

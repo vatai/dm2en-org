@@ -1,0 +1,416 @@
+# -*- mode:org; mode: flyspell; -*-
+
+#+SETUPFILE: ../include/lecture.h.org
+
+#+TITLE: Discrete mathematics II. - Univariate polynomials
+#+SHORT_TITLE: Polynomials
+
+* Univariate polynomials
+** Definitions 
+*** Ring of sequences over rings
+**** Set of all functions 				       :B_definition:
+     :PROPERTIES:
+    :BEAMER_env: definition
+    :END:
+     Let $X,Y$ be sets, then $Y^X$ is the set of all $f:X\to Y$
+     functions.  
+**** Set of infinite sequences					  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     $R^{\mathbb{N}}$ is the set of all functions $f:\mathbb{N} \to R$
+     and the elements of $R^{\mathbb{N}}$ can be considered as the set
+     of infinite sequences over $R$, and if $f\in R^{\mathbb{N}}$ \ie
+     $f:\mathbb{N}\to R$, then we write $f_i$ instead of $f(i)$ and
+     $f=(f_0, f_1, f_2, \ldots)$.
+*** Operations on infinite sequences over rings
+**** Operations on sequences over rings 		       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(R,+,\cdot)$ be a ring, $f = (f_0, f_1, \ldots) \in
+     R^{\mathbb{N}}, g = (g_0, g_1, \ldots ) \in R^{\mathbb{N}}$. We
+     define the following operations on $R^{\mathbb{N}}$ (then for
+     each $i\in\mathbb{N}$).
+     - $(f+g)_i = f_i + g_i$ and 
+     - If $h=f\cdot g$ then \[ h_k = \sum_{i+j=k}f_i g_j = \sum_{i=0}^k f_i
+       g_{k-i} = \sum_{j=0}^k f_{k-j} g_j\]
+*** Formal power series
+**** Formal power series				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     It can be shown, that if $R$ is a ring, then $(R^{\mathbb{N}}, +,
+     \cdot)$ is also a ring (where $+$ and $\cdot$ are the above
+     defined operations) and this is the ring of *formal power
+     series*.  Then instead of $R^{\mathbb{N}}$ we write $R[\![x]\!]$,
+     and if $f \in R[\![ x ]\!]$ then instead of $f=(f_0, f_1, f_2,
+     \ldots)$ we write \[ f = \sum_{i=0}^\infty f_i x^i \text{ or } f
+     = f_0 + f_1x^1 + f_2x^2 + \cdots \]
+*** Ring of univariate polynomials
+**** Ring of polynomials				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *ring of univariate polynomials in $x$ over $R$* is the
+     special sub\-ring of $R[\![x]\!]$ , which contains only elements
+     with finite non-zero elements, \ie $f=(f_0, f_1, \ldots, f_n, 0,
+     0, \ldots)$.  For this sub\-ring instead of $R[\![x]\!]$ we write
+     $R[x]$ and if $f$ is an element of $R[x]$ \ie $f$ is a
+     polynomial, and if $n$ is the largest index for which $f_n\neq 0$
+     (or $n=0$ if each $f_i=0$), then instead of $f = (f_0, f_1,
+     \ldots, f_n, 0, 0, \ldots)$ we write \[ f= f_0 + f_1x + f_2x^2 +
+     \cdots + f_nx^n \]
+*** Discussions
+**** $R[\![x]\!]$ is a ring
+     If $(f+g)_i = f_i + g_i$ all the properties of $(R,+)$ will also
+     be true for $(R[\![x]\!],+)$. If $f,g,h \in R[\![x]\!]$ then for
+     all indices $i\in \mathbb{N}$ \[\bigl( f ( g h ) \bigr)_\ell =
+     \sum_{i+j+k=\ell} f_i g_j h_k = \bigl( (f g) h \bigr)_\ell\]
+**** $R[x]$ is a sub\-ring of $R[\![x]\!]$
+     If $f=(f_0, f_1, \ldots, f_n, 0, 0, \ldots)$ and $g=(g_0, g_1,
+     \ldots, g_m, 0, 0, \ldots)$, then for every $k>m+n$ we have
+     $(fg)_k=0$. So the product of two polynomials is also a
+     polynomial \ie $R[x]$ is a sub\-ring of $R[\![x]\!]$.
+*** 
+    :PROPERTIES:
+    :BEAMER_env: definition
+    :END:
+**** Terms, coefficients and degree			       :B_definition:
+     Let $f \in R[x]$, $f=f_0 + f_1 x + \cdots + f_n x^n$ and $0\le i
+     \le n$.
+     - $f_i x^i$ is the *$i$ degree term*,
+     - $f_i$ is the *$i$ degree coefficient* and
+     - $f_0$ is the *constant term*.
+     If $f_n \neq 0$ then
+     - $n$ is the *degree* of $f$ written as $n=\deg(f)$ (or
+       $\delta(f)$ or $d(f)$),
+     - $f_n x^n$ is the *leading term* of $f$ (writtel as $LT(f)$),
+     - $f_n$ is the *leading coefficient* of $f$ (written as $LC(f)$).
+     - $f$ is a *monic polynomial* if $f_n$ is the element of identity
+       of $R$.
+*** 
+    Let $f \in R[x]$, $f=f_0 + f_1 x + \cdots + f_n x^n$.
+**** Zero polynomial					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - If $f_i=0$ for each $0 \le i \le n$, then $f=0$ is the empty
+       sum and is called the *zero polynomial*.
+     - The zero polynomial has *no leading term*, *no leading
+       coefficient* and the degree is *$\deg(0) = -\infty$*.
+**** Constant and linear polynomials, monomials 	       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - $f$ is a *constant polynomial* if $\deg(f) \le 0$.
+     - $f$ is a *linear polynomial* if $\deg(f) \le 1$.
+     - *Monomials* are polynomials of the for $f=f_i x^i$ \ie with
+       only one non-zero term.
+*** Polynomial function
+**** Polynomial function 				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be a ring, and $f = f_0 + f_1 x + \cdots + f_n x^n \in
+     R[x]$.  The polynomial function of the polynomial $f$ is
+     $\hat{f} : R \to R$, which maps each $r \in R$ to the element
+     obtained by substituting $x$ with $r$ in $f$ \ie $\hat{f}(r) =
+     f_0 + f_1 r + \cdots + f_n r^n$.
+**** Polynomial vs polynomial function 				  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     It might be hard to see the difference between $f$ and $\hat{f}$,
+     but it is an important one: $f$ is $\mathbb{N} \to R$ (\ie
+     sequence) while $\hat{f}$ is $R \to R$. \Eg if $f = x \in
+     \mathbb{Z}_5$ and $g = x^5 \in \mathbb{Z}_5$, then $f \neq g$ but
+     $\hat{f}(r) = r = r^5 = \hat{g}(r)$ for each $r$ by the
+     Euler--Fermat theorem which says that $x^p \equiv x \pmod{p}$ for
+     each prime $p$.
+** Euclidean division
+*** Euclidean division for polynomials
+**** Euclidean division \ie division with a remainder 		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be an integral domain with an identity element.  For each
+     $f,g \in R[x]$, so that $LC(g)$ is a unit in $R$, there exists a
+     unique $q,r \in R[x]$ so that $f=qf+r$ and $\deg(r) < \deg(g)$.
+**** Preliminaries for the proof 				    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $\deg(f) = n$, and $\deg(g) = m$, then $LC(f) = f_n$ and
+     $LC(g) = g_m$ is a unit (not a unit element) which means it is a
+     divisor of each element of $R$, \ie $\forall f_i \in R \quad
+     \exists q_j \in R$ so that $f_i = g_m q_j$ even for the identity
+     element $e$, implying that $\exists g_m^{-1}$.
+*** Proof of euclidean division
+**** Proof of existence
+     By induction on $n$.
+     - $n < m$ then with $q=0$ and $r = f$ we have $f = q g + r$.
+     - Suppose by induction the theorem is true for any polynomial
+       $f^*$ with smaller degree then the degree of $f$.  If $n \ge
+       m$, then we can choose $f^* = f - f_n g^{-1}_m x^{n-m} g$
+     - By the induction hypothesis there is a $q^*, r^* \in R[x]$,
+       with $\deg(r^*) < \deg(g)$, $q^* g + r^* = f^* = f - f_n
+       g_m^{-1} x^{n-m} g$ so $f = (q^* + f_n g_m^{-1} x^{n-m} )g +
+       r^*$ and we can choose $q = q^* + f_n g_m^{-1} x^{n-m}$ and $r
+       = r^*$.
+*** Proof of euclidean division
+**** Proof of uniqueness					    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Suppose that $f=qg+r = q^* g + r^*$ with $q \neq q^*$ or $r \neq
+     r^*$. Then \[(q - q^*) g = r^* - r\] which (since $g \neq 0$)
+     implies that $q \neq q^*$ and $r \neq r^*$, but then the
+     $\deg(LHS) \ge \deg(g)$ and $\deg(RHS) < \deg(g)$ which is not
+     possible.
+**** Remarks
+       The induction hypothesis says that for each $f^*$ with $\deg(f^*)
+       < n$ there is a $q^*, r^* \in R[x]$ so that $f^* = q^* g + r^*$
+       and $\deg(r^*) = \deg(g)$.
+       For the chosen $f^*$ in the first part of the proof the leading
+       terms cancel each other out: $f^*_n x^n = f_n x^n - f_n \cdot
+       g_m^{-1} x^{n-m} \cdot g_m x^{m} = f_n x^n - f_n x^n = 0$
+*** Corollaries
+**** Separation of root terms 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $f \neq 0$ and $c$ is a root of $f$, then for some $q \neq 0$
+     polynomial $f = (x-c) q$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Using euclidean division for polynomials with $g=x-c$ gives $f =
+     (x-c)q + r$, but since $f(c) = 0$ the left hand side is 0, and
+     since $g(c) = 0$ which implies $r = 0$.
+*** Corollaries
+**** Number of roots in a polynomial				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $f \neq 0$ then $f$ can have at most $\deg(f)$ number of roots.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We proceed by induction in $\deg(f)$. If $deg(f) = 0$, then $f$
+     is a constant and has $0$ roots.  If $\deg(f) > 0$, $c$ is a root
+     of $f$, then $f = (x-c) g$ so $1 + \deg(g) = \deg(f)$.  If $d$ is
+     also a root of $f$ then either $d = c$ or $d$ is a root of $g$
+     which makes the theorem true based on the induction hypothesis.
+*** Corollaries
+**** Sufficient condition for equality of polynomials		  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If two polynomials $f$ and $g$, with degree at most $n$, are
+     equal when substituted at $n+1$ different locations, \ie $f(c) =
+     g(c)$ for $n+1$ different values of $c$, then $f = g$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     The difference of the two polynomials $h(c) = f(c) - g(c)$ would
+     be $0$ for $n+1$ different \(c\)'s, \ie $h$ would have $n+1$ roots
+     which is a contradiction to the previous theorem because $\deg(h)
+     \le n$
+*** Corollaries
+**** Polynomials over fields 					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $R$ is a field, $R[x]$ then with the $\deg$ function on
+     non-zero polynomials forms a Euclidean domain.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     The trick is that all non-zero elements of a field, in this case
+     $R$, are units (\ie they can divide any element because in a
+     field $(R\setminus \{0\})$ is a Abelian group) so we can use the
+     previous theorem for *any* $g \neq 0$, further more $\deg(fg) =
+     \deg(f) + \deg(g) \ge \max\{ \deg(f), \deg(g) \}$.
+*** Pseudo-division
+**** Pseudo-division
+     Let $n=\deg(f) \ge \deg(g) = m$.  For euclidean division we don't
+     really need $g_m$ to be a unit, it is enough $g_m$ to be a
+     divisor of the leading coefficient in each step of division.
+     This can be achieved ``artificially'' by multiplying $f$ with
+     $g_m^{n-m+1}$ and then you can always find $q$ and $r$
+     polynomials so that: \[ g_m^{n-m+1} f = qg+r \] with $\deg(r) <
+     \deg(g)$.  Then $q$ is the *pseudo\-quotient* and $r$ is the
+     *pseudo\-remainder*.
+*** Horner scheme
+**** Horner scheme
+     By applying euclidean division for a polynomial $f$ and $g=x-c$,
+     we can obtain $\hat{f}(c)$ with only $\deg(f)-1$ multiplications.
+     From the division we get $f = (x-c) q + r$ and by substituting $x
+     \gets c$, the left hand side becomes $\hat{f}(c)$ and the right
+     side becomes $\hat{r}(c) = r \in R$ \ie a constant since $\deg(r)
+     < 1 = \deg(g)$ has to be true, there fore the remainder is
+     $\hat{f}(c)$.
+* Roots of polynomial
+** Algebraic derivative
+*** Algebraic derivative
+**** Algebraic derivative 				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be a ring, $f\in R[x]$ with $f = f_0 + f_1x + f_2x^2 +
+     \cdots + f_nx^n$.  The *algebraic derivative* of $f$ is $f' =
+     f_1 + 2 f_2 x + \cdots + n f_n x^{n-1}$ ($f'$ is read f prime).
+**** Properties
+     If $R$ is an integral domain with an identity element, then the
+     map $f \mapsto f'$ has the following properties:
+     1. if $f$ is a constant polynomial, then $f'=0$,
+     2. if $f=x$ then $f'=e$ (where $e$ is the element of unity),
+     3. $(f + g)' = f' + g'$ and
+     4. $(fg)' = fg' + f'g$
+     for any $f,g \in R[x]$.
+*** Division
+**** Divisors of the derivative 				  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be an integral domain with an identity element, $f,g \in
+     R[x]$ and $n \in \mathbb{N}^+$.  If $g^n \mid f$, then $g^{n-1}
+     \mid f'$.
+**** Proof							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Using induction we can prove $(g^n)' = ng^{n-1}g'$, for $n\in
+     \mathbb{N}^+$. If $f = g^nh$, then
+     \[ f' = ng^{n-1}g'h + g^nh = g^{n-1} (ng'h +gh') \]
+*** Corollary
+**** Square\-free polynomials
+     If $R$ is a field (then there is a gcd in $R[x]$), $f \neq 0$,
+     and $d = \gcd(f,f')$, then $q = f/d$ is a square\-free
+     polynomial, \ie there is no polynomial $g$ so that $g^k \mid q$
+     for $k\ge 2$.
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Suppose $g \in R[x]$, $n \in \mathbb{N}$ is the smallest integer
+     for which $g^n \mid f$.  If $n>0$, $g^n \mid f$ implies $g^{n-1}
+     \mid f'$ therefore $g^{n-1} \mid d$.  Then $g^2 \mid q$ would
+     imply $g^{n+1} \mid f$.
+** Multiple roots
+*** Multiple roots
+**** Remark
+     The number of roots depends on $R$ \eg if $f=x^2+1$, then $f$ has
+     no roots in $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, two roots
+     in $\mathbb{C}$, one root in $\mathbb{Z}_2$, no roots in
+     $\mathbb{Z}_3$ and two roots in $\mathbb{Z}_5$.
+**** Multiple roots					       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $R$ be an integral domain with an identity element, $f \in
+     R[x]$, $f \neq 0$, $n \in \mathbb{N}^+$ and $c \in R$.  *$c$ is a
+     root of $f$ with multiplicity $n$* if $(x-c)^n \mid f$ and
+     $(x-c)^{n+1} \nmid f$ (this is usually written as $(x-c)^n
+     \parallel f$), this is equivalent to $\hat{f}(c) = 0$, $f =
+     (x-c)^n g$ and $\hat{g}(c) \neq 0$.
+*** Multiplicity of roots of the derivative
+**** Multiplicity of roots of the derivative			  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $R$ be an integral domain with an identity element, $f \in
+     R[x]$, $n \in \mathbb{N}^+$ and $c \in R$ if a root of $f$ with
+     multiplicity $n$.  Then $c$ is a root of $f'$ with multiplicity
+     at least $n-1$, and if $\operatorname{char}(R) \nmid n$ (\eg
+     $\operatorname{char}(R) = 0$), then the multiplicity is exactly
+     $n-1$.
+**** Proof 							    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     If $f = (x-c)^n g$, then $f' = (x-c)^{n-1} \bigl( (x-c) g' + ng
+     \bigr)$.  From this it is obvious that $c$ is a root of $f'$ with
+     multiplicity at least $n-1$.  When substituting $x \gets c$ in
+     the expression in the parenthesis, we get $n\hat{g}(c)\neq 0$
+     which if $\operatorname{char}(R) \nmid n$, because $\hat{g}(c)
+     \neq 0$.
+*** Multiplicity of roots of the derivative
+**** Root with multiplicity more than $n-1$ in $f'$		  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     If the multiplicity of $c$ is $n$ for a polynomial $f$ it is
+     possible for it to have multiplicity $>n-1$ for $f'$: let
+     $R=\mathbb{Z}_p$ for a prime $p$, $a \in \mathbb{Z}_p$, $n \in
+     \mathbb{N}$, $p \nmid n$, then $f = (x-a)^p \bigl( (x-a)^n + 1
+     \bigr) \in R[x]$. Then $a$ is a root of $f$ with multiplicity
+     $n$, but the multiplicity for $f' = n(x-a)^{p+n-1}$ is $p+n-1$.
+* Finite fields
+** Irreducible polynomials
+*** Field extensions
+**** Quotient rings for polynomials
+     - Let $F$ be a field, then by the Euclidean reminder theorem
+       $F[x]$ is an Euclidean ring with $\varphi = \deg$.
+     - This implies that the multiples of a polynomial $f \in F[x]$
+       \ie $fF[x] = \{ fg : g \in F[x] \} = (f)$ is an ideal in $F[x]$.
+     - Let $\tilde{F} = F[x]/(f)$ be the quotient ring of $F[x]$
+       modulo $f$ \ie $\tilde{g} \in \tilde{F}$ is a residue class
+       modulo $f$, that is $\tilde{g} \subseteq F[x]$ is a set of
+       polynomials for so that $h \in \tilde{g} \iff g-h \in (f)$ \ie
+       $g-h$ is a multiple of $f$.
+*** Field extensions
+**** Representation of residue classes
+     - For any polynomial $g\in F[x]$, dividing by $f$ we get a unique
+       remainder $r$ so that $\deg(r)<\deg(f)$ and $g = f q + r$.
+     - Therefore, each residue class $\tilde{g} \in \tilde{F}$ can be
+       represented by a unique polynomial $r$ for which $\tilde{r} =
+       \tilde{g}$.
+     - The field $F$ can be embedded into ($F[x]$ as well as into)
+       $\tilde{F}$, so $\tilde{F}$ is an extension of $F$ (embedding
+       means there is a isomorphism between $F$ and the subset of
+       constant polynomials of in $\tilde{F}$ \ie a constant can also
+       be considered as a polynomial)
+*** Field extensions
+**** Finite fields
+     Let $n=\deg(f)$.
+     - From the previous, we can deduce, that the residue classed are
+       $(f)+r$, with $\deg(r)<n$.
+     - If $f$ is irreducible, then $\tilde{F}$ is a field.  Non-zero
+       constants are units both in $F$ and $F[x]$ (so $\exists
+       r^{-1}$), for a non-constant polynomial $r$ with $\deg(r)<n$,
+       $d=\gcd(f,r)$ is a unit (for simplicity we can assume $d=1$),
+     - Using the extended euclidean algorithm we can obtain two
+       polynomials $u,v \in F[x]$ so that $ru+fv=1$ therefor $fv=1-ru
+       \in (f)$ that is $ru \equiv 1 \pmod{f}$ \ie $u=r^{-1} \in
+       \tilde{F}$,
+     - So every non-zero element has an inverse there fore $\tilde{F}$
+       is a field.
+** Finite fields
+*** Fundamental theorems
+**** Existence of finite fields					  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     For each prime $p$ and positive integer $n$ there is a finite
+     field of $q=p^n$ elements.
+**** Number of elements of a finite field			  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     The number of elements of every finite fields has $q$ number of
+     elements, where $q$ is a prime power \ie $q=p^n$ for some prime
+     $p$ and positive integer $n$.
+**** Fundamental theorem of finite fields			  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     For a prime power $q$, all finite fields with $q$ elements are
+     isomorphic to each other, ergo we can talk about the field with
+     $q$ elements which is unique up to isomorphism and it is denoted
+     as $\mathbb{F}_q$.

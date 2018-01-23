@@ -1,4 +1,4 @@
-#+BEGIN_LATEX
+#+BEGIN_EXPORT latex
 
 \tikzset{node/.style={
 every node/.style={draw,thick,circle,fill=lightgray,
@@ -21,5 +21,4 @@ every loop/.style={every edge/.style,in=-45,out=45,looseness=5}
 
 \tikzset{node distance=50pt}
 
-#+END_LATEX
-
+#+END_EXPORT

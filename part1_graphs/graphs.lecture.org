@@ -1,9 +1,9 @@
 # -*- mode:org; mode: flyspell; eval: (org-sbe "sel") -*-
 
-#+SETUPFILE: l-common.org
-#+INCLUDE: tikz/graph-common.org
+#+SETUPFILE: ../include/lecture.h.org
+#+INCLUDE: ../tikz/graph-common.org
 # 
-#+STARTUP: latexpreview
+# #+STARTUP: latexpreview
 
 #+NAME: sel 
 #+BEGIN_SRC elisp :results silent :exports none
@@ -223,7 +223,7 @@
      :BEAMER_col: 0.5
      :END:
      #+ATTR_LATEX: :height 4cm
-     [[file:./tikz/graph1.tikz]]
+     [[file:../tikz/graph1.tikz]]
 **** Values 							      :BMCOL:
      :PROPERTIES:
      :BEAMER_col: 0.5
@@ -294,10 +294,10 @@
      #+BEGIN_CENTER
      $K_4$
      #+ATTR_LATEX: :height 2.5cm
-     [[file:tikz/k4.tikz]]
+     [[file:../tikz/k4.tikz]]
      $C_4$
      #+ATTR_LATEX: :height 2.5cm
-     [[file:tikz/c4.tikz]]
+     [[file:../tikz/c4.tikz]]
      #+END_CENTER
 **** $P_4$ and $S_4$ 						      :BMCOL:
      :PROPERTIES:
@@ -306,10 +306,10 @@
      #+BEGIN_CENTER
      $P_4$
      #+ATTR_LATEX: :height 2.5cm
-     [[file:./tikz/p4.tikz]] 
+     [[file:../tikz/p4.tikz]] 
      $S_4$
      #+ATTR_LATEX: :height 2.5cm
-     [[file:./tikz/s4.tikz]] 
+     [[file:../tikz/s4.tikz]] 
      #+END_CENTER
 **** Remarks						    :B_example:BMCOL:
      :PROPERTIES:
@@ -343,7 +343,7 @@
      :END:
       #+BEGIN_CENTER
       #+ATTR_LATEX: :width 2cm
-      [[file:./tikz/bp.tikz]]
+      [[file:../tikz/bp.tikz]]
       #+END_CENTER
 *** Cartesian product of graphs
 **** Cartesian product					       :B_definition:
@@ -413,7 +413,7 @@
      the complete graph:
   
      #+BEGIN_CENTER
-     [[file:./tikz/comp.tikz]]
+     [[file:../tikz/comp.tikz]]
      #+END_CENTER
 *** Deleting edges end vertices
 **** Deleting edges 					       :B_definition:
@@ -452,7 +452,7 @@
      :BEAMER_env: example
      :BEAMER_col: 0.45
      :END:
-     #+BEGIN_LaTeX
+     #+BEGIN_EXPORT latex
      \begin{tikzpicture}[node]
      \draw
      (0,0)   node (v1) {$v_1$}
@@ -471,7 +471,7 @@
      (v6) edge node[below] {f} (v4)
      ;
      \end{tikzpicture}
-     #+END_LaTeX
+     #+END_EXPORT
      - Open walk: $v_1$, $a$, $v_3$, $c$, $v_4$, $f$, $v_6$, $e$, $v_5$,
        $d$, $v_4$, $c$, $v_3$, $b$, $v_2$.
      - Closed walk: $v_1$, $a$, $v_3$, $c$, $v_4$, $f$, $v_6$, $e$, $v_5$,
@@ -491,7 +491,7 @@
      :BEAMER_env: example
      :BEAMER_col: 0.45
      :END:
-     #+BEGIN_LaTeX
+     #+BEGIN_EXPORT latex
      \begin{tikzpicture}[node]
      \draw
      (0,0)   node (v1) {$v_1$}
@@ -509,7 +509,7 @@
      (v3) edge node[below] {f} (v5)
      ;
      \end{tikzpicture}
-     #+END_LaTeX
+     #+END_EXPORT
      - Open walk: $v_1$, $a$, $v_3$, $d$, $v_4$, $e$, $v_5$, $f$, $v_3$,
        $b$, $v_2$.
      - Closed walk: $v_1$, $a$, $v_3$, $d$, $v_4$, $e$, $v_5$, $f$, $v_3$,
@@ -557,7 +557,7 @@
      :BEAMER_env: example
      :BEAMER_col: 0.45
      :END:
-     #+BEGIN_LaTeX
+     #+BEGIN_EXPORT latex
      \begin{tikzpicture}[node]
      \draw
      (0,0)   node (v1) {$v_1$}
@@ -575,7 +575,7 @@
      (v3) edge node[below] {f} (v5)
      ;
      \end{tikzpicture}
-     #+END_LaTeX
+     #+END_EXPORT
      - $v_1$, $a$, $v_3$, $b$, $v_2$, $c$, $v_1$ is a cycle, a closed
        trail, a closed walk.
      - $v_1$, $a$, $v_3$, $d$, $v_4$, $e$, $v_5$, $f$, $v_3$, $b$,
@@ -996,11 +996,9 @@
      2. Let $x$ and $y$ be any two non-adjacent vertices in $H$.
      3. Adding the edge between $x$ and $y$ introduces a Hamiltonian cycle, ergo
 	there is a Hamiltonian path $x=v_1,v_1,\ldots,v_n=y$. 
-     4. For each index $i$ ($2 \le i \le n$), consider the two possible
-	edges in $H$ from $v_1$ to $v_i$ and from $v_{i-1}$ to $v_n$.
 *** Proof (part 2)
 **** Proof of Ore's theorem
-     5. [@5] For each index $i$ in the range $2 \le i \le n$, consider the two
+     5. [@4] For each index $i$ in the range $2 \le i \le n$, consider the two
 	possible edges in $H$ from $v_1$ to $v_i$ and from $v_{i-1}$ to
 	$v_n$.
      6. At most one of these two edges can be present in $H$,
@@ -1119,8 +1117,7 @@
      :BEAMER_env: block
      :END:
      The TSP is equivalent to finding a Hamiltonian path in a graph.
-
-     #+BEGIN_LaTeX
+     #+BEGIN_EXPORT latex
      \begin{tikzpicture}
      \draw[node]
      (0,0)   node (v1) {$v_1$}
@@ -1137,11 +1134,12 @@
      (v2) edge node[right=20,below=0] {99} (v4)
      ;
      \end{tikzpicture}
-     #+END_LaTeX
+     #+END_EXPORT
 * Directed graphs
 ** Basic definitions
 *** Directed graph
-    You can imagine directed graphs as a set of dots connected with arrows.  
+    # You can imagine directed graphs as a set of dots connected with
+    # arrows.
 **** Directed graph					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -1164,7 +1162,7 @@
     Most of the definitions, \eg labels, weights \etc, from undirected
     graphs can be extended onto directed graphs by considering the
     corresponding undirected graph.
-**** Transpose, strictly parallel, $E^+(S)$ and $E^-(S)$,      :B_definition:
+**** Transpose, strictly parallel 			       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
@@ -1174,6 +1172,11 @@
        itself.)
      - The edges $e_1\neq e_2$, are *strictly parallel* if
        $\psi(e_1)=\psi(e_2)$.
+*** Other definitions 
+**** $E^+(S)$ and $E^-(S)$				       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      - Let $S\subseteq V$, then $E^+(S)$ the set of edges with tail
        endpoints in $S$ and head endpoints in $V\setminus S$, or
        $E^+(S)=\{e\in E : \exists v \exists v' ( v\in S \land v'\in V
@@ -1197,10 +1200,14 @@
        E : \exists v' (v'\in V \land (v',v)=\psi(e) )\} \rvert$ (sometimes
        $\deg^-(v)$ or $\delta^-(v)$), \ie the number of edges with
        head endpoint $v$.  If $d^-(v)=0$ then $v$ is a *source*.
-     - A in a finite directed graph, then \[ \sum_{v\in V}d^+(v) =
-       \sum_{v\in V}d^-(v) = \lvert E \rvert \] since each edge increases
-       both sums by one (by introducing one tail and one head
-       endpoint).
+*** Degrees and edges
+**** The connection between the sum of degrees and number of edges :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     - In a finite directed graph, \[ \sum_{v\in V}d^+(v) = \sum_{v\in
+       V}d^-(v) = \lvert E \rvert \] since each edge increases both
+       sums by one (by introducing one tail and one head endpoint).
 ** Isomorphic graphs
 *** Isomorphism for directed graphs
 **** Isomorphism for directed graphs			       :B_definition:
@@ -1240,6 +1247,7 @@
 
     Let $G=(\psi,E,V)$ be a directed graph, $E=\{e_1,e_2,\ldots,e_m\}$,
     $V=\{v_1,v_2,\ldots,v_n\}$.
+*** Matrix representation
 **** Incidence matrix
      - The *incidence matrix* of $G$ is an $n \times m$ matrix, where $1
        \le i \le n$, $1 \le j \le m$ and $a_{i,j}=1$ if $v_i$ is a tail
@@ -1293,18 +1301,16 @@
      - An *directed walk of length $n$ from $v$ to $v'$* in $G$ is a
        finite sequence $v_0,e_1,v_1,e_2,v_2,\ldots,v_{n-1},e_n,v_n$,
        where the $\psi(e_i)=(v_{i-1},v_i)$ for each $1\le i \le n$
-       with $v_0=v$ and $v_n=v'$.
-     - If $v=v'$ then it is a *closed directed walk*, otherwise it is
-       an *open directed walk*.
+       with $v_0=v$ and $v_n=v'$.  If $v=v'$ then it is a *closed
+       directed walk*, otherwise it is an *open directed walk*.
      - If all the edges differ in a directed walk, then it is a
-       *directed trail*.
-     - If the directed walk is closed, then it is a *closed directed
-       trail*, otherwise it is an *open directed trail*.
+       *directed trail*.  If the directed walk is closed, then it is a
+       *closed directed trail*, otherwise it is an *open directed
+       trail*.
      - A directed walk is a *directed path* if all the
-       $v_0,v_1,\ldots,v_n$ vertices are different.  
-     - A directed trail of at least one length is a *directed cycle*,
-       if all the vertices are different except the first and the last
-       one.
+       $v_0,v_1,\ldots,v_n$ vertices are different.  A directed trail
+       of at least one length is a *directed cycle*, if all the
+       vertices are different except the first and the last one.
 *** Strong connectivity    
 **** Strong connectivity				       :B_definition:
      :PROPERTIES:
@@ -1320,13 +1326,14 @@
        therefore it defines a classification of the vertices.
      - A directed sub\-graph induced by the vertices in one such class
        is a *strong component* of the directed graph.
-     - Unlike with undirected graphs, not all edges belong to a
-       component.
      - A graph is strongly connected if and only if all of it's
        vertices belong to one class, \ie it has only one strong
        component.
 *** Example
-    #+BEGIN_LaTeX
+    Unlike with undirected graphs, not all edges belong to a
+    component.
+
+    #+BEGIN_EXPORT latex
     \begin{tikzpicture}[node]
     \draw
     (0,0)     node (v1) {$v_1$} 
@@ -1342,8 +1349,8 @@
     (vp1) edge (vp2) (vp2) edge (vp3) (vp3) edge (vp1)
     ;
     \end{tikzpicture}
-    #+END_LaTeX
-*** Comparison between connected and strongly connected graphs
+    #+END_EXPORT
+
     The above graph is connected but not /strongly/ connected.
     $\{v_1,v_2,v_3\}$ and $\{v_1',v_2',v_3'\}$ are the two /strong/
     components of the graph, and the edge between $v_3$ and $v_3'$
@@ -1359,6 +1366,11 @@
        other vertices with in\-degree 1. (A directed tree can be
        defined as the traverse of the above defined graph.)
      - The vertex with in\-degree 0 is the *root* of a tree. 
+*** Directed trees
+**** Depth, height, parent, child, siblings		       :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      - Using induction on the length of a path, it can be shown, that
        there is exactly one (directed) path to each vertex from the
        root.  The length of this path is the *depth* of the vertex.
@@ -1369,7 +1381,7 @@
        they are *siblings*.
      - The vertices of a directed tree with out\-degree 0 are the
        *leaves*.
-*** Sub\-tree, rooted tree
+*** Sub\-tree
 **** Sub\-tree						       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -1379,6 +1391,7 @@
        induced by these vertices and is a directed tree with $v$ as
        its root, and this directed sub\-graph is the *directed
        sub\-tree* with $v$ as its root.
+*** Rooted tree
 **** Rooted tree					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -1407,22 +1420,23 @@
        [fn::This isn't consistent with the name ``tree'', but it's
        consistent with the way we think about them, a parent is above
        the children etc.]
-*** Dijkstra's algorithm
+*** Dijkstra's algorithm					:B_fullframe:
+    :PROPERTIES:
+    :BEAMER_env: fullframe
+    :END:
 **** Dijkstra's algorithm 					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
      Let $(\psi, E, V, w)$ be a directed weighted graph with $w(e)>0$
      for each $e\in E$, $s\in V$ and $T\subseteq V$.
-
      The following algorithm calculates $d(v)=$ the minimal weight of
      directed paths from $s$ to $v$, for each $v\in T$ (or $+\infty$
      if there is no path).
-  
      1. Initialization: $S\gets \emptyset$ ($S$ is the set of
         ``finished'' vertices), $H\gets \{s\}$, $H$ is the set of
         vertices ``being processed'') and $d(s)\gets 0$; $v\in
-        V\setminus \{v\}$ $d(v)\gets +\infty$.  , .)
+        V\setminus \{s\}$ $d(v)\gets +\infty$.
      2. Terminate?: If $T\subseteq S$ or $H=\emptyset$, then terminate.
      3. Expand $S$: Let $t\in H$ so that $d(t)=\min\{d(t'):t'\in H\}$.
         $S\gets S\cup \{t\}$ and $H\gets H\setminus \{t\}$, and for
@@ -1446,7 +1460,10 @@
      - Let $t\in H$ (chosen in the third step), and consider an
        arbitrary directed walk with weight $W$ from $s$ to $t$. We
        will show, that $W\ge d(t)$.
-*** Proof of Dijkstra's algorithm
+*** Proof of Dijkstra's algorithm				:B_fullframe:
+    :PROPERTIES:
+    :BEAMER_env: fullframe
+    :END:
 **** Proof part 2
      - Let $t'$ be the first vertex on the walk which is not in $S$
        and $W'$ the weight of the sub\-walk from $s$ to $t'$.  

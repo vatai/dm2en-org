@@ -1,4 +1,4 @@
-#+OPTIONS: H:3 -:t tags:nil ^:nil toc:t
+#+OPTIONS: H:3 -:t tags:nil ^:nil toc:nil
 #+STARTUP: beamer
 #+BEAMER_THEME: Montpellier
 #+BEAMER_COLOR_THEME: beaver

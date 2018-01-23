@@ -1,0 +1,314 @@
+# -*- mode: org; mode: flyspell -*-
+#+SETUPFILE: inc-test.org
+# Set no title
+#+BIND: org-latex-title-command ""
+
+* Polynomials
+  1. (Multiple roots) What are the multiple roots of : $f = x^5 -
+     5x^3 + 5x + 2 \in\C[x]$.
+
+     Solution: find $d=\gcd(f,f')$, it has only the multiple roots.
+     If $\delta(d)$ is near $\delta(f)$ then you should try to find
+     the roots of $f/d$.  Look for the calculations of this problem in
+     [[http://compalg.inf.elte.hu/~zslang/PolinomokAlapjaiPeldatar.pdf][this Hungarian PDF]] (by Láng Zsuzsa).  It is problem 2.5-18.
+  2. (Field extension) Let $f=x^3 -2x^2 +2 \in \Z_3[x]$, do the
+     following calculations in $\Z_3[x]/(f)$: $x^{-1}$ and $x^{-3}
+     \cdot (x^8+2x^2)$.  Is $\Z_3[x]/(f)$ a field?
+
+     Solution: The elements of $\Z_3[x]/(f)$ are residue classes of
+     $\Z_3[x]$ $\bmod f$, \ie polynomials with coefficients $\bmod 3$,
+     so $f=x^3+x^2+2$.
+
+     $x^3+x^2+2 \equiv 0 \pmod{f}$, so $x^3 \equiv 2x^2 +1 \pmod{f}$.
+     We know that each residue class in $\Z_3[x]/(f)$ can be
+     represented with a polynomial of at most two degrees, and so can
+     the inverse of $x$ be represented, \ie suppose $x^{-1}=Ax^2+Bx+C$
+     and solve the following congruence for $A$, $B$ and $C$:
+     \begin{align*}
+     x\cdot x^{-1} = x\cdot (Ax^2 + Bx + C) &\equiv 1 \pmod{f}\\
+     Ax^3 + Bx^2 + Cx &\equiv 1 \pmod{f}\\
+     A(2x^2+1) +Bx^2 + Cx & \equiv 1 \pmod{f}\\
+     (2A+B)x^2 + Cx + A & \equiv 1 \pmod{f}
+     \end{align*}
+     From here we have $A=1$, $C=0$ and $B=1$ since $2A+B=0$, and so
+     $x^{-1}=x^2+x$.
+
+     Notice that $x^{-3}\cdot(x^8+2x^2)=x^5+2x^{-1}$ so:
+     \begin{align*}
+     x^{-3}\cdot(x^8+2x^2)&= (2x^2+1)\cdot x^2 + 2\cdot(x^2+x)\\
+     &=2x^4+x^2-x^2-x\\
+     &=4x^3+2x-x\\
+     &=x^3+x\\
+     &=2x^2+x+1
+     \end{align*}
+  3. (Polynomials over $\Z$ and $\Q$) 
+     1. Find the rational roots of $f = x^5 - 4x^4 - 6x^3 + 16x^2
+        +29x + 12$.
+
+	Solution: Use the rational root test and the Horner method,
+        calculations can be found in [[http://compalg.inf.elte.hu/~zslang/PolinomokAlapjaiPeldatar.pdf][the Hungarian PDF]] problems
+        2.6-25:
+        http://compalg.inf.elte.hu/~zslang/PolinomokAlapjaiPeldatar.pdf
+
+     2. Factorise the polynomial $f = 20x^4 + 26x^3 + 65x^2 + 91$ over
+        $\Z$ and $\Q$.
+	
+	Solution: *$f$ is irreducible* because of the
+        Schönemamann-Eisenstein theorem for $p=13$ since $p \nmid 20$,
+        $p \mid 26$, $p \mid 65$, $p \mid 91$ but $p^2 \nmid 91$
+        therefore $f$ is irreducible over $\mathbb{Z}[x]$ and
+        $\mathbb{Q}[x]$.
+
+	About the S-E theorem:
+        https://en.wikipedia.org/wiki/Eisenstein%27s_criterion
+  4. (Lagrange interpolation, secret sharing): What is the constant
+     term of the $f\in\Z_{13}[x]$ polynomial with degree at most 3, if
+     $\hat{f}(1)=2$, $\hat{f}(2)=3$, $\hat{f}(3)=5$, and
+     $\hat{f}(4)=7$?
+     
+     Solution: for $\hat{f}(x_i) = y_i$ (where $i=1,2,\ldots,n$) then
+     \[ l_{x_i}(x) = \prod_{x_j \neq x_i } \frac{x-x_j}{x_i-x_j} =
+     \prod_{j=1}^{i-1} \frac{x-x_j}{x_i-x_j} \cdot \prod_{j=i+1}^{n}
+     \frac{x-x_j}{x_i-x_j} \text{ and finally: } f(x) = \sum_{i=1}^{n}
+     d_i \cdot l_{x_i} (x) \] So:
+     - $l_1=\frac{x-2}{1-2}\cdot \frac{x-3}{1-3}\cdot
+       \frac{x-4}{1-4} = 2x^3+8x^2+4$
+     - $l_2=\frac{x-1}{2-1}\cdot \frac{x-3}{2-3}\cdot
+       \frac{x-4}{2-4} = 7x^3+9x^2+3x+7$
+     - $l_3=\frac{x-1}{3-1}\cdot \frac{x-2}{3-2}\cdot
+       \frac{x-4}{3-4} = 6x^3+10x^2+6x+4$
+     - $l_4=\frac{x-1}{4-1}\cdot \frac{x-2}{4-2}\cdot
+       \frac{x-3}{4-3} = 11x^3+12x^2+4x+12$
+     Finally $f=2\cdot l_1 + 3\cdot l_2 + 5\cdot l_3 + 7\cdot l_4 =
+     2x^3+8x^2+2x+3$, \ie the constant term of $f$ is $3$.
+
+     Important: here the ``division'' is actually multiplication with
+     the modular inverse. As an example
+     \begin{align*} 
+     l_3 &= \frac{x-1}{3-1} \cdot \frac{x-2}{3-2} \cdot \frac{x-4}{3-4} 
+     = \frac{x^3-7\,x^2+14\,x-8}{-2} =
+     6 \cdot (x^3-7\,x^2+14\,x-8)
+     = 6x^3+10x^2+6x+4
+     \end{align*}
+     You get the $6$ from $\frac{1}{-2}$ because $\frac{1}{-2}$ is
+     $(-2)^{-1} \equiv 6 \pmod{13}$ since $-2 \cdot (-2)^{-1} \equiv 1
+     \equiv -12 = -2 \cdot 6 \pmod{13}$.
+
+     You can check that we got the right $f$ by verifying that
+     $\hat{f}(1)=2$, $\hat{f}(2)=3$, $\hat{f}(3)=5$, and
+     $\hat{f}(4)=7$ is true! 
+* Coding
+  1. (Huffmann code) We did this from practice.  An example problem
+     would sound like this.  Construct the binary Huffman code for the
+     following distribution $0.34, 0.18, 0.17, 0.16, 0.15$ and compare
+     the average word length with the entropy.
+  2. (Linear code): 
+     1. The first step is always to get $G=(\begin{smallmatrix}
+        \mathbb{I} \\ P \end{smallmatrix})$
+	#+BEGIN_LATEX
+	\[
+        G=
+	\begin{pmatrix} 
+	1&0&0\\ 
+	0&0&1\\ 
+	1&1&1\\ 
+	0&1&1\\ 
+	1&1&0\\ 
+	1&0&1\\ 
+	1&1&1 
+	\end{pmatrix} 
+	\rightarrow
+	\begin{pmatrix} 
+	1&0&0\\ 
+	0&0&1\\ 
+	1&1&0\\ 
+	0&1&0\\ 
+	1&1&1\\ 
+	1&0&1\\ 
+	1&1&0 
+	\end{pmatrix} 
+	\rightarrow
+	\begin{pmatrix} 
+	1&0&0\\ 
+	0&0&1\\ 
+	0&1&0\\ 
+	1&1&0\\ 
+	0&1&1\\ 
+	1&0&1\\ 
+	0&1&0 
+	\end{pmatrix} 
+	\rightarrow
+	\begin{pmatrix} 
+	1&0&0\\ 
+	0&1&0\\ 
+	0&0&1\\ 
+	1&0&1\\ 
+	0&1&1\\ 
+	1&1&0\\ 
+	0&0&1 
+	\end{pmatrix} 
+	=G'
+	\]
+	#+END_LATEX
+	To get from $G$ to $G'$ we add the second column to the third
+        column, then the second to the first, and finally swap the
+        second and third columns.  $G'$ has the right form so the
+        first question, what is $H$ can be answered by $H =
+        (\begin{smallmatrix}-P & \mathbb{I} \end{smallmatrix})$
+	So now
+        #+BEGIN_LATEX
+	\[
+	-P = P =
+	\begin{pmatrix} 
+	1&0&1\\
+	0&1&1\\
+	1&1&0\\
+	0&0&1\\
+	\end{pmatrix}
+	\text{ so }
+	H = 
+	\begin{pmatrix} 
+	1&0&1&1&0&0&0\\
+	0&1&1&0&1&0&0\\
+	1&1&0&0&0&1&0\\
+	0&0&1&0&0&0&1\\
+	\end{pmatrix}
+	\]
+	#+END_LATEX
+	$P = -P$ because we are in $\mathbb{Z}_2$.
+	
+	The parameters of the code are $n=7$, $k=3$, $m=n-k=4$, $q=2$.
+        The input words are of form $u=[u_1,u_2,u_3]^T \in
+        \mathbb{Z}_2^3$ and the number of code\-words is $\lvert
+        \mathbb{Z}_2^3 \rvert = 2^3 = 8$ (in general $q^k$).  
+
+	Now we calculate $d$! $d$ is the smallest number of columns in
+        $H$ which give the sum $0$ (\ie which are linearly dependant).
+        If the columns of $P$ are all different then finding $d$ is
+        easy, we look at the columns of $P$, and find the one with the
+        least number of non-zero elements, and the number of non-zero
+        elements will be $d-1$.  The first, second and third columns
+        of $P$ have 2, 2 and 3 non-zero elements, so $d-1$ is the
+        minimum of these numbers (\ie $2$) so $d=3$.  This determines
+        the error detection capability which is $d-1=2$, and error
+        correction capability $\lfloor \frac{d-1}{2} \rfloor=1$.  (If
+        the columns of $P$ are not all different, then $d=2$)
+	
+	Encoding: To encode $u=[0 1 1]^T$, we simply calculate $v =
+        G'u = [0 1 1 1 0 1 1]^T$.  (Because of the identity 
+
+	Decoding (without error): To decode $v_1 = [1101100]^T$, we
+        calculate $Hv_1=s_1$.  For $v_1$, $s_1=0$ so there are no
+        errors, and $u_1 = [110]^T$ (the first three bits, because of
+        the identity in $G'$).
+	
+	Decoding (with error): To decode $v_2 = [1000111]^T$ we
+        calculate $Hv_2 = s_2$ which is $s_2 = [1101]^T$. Since $s_2
+        \neq 0$, so there is an error. $s_2$ is the same as the third
+        column of $H$ so the error was on the third bit, and the
+        correct version of $v_2$ is $[1010111]^T$ so we decode it to
+        $[101]^T$.
+     2. Find the error check matrix $H$ of the generator matrix \[
+        G=\begin{pmatrix}
+        1&0&0\\ 1&1&1\\ 0&1&0\\ 0&0&1\\ 1&0&0\\ 1&1&1\\ 0&1&0
+        \end{pmatrix} \in\mathbb{Z}_2 \].  How many code words are
+        there? What is the distance, error detection and correction
+        capability of the code?  How to encode the message $u=110$?
+        How to decode $v=1011100$?
+	
+	Solution: Allowed operations
+	- Permutation of the rows of $G$, so that the inverse
+          permutation has to be applied to the columns of $H$.
+	- Column transformation (\ie addition) of $G$.
+	First do the $(4\,3\,2)$ row permutation in $G$ (4. row goes
+        in place of the 3., the 3. in place of the 2. and 2. in palace
+        of the 4.).  \[ G_1=\begin{pmatrix}
+        1&0&0\\ 0&1&0\\ 0&0&1\\ 1&1&1\\ 1&0&0\\ 1&1&1\\ 0&1&0
+        \end{pmatrix} \] This matrix has the desired form
+        $G_1=(\begin{smallmatrix}\mathbb{I}\\P\end{smallmatrix})$ and
+        from here we can get the error check matrix
+        $H_1=(\begin{smallmatrix}-P & \mathbb{I}\end{smallmatrix})$
+        (with permuted columns).  \[ H_1=\begin{pmatrix}
+        1&1&1&1&0&0&0\\ 1&0&0&0&1&0&0\\ 1&1&1&0&0&1&0\\ 0&1&0&0&0&0&1
+        \end{pmatrix} \] Now we do the inverse permutation $(2\,3\,4)$
+        on the columns of $H_1$ to obtain the check matrix
+        corresponding to the original $G$: \[ H=\begin{pmatrix}
+        1&1&1&1&0&0&0\\ 1&0&0&0&1&0&0\\ 1&0&1&1&0&1&0\\ 0&0&1&0&0&0&1
+        \end{pmatrix} \] 
+
+	The code has $8$ elements, because $k=3$ (the length of the
+        message \ie input), $n=7$ (the length of the code words \ie
+        output), $q=2$ (the number of elements in the alphabet), and
+        so the number of code\-words is always $q^k=2^3=8$.
+	
+	The distance of the code $d$ the least number of linearly
+        dependent column vectors of $H$.  The first three columns of
+        $H$ are independent (the remaining 4 are also independent
+        because they make an identity matrix), but the sum of columns
+        columns 1, 3 and 5 is a zero vector, so they are linearly
+        dependent, there are 3 dependent columns but not less so
+        $d=3$.  From here, the code is exactly $d-1=2$ error detecting, and 
+        exactly $\lfloor (d-1)/2\rfloor = 1$ error correcting.
+
+	$u=110$ encoded is $Gu=1010101$. To decode $v=1011100$ we
+        first have to check if it is a valid code word: if $Hv=0$ the
+        the first, third and the forth bits (in this order) are the
+        bits of the decoded message.  But we have $s=Hv=1011$ which is
+        not a zero vector.  Now we use syndrome decoding, \ie $s=1011$
+        is the 3rd column of $H$, so the 3rd bit is damaged, \ie
+        instead of $1011100$ the message $1001100$ was sent.  The 1st,
+        3rd and 4th bit of this code word give us the original,
+        decoded message $101$ !
+	
+* COMMENT Code
+     #+BEGIN_SRC maxima :results verbatim
+     modulus: false;
+     l3n : (x-1) * (x-2) * (x-4);
+     l3d : (3-1) * (3-2) * (3-4);
+     print(expand(l3n));
+     print(l3d);
+     tex(expand(l3n));
+     #+END_SRC
+
+     #+RESULTS:
+     :  3      2
+     : x  - 7 x  + 14 x - 8 
+     : - 2 
+     : $$x^3-7\,x^2+14\,x-8$$
+* COMMENT Letters
+  Dear Students, 
+
+  The test tomorrow will start from 8:15 in 0-804.
+
+  I've been getting a lot of questions about Schönemann-Eisenstein theorem and the Lagrange interpolation.  I've updated the sample test and I hope you find your answers there!  If not, contact me via email!
+
+  Qestion 6 is different then what we did in class. I will soon update that as well.
+
+  Br,
+  Emil
+
+* COMMENT Leftover
+     2. Határozzuk meg a \[ G=\begin{pmatrix}
+        0&0&1\\ 1&1&1\\ 0&1&0\\ 1&1&0\\ 0&0&1\\ 1&1&1\\ 0&1&0
+        \end{pmatrix} \] generátor mátrixhoz tartozó hiba\-ellenőrző
+        $H$ mátrixot.  
+
+	Megoldás: Hasonlóan mint az előző feladatnál végezzük el
+        először a $(1\,3\,2\,4)$ permutációt $G$ sorain: \[
+        G_1=\begin{pmatrix}
+        1&1&0\\ 0&1&0\\ 0&0&1\\ 1&1&1\\ 0&0&1\\ 1&1&1\\ 0&1&0
+        \end{pmatrix} \] Majd adjuk a második oszlophoz az elsőt.
+        \[G_2=\begin{pmatrix}
+        1&0&0\\ 0&1&0\\ 0&0&1\\ 1&0&1\\ 0&0&1\\ 1&0&1\\ 0&1&0
+        \end{pmatrix} \] Innen \[ H_2=\begin{pmatrix}
+        1&0&1&1&0&0&0\\ 0&0&1&0&1&0&0\\ 1&0&1&0&0&1&0\\ 0&1&0&0&0&0&1
+        \end{pmatrix} \] A sor permutációk $(4\,2\,3\,1)$ inverzét
+        alkalmazva az oszlopokra kapjuk, hogy \[ H_1=\begin{pmatrix}
+        1&1&0&1&0&0&0\\ 1&0&0&0&1&0&0\\ 1&0&0&1&0&1&0\\ 0&0&1&0&0&0&1
+        \end{pmatrix} \] Mivel a $G_2$ ellő\-állításához alkalmazott
+        oszlop transzformáció miatt $G_1$ és $G_2$ által generált
+        altér megegyezik, ezért $H_1=H$ egy ellenőrző mátrixa $G$-nek.
+
+	Megjegyzés: most $d=2$ ugyanis $H$ 3. és 7. megegyezik, így
+        összegük $0$, azaz összefüggőek.
+

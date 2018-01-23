@@ -1,0 +1,45 @@
+# -*- mode: org; mode: flyspell -*-
+#+INCLUDE: inc-test.org
+# Set no title
+#+BIND: org-latex-title-command ""
+#+TITLE:
+
+* Discrete mathematics 2. Second test 2016-05-26
+  #+LATEX: \begin{multicols}{2}
+  1. Find the roots and their multiplicities using $\gcd(f,f')$ of $f
+     = x^6 -15x^4 +75x^2 -125 \in\C[x]$.
+  2. Let $f=x^3 +3x +2\in\Z_5[x]$.  Calculate the following
+     polynomials in $\Z_5[x]/(f)$ (\ie $\bmod f$): $x^{-2}$ and
+     $(x^4+4)$.
+  3. Using the rational root test find the roots of $f = 3x^4 -8x^3
+     -19x^2 +76x -60$ and using the Schönemann-Eisenstein theorem
+     prove that $g=6x^5 -14x^3 +35x^2 +49x +28$ is an irreducible
+     polynomial in $\Q[x]$ and $\Z[x]$.
+  4. Use Lagrange interpolation to find $f\in\Z_5[x]$ the polynomial
+     for which $\hat{f}(2)=3$, $\hat{f}(3)=1$, és $\hat{f}(5)=6$.
+  5. Construct a Huffman code with $r=3$ for the following
+     distribution: $0.51, 0.14, 0.14, 0.11, 0.06, 0.04$.  Calculate
+     $\overline{\ell}$ and $H_r(p_1,p_2,\ldots,p_n)$.
+  6. Find the error check matrix $H$ of the generator matrix $G$.  How
+     many elements does the code have?  What is the code distance $d$,
+     error detection and correction capability of the code?  How would
+     you encode the message $u=011$?  How would you decode the bit
+     sequence $v=1101101$?
+     #+BEGIN_LATEX
+     \[ G=  \begin{pmatrix} 
+     1 & 0 & 0 \\
+     0 & 1 & 0 \\
+     0 & 1 & 1 \\
+     1 & 1 & 1 \\
+     1 & 1 & 0 \\
+     0 & 1 & 1 \\
+     1 & 0 & 1 
+     \end{pmatrix}
+     \]
+     #+END_LATEX
+  7. Let $p=7$ and $f = x^3 + 3x^2 + x + 1 \in \mathbb{Z}_p$ do the
+     following calculations in $\Z_p[x]/(f)$: $x^{-1}$ and $x^{-3}
+     \cdot (x^8+2x^2)$.
+  #+LATEX:  \end{multicols}\vfill
+
+

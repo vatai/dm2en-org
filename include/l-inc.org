@@ -1,0 +1,30 @@
+#+AUTHOR: Blah
+#
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [american]
+#
+# Setup tikz package for both LaTeX and HTML export:
+#+LATEX_HEADER: \usepackage{tikz}
+#+PROPERTY: header-args:latex+ :packages '(("" "tikz"))
+#
+#+PROPERTY: header-args:latex+ :imagemagick (by-backend (latex nil) (t "yes"))
+#+PROPERTY: header-args:latex+ :exports results :fit yes
+#
+#+REVEAL_THEME: beige
+#
+# beige.css black.css blood.css league.css moon.css night.css
+# serif.css simple.css sky.css solarized.css source/ template/
+# white.css
+* COMMENT setup
+
+#+name: setup
+#+begin_src emacs-lisp :results silent :exports none
+  (defmacro by-backend (&rest body)
+    `(case (if (boundp 'backend) (org-export-backend-name backend) nil) ,@body))
+#+end_src
+
+
+
+# Local variables:
+# eval: (org-sbe "setup")
+# End:
