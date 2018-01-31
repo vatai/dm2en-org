@@ -1,0 +1,5 @@
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[]{beamerarticle}
+#+include: coding.lecture.org
+#+OPTIONS: toc:t

@@ -3,10 +3,6 @@
 #+BEAMER_THEME: Montpellier
 #+BEAMER_COLOR_THEME: beaver
 
-# #+OPTIONS: toc:t
-# #+LATEX_CLASS: article
-# #+LATEX_CLASS_OPTIONS: [a4paper]
-# #+LATEX_HEADER: \usepackage[]{beamerarticle}
 
 #+AUTHOR: Emil Vatai
 #+EMAIL: vatai@inf.elte.hu
