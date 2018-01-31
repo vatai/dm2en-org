@@ -2,3 +2,5 @@ ignored
 *~
 *.tex
 *.pdf
+_minted*
+ltximg
