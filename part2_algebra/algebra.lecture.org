@@ -658,46 +658,31 @@
      with no /zero divisors/ is an *integral domain* \ie in an
      integral domain $a\neq0 \land b\neq0 \Leftrightarrow ab\neq 0$.
 *** Relation between different kinds of rings
-    #+BEGIN_SRC ditaa :file rings.eps :eps t :cmdline
-                                 +-------+  
-                                 | Rings |   
-                                 +---+---+
-                                     ^
-                                     |
-                         +-----------+------------+                           
-                         |                        |  
-      +------------------+----------+   +---------+---------+                   
-      | Rings with no zero divisors |   | Commutative rings |
-      +------------------+---+------+   +---------+---------+
-                         ^   ^                    ^
-                         |   |                    |
-                         |   |           +--------+--------+
-                         |   +-----------+ Integral domain |
-                         |               +--------+--------+
-                         |                        ^
-                         |                        |
-                         |               +--------+--------+
-                         |               | Integral domain |
-                         |               |   with identity |
-                         |               +--------+--------+
-                         |                        ^
-                         |                        |
-                         |             +----------+----------+
-                         |             | Gaussian ring (UFD) |
-                         |             +----------+----------+
-                 +-------+----+                   ^
-                 | Skew field |                   |
-                 +-------+----+           +-------+--------+
-                         ^                | Euclidean ring |
-                         |                +-------+--------+
-                         |                        ^
-                         |                        |
-                         +-----------+------------+
-                                     |
-                                 +---+---+
-                                 | Field |
-                                 +-------+
-    #+END_SRC
+    #+BEGIN_EXPORT latex
+      \begin{tikzpicture}
+        \path[every node/.style={draw,scale=0.9,node distance=0.3}] 
+        node (R) {Rings}
+        node[below left=of R,text width=3cm] (NZ) {Rings with no zero divisors} 
+        node[below =0.8 of NZ]               (SF) {Skew field}
+        node[below right=of R]               (CR) {Commutative rings}
+        node[below =of CR]                   (ID) {Integral domains}
+        node[below =of ID,text width=3.5cm]  (IDI) {Integral domains with identity element}
+        node[below =of IDI,text width=4cm]   (UFD) {Unique factorization domain (Gaussian ring)}
+        node[below =of UFD,text width=4cm]   (ED) {Euclidean domain/ring}
+        node[below =5.3 of R]                (F) {Field}
+        ;
+        \draw[->] (NZ.east) -| (R.225);
+        \draw[->] (CR.west) -| (R.315);
+        \draw[->] (ID) -- (CR);
+        \draw[->] (ID.west) -| (NZ.315);
+        \draw[->] (SF) -- (NZ);
+        \draw[->] (IDI) -- (ID);
+        \draw[->] (UFD) -- (IDI);
+        \draw[->] (ED) -- (UFD);
+        \draw[->] (F) -| (ED);
+        \draw[->] (F) -| (SF);
+      \end{tikzpicture}
+    #+END_EXPORT
 *** Examples
 **** Zero ring
      The trivial ring $R=\{0\}$ which contains only the zero element
