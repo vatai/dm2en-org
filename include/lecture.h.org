@@ -2,6 +2,7 @@
 #+STARTUP: beamer
 #+BEAMER_THEME: Montpellier
 #+BEAMER_COLOR_THEME: beaver
+#+BEAMER_HEADER: \setbeamercolor{math text}{fg=black!15!blue}
 
 
 #+AUTHOR: Emil Vatai
