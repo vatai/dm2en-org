@@ -8,14 +8,14 @@
 * Groups
 ** Definitions and examples
 *** Reminder
-**** Grupoid						       :B_definition:
+**** Groupoid                                                 :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     $(G,\cdot)$ is a *groupoid* if $G$ is a set and $\cdot : G \times
-     G \to G$ binary operation \ie $\forall a,b\in G \exists c \in G$
-     so that $c = a\cdot b$.  This property is called /closure/ under
-     the operation $\cdot$.
+     $(G,\cdot)$ is a *groupoid* (or *magma*) if $G$ is a set and
+     $\cdot : G \times G \to G$ is a binary operation \ie $\forall
+     a,b\in G \exists c \in G$ so that $c = a\cdot b$.  This property
+     is called /closure/ under the operation $\cdot$.
 **** Semigroup						       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
@@ -29,94 +29,195 @@
      :BEAMER_env: definition
      :END:
      $(G,\cdot)$ is a *monoid* if it is a semigroup and it has an
-     /element of unity/ (sometimes referred to as the /neutral
-     element/, /identity element/, /unit element/, /zero element/) \ie
-     $\exists e \in G$ so that $\forall g\in G e\cdot g=g=g\cdot e$.
-**** Group
+     /neutral element/ (sometimes referred to as the /identity
+     element/, or /zero element/) \ie $\forall g\in G$ $\exists e \in
+     G$ so that $e\cdot g=g=g\cdot e$.
+**** Group                                                     :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
      A monoid $(G,\cdot)$ with the identity element $e$ is a *group*
-     if $\forall g \in G \exists g^{-1}$ so that $gg^{-1} = g^{-1}g =
-     e$.
+     if $\forall g \in G \exists g^{-1} \in G$ so that $g \cdot g^{-1}
+     = g^{-1} \cdot g = e$.
 **** Abelian group					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      A group is an *Abelian group* if the operation is /commutative/
-     \ie $\forall a,b \in G a\cdot b = b \cdot a$.
-*** Homo\-morphisms
-**** Structure (or operation) preserving functions	       :B_definition:
+     \ie for every $a,b \in G$ $a$ and $b$ /commute/: $a\cdot b = b
+     \cdot a$.
+*** More detailed identity
+**** Left and right identities                                 :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     Let $(G,\cdot)$ and $(G',\otimes)$ be two grupoids, and
-     $\varphi:G\to G'$.  The map (\ie function) $\varphi$ is structure
-     preserving if for each $a,b \in G$: \[ \varphi(a\cdot b) =
-     \varphi(a) \otimes \varphi(b) \]
+     Let $(G,\ast)$ be a groupoid.
+     - If $\exists e_L \in G$ such that $\forall g \in G : e_L \ast g
+       = g$, then $e_L$ is a *left identity* (left neutral element).
+     - If $\exists e_R \in G$ so that $\forall g \in G : g \ast e_R =
+       g$, then $e_R$ is a *right identity* (right neutral element).
+     - If $e$ is both a left and right identity, then $e$ is an
+       identity.
+**** The identities are unique                                    :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\ast)$ be a groupoid.  If $e_L$ is a left and $e_R$ is a
+     right identity in $G$ then $e_L = e_R$.
+**** Proof: $e_R = e_L \ast e_R = e_L$.                             :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+*** More detailed inverse
+**** Left and right inverse                                    :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G,\ast)$ be a monoid with the identity $e$ and $g\in G$.
+     - If $\exists g_L \in G$ such that $g_L \ast g = e$ then $g_L$ is
+       a *left inverse* of $g$.
+     - If $\exists g_R \in G$ such that $g \ast g_R = e$ then $g_R$ is
+       a *right inv.* of $g$.
+     - If $g'$ is both a left and a right inverse of $g$ then it is
+       (simply) the inverse of $g$.
+**** The inverse is unique                                        :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $(G,\ast)$ be a monoid with identity $e$ and $g \in G$. If
+     $g_L$ is a left and $g_R$ is a right inverse of $g$ then
+     $g_L=g_R$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $g_L = g_L * e = g_L * (g * g_R) = (g_L * g) * g_R = e * g_R =
+     g_R$.
+*** Homo\-morphisms
+**** Structure  preserving maps                               :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(X,\ast)$ and $(Y,\diamond)$ be two groupoids, and
+     $\varphi:X\to Y$.  Then the map (\ie function) $\varphi$ is
+     *structure preserving* if for each $a,b \in X$: \[ \varphi(a\ast
+     b) = \varphi(a) \diamond \varphi(b). \]
+     
+     $\varphi(X)$ is the *homomorphic image* of $X$ (under $\varphi$).
+     $\varphi$ is sometimes called a *homomorphism*.
+**** Remark
+     For goupoids we usually use the $\cdot$ (dot) operation, and omit
+     it if written between operands \ie $ab$ instead of $a \cdot b$.
 *** Homo\-morphisms
 **** Names of structure preserving maps
      Let $\varphi:G\to G'$ be a *homo\-morphism*:
-     - if $\varphi$ is injective it is a *mono\-morphism*,
-     - if $\varphi$ is surjective it is an *epi\-morphism*,
-     - if $\varphi$ is bijective it is an *iso\-morphism*;
+     - if $\varphi$ is injective it is a *mono\-morphism* ,
+     - if $\varphi$ is surjective it is an *epi\-morphism*
+     - if $\varphi$ is bijective it is an *iso\-morphism* 
+       
      - if $G=G'$ then $\varphi$ is an *endo\-morphism* and
-     - if $G=G'$ and $\varphi$ is also an is also bijective it is an
-       *auto\-morphism*.
+     - if $G=G'$ and $\varphi$ is also bijective it is an
+       *auto\-morphism* 
+*** Examples
+**** Mono\-morphism $x \mapsto 2^x$ 
+     Maps $(\R,\cdot)$ to $(\R^+,+)$)
+**** Epi\-morphism $n \mapsto \overline{n}$
+     Maps $(\Z,+)$ to $(\Z_6,+)$)
+**** Iso\-morphism $\overline{b} \mapsto (b \bmod 2 = 1)$
+     Maps $(\Z_2,\cdot)$ to $(\{\uparrow,\downarrow\},\land)$
+**** Endo\-morphism $\overline{n} \mapsto \overline{2n}$
+     Maps $(\Z_{6},+)$ to $(\Z_{6},+$)
+**** Auto\-morphism $\overline{m} \mapsto \overline{2m}$
+     Maps $(\Z_5,+)$ to $(\Z_{5},+)$)
+*** Two theorems
+**** Composition of homomorphisms                                 :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $f_1 : X \to Y$ and $f_2 : Y \to Z$ be two homomorphisms.
+     Then $f_2 \circ f_1$ is also a homomorphism.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $(f_2 \circ f_1)(ab) = f_2(f_1(ab)) = f_2(f_1(a)f_1(b)) =
+     f_2(f_1(a))f_2(f_1(b))$ which is $(f_2 \circ f_1)(a) \cdot
+     (f_2\circ f_1)(b)$.
+**** Inverse of isomorphisms                                      :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     The inverse of an isomorphism is also an isomorphism.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $f^{-1}(f(a)f(b)) = f^{-1}(f(ab)) = ab = f^{-1}(f(a))
+     f^{-1}(f(b))$
 *** Homo\-morphic image of a group
 **** Statements							  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $\varphi:G\to G'$ be a homo\-morphism, and $\varphi(G)$ is
-     the image of $G$ under $\varphi$, then:
-     1. If $G$ is a semi\-group, then $\varphi(G)$ is also a
-        semi\-group.
-     2. If $e\in G$ is the identity element in $G$ then $\varphi(e)$
-        is the identity element in $G'$, ergo if $G$ is a monoid, then
-        $\varphi(G)$ is also a monoid.
-     3. If $g^{-1}\in G$ is the inverse of $g\in G$, then
-        $\varphi(g^{-1})$ is the inverse of $\varphi(g)$, ergo if $G$
-        is a group $\varphi(G)$ is also a group.
-     4. If $G$ is commutative then $\varphi(G)$ is also commutative.
+     Let $(G,\cdot)$ be a semi\-group and $\varphi:G\to G'$ a
+     homo\-morphism. Then the following are true:
+     1. $\varphi(G)$ is a semi\-group.
+     2. If $e\in G$ is a left identity, right identity or identity,
+        then $\varphi(e)$ is a left identity, right identity or
+        identity too.
+     3. If $g'\in G$ is a left inverse, right inverse or inverse of
+        $g\in G$, then $\varphi(g')$ is a left inverse, or right
+        inverse or inverse of $\varphi(g)$.
+     4. If $g,h \in G$ commute, then commute $\varphi(g)$ and
+        $\varphi(h)$ as well.
 *** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      The proof is pretty simple, we just need to use the structure
-     preserving property of $\varphi$, \ie then
+     preserving property of $\varphi$.  Let $(G,\ast)$,
+     $(G',\diamond)$ and $\varphi : G \to G'$.
      \begin{multline*}
-     \varphi(a) \otimes (\varphi(b) \otimes \varphi(c)) 
-     = \varphi(a) \otimes \varphi (b \cdot c)
-     = \varphi(a \cdot (b \cdot c) ) \\
-     = \varphi((a \cdot b) \cdot c) = \varphi(a \cdot b) \otimes \varphi(c)
-     = (\varphi(a) \otimes \varphi(b)) \otimes \varphi(c)  
+     \varphi(a) \ast (\varphi(b) \ast \varphi(c)) 
+     = \varphi(a) \ast \varphi (b \diamond c)
+     = \varphi(a \diamond (b \diamond c) ) \\
+     = \varphi((a \diamond b) \diamond c) = \varphi(a \diamond b) \ast \varphi(c)
+     = (\varphi(a) \ast \varphi(b)) \ast \varphi(c)  
      \end{multline*}
-     Or for the identity element, $\varphi(e) \otimes \varphi(a) =
-     \varphi(e \cdot a) = \varphi(a)$. etc.
+     Or for the identity element, $\varphi(e) \ast \varphi(a) =
+     \varphi(e \diamond a) = \varphi(a)$. etc.
 *** Other ways to define groups
 **** Equivalent definitions					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(G,\cdot)$ be a semi\-group, then the following are
-     equivalent:
+     Let $(G,\cdot)$ be a semi\-group, then the following statements
+     are equivalent:
      1. $G$ is a group.
-     2. $G\neq\emptyset$ and for every $a,b\in G$ there is a unique
+     2. $G\neq\emptyset$ and for every $a,b\in G$ there exists a
+        *unique* $x,y\in G$ so that $ax=b$ and $ya=b$.
+     3. $G\neq\emptyset$ and for every $a,b\in G$ there exists a
         $x,y\in G$ so that $ax=b$ and $ya=b$.
-     3. $G\neq\emptyset$ and for every $a,b\in G$ there exists a $x,y\in G$ so
-        that $ax=b$ and $ya=b$.
 *** Proof
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     - $1\Rightarrow 2$: $x=a^{-1}b$, $y=ba^{-1}$. 
-     - $2\Rightarrow 3$ is trivial.  
-     - $3 \Rightarrow 1$: Let $a\in G$, then $\exists e\in G$ so that
-       $ae=a$.  For every $b\in G$ $\exists y\in G$ so that $ya=b$.
-       From this we have $be=yae=ya=b$ \ie $be=b$ for each $b\in G$
-       (similarly $eb=b$ for each $b$), ergo $e$ is the identity
-       element \ie $G$ is a monoid.  For $e$ and every $a$ there is
-       $ax=e$, \ie $x=a^{-1}$.
+     $1\Rightarrow 2$ is simple using $x=a^{-1}b$, $y=ba^{-1}$. 
+     
+     $2\Rightarrow 3$ is trivial.
+     
+     $3 \Rightarrow 1$ consists of the following 2 parts:
+     - There is a right identity in $G$: Let $a\in G$, then $\exists
+       e\in G$ so that $ae=a$.  For every $b\in G$ $\exists y\in G$ so
+       that $ya=b$.  From this we have $be=yae=ya=b$ \ie $be=b$ for
+       each $b\in G$, \ie $e$ is a right identity. Similarly show that
+       $eb=b$ for each $b$, \ie $e$ is a left identity, ergo $e$ is
+       the identity element \ie $G$ is a monoid.
+     - Every element has an inverse: For $e$ and every $a$ there is an
+       $x$ such that $ax = e$ and $ya = e$, \ie $x$ is a right inverse
+       and $y$ is a left inverse of $a$ \ie $x=a^{-1}$.
 ** Subgroups and generated subgroups
 *** Subgroups
 **** Sub\-semigroups and sub\-groups
