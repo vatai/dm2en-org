@@ -20,6 +20,35 @@
 #+SHORT_TITLE: Graphs
 # #+INCLUDE: l-inc.org
 
+#+LATEX_HEADER: \usepackage{readarray}
+#+BEGIN_EXPORT latex
+\newcommand{\dijkstrag}[2]{
+  \readarraysepchar{,}
+  \getargsC{#1}
+  \begin{tikzpicture}[>=latex]
+    \path[every node/.style={circle,draw,fill=cyan!20,inner
+      sep=1pt,label distance=-2}] %
+    (0,0) node[fill=\argvi,label={$s$}] (s) {$\argi$} %
+    (2,2) node[fill=\argvii,label={$v_1$}] (v1) {$\argii$} %
+    (4,0) node[fill=\argviii,label={$v_2$}] (v2) {$\argiii$} %
+    (2,0) node[fill=\argix,label=225:{$v_3$}] (v3) {$\argiv$} %
+    (2,-2) node[fill=\argx, label=below:{$v_4$}] (v4) {$\argv$}; %
+    \draw[->,every node/.style={fill=white,draw=lightgray,inner
+      sep=1}] %
+    (s) edge[color=\argxi] node[] {$10$} (v1) %
+    (s) edge[color=\argxi] node[] {$5$} (v3) %
+    (v1) edge[color=\argxii] node[] {$1$} (v2) %
+    (v1) edge[color=\argxii,bend left] node[] {$2$} (v3) %
+    (v2) edge[color=\argxiii,bend left] node[] {$4$} (v4) %
+    (v3) edge[color=\argxiv,bend left] node[] {$3$} (v1) %
+    (v3) edge[color=\argxiv] node[] {$9$} (v2) %
+    (v3) edge[color=\argxiv] node[] {$2$} (v4) %
+    (v4) edge[color=\argxv] node[] {$7$} (s) %
+    (v4) edge[color=\argxv,bend left] node[] {$6$} (v2); %
+    \node[align=center] at (2,-3) {#2};
+  \end{tikzpicture}
+}
+#+END_EXPORT
 * COMMENT Some intuition and motivation
 ** What are graphs
 *** Dotas connected with lines or arrows
@@ -1091,6 +1120,108 @@
         # \ie $e=\arg\min\{w(e'):e' \in E\setminus E' \land E' \cup \{e'\} \text{ has no cycle}\}$ 
         and set $E'\gets E'\cup\{e\}$. Go to
         step 2.
+*** Example
+    #+BEGIN_EXPORT latex
+    \begin{tikzpicture}
+      \path[scale=1.3,every node/.style={draw,circle,inner sep=1pt,minimum
+        size=1mm}] (0,0) %
+      ++(0,0) node (A) {A} ++(1,0) node (B) {B} ++(1,0) node (C) {C} %
+      (0.5,-1) %
+      ++(0,0) node (D) {D} ++(1,0) node (E) {E} ++(1,0) node (F) {F} ;
+      \path %
+      (A) edge node[above] {$1$} (B)
+      (B) edge node[above] {$3$} (C)
+      (A) edge node[left] {$1$} (D)
+      (D) edge node[left] {$1$} (B)
+      (D) edge node[below] {$4$} (E)
+      (B) edge node[left] {$3$} (E)
+      (E) edge node[right] {$2$} (C)
+      (C) edge node[right] {$2$} (F)
+      (E) edge node[below] {$2$} (F)
+      ;
+      \path[scale=1.3,every node/.style={draw,circle,fill,inner sep=1pt,minimum
+        size=1mm}] (0,-1.5) %
+      ++(0,0) node (A) {} ++(1,0) node (B) {} ++(1,0) node (C) {} %
+      (0.5,-2.5) %
+      ++(0,0) node (D) {} ++(1,0) node (E) {} ++(1,0) node (F) {} ;
+      \path %
+      (A) edge node[below] {$1$} (B)
+      % (B) edge node[above] {$3$} (C)
+      % (A) edge node[left] {$1$} (D)
+      % (D) edge node[left] {$1$} (B)
+      % (D) edge node[below] {$4$} (E)
+      % (B) edge node[left] {$3$} (E)
+      % (E) edge node[right] {$2$} (C)
+      % (C) edge node[right] {$2$} (F)
+      % (E) edge node[below] {$2$} (F)
+      ;
+      \path[scale=1.3,every node/.style={draw,circle,fill,inner sep=1pt,minimum
+        size=1mm}] (0,-3) %
+      ++(0,0) node (A) {} ++(1,0) node (B) {} ++(1,0) node (C) {} %
+      (0.5,-4) %
+      ++(0,0) node (D) {} ++(1,0) node (E) {} ++(1,0) node (F) {} ;
+      \path %
+      (A) edge node[below] {$1$} (B)
+      % (B) edge node[above] {$3$} (C)
+      (A) edge node[left] {$1$} (D)
+      % (D) edge node[left] {$1$} (B)
+      % (D) edge node[below] {$4$} (E)
+      % (B) edge node[left] {$3$} (E)
+      % (E) edge node[right] {$2$} (C)
+      % (C) edge node[right] {$2$} (F)
+      % (E) edge node[below] {$2$} (F)
+      ;
+
+      \path[scale=1.3,every node/.style={draw,circle,fill,inner sep=1pt,minimum
+        size=1mm}] (4,0) %
+      ++(0,0) node (A) {} ++(1,0) node (B) {} ++(1,0) node (C) {} %
+      (4.5,-1) %
+      ++(0,0) node (D) {} ++(1,0) node (E) {} ++(1,0) node (F) {} ;
+      \path %
+      (A) edge node[above] {$1$} (B)
+      % (B) edge node[above] {$3$} (C)
+      (A) edge node[left] {$1$} (D)
+      % (D) edge node[left] {$1$} (B)
+      % (D) edge node[below] {$4$} (E)
+      % (B) edge node[left] {$3$} (E)
+      % (E) edge node[right] {$2$} (C)
+      % (C) edge node[right] {$2$} (F)
+      (E) edge node[above] {$2$} (F)
+      ;
+      \path[scale=1.3,every node/.style={draw,circle,fill,inner sep=1pt,minimum
+        size=1mm}] (4,-1.5) %
+      ++(0,0) node (A) {} ++(1,0) node (B) {} ++(1,0) node (C) {} %
+      (4.5,-2.5) %
+      ++(0,0) node (D) {} ++(1,0) node (E) {} ++(1,0) node (F) {} ;
+      \path %
+      (A) edge node[below] {$1$} (B)
+      % (B) edge node[above] {$3$} (C)
+      (A) edge node[left] {$1$} (D)
+      % (D) edge node[left] {$1$} (B)
+      % (D) edge node[below] {$4$} (E)
+      % (B) edge node[left] {$3$} (E)
+      (E) edge node[left] {$2$} (C)
+      % (C) edge node[right] {$2$} (F)
+      (E) edge node[above] {$2$} (F)
+      ;
+      \path[scale=1.3,every node/.style={draw,circle,fill,inner sep=1pt,minimum
+        size=1mm}] (4,-3) %
+      ++(0,0) node (A) {} ++(1,0) node (B) {} ++(1,0) node (C) {} %
+      (4.5,-4) %
+      ++(0,0) node (D) {} ++(1,0) node (E) {} ++(1,0) node (F) {} ;
+      \path %
+      (A) edge node[below] {$1$} (B)
+      % (B) edge node[above] {$3$} (C)
+      (A) edge node[left] {$1$} (D)
+      % (D) edge node[left] {$1$} (B)
+      % (D) edge node[below] {$4$} (E)
+      (B) edge node[left] {$3$} (E)
+      (E) edge node[right] {$2$} (C)
+      % (C) edge node[right] {$2$} (F)
+      (E) edge node[below] {$2$} (F)
+      ;
+    \end{tikzpicture}
+    #+END_EXPORT 
 *** Proof (part 1)					    :B_ignoreheading:
     :PROPERTIES:
     :BEAMER_env: ignoreheading
@@ -1409,14 +1540,14 @@
        they are *siblings*.
      - The vertices of a directed tree with out\-degree 0 are the
        *leaves*.
-*** Sub\-tree
-**** Sub\-tree						       :B_definition:
+*** Directed sub\-trees
+**** Directed sub\-tree                                        :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      - For each vertex $v$ there is a unique set of vertices to which
        there leads a directed path from $v$.  The directed sub\-graph
-       induced by these vertices and is a directed tree with $v$ as
+       induced by these vertices is a directed tree with $v$ as
        its root, and this directed sub\-graph is the *directed
        sub\-tree* with $v$ as its root.
 *** Rooted tree
@@ -1472,42 +1603,56 @@
         each edge $e$ coming from $t$ to $v\in V\setminus S$, 
 	- if $d(t)+w(e)<d(v)$, then $d(v)\gets d(t)+w(e)$ 
 	- if $v\not\in H$, then put $v$ into $H$.
-     4. Go to 2.
+        Go to 2.
+*** Example
+    #+LATEX: \dijkstrag{ , , , , ,white,white,white,white,white,black,black,black,black,black}{}
+    #+LATEX: \dijkstrag{0,\infty,\infty,\infty,\infty,red,white,white,white,white,red,black,black,black,black}{$S=\emptyset$\\$H=\{s\}$}
+*** Example
+    #+LATEX: \dijkstrag{0,10,\infty,5,\infty,cyan,pink,white,red,white,gray,black,black,red,black}{$S=\{s\}$\\$H=\{v_1,v_3\}$}
+    #+LATEX: \dijkstrag{0,8,14,5,7,cyan,pink,pink,cyan,red,gray,black,black,gray,red}{$S=\{s,v_3\}$\\$H=\{v_1,v_2,v_4\}$}
+*** Example
+    #+LATEX: \dijkstrag{0,8,13,5,7,cyan,red,pink,cyan,cyan,gray,red,black,gray,gray}{$S=\{s,v_3,v_4\}$\\$H=\{v_1,v_2\}$}
+    #+LATEX: \dijkstrag{0,8,9,5,7,cyan,cyan,pink,cyan,cyan,gray,gray,black,gray,gray}{$S=\{s,v_1,v_3,v_4\}$\\$H=\{v_2\}$}
 *** Proof of Dijkstra's algorithm
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     - The proof is by induction on the number of elements of $S$, by
-       showing that 
-       1. for every $t\in S$ the value of $d(t)$ is the minimal weight
-          of the directed walks from $s$ to $t$, and
-       2. if $v\in H$, then every directed walk from $s$ to $v$, which
-          has every vertex in $S$ except $v$, has a weight of at least
-          $d(v)$.
-     - After the first initialization step, this is trivially true.
-     - Let $t\in H$ (chosen in the third step), and consider an
-       arbitrary directed walk with weight $W$ from $s$ to $t$. We
-       will show, that $W\ge d(t)$.
+     The proof is by induction on the $\lvert S \rvert$, by showing
+     that:
+     1. for every $t\in S$ the value of $d(t)$ is the minimal weight
+        of the directed walks from $s$ to $t$, and
+     2. if $v\in H$, then every directed walk from $s$ to $v$, which
+        has every vertex in $S$ except $v$, has a weight of at least
+        $d(v)$.
+        
+     After the first initialization step, this is trivially true.
+     
+     Let $t\in H$ (chosen in step 3), and consider an arbitrary
+     directed walk with weight $W$ from $s$ to $t$. We will show, that
+     $d(t) \le W$: Let $t'$ be the first vertex on the walk which is
+     not in $S$ and $W'$ the weight of the sub\-walk from $s$ to $t'$.
+     Because we chose $t$ to have minimal value of $d(t)$ we have
+     $d(t)\le d(t')$ by 2. of the induction hypothesis $d(t') \le W'$,
+     and $W' \le W$ (why?).
 *** Proof of Dijkstra's algorithm				:B_fullframe:
     :PROPERTIES:
     :BEAMER_env: fullframe
     :END:
 **** Proof part 2
-     - Let $t'$ be the first vertex on the walk which is not in $S$
-       and $W'$ the weight of the sub\-walk from $s$ to $t'$.  
-     - $W'\le W$, and by the second part of the induction hypothesis
-       $W'\ge d(t')$, and because we chose $t$ to have minimal value
-       of $d(t)$ we have $d(t)\le d(t')$, so $W\ge d(t)$ concluding
-       the proof of the first part of our statement.
-     - After updating the value of $d(v)$ in the third step, if a walk
-       goes from $s$ to $v$ and its last vertex is not in $S$, then
-       let $v'$ be the vertex before the last and $e$ the last edge.
-     - Since $v'\in S$ and the weight of the sub-walk from $s$ to $v'$
-       is at least $d(v')$, the weight of the entire walk has to be at
-       least $d(v')+w(e) = d(v)$, and when $v$ is added to $H$, $d(v)$
-       can be set at most to this value, and afterwards it can only
-       decrease.
+     Now we prove that if $v\in H$, then every directed walk from $s$
+     to $v$, which has every vertex in $S$ except $v$, has a weight of
+     at least $d(v)$:
+
+     After updating the value of $d(v)$ in the third step, if a walk
+     goes from $s$ to $v$ and its last vertex is not in $S$, then let
+     $v'$ be the vertex before the last and $e$ the last edge.
+     
+     Since $v'\in S$ and the weight of the sub\-walk from $s$ to $v'$
+     is at least $d(v')$, the weight of the entire walk has to be at
+     least $d(v')+w(e) = d(v)$, and when $v$ is added to $S$, $d(v)$
+     can be set at most to this value, and afterwards it can only
+     decrease.
 * Planar graphs, chromatic number
 ** Drawing graphs in a plane
 *** Planar graphs
@@ -1515,53 +1660,91 @@
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     - A *planar graph* is a graph that can be embedded in the plane
-       ($\R^2$), \ie, it can be drawn on the plane in such a way that
-       its edges intersect only at their endpoints. (Drawing a graph can
-       be generalized to any metric space, \eg $\R^n$)
-     - Obviously, not all graphs can be drawn, \eg it is possible that
-       a graph has so many vertices that there is no injective map
-       $f\colon V\to X$.  That is why we are only considering finite
-       graphs.
-     - The statements about drawing graphs are only about simple
-       graphs, but they can easily be extended to non-simple graphs as
-       well.
-     - We are concerned only about drawing graphs in the plane, sphere
-       and in the (three dimensional) space.
-*** Drawing graphs
-**** Drawing in $\R^3$ 						  :B_theorem:
-     :PROPERTIES:
-     :BEAMER_env: theorem
-     :END:
-     Any finite simple graph can be drawn in $\R^3$.  
-**** Proof 							    :B_proof:
-     :PROPERTIES:
-     :BEAMER_env: proof
-     :END:
-     - If it has at most three vertices, the statement is trivial.
-     - We proceed by induction on the number of vertices: select a
-       vertex $v$, and the sub\-graph induced by the rest of the
-       vertices can be drawn in $\R^3$.
-     - Each three of the images of these vertices in $\R^3$ defines a
-       plane.  Choose the image of $v$ so that it is not on any of
-       these planes.  Let the images of edges connected to $v$ be
-       linear functions.
-*** Drawing in the plane
-**** Drawing on a sphere 					  :B_theorem:
-     :PROPERTIES:
-     :BEAMER_env: theorem
-     :END:
-     A simple finite graph $G=(\psi, E, V)$ can be drawn on the
-     surface of a sphere (in $\R^3$) if and only if it can be drawn on
-     the plane.
-**** Faces						       :B_definition:
+     A *planar graph* is a graph that can be embedded in the plane,
+     \ie, it can be drawn on the plane ($\R^2$) in such a way that its
+     edges intersect only at their endpoints.  In other words, it can
+     be drawn in such a way that no edges cross each other.  Such a
+     drawing is called a plane graph *representation* or planar
+     *embedding* of the graph.
+**** Remark
+     Not all graphs are planar, \ie not all graphs can be embedded in
+     $\R^2$ (not even all finite graphs are planar).  However every
+     (finite) graph can be embedded in $\R^3$.
+*** Faces
+**** Face                                                      :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     An open subset $X$ of $\R^n$ is a *face* (or a *region*) if for
-     any two points of $X$ there exists a simple curve in $X$ with
-     those two points as its endpoints.
-**** Euler's theorem 						  :B_theorem:
+     Given a planar embedding of a graph $G$, a *face* is the subset
+     of points of the plane bounded by edges of $G$, \ie a face is a
+     set of points, such that between any two points of a face, there
+     is a line (curve) in the plane, such that it does not cross any
+     of the edges (or vertices) of $G$.  A face can be /unbounded/,
+     and in that case it is an /external/ face, otherwise it is an
+     /internal/ face.
+**** Remark
+     The status of internal/external face is not significant: An
+     external face can become an internal face in a different planar
+     embedding, however the number of faces is independent from the
+     embedding.
+*** Examples
+**** Non-planar and planar embedding    
+     #+BEGIN_EXPORT latex
+         \begin{tikzpicture}[scale=2]
+           \path[every node/.style={draw, circle, inner sep=1pt, fill=black, minimum size=1pt}]
+           (0,0) node[label=-135:{$v1$}] (v1) {}
+           (0,1) node[label=135:{$v2$}] (v2) {}
+           (1,0) node[label=-45:{$v3$}] (v3) {}
+           (1,1) node[label=45:{$v4$}] (v4) {}
+           ;
+           \path
+           (v1) edge node {$e_1$} (v2)
+           (v2) edge node[pos=0.25] {$e_2$} (v3)
+           (v3) edge node {$e_3$} (v4)
+           (v4) edge node[pos=0.25] {$e_4$} (v1);
+           \draw[red] (0.5,0.5) circle (0.1);
+         \end{tikzpicture}\hspace{2cm}%
+         \begin{tikzpicture}[scale=2]
+           \path[every node/.style={draw, circle, inner sep=1pt, fill=black, minimum size=1pt}]
+           (0,0) node[label=-135:{$v1$}] (v1) {}
+           (0,1) node[label=135:{$v2$}] (v2) {}
+           (1,1) node[label=45:{$v3$}] (v3) {}
+           (1,0) node[label=-45:{$v4$}] (v4) {}
+           ;
+           \path
+           (v1) edge node {$e_1$} (v2)
+           (v2) edge node[pos=0.25] {$e_2$} (v3)
+           (v3) edge node {$e_3$} (v4)
+           (v4) edge node[pos=0.25] {$e_4$} (v1);
+         \end{tikzpicture}
+     #+END_EXPORT
+**** External/internal faces
+     #+BEGIN_EXPORT latex
+         \begin{tikzpicture}[scale=0.8]
+           \path[every node/.style={draw, circle, inner sep=1pt, fill=black, minimum size=1pt}]
+           (0,0) node (v1) {} (0,2) node (v2) {}
+           (2,2) node (v3) {} (2,0) node (v4) {}
+           (0.5,0.5) node (i1) {} +(0,1) node (i2) {}
+           +(1,1) node (i3) {} +(1,0) node (i4) {};
+           \path
+           (v1) edge  (v2) (v2) edge  (v3) (v3) edge  (v4) (v4) edge  (v1)
+           (i1) edge  (i2) (i2) edge  (i3) (i3) edge  (i4) (i4) edge  (i1)
+           (i1) edge (v1);
+         \end{tikzpicture}\hspace{2cm}%
+         \begin{tikzpicture}[scale=0.8]
+           \path[every node/.style={draw, circle, inner sep=1pt, fill=black, minimum size=1pt}]
+           (0,0) node (v1) {} (0,2) node (v2) {}
+           (2,2) node (v3) {} (2,0) node (v4) {}
+           (-1.5,0.5) node (i1) {} +(0,1) node (i2) {}
+           +(1,1) node (i3) {} +(1,0) node (i4) {};
+           \path
+           (v1) edge  (v2) (v2) edge  (v3) (v3) edge  (v4) (v4) edge  (v1)
+           (i1) edge  (i2) (i2) edge  (i3) (i3) edge  (i4) (i4) edge  (i1)
+           (i4) edge (v1);
+         \end{tikzpicture}
+     #+END_EXPORT
+*** Drawing graphs
+**** Euler's theorem                                              :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
