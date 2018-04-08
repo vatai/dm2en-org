@@ -1,6 +1,7 @@
 # -*- mode:org; mode: flyspell; -*-
 
 #+SETUPFILE: ../include/lecture.h.org
+#+COLUMNS: %50ITEM %TAGS
 
 #+TITLE: Discrete mathematics II. - Algebra
 #+SHORT_TITLE: Algebra
@@ -218,17 +219,67 @@
      - Every element has an inverse: For $e$ and every $a$ there is an
        $x$ such that $ax = e$ and $ya = e$, \ie $x$ is a right inverse
        and $y$ is a left inverse of $a$ \ie $x=a^{-1}$.
+*** Simplification rule
+**** Simplification rule                                          :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     In groups the operation is *regular*, \ie $ac = bc$ implies $a =
+     b$, and $ca = cb$ also implies $a = b$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $a = a(cc^{-1}) = (ac)c^{-1} \stackrel{\ast}{=} (bc)c^{-1} =
+     b(cc^{-1}) = b$, where the equality with the asterisk is implied
+     by $ac = bc$.
+**** Remark
+     Not every structure with a regular operation is a group \eg
+     $(N,+)$ is not a group but $a + c = b + c \implies a = b$.
+*** Important note
+**** Don't forget the prerequisite                :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let $(H,\cdot)$ be a groupoid, where $H = \{a,b,c\}$ and the
+     $\cdot$ is given in the following table:
+     | $\cdot$ | $a$ | $b$ | $c$ |
+     |---------+-----+-----+-----|
+     | /       | <   |     |     |
+     | $a$     | $b$ | $a$ | $c$ |
+     | $b$     | $a$ | $c$ | $b$ |
+     | $c$     | $c$ | $b$ | $a$ |
+     For any $h_1,h_2 \in H$ the equations $h_1 x = h_2$ and $y h_1 =
+     h_2$ always have a solution in $H$, but $(H,\cdot)$ is still not
+     a group, since there is no identity element, so we cannot define
+     an inverse.  The reason for this is that $(H,\cdot)$ is not even
+     a semi-group, $\cdot$ is not associative: $(ab)c = ac = c \ne a =
+     ab = a(bc)$.
 ** Subgroups and generated subgroups
 *** Subgroups
-**** Sub\-semigroups and sub\-groups
-     Let $(G,\cdot)$ be a groupoid and $H\subseteq G$.  
-     - $H$ is a *sub\-group* (or *sub\-semigroup*) if the $\cdot$
-       operation restricted to $H\times H$ makes a *group* (or
-       *semigroup*) with $H$.
-     - If $G$ is also a group then $G$ is a *over\-group* of $H$ and
-       then we can write $H \le G$.
-     - If $H=G$ or $H=\{e\}$ then $H$ is a *trivial subgroup*.
-     - If $H\neq G$ then $H$ is a *proper subgroup* of $G$.
+**** Sub\-groups                                               :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $(G,\cdot)$ be a group and $H\subseteq G$. $H$ is a
+     *sub\-group* of $G$ (or $G$ is an *over\-group* of $H$) and write
+     $H \le G$ if $(H, \cdot_{\vert_{H \times H}})$ is a group.  $H=G$
+     and $H=\{e\}$ are *trivial subgroups*.  All $G\neq H$, $H \le G$
+     are *proper subgroups*.
+**** Remark
+     Note that the $H \le G$ is not entirely accurate, we should write
+     $(H,\cdot_{\vert_{H \times H}}) \le (G,\cdot)$, and use the
+     $\cdot_{\vert_{H \times H}}$ when talking about calculations in
+     $H$, but it is usually clear from the context, and we can use
+     simply the dot $\cdot$ operator, or just omit it as before.
+**** Sub\-groups                                                  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     $(2\Z,+) \le (\Z, +)$, $(\Q \setminus \{0\}, \cdot) \le
+     (\R\setminus\{0\},\cdot)$, $(E_2,\cdot) \le (E_{4,
+     \cdot})$[fn::$E_n = \{z\in\C:z^n=1\}$ \ie \(n\)-th roots of
+     unity]
 *** Equivalent definitions
 **** Equivalent definitions					  :B_theorem:
      :PROPERTIES:
@@ -244,15 +295,15 @@
      4. $H\neq\emptyset$ and $H^{-1}H\subseteq H$.
      Notation: $H^{-1}=\{h^{-1} : h\in H\}$, $HH'=\{hh':h\in H,h'\in
      H'\}$ 
-*** Equivalent definitions
+*** Equivalent definitions (proof)
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     - $1\Rightarrow2$: the operations is obviously $\cdot : H\times
+     - $1\Rightarrow2$: the operation is obviously $\cdot : H\times
        H\to H$.  Let $e'$ be the identity element in $H$ and $e$ the
        identity element in $G$. Then $he'=h=he$ for each $h$.
-       Multiplying with $h^{-1}$ we get so $e=e'$.  And since $H$ is a
+       Multiplying with $h^{-1}$ we get $e=e'$.  And since $H$ is a
        group, $h\in H$ implies $h^{-1} \in H$ so $H^{-1}\subseteq H$.
 
      - $2\Rightarrow 3$: $e\in H$ so $H\neq\emptyset$ and $\cdot :
@@ -285,7 +336,7 @@
      :BEAMER_env: theorem
      :END:
      $H_i\le G$ for each $i\in I$, then $H=\cap_{i\in I} H_i\le G$ \ie
-     the intersection of sub\-groups is also a sub\-groups.
+     the intersection of sub\-groups is also a sub\-group.
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -293,10 +344,6 @@
      $H \subseteq H_i$ and $H^{-1}\subseteq H_i^{-1}$, so $H^{-1} H
      \subseteq H_i^{-1} H_i \subseteq H_i$ for each $i\in I$ so
      $H^{-1} H \subseteq H$.
-**** Remark
-     The union of subgroups is not always a subgroup.  \Eg $\{e,a\}$
-     and $\{e,b\}$ are subgroups of the Klein group (see next slide)
-     but $\{e,a,b\}$ is not a subgroup because $ab=c$.
 *** Remarks and examples
 **** Klein group						  :B_example:
      :PROPERTIES:
@@ -311,6 +358,10 @@
      | $a$     | $a$ | $e$ | $c$ | $b$ |
      | $b$     | $b$ | $c$ | $e$ | $a$ |
      | $c$     | $c$ | $b$ | $a$ | $e$ |
+**** Remark
+     The union of subgroups is not always a subgroup.  \Eg $\{e,a\}$
+     and $\{e,b\}$ are subgroups of the Klein group (see next slide)
+     but $\{e,a,b\}$ is not a subgroup because $ab=c$.
 *** Generated subgroup
 **** The subgroup generated by a subset			       :B_definition:
      :PROPERTIES:
@@ -365,6 +416,25 @@
      #+END_EXPORT
      #+END_CENTER
 ** Cyclic groups
+*** Building generated sub\-groups from the generating set
+**** Alternative formulation of a generated sub\-group            :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     \[\langle K \rangle = \{g_1 g_2 \cdots g_n : n \in \N, g_i \in K
+     \cup K^{-1}, 1 \le i \le n \}\] 
+
+     Remarks: The empty product (when $n=0$) equals the identity
+     element.  And an obvious observation is that $\langle K \rangle =
+     \langle K^{-1} \rangle$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     RHS is a subgroup (why?) which contains $K$ (why?) by
+     construction, so RHS is a subset of LHS.  LHS is a subset of RHS
+     because $\langle K \rangle$ is the "smallest" subgroup which
+     is a super\-set of $K$.
 *** Generated subgroups of cyclic groups
 **** Corollary 							  :B_theorem:
      :PROPERTIES:
@@ -387,14 +457,15 @@
 *** Order
     Let $(G,\cdot)$ and $g\in G$.
     - The *order of the group* is $\lvert G \rvert$ \ie the number of
-      element of the group if this number if finite, $\infty$
+      elements of the group if this number is finite, $\infty$
       otherwise.
     - The *order of the element $g$* is $\lvert g \rvert = \min\{
       n\in\N^+ : g^n=e \}$ if such a number exists, $\infty$
-      otherwise.  Sometimes, the order an element is written as $o(g)$
-      or $o_*(g)$ (where $*$ is the group operations).
-    Note: $g^n$ is not exponentiation, but $n-$ multiplications
-    $g^n=\underbrace{g \cdot g \cdots g}_{n}$ (syntactic sugar).
+      otherwise.  Sometimes, the order of an element is written as
+      $o(g)$ or $o_*(g)$ (where $*$ is the group operation).
+    Note: $g^n$ is not exponentiation, but $n-1$ "multiplications"
+    between $n$ number of $g$'s: $g^n=\underbrace{g \cdot g \cdots
+    g}_{n}$ (syntactic sugar).
 *** Structure of cyclic groups
 **** Structure of cyclic groups 				  :B_theorem:
      :PROPERTIES:
@@ -431,18 +502,19 @@
      :BEAMER_env: proof
      :END:
      Let $\tilde{\varphi}:\Z_n\to G$, where $\tilde{\varphi}(
-     \tilde{k} )= g^k =\varphi(k)$ for $\tilde{k}\in\Z_n$.
+     \overline{k} )= g^k =\varphi(k)$ for $\overline{k}\in\Z_n$.
      - Because $e,g,g^2,\ldots,g^{n-1}$ are all different and $\langle
        g \rangle=G$, $\tilde{\varphi}$ is a bijection between $\Z_n$
        and $G$, because both have $n$ elements.
-     - $i\equiv j \pmod{n}$ means $i=nk+j$, so $g^{nk+j} =
-       (g^n)^k\cdot g^j = g^j$ \ie $\varphi(i) = \varphi(j)$, \ie
+     - $i\equiv j \pmod{n}$ means $i=nq+j$, so $g^{nq+j} =
+       (g^n)^q\cdot g^j = g^j$ \ie $\varphi(i) = \varphi(j)$, \ie
        $\varphi$ is constant on the elements of one residue classes,
        which justifies the above definition.
      - It is also a homo\-morphism because
-       $\tilde{\varphi}(\tilde{i} + \tilde{j}) = \tilde{\varphi}(
-       \widetilde{i+j} ) = g^{i+j} = g^i \cdot g^j = \tilde{\varphi}(
-       \tilde{i} ) \cdot \tilde{\varphi}(\tilde{j})$
+       $\tilde{\varphi}(\overline{i} + \overline{j}) =
+       \tilde{\varphi}( \overline{i+j} ) = g^{i+j} = g^i \cdot g^j =
+       \tilde{\varphi}( \overline{i} ) \cdot
+       \tilde{\varphi}(\overline{j})$
 *** Subgroups of a cyclic group
 **** Remark
      - $\lvert g \rvert = n < \infty$ implies $\lvert\langle g
@@ -461,8 +533,8 @@
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     If $H=\{e\}$, $H$ is cyclic, we are done.  Otherwise $\exists k
-     \in\Z$, $k\neq 0$ so that $g^k\in H$. $g^k \in H$ implies
+     If $H=\{e\}$, $H$ is cyclic, and we are done.  Otherwise $\exists
+     k \in\Z$, $k\neq 0$ so that $g^k\in H$. $g^k \in H$ implies
      $(g^k)^{-1} = g^{-k} \in H$, so we can assume $k>0$.  We will
      show that if $d=\min\{k\in\N^+ : g^k=e\}$ then $\langle g^d
      \rangle = H$.
@@ -471,8 +543,8 @@
      - $H \subseteq \langle g^d \rangle$: if $g^j \in H$, and
        $q=\lfloor j/d \rfloor$, $r= j \bmod d$ \ie $j=qd+r$, where $0
        \le r < d$. $g^j \in H$ and $g^d \in H$ implies $g^r = g^{j-qd}
-       = g^j (g^d)^q \in H$ and since $d$ is minimal positive integer
-       so that $g^d \in H$, $r$ has to be $0$ \ie $g^j =
+       = g^j ((g^d)^{q})^{-1} \in H$ and since $d$ is minimal positive
+       integer so that $g^d \in H$, $r$ has to be $0$ \ie $g^j =
        g^{qd}=(g^d)^q \in \langle g^d \rangle$.
 *** Subgroups of finite cyclic groups
 **** Subgroups of finite cyclic groups				  :B_theorem:
@@ -498,11 +570,13 @@
      \subseteq \langle g^d \rangle$ ergo $\langle g^a \rangle =
      \langle g^d \rangle$.
      
-     2.: Let $H\le G$ and $d'=\min\{n\in\N^+:d^n\in H\}$.  From the
+     2.: Let $H\le G$ and $d'=\min\{n\in\N^+:g^n\in H\}$.  From the
      previous proof for $j=n$ in $g^j\in H$ we have $n=md'$ which is
      the unique subgroup of order $m$ for $d'\mid n$.  
 
-     3.: Powers of $g$ relative prime to $n$ generate $G$.
+     3.: $g^k$ generates $G$ if $(n,k) = 1$, and $\varphi(n)$ is
+     Euler's totient function which returns the number of $k$'s
+     relative prime to $n$.
 ** Co\-sets
 *** Co\-sets
 **** Co\-sets						       :B_definition:
@@ -533,11 +607,10 @@
 *** Index
 **** Proposition
      Right co\-sets are of the form $Ha$ and left co\-sets are of the
-     form $aH$ form some $a \in G$: $b\in Ha \iff \exists h\in H: b=ha
+     form $aH$ for some $a \in G$: $b\in Ha \iff \exists h\in H: b=ha
      \iff ba^{-1} = h \in H \iff ab^{-1} \in H^{-1} = H \iff a\sim_R
      b$. Similarly for $\sim_L$.  
-
-**** Index						       :B_definition:
+**** Index                                                     :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
@@ -557,20 +630,20 @@
      :BEAMER_env: proof
      :END:
      Let's work with right co\-sets. $\varphi_a(h)=ha$ is a bijection
-     between $H$ and the co\-set $Ha$ in $G$.  For every $a\in G:
-     \lvert Ha \rvert = \lvert H \rvert$, multiplied by the number of
-     co\-sets \ie the index $[G:H]$ gives all the elements of
+     between $H$ and the co\-set $Ha$ in $G$ (why?).  For every $a\in
+     G: \lvert Ha \rvert = \lvert H \rvert$, multiplied by the number
+     of co\-sets \ie the index $[G:H]$ gives all the elements of
      $G=\cup_{a\in G} Ha$
 *** Consequences
 **** Corollary
      Let $(G,\cdot)$ is a group, $\lvert G \rvert<\infty$: if $g\in G$
-     then $\lvert g \rvert \mid \lvert G \rvert$.
+     then $\lvert g \rvert \Big\vert \lvert G \rvert$.
 **** Corollary
      Let $(G,\cdot)$ is a group, if $\lvert G \rvert = p < \infty$ and
      $p$ is prime, then $\exists g\in G$ so that $\langle g\rangle =
      G$ \ie G is cyclic! This is true, because $\forall g\in G$ if
      $g\neq e$ then $(\lvert g \rvert, p)=1$ ergo $\langle g \rangle =
-     G$.
+     G$. (Find the relevant theorem!)
 **** Group with prime order					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
@@ -624,7 +697,6 @@
        \tau \varepsilon, \tau \varepsilon^2 \}$
 *** Properties of normal subgroups
 **** Properties
-     - The co\-sets of $N$ are compatible with the operation.
      - Every subgroup in an Abelian group is a normal subgroup.
      - $G$ and $\{e\}$ are *trivial* normal subgroups. $N$ is a
        *proper* normal subgroup if $N\lhd G$ and $N\neq G$.
@@ -646,15 +718,34 @@
      :BEAMER_env: proof
      :END:
      - $1 \iff 2$: $aN=Na$ implies $N=(a^{-1}a)N=a^{-1}(aN)=a^{-1}Na$
-       and $a^{-1}Na = N$ implies $Na = a(a^{-1}Na) = aN$.  
-     - $2 \iff 3$: $2 \Rightarrow 3$ is trivial.  $a^{-1}Na \subseteq N$
-       for every $a\in G$ including $a^{-1}$, so $aNa^{-1} \subseteq N$
-       is also true, so $N=a^{-1}(a N a^{-1})a \subseteq
-       a^{-1}Na$ is also true.
+       and $a^{-1}Na = N$ implies $Na = a(a^{-1}Na) = aN$. $2 \implies
+       1$ is trivial. (Why?)
+     - $2 \iff 3$: $2 \Rightarrow 3$ is trivial (Why?).  $a^{-1}Na
+       \subseteq N$ for every $a\in G$ including $a^{-1}$, so
+       $aNa^{-1} \subseteq N$ is also true, so $N=a^{-1}(a N a^{-1})a
+       \subseteq a^{-1}Na$ is also true.
 **** Corollary
-    $N_i \lhd G (i\in I) \Rightarrow \cap _{i\in I} N_i = N \lhd G$
-    \ie the intersection of normal subgroups is also a normal
-    subgroup.
+    $N_i \lhd G$ for every $(i\in I)$ then $\cap _{i\in I} N_i = N
+    \lhd G$ \ie the intersection of normal subgroups is also a normal
+    subgroup. (Why? See similar theorem and proof for sub\-groups)
+*** Compatibility of the operation and partitioning
+**** Operation compatibility with partitioning                 :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $\ast \colon X \times X \to X$ be a binary operation and
+     $\sim \subseteq X \times X$ an equivalence a relation on the
+     non-empty set $X$.  Then the partitioning induced by $\sim$ (\ie
+     set of equivalence classes $\tilde{x} = \{y \in X : y \sim x\}$)
+     is denoted by $X/\sim = \{\tilde{x} \subseteq X : x \in X \}$.
+     The operation $\ast$ is *compatible* with the partitioning $\sim$
+     if $x \sim x'$ and $y \sim y'$ imply $x \ast y \sim x' \ast y'$
+     (for any $x,x',y,y'\in X$).
+
+     Then the operation can naturally be extended to equivalence
+     classes in $X/\sim$, by defining $\tilde{x} \tilde{\ast}
+     \tilde{y} = \widetilde{x \ast y}$.  Usually we write $\ast$
+     instead of $\tilde{\ast}$.
 *** Theorems
 **** Co\-sets of normal subgroups				  :B_theorem:
      :PROPERTIES:
