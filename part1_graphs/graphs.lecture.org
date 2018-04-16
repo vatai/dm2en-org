@@ -21,6 +21,7 @@
 # #+INCLUDE: l-inc.org
 
 #+LATEX_HEADER: \usepackage{readarray}
+#+LATEX_HEADER: \newcommand\abs[1]{\lvert #1 \rvert}
 #+BEGIN_EXPORT latex
 \newcommand{\dijkstrag}[2]{
   \readarraysepchar{,}
@@ -1423,6 +1424,64 @@
      - If $G$ is undirected, $a_{i,i}$ is the number of loop edges
        connected to $v_i$ and $a_{i,j}$ is the number of edges
        connecting $v_i$ and $v_j$.
+*** Example of graph matrices
+**** Example                                                 :B_column:BMCOL:
+     :PROPERTIES:
+     :BEAMER_env: column
+     :BEAMER_col: 0.3
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{tikzpicture}[>=latex,scale=0.8]
+     \path[every node/.style={circle,draw,fill=cyan!20,minimum size=0.5cm, inner
+     sep=1pt,label distance=-2,scale=0.7}] %
+     (0,0)  node (v1)  {$v_1$} %
+     (2,2)  node (v2) {$v_2$} %
+     (4,0)  node (v3) {$v_3$} %
+     (2,0)  node (v4) {$v_4$} %
+     (2,-2) node (v5) {$v_5$}; %
+     \draw[->,every node/.style={fill=white,draw=lightgray,inner
+     sep=1}] %
+     (v1)  edge[] node[] {$e_2$} (v2) %
+     (v1)  edge[] node[] {$e_6$} (v4) %
+     (v2) edge[] node[] {$e_1$} (v3) %
+     (v2) edge[bend left] node[] {$e_3$} (v4) %
+     (v3) edge[bend left] node[] {$e_9$} (v5) %
+     (v4) edge[bend left] node[] {$e_4$} (v2) %
+     (v4) edge[] node[] {$e_5$} (v3) %
+     (v4) edge[] node[] {$e_8$} (v5) %
+     (v5) edge[] node[] {$e_7$} (v1) %
+     (v5) edge[bend left] node[] {$e_{10}$} (v3); %
+     \end{tikzpicture}
+     #+END_EXPORT
+**** Matrix                                                  :B_column:BMCOL:
+     :PROPERTIES:
+     :BEAMER_env: column
+     :BEAMER_col: 0.7
+     :END:
+     Incidence matrix:
+     #+BEGIN_EXPORT latex
+     \begin{equation*}
+     \begin{psmallmatrix}
+     0 & 1 & 0 & 0 & 0 & 1 &  -1 & 0 & 0 & 0\\
+     1 &  -1 & 1 &  -1 & 0 & 0 & 0 & 0 & 0 & 0\\
+     -1 & 0 & 0 & 0 &  -1 & 0 & 0 & 0 & 1 &  -1\\
+     0 & 0 &  -1 & 1 & 1 &  -1 & 0 & 1 & 0 & 0\\
+     0 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & -1 & 1
+     \end{psmallmatrix}
+     \end{equation*}
+     #+END_EXPORT
+     Adjacency matrix:
+     #+BEGIN_EXPORT latex
+     \begin{equation*}
+     \begin{pmatrix}
+     0 & 1 & 0 & 1 & 0\\
+     0 & 0 & 1 & 1 & 0\\
+     0 & 0 & 0 & 0 & 1\\
+     0 & 1 & 1 & 0 & 1\\
+     1 & 0 & 1 & 0 & 0
+     \end{pmatrix}
+     \end{equation*}
+     #+END_EXPORT
 ** Sub\-graphs
 *** Sub\-graphs
 **** Directed sub\-graphs				       :B_definition:
@@ -1744,23 +1803,208 @@
          \end{tikzpicture}
      #+END_EXPORT
 *** Drawing graphs
-**** Euler's theorem                                              :B_theorem:
+**** Euler's formula                                              :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(f,g)$ be a drawing in the plane of a simple connected graph
-     $G=(\psi, E, V)$.  Then the complement set of $G'=\cup_{e\in E}
-     \rng(g_e)$ is the union of $2+\lvert E \rvert-\lvert V \rvert$ number of
-     pairwise disjoint faces.
-*** Topologival isomorphism
+     Let $G=(\varphi,E,V)$.  For any planar embedding of $G$
+     $\abs{E} + 2 = \abs{V} + f$, where $f$ is the number of faces.
+**** Sketch of the poof                                             :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Suppose there is a cycle in $G$. By deleting an edge of the
+     cycle, two faces are merged, so both $f$ and $\abs{E}$ is reduced
+     by $1$. In the end, we obtain a tree for which the equation holds
+     (why?).
+*** Number of edges and vertices of planar graphs
+**** Number of edges and vertices of planar graphs                :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $G=(\varphi,E,V)$ is a simple, connected, planar graph with
+     $\abs{V} \ge 3$, then $\abs{E} \le 3 \abs{V}-6$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     For $\abs{V} = 3$ we have two cases $P_2$ and $C_3$ both of which
+     satisfy the inequality.  If $\abs{V} > 3$, then $\abs{E} \ge 3$
+     (why?).  Since $G$ is simple, every region is surrounded by at
+     least $3$ edges, so counting by faces, there should be $\ge 3f$
+     edges, and every edge separates two regions, so $2 \abs{E} \ge
+     3f$.  Using Euler's formula we get $2\abs{E} \ge 3(\abs{E} + 2 -
+     \abs{V})$ which can be transformed to $\abs{E} \le 3 \abs{V}-6$,
+     \ie $\abs{E} \le 3 \abs{V}-6$.
+**** Remark
+     The theorem holds for disconnected graphs as well, since it can
+     be made planar by adding edges.
+*** The vertices with the least degree in a planar graph
+**** The vertex with the least degree in a planar graph           :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $G=(\varphi,E,V)$ be a simple, connected, planar graph, then
+     $\delta = \min_{v\in V} \deg(v) \le 5$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We can assume $\abs{V} \ge 3$ (why?).  Indirectly, suppose
+     $\delta \ge 6$. Then $6\abs{V} \le 2\abs{E}$ (why?), furthermore,
+     using the previous theorem $2\abs{E} \le 6 \abs{V} - 12$,
+     implying $6\abs{V} \le 6\abs{V} - 12$.
+     
+*** $K_{3,3}$ is not planar
+**** Proof that $K_{3,3}$ not planar                                :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Indirectly suppose $K_{3,3}$ is a planar graph with $f$ number of
+     faces.  Then $\abs{E} = 9$ and $\abs{V} = 6$ and by Euler's
+     formula $f = 5$.  Since it is a simple bipartite graph, each face
+     is surrounded by at least $4$ edges (why?), and every edge
+     separates at most $2$ faces, so $4f \le 2\abs{E}$, implying $20
+     \le 18$, which is a contradiction.
+*** $K_5$ is not planar
+**** Proof that $K_5$ not planar                                    :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Indirectly suppose that $K_5$ is a planar graph. Then $\abs{E} =
+     10$ and $\abs{V} = 5$, and using the theorem about the number of
+     edges and vertices in planar graphs we get: $10 \le 3 \cdot 5 -6
+     = 9$, which is a contradiction.
+*** Topological iso\-morphism                                   :B_fullframe:
+    :PROPERTIES:
+    :BEAMER_env: fullframe
+    :END:
 **** Topologically isomorphic graphs 			       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      The finite graphs $G$ and $G'$ are *topologically isomorphic* if
-     they can be converted to isomorphic graphs using the following
-     transformation or its inverse: delete a vertex with degree two
-     and connect its neighboring vertices with an edge.
+     they can be converted to isomorphic graphs applying the following
+     transformation or its inverse a finite number of times: delete a
+     vertex with degree two and connect its neighboring vertices with
+     an edge.
+
+     #+BEGIN_EXPORT latex
+     \begin{tikzpicture}[scale=0.6]
+     \filldraw [black] (0,1) circle (1pt)
+     (0.9510,0.3090) circle (1pt)
+     (0.5877,-0.8090) circle (1pt)
+     (-0.5877,-0.8090) circle (1pt)
+     (-0.9510,0.3090) circle (1pt)
+
+     (0,2) circle (1pt)
+     (1.9021,0.6180) circle (1pt)
+     (1.1755,-1.6180) circle (1pt)
+     (-1.1755,-1.6180) circle (1pt)
+     (-1.9021,0.6180) circle (1pt);
+
+     \draw [green]
+     (0,1) circle (4pt);
+
+     \draw [-, thick] (0,1) -- (0,2);
+     \draw [-, thick] (0,1) -- (-0.5877,-0.8090);
+     \draw [-, thick] (0,1) -- (0.5877,-0.8090);
+     \draw [-, thick] (0.9510,0.3090) -- (1.9021,0.6180);
+     \draw [-, thick] (0.9510,0.3090) -- (-0.9510,0.3090);
+     \draw [-, thick] (0.9510,0.3090) -- (-0.5877,-0.8090);
+     \draw [-, thick] (-0.9510,0.3090) -- (0.5877,-0.8090);
+     \draw [-, thick] (1.9021,0.6180) -- (0,2);
+     \draw [-, thick] (1.9021,0.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.1755,-1.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.9021,0.6180) -- (-1.1755,-1.6180);
+     \draw [-, thick] (-1.9021,0.6180) -- (0,2);
+     \draw [-, thick] (-0.9510,0.3090) -- (-1.9021,0.6180);
+     \draw [-, thick] (-1.1755,-1.6180) -- (-0.5877,-0.8090);
+     \draw [-, thick] (1.1755,-1.6180) -- (0.5877,-0.8090);
+     \end{tikzpicture}\hfill
+     \begin{tikzpicture}[scale=0.6]
+     \filldraw [black]
+     % (0,1) circle (1pt)
+     (0.9510,0.3090) circle (1pt)
+     (0.5877,-0.8090) circle (1pt)
+     (-0.5877,-0.8090) circle (1pt)
+     (-0.9510,0.3090) circle (1pt)
+
+     (0,2) circle (1pt)
+     (1.9021,0.6180) circle (1pt)
+     (1.1755,-1.6180) circle (1pt)
+     (-1.1755,-1.6180) circle (1pt)
+     (-1.9021,0.6180) circle (1pt);
+
+     \draw [green]
+     (-0.5877,-0.8090) circle (4pt)
+     (0.5877,-0.8090) circle (4pt)
+     (0,2) circle (4pt);
+
+     %\draw [-, thick] (0,1) -- (0,2);
+     %\draw [-, thick] (0,1) -- (-0.5877,-0.8090);
+     %\draw [-, thick] (0,1) -- (0.5877,-0.8090);
+     \draw [-, thick] (0.9510,0.3090) -- (1.9021,0.6180);
+     \draw [-, thick] (0.9510,0.3090) -- (-0.9510,0.3090);
+     \draw [-, thick] (0.9510,0.3090) -- (-0.5877,-0.8090);
+     \draw [-, thick] (-0.9510,0.3090) -- (0.5877,-0.8090);
+     \draw [-, thick] (1.9021,0.6180) -- (0,2);
+     \draw [-, thick] (1.9021,0.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.1755,-1.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.9021,0.6180) -- (-1.1755,-1.6180);
+     \draw [-, thick] (-1.9021,0.6180) -- (0,2);
+     \draw [-, thick] (-0.9510,0.3090) -- (-1.9021,0.6180);
+     \draw [-, thick] (-1.1755,-1.6180) -- (-0.5877,-0.8090);
+     \draw [-, thick] (1.1755,-1.6180) -- (0.5877,-0.8090);
+     \end{tikzpicture}\hfill
+     \begin{tikzpicture}[scale=0.6]
+     \filldraw [black]
+     % (0,1) circle (1pt)
+     (0.9510,0.3090) circle (1pt)
+     %(0.5877,-0.8090) circle (1pt)
+     %(-0.5877,-0.8090) circle (1pt)
+     (-0.9510,0.3090) circle (1pt)
+     
+     %(0,2) circle (1pt)
+     (1.9021,0.6180) circle (1pt)
+     (1.1755,-1.6180) circle (1pt)
+     (-1.1755,-1.6180) circle (1pt)
+     (-1.9021,0.6180) circle (1pt);
+     
+     \draw [red]
+     (1.1755,-1.6180) circle (4pt)
+     (0.9510,0.3090) circle (4pt)
+     (-1.9021,0.6180) circle (4pt);
+     
+     \draw [blue]
+     (-1.1755,-1.6180) circle (4pt)
+     (-0.9510,0.3090) circle (4pt)
+     (1.9021,0.6180) circle (4pt);
+     
+     
+     %\draw [-, thick] (0,1) -- (0,2);
+     %\draw [-, thick] (0,1) -- (-0.5877,-0.8090);
+     %\draw [-, thick] (0,1) -- (0.5877,-0.8090);
+     \draw [-, thick] (0.9510,0.3090) -- (1.9021,0.6180);
+     \draw [-, thick] (0.9510,0.3090) -- (-0.9510,0.3090);
+     
+     \draw [-, thick] (0.9510,0.3090) -- (-1.1755,-1.6180);
+     %\draw [-, thick] (-1.1755,-1.6180) -- (-0.5877,-0.8090);
+     
+     \draw [-, thick] (-0.9510,0.3090) -- (1.1755,-1.6180);
+     %\draw [-, thick] () -- (0.5877,-0.8090);
+     
+     \draw [-, thick] (1.9021,0.6180) -- (-1.9021,0.6180);
+     %\draw [-, thick] () -- (0,2);
+     
+     \draw [-, thick] (1.9021,0.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.1755,-1.6180) -- (1.1755,-1.6180);
+     \draw [-, thick] (-1.9021,0.6180) -- (-1.1755,-1.6180);
+     \draw [-, thick] (-0.9510,0.3090) -- (-1.9021,0.6180);
+     
+     
+     \end{tikzpicture}
+     #+END_EXPORT
 **** Kuratowski's theorem 					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
@@ -1769,25 +2013,43 @@
      it has no sub\-graph topologically isomorphic to the $K_5$
      complete graph with 5 vertices or the $K_{3,3}$ ``three houses,
      three wells'' graph.
-** Chromatic number
+** Graph colouring Chromatic number
 *** Chromatic number
 **** \(k\)-coloring 					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     A *\(k\)-coloring* of a graph $G$ is a vertex coloring using only
-     $k$ colors, such that no two adjacent vertices receive the same
-     color.
+     A *\(k\)-colouring* of a graph $G$ is a vertex colouring
+     (labeling) using only $k$ colours, such that no two adjacent
+     vertices receive the same colour.
 **** Chromatic number					       :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
      The *chromatic number* of a graph is the smallest value of $k$
-     possible to obtain a \(k\)-coloring of the graph.
-**** Four color theorem 					  :B_theorem:
+     possible to obtain a \(k\)-colouring of the graph.
+**** Four colour theorem                                          :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Every planar graph is 4-colorable.
-
+     Every planar graph is 4-colourable.
+**** The story about the proof.                                     :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     This was the first
+     theorem prooved by a computer, (Appel and Haken 1976).  The
+     program ran for 1200 hours and tried 1936 counter examples.
+*** About the four colour theorem
+**** Remarks
+     - There is a bijection between a planar graph with $n$ vertices
+       and a maps with $n$ connected regions (or countries).  The
+       capitals of the countries are the vertices, and two vertices
+       are connected, iff the corresponding countries share a border.
+     - Therefore, the four colour theorem states, that the (connected)
+       regions on every map can always be coloured using only four
+       colours, so that neighbours have different colours.
+     - The chromatic number of a graph is $1$ iff it has no edges, and
+       $2$ iff it is a bipartite graph.  The chromatic number of
+       planar graphs is at most $4$.
 
