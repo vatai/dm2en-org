@@ -597,7 +597,7 @@
      :BEAMER_env: proof
      :END:
      Both $\sim_R$ and $\sim_L$ are equivalence relations over $G$, so
-     they define a classification of $G$.  
+     they define a partition of $G$.
      - $\sim_R$ is reflexive: $aa^{-1}=e \in H$;
      - $\sim_R$ is symmetric: $ab^{-1} \in H$ implies $(ab^{-1})^{-1}
        = ba^{-1} \in H$; 
@@ -736,16 +736,16 @@
      Let $\ast \colon X \times X \to X$ be a binary operation and
      $\sim \subseteq X \times X$ an equivalence a relation on the
      non-empty set $X$.  Then the partitioning induced by $\sim$ (\ie
-     set of equivalence classes $\tilde{x} = \{y \in X : y \sim x\}$)
-     is denoted by $X/\sim = \{\tilde{x} \subseteq X : x \in X \}$.
-     The operation $\ast$ is *compatible* with the partitioning $\sim$
-     if $x \sim x'$ and $y \sim y'$ imply $x \ast y \sim x' \ast y'$
-     (for any $x,x',y,y'\in X$).
+     set of co\-sets $\tilde{x} = \{y \in X : y \sim x\}$) is denoted
+     by $X/\sim = \{\tilde{x} \subseteq X : x \in X \}$.  The
+     operation $\ast$ is *compatible* with the partitioning $\sim$ if
+     $x \sim x'$ and $y \sim y'$ imply $x \ast y \sim x' \ast y'$ (for
+     any $x,x',y,y'\in X$).
 
-     Then the operation can naturally be extended to equivalence
-     classes in $X/\sim$, by defining $\tilde{x} \tilde{\ast}
-     \tilde{y} = \widetilde{x \ast y}$.  Usually we write $\ast$
-     instead of $\tilde{\ast}$.
+     Then the operation can naturally be extended to co\-sets in
+     $X/\sim$, by defining $\tilde{x} \tilde{\ast} \tilde{y} =
+     \widetilde{x \ast y}$.  Usually we write $\ast$ instead of
+     $\tilde{\ast}$.
 *** Theorems
 **** Co\-sets of normal subgroups				  :B_theorem:
      :PROPERTIES:
@@ -757,8 +757,8 @@
      2. If $N \lhd G$, then the operation between the co\-sets is the
         operation between them as sets (see notation before the proof
         of the equivalent definitions of subgroups).
-     3. If a classification of $G$ is compatible with the operation,
-        then the class of the identity element is a normal subgroup of $G$
+     3. If a partition of $G$ is compatible with the operation, then
+        the class of the identity element is a normal subgroup of $G$
         and the other classes are the co\-sets of this normal
         subgroup.
 *** Quotient group
@@ -779,7 +779,7 @@
      :END:
      Let $G$ and $G'$ be groups, and $\varphi : G \to G'$ a
      homo\-morphism.  The kernel of $\varphi$ is $\ker (\varphi)
-     =\varphi^{-1}(e')=\{g\in G : \varphi(g)=e \}$.
+     =\varphi^{-1}(e')=\{g\in G : \varphi(g)=e' \}$.
 *** Homo\-morphism theorem
 **** Homo\-morphism theorem 					  :B_theorem:
      :PROPERTIES:
@@ -791,6 +791,32 @@
      - For each normal subgroup $N\lhd G$, there exists a
        homo\-morphism $\varphi$ from $G$ so that $N=\ker(\varphi)$ \eg
        the $\varphi : G \to G/N$ so that $\varphi(a)=Na$.
+*** Homo\-morphism theorem in an image
+    #+BEGIN_EXPORT latex
+    \begin{tikzpicture}[scale=1.5]
+    \draw[] (2,2) circle (1.2); %
+    \draw[] (0,0) +(-45:2/3) -- +(135:2/3); %
+    \draw[] (4,0) +(45:2/3) -- +(-135:2/3); %
+    \draw[->] (2/3,0) -- node[above]{$\psi$} (10/3,0); %
+    \draw[->] (45:1.63) -- node[pos=0.2,left,scale=0.75]{$\varphi : n \mapsto 2 \nmid n$} (45:2/3); %
+    \draw[->] (4,0) +(135:1.63) -- node[pos=0.2,right,scale=0.75]{$\kappa : n \mapsto \tilde{n}$} +(135:2/3); %
+  
+    \path[every node/.style={draw, circle,minimum size=2cm}] %
+    (0,0) node[] {} %
+    (2,2) node[text width=2.5cm,text centered,scale=0.75]
+    {$\ker(\varphi)$ $=\{0,\pm 2, \pm 4, \ldots\}$ } %
+    (2,1.1) node[draw=none,scale=0.75] {$\{\pm 1, \pm 3, \ldots\}$}%
+    (4,0) node {};
+
+    \path %
+    (45:-0.3)node {$\uparrow$}
+    (45:0.3)node {$\downarrow$}
+    (4,0)
+    +(-45:-0.3)node[scale=0.75,rotate=45] {$0+\ker(\varphi)$}
+    +(-45:0.3)node[scale=0.75,rotate=45] {$1+\ker(\varphi)$}
+    ;
+    \end{tikzpicture}
+    #+END_EXPORT
 *** The fundamental theorem of finite Abelian groups
 **** Cartesian product of groups 			       :B_definition:
      :PROPERTIES:
@@ -813,7 +839,7 @@
      Each term can be chosen so that its orders is a prime power, and
      these prime powers can be uniquely determined.
 *** Cayley's theorem
-**** Cayley's theorem						  :B_theorem:
+**** Cayley's theorem                                             :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
@@ -832,8 +858,8 @@
        a\cdot b + a\cdot c$ and $(a+b)\cdot c = a\cdot c + b\cdot c$.
      - The identity element of $(R,+)$ is called the *zero element*
        and written as $0$.  If the multiplication is /commutative/,
-       $R$ is a *commutative ring*. If there is an identity element
-       for multiplication $R$ is a *ring with identity*.
+       $R$ is a *commutative ring*.  The identity element for
+       multiplication in $R$ is a *ring with identity*.
 *** Integral domains
     Let $(R,+,\cdot)$ be a ring.
 **** Zero divisors					       :B_definition:
@@ -948,17 +974,22 @@
      In a ring, without zero divisors, the additive order of all
      non-zero elements is the same, and if it is finite then it is a
      prime number.
-*** 
+*** Proof                                                       :B_fullframe:
+    :PROPERTIES:
+    :BEAMER_env: fullframe
+    :END:
 **** Proof							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      Let $(R,+,\cdot)$ be a ring, $o_+(x)=\min\{n\in\N^+:nx=0\}$ the
      additive order of $x\in R$.
-     - Let $0\neq a\in R$, $n=o_+(a)$. Then $n(ab)=(na)b=0b=0$, but
-       also $n(ab)=a(nb)$, so $0=a(nb)$, and since $a\neq 0$, $nb=0$.
-       Therefore $o_+(b) \le o_+(a)$.  By swapping $a$ and $b$ we have
-       $o_+(a)\le o_+(b)$, ergo $o_+(a) = o_+(b)$ for any $a,b\neq 0$.
+     - $a, b \in R \setminus \{0\}$, $n=o_+(a)$. Then
+       $n(ab)=(na)b=0b=0$, but also $n(ab)=a(nb)$, so $0=a(nb)$
+       (why?), and since $a\neq 0$, $nb=0$.  So $o_+(b) \le o_+(a)$
+       (why?).  By swapping $a$ and $b$ (how?) we have $o_+(a)\le
+       o_+(b)$, ergo $o_+(a) = o_+(b)$ for any $a,b \in R \setminus
+       \{0\}$.
      - The additive order of non-zero elements is finite or infinite
        at the same time.  Let $n=o_+(a) < \infty$, suppose $n=km$ and
        $m<n$.  $0=na=(km)a=k(ma)$, and by the definition of the
@@ -1002,8 +1033,8 @@
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $(R,+,\cdot)$ be a ring and $S \subseteq R$, then the following
-     are equivalent:
+     Let $(R,+,\cdot)$ be a ring and $\emptyset \ne S \subseteq R$,
+     then the following are equivalent:
      1. $S \le R$ \ie $S$ is a sub\-ring of $R$;
      2. $a,b\in S$ implies $a-b\in S$ and $ab\in S$;
      3. $S-S\subseteq S$ and $SS\subseteq S$.
@@ -1047,8 +1078,8 @@
 
      $m\mathbb{Z}$ is also principal ideal generated by $m$ \ie
      $m\mathbb{Z} = (m)$.
-*** Equivalence classes
-**** Equivalence (or residue) classes			       :B_definition:
+*** Co\-sets
+**** Co\-set                                                   :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
@@ -1057,37 +1088,37 @@
      group, the additive subgroup $I$ will be a normal subgroup.
 
      We say $a$ is congruent $b$ modulo $I$.  As seen with groups, the
-     equivalence classes generated by the equivalence relation $\sim$
-     are the sets $I+r$ for each $r\in R$, and these classes are the
-     *equivalence (or residue) classes of $I$ in $R$*.
-*** Ideals and classifications compatible with operations
-**** Residue classes of ideals					  :B_theorem:
+     co\-sets generated by the equivalence relation $\sim$ are the
+     sets $I+r$ for each $r\in R$, and these classes are the
+     *co\-sets (or residue classes) of $I$ in $R$*.
+*** Ideals and partition compatible with operations
+**** Co\-sets of ideals                                           :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
      Let $(R,+,\cdot)$ be ring.
-     1. If $I$ is an ideal in $R$, then the classification of $R$ by
-        $I$ is compatible with both operations \ie if $(I+a)+(I+b) =
+     1. If $I$ is an ideal in $R$, then the partition of $R$ by $I$ is
+        compatible with both operations \ie $(I+a)+(I+b) =
         (I+(a+b))$ and $(I+a)(I+b)=(I+ab)$.
-     2. If $\sim$ is a relation/classification of $R$ which is
-        compatible with both operations, then the class of the zero
-        element $\tilde{0}$ is an ideal in $R$.
+     2. If $\sim$ is a relation/partition of $R$ which is compatible
+        with both operations, then the co\-set of the zero element
+        $\tilde{0}$ is an ideal in $R$.
 *** Proof
 **** Proof 							    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
      1. Let $I$ be an ideal in $R$.  From groups, we know that the
-        classification is compatible with addition.  For multiplication:
-	$(I+a)(I+b)=II+aI+Ib+ab \subseteq I+ab$.
-     2. Let $\sim$ be a relation, and also a classification of $R$
-        which is compatible with both operations, and let $\tilde{x}$
-        be the class of $x$ \ie $\tilde{x}=\{y:x\sim y\}$.  From group
-        theory we know that the classification by the normal subgroup
+        partition is compatible with addition.  For multiplication:
+        $(I+a)(I+b)=II+aI+Ib+ab \subseteq I+ab$.
+     2. Let $\sim$ be a relation, and also a partition of $R$ which is
+        compatible with both operations, and let $\tilde{x}$ be the
+        co\-set of $x$ \ie $\tilde{x}=\{y:x\sim y\}$.  From group
+        theory we know that the partition by the normal subgroup
         $I=\tilde{0}$, we need to show that $I$ is an ideal.  Since
-        $0\in I$, $\tilde{x} I \subseteq I$ for every class $\tilde{x}$,
-        and since the union of classes is $R$, $RI\subseteq I$, \ie $I$
-        is an ideal.
+        $0\in I$, $\tilde{x} I \subseteq I$ for every co\-set
+        $\tilde{x}$, and since the union of co\-sets is $R$,
+        $RI\subseteq I$, \ie $I$ is an ideal.
 *** Quotient ring
 **** Remark
      In the first part of the proof, the $\subseteq$ can be a proper
@@ -1122,7 +1153,7 @@
      - For each ideal $I$ in $R$, there exists a
        homo\-morphism $\varphi$ from $R$ so that $I=\ker(\varphi)$ \eg
        the $\varphi : R \to R/I$ so that $\varphi(a)=I+a$.
-*** Proof and corollary
+*** Principal ideals in commutative rings
 **** Principal ideals in commutative rings 			  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
@@ -1151,7 +1182,7 @@
      An integral domain with an identity element $(R,+,\cdot)$ is a
      *unique factorization domain* or *UFD* for short if all non-zero
      and non-unit elements can be written as a product of irreducible
-     elements and a unit, and this product is unique up to associative
+     elements and a unit, and this product is unique up to associated
      elements and order, \ie every $x\in R$ can be written as $x =
      \varepsilon \cdot p_1 \cdot p_2 \cdots p_n$ where $\varepsilon$
      is a unit and $p_i$ ($1\le i \le n$) are all irreducible elements
@@ -1190,16 +1221,16 @@
 **** Prime and irreducible elements
      Let $R$ be an integral domain with an identity element.  The
      non-zero, non-unit element $p\in R$ is a *prime element* if
-     $p\mid ab$ implies $p\mid a$ or $\mid b$ for any $a,b\in R$.  The
+     $p\mid ab$ implies $p\mid a$ or $p \mid b$ for any $a,b\in R$.  The
      non-zero, non-unit element $r\in R$ is *irreducible* if it is
      written as a product of two other elements, \ie $r=r_1r_2$, then
-     $r_1$ and $r_2$, then $r_1$ or $r_2$ is a unit and the other one
+     one of $r_1$ or $r_2$ is a unit and the other one
      is associated with $r$.
 **** A prime is always irreducible				  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $R$ be an integral domain with a identity element.  If $p\in
+     Let $R$ be an integral domain with an identity element.  If $p\in
      R$ is a prime, then $p$ is also irreducible.
 **** Proof							    :B_proof:
      :PROPERTIES:
@@ -1231,20 +1262,21 @@
      :BEAMER_env: example
      :END:
      Let $R=\{a+i\sqrt{5}b : a,b\in\Z\}\subseteq \C$.  
-     - For any integer $n\in\Z$, the value of $k^2 \bmod 5$ can be
-       $0$, $1$ or $4$ (these are quadratic residues $\bmod5$),
+     - For any integer $k\in\Z$, the value of $k^2 \bmod 5$ can be
+       $0$, $1$ or $4$ (these are quadratic residues $\bmod\,5$),
        because $(5k)^2 = 5\cdot5k^2$, $(5k\pm1)^2 = 5\cdot(5k^2\pm
        2k) + 1$, $(5k\pm2)^2=5\cdot(5k^2\pm 5k) + 4$.
      - The square of the absolute value of an element $c=a+i\sqrt{5}b$
        is $\lvert c \rvert^2=a^2+5b^2$, so for each $c\in R$, $\lvert
-       c \rvert^2$ can only be 0,1,4.
+       c \rvert^2$ can only be $0$, $1$, $4$.
      - $9=3\cdot 3$ but also $9=(2+i\sqrt{5})\cdot(2-i\sqrt{5})$.
-     - $3\nmid 2\mp i\sqrt5$ nor $2 \pm i\sqrt5 \nmid 3$.  $3$, $2\pm
+     - $3\nmid 2\pm i\sqrt5$ nor $2 \pm i\sqrt5 \nmid 3$.  $3$, $2\pm
        i\sqrt5$ are irreducible, because $\lvert 3 \rvert ^2 = \lvert
        2\pm i\sqrt5\rvert ^2=9$, and if $d$ would divide any of the
        above elements, $\lvert d \rvert ^2$ would divide $9$.  But
-       only the trivial divisors of $9$ are possible \ie only 1 and 9
-       are quadratic residues $\bmod 5$.
+       only the trivial divisors of $9$ are possible \ie only $1$ and
+       $9$ are quadratic residues $\bmod\, 5$ (and $\lvert d \rvert^2
+       = 1 \implies \lvert d \rvert = 1$).
 ** Euclidean domains
 *** Euclidean domain
 **** Euclidean domain					       :B_definition:
@@ -1363,12 +1395,12 @@
      :END:
      Let $R\neq \{0\}$ be an integral domain. On $R\times (R\setminus
      \{0\})$ the 
-     - equivalence relation (classification): $(a,b) \sim (a',b') \iff
+     - equivalence relation (partition): $(a,b) \sim (a',b') \iff
        ab'=a'b$, 
      is compatible with the following operations
      - addition: $(a,b) + (a',b') = (ab'+a'b,bb')$ and
      - multiplication: $(a,b)\cdot (a',b') = (a\cdot a', b\cdot b')$ 
-     and the classes make a field called the *field of fractions of
+     and the co\-sets make a field called the *field of fractions of
      R*.
 **** Remark
      - The field of fractions $K$ to the integral domain $R$ is the same
@@ -1380,4 +1412,16 @@
        $(R\setminus\{0\},\cdot)$ is a /group/.
      - A ring $(R,+,cdot)$ a *field*, if $(R\setminus\{0\},\cdot)$ is
        a /group/.
-     
+** Fields
+*** Fields and skew fields                                     :B_definition:
+    :PROPERTIES:
+    :BEAMER_env: definition
+    :END:
+    A ring $(R, +, \cdot)$ is a *skew field* if $(R\setminus \{0\},
+    \cdot)$ is a group.  A *field* is a commutative skew field.
+*** Fields                                                        :B_example:
+    :PROPERTIES:
+    :BEAMER_env: example
+    :END:
+    - $\Q, \R, \C$ with the usual operations.
+    - $\Z_p$ with the usual operations, when $p$ is a prime.
