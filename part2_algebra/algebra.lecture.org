@@ -1406,22 +1406,18 @@
      - The field of fractions $K$ to the integral domain $R$ is the same
        as the rational numbers $\Q$ are to integers.
      - A pair $(a,b)$ in $K$ is basically the fraction $\frac{a}{b}$.
-*** COMMENT TODO
-**** Skew field, Field
-     - A ring $(R,+,\cdot)$ is a *skew field*, if
+*** Fields
+**** Skew field, Field                                         :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     - A ring $(R, +, \cdot)$ is a *skew field*, if
        $(R\setminus\{0\},\cdot)$ is a /group/.
-     - A ring $(R,+,cdot)$ a *field*, if $(R\setminus\{0\},\cdot)$ is
-       a /group/.
-** Fields
-*** Fields and skew fields                                     :B_definition:
-    :PROPERTIES:
-    :BEAMER_env: definition
-    :END:
-    A ring $(R, +, \cdot)$ is a *skew field* if $(R\setminus \{0\},
-    \cdot)$ is a group.  A *field* is a commutative skew field.
-*** Fields                                                        :B_example:
-    :PROPERTIES:
-    :BEAMER_env: example
-    :END:
-    - $\Q, \R, \C$ with the usual operations.
-    - $\Z_p$ with the usual operations, when $p$ is a prime.
+     - A ring $(R, +, \cdot)$ a *field*, if $(R\setminus\{0\},\cdot)$
+       is an /Abelian group/ (or $R$ is a commutative skew field).
+**** Fields                                                       :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     - $\Q, \R, \C$ with the usual operations.
+     - $\Z_p$ with the usual operations, when $p$ is a prime.
