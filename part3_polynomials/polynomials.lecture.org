@@ -194,10 +194,10 @@
      It might be hard to see the difference between $f$ and $\hat{f}$,
      but it is an important one: $f$ is $\mathbb{N} \to R$ (\ie
      sequence) while $\hat{f}$ is $R \to R$. \Eg if $f = x \in
-     \mathbb{Z}_5$ and $g = x^5 \in \mathbb{Z}_5$, then $f \neq g$ but
-     $\hat{f}(r) = r = r^5 = \hat{g}(r)$ for each $r$ by the
-     Euler--Fermat theorem which says that $x^p \equiv x \pmod{p}$ for
-     each prime $p$.
+     \mathbb{Z}_5[x]$ and $g = x^5 \in \mathbb{Z}_5[x]$, then $f \neq
+     g$ but $\hat{f}(r) = r = r^5 = \hat{g}(r)$ for each $r\in \Z_5$
+     by the Euler--Fermat theorem which says that $r^p \equiv r
+     \pmod{p}$ for each prime $r \in \Z$.
 ** Euclidean division
 *** Euclidean division for polynomials
 **** Euclidean division \ie division with a remainder 		  :B_theorem:
@@ -206,7 +206,7 @@
      :END:
      Let $R$ be an integral domain with an identity element.  For each
      $f,g \in R[x]$, so that $LC(g)$ is a unit in $R$, there exists a
-     unique $q,r \in R[x]$ so that $f=qf+r$ and $\deg(r) < \deg(g)$.
+     unique $q,r \in R[x]$ so that $f=qg+r$ and $\deg(r) < \deg(g)$.
 **** Preliminaries for the proof 				    :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
@@ -241,7 +241,7 @@
 **** Remarks
        The induction hypothesis says that for each $f^*$ with $\deg(f^*)
        < n$ there is a $q^*, r^* \in R[x]$ so that $f^* = q^* g + r^*$
-       and $\deg(r^*) = \deg(g)$.
+       and $\deg(r^*) < \deg(g)$.
        For the chosen $f^*$ in the first part of the proof the leading
        terms cancel each other out: $f^*_n x^n = f_n x^n - f_n \cdot
        g_m^{-1} x^{n-m} \cdot g_m x^{m} = f_n x^n - f_n x^n = 0$
@@ -287,9 +287,9 @@
      :BEAMER_env: proof
      :END:
      The difference of the two polynomials $h(c) = f(c) - g(c)$ would
-     be $0$ for $n+1$ different \(c\)'s, \ie $h$ would have $n+1$ roots
-     which is a contradiction to the previous theorem because $\deg(h)
-     \le n$
+     be $0$ for $n+1$ different \(c\)'s, \ie $h$ would have $n+1$
+     roots which is a contradiction to the theorem about euclidean
+     division because $\deg(h) \le n$
 *** Corollaries
 **** Polynomials over fields 					  :B_theorem:
      :PROPERTIES:
