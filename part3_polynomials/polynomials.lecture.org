@@ -75,7 +75,57 @@
      \ldots, g_m, 0, 0, \ldots)$, then for every $k>m+n$ we have
      $(fg)_k=0$. So the product of two polynomials is also a
      polynomial \ie $R[x]$ is a sub\-ring of $R[\![x]\!]$.
-*** 
+*** Commutativity
+**** Commutativity                                :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $R$ is commutative, then so is $R[x]$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     (f\cdot g)_k&=f_0g_k+f_1g_{k-1}+\ldots+f_{k-1}g_1+f_kg_0=\\
+     &=g_kf_0+g_{k-1}f_1+\ldots+g_1f_{k-1}+g_0f_k=\\
+     &=g_0f_k+g_1f_{k-1} +\ldots+g_{k-1}f_1+g_kf_0\\
+     &=(g\cdot f)_k
+     \end{align*}
+     #+END_EXPORT
+*** Identity  
+**** Identity                                                     :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $1 \in R$ is the identity of the ring $R$, then $e =
+     (1,0,0,\ldots)$ is the identity of the polynomial ring $R[x]$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     \[(f\cdot
+     e)_k=\sum_{j=0}^kf_je_{k-j}=\sum_{j=0}^{k-1}f_je_{k-j}+f_ke_0=f_k\]
+*** No zero divisors
+**** No zero divisors                                             :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $R$ has no zero divisors, then $R[x]$ also zero divisor free.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $n$ and $m$ be the smallest integers for which $f_n\ne 0$,
+     and $g_m\ne 0$.
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     (f\cdot g)_{n+m}&=\sum_{j=0}^{n+m}f_jg_{n+m-j}=\\
+     &=\sum_{j=0}^{n-1}f_jg_{n+m-j}+f_ng_m+\sum_{j=n+1}^{n+m}f_jg_{n+m-j}=\\
+     &=0+f_ng_m+0=f_ng_m\ne 0
+     \end{align*}
+     #+END_EXPORT
+*** Basic notation
     :PROPERTIES:
     :BEAMER_env: definition
     :END:
@@ -92,7 +142,7 @@
      - $f_n$ is the *leading coefficient* of $f$ (written as $LC(f)$).
      - $f$ is a *monic polynomial* if $f_n$ is the element of identity
        of $R$.
-*** 
+*** Zero polynomial
     Let $f \in R[x]$, $f=f_0 + f_1 x + \cdots + f_n x^n$.
 **** Zero polynomial					       :B_definition:
      :PROPERTIES:
