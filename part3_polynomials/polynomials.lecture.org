@@ -52,15 +52,18 @@
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     The *ring of univariate polynomials in $x$ over $R$* is the
-     special sub\-ring of $R[\![x]\!]$ , which contains only elements
-     with finite non-zero elements, \ie $f=(f_0, f_1, \ldots, f_{n-1},
-     0, 0, \ldots)$.  For this sub\-ring instead of $R[\![x]\!]$ we
-     write $R[x]$ and if $f$ is an element of $R[x]$ \ie $f$ is a
-     polynomial, and if $n-1$ is the largest index for which
-     $f_{n-1}\neq 0$ (or $n=0$ if each $f_i=0$), then instead of $f =
-     (f_0, f_1, \ldots, f_n, 0, 0, \ldots)$ we write \[ f= f_0 +
-     f_1x + f_2x^2 + \cdots + f_nx^n \]
+     The *ring of univariate polynomials in $x$ over $R$* is (the
+     special sub\-ring of $R[\![x]\!]$,) a set of infinite sequences
+     over $R$ which contains only elements with finite non-zero
+     elements, \ie $f=(f_0, f_1, \ldots, f_{n-1}, 0, 0, \ldots)$, with
+     the addition and multiplication defined on the previous slides.
+     For this sub\-ring (instead of $R[\![x]\!]$) we write $R[x]$ and
+     if $f$ is an element of $R[x]$ \ie $f$ is a polynomial, and if
+     $n-1$ is the largest index for which $f_{n-1}\neq 0$ (or $n=0$ if
+     each $f_i=0$), then instead of $f = (f_0, f_1, \ldots, f_n, 0, 0,
+     \ldots)$ we write \[ f= f_0 + f_1x + f_2x^2 + \cdots + f_nx^n \]
+     Two polynomials $f,g \in R[x]$ are equal iff $\forall i \in \N:
+     f_i = g_i$.
 *** Discussions
 **** $R[\![x]\!]$ is a ring
      If $(f+g)_i = f_i + g_i$ all the properties of $(R,+)$ will also
