@@ -499,3 +499,8 @@
      isomorphic to each other, ergo we can talk about the field with
      $q$ elements which is unique up to isomorphism and it is denoted
      as $\mathbb{F}_q$.
+* COMMENT TODO
+  - horner-example
+  - lagrange
+  - secret sharing
+  - 
