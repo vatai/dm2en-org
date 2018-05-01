@@ -293,6 +293,19 @@
      roots which is a contradiction to the theorem about euclidean
      division because $\deg(h) \le n$
 *** Corollaries
+**** Number of polynomial functions                               :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $R$ is infinite, then two different polynomials from $R[x]$
+     cannot have the same polynomial function.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Otherwise the difference of the two polynomials would have an
+     infinite number of roots.
+*** Corollaries
 **** Polynomials over fields 					  :B_theorem:
      :PROPERTIES:
      :BEAMER_env: theorem
