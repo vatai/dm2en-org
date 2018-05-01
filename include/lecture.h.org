@@ -35,3 +35,4 @@
 #+LATEX_HEADER: \DeclareMathOperator{\dmn}{dmn}
 #+LATEX_HEADER: \DeclareMathOperator{\rng}{rng}
 # #+LATEX_HEADER: \newcommand{\card}[1]{\left\lvert #1 \right\rvert}
+#+LATEX_HEADER: \newcommand{\abs}[1]{\lvert #1 \rvert}
