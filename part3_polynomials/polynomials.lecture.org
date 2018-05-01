@@ -165,18 +165,20 @@
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $f,g \in R[x]$, $n = \deg(f)$ and $m = \deg(g)$. Then:
+     Let $f,g \in R[x]$, $n = \deg(f)$ and $k = \deg(g)$. Then:
      - $\deg(f + g) \le \max{n,k}$;
-     - $\deg(f \cdot g) \le n + k$.
+     - $\deg(f \cdot g) \le n + k$. If $R$ has no zero divisors, we
+       have equality.
 **** Proof                                                          :B_proof:
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     Let $h = f + g$. Then for $j > \max(n,k)$, $h_j = 0 + 0 = 0$.
-     Now let $h = f \cdot g$. Then for $j > n + k$: \[h_j=\sum_{i=0}^j
-     f_i g_{j-i}=\sum_{i=0}^n f_i g_{j-i}+\sum_{i=n+1}^j f_i g_{j-i}=
-     \sum_{i=0}^n f_i\cdot 0+\sum_{i=n+1}^j 0\cdot g_{j-i}=0.\]
-     
+     When $n$ or $k$ is $-\infty$ is trivial. Let $h = f + g$, $j >
+     \max(n,k)$, then $h_j = 0 + 0 = 0$.  Now let $h = f \cdot
+     g$. Then for $j > n + k$: \[h_j=\sum_{i=0}^j f_i
+     g_{j-i}=\sum_{i=0}^n f_i g_{j-i}+\sum_{i=n+1}^j f_i g_{j-i}=
+     \sum_{i=0}^n f_i\cdot 0+\sum_{i=n+1}^j 0\cdot g_{j-i}=0.\] And
+     $h_{n+k} = f_n g_k \ne 0$ if $n,k \in \N$.
 *** Polynomial function
 **** Polynomial function 				       :B_definition:
      :PROPERTIES:
