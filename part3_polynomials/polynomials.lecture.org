@@ -166,7 +166,7 @@
      :BEAMER_env: theorem
      :END:
      Let $f,g \in R[x]$, $n = \deg(f)$ and $k = \deg(g)$. Then:
-     - $\deg(f + g) \le \max{n,k}$;
+     - $\deg(f + g) \le \max \{n, k\}$;
      - $\deg(f \cdot g) \le n + k$. If $R$ has no zero divisors, we
        have equality.
 **** Proof                                                          :B_proof:
@@ -174,7 +174,7 @@
      :BEAMER_env: proof
      :END:
      When $n$ or $k$ is $-\infty$ is trivial. Let $h = f + g$, $j >
-     \max(n,k)$, then $h_j = 0 + 0 = 0$.  Now let $h = f \cdot
+     \max \{n, k\}$, then $h_j = 0 + 0 = 0$.  Now let $h = f \cdot
      g$. Then for $j > n + k$: \[h_j=\sum_{i=0}^j f_i
      g_{j-i}=\sum_{i=0}^n f_i g_{j-i}+\sum_{i=n+1}^j f_i g_{j-i}=
      \sum_{i=0}^n f_i\cdot 0+\sum_{i=n+1}^j 0\cdot g_{j-i}=0.\] And
@@ -372,7 +372,7 @@
      :END:
      Using induction we can prove $(g^n)' = ng^{n-1}g'$, for $n\in
      \mathbb{N}^+$. If $f = g^nh$, then
-     \[ f' = ng^{n-1}g'h + g^nh = g^{n-1} (ng'h +gh') \]
+     \[ f' = ng^{n-1}g'h + g^nh' = g^{n-1} (ng'h +gh') \]
 *** Corollary
 **** Square\-free polynomials
      If $R$ is a field (then there is a gcd in $R[x]$), $f \neq 0$,
@@ -383,7 +383,7 @@
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     Suppose $g \in R[x]$, $n \in \mathbb{N}$ is the smallest integer
+     Suppose $g \in R[x]$, $n \in \mathbb{N}$ is the greatest integer
      for which $g^n \mid f$.  If $n>0$, $g^n \mid f$ implies $g^{n-1}
      \mid f'$ therefore $g^{n-1} \mid d$.  Then $g^2 \mid q$ would
      imply $g^{n+1} \mid f$.
@@ -410,7 +410,7 @@
      :BEAMER_env: theorem
      :END:
      Let $R$ be an integral domain with an identity element, $f \in
-     R[x]$, $n \in \mathbb{N}^+$ and $c \in R$ if a root of $f$ with
+     R[x]$, $n \in \mathbb{N}^+$ and $c \in R$ is a root of $f$ with
      multiplicity $n$.  Then $c$ is a root of $f'$ with multiplicity
      at least $n-1$, and if $\operatorname{char}(R) \nmid n$ (\eg
      $\operatorname{char}(R) = 0$), then the multiplicity is exactly
@@ -435,7 +435,7 @@
      $R=\mathbb{Z}_p$ for a prime $p$, $a \in \mathbb{Z}_p$, $n \in
      \mathbb{N}$, $p \nmid n$, then $f = (x-a)^p \bigl( (x-a)^n + 1
      \bigr) \in R[x]$. Then $a$ is a root of $f$ with multiplicity
-     $n$, but the multiplicity for $f' = n(x-a)^{p+n-1}$ is $p+n-1$.
+     $p$, but the multiplicity for $f' = n(x-a)^{p+n-1}$ is $p+n-1$.
 * Finite fields
 ** Irreducible polynomials
 *** Field extensions
@@ -488,7 +488,7 @@
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     The number of elements of every finite fields has $q$ number of
+     The number of elements of every finite field has $q$ number of
      elements, where $q$ is a prime power \ie $q=p^n$ for some prime
      $p$ and positive integer $n$.
 **** Fundamental theorem of finite fields			  :B_theorem:
