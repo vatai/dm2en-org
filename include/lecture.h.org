@@ -32,7 +32,9 @@
 #+LATEX_HEADER: \def\Q{\mathbb{Q}}
 #+LATEX_HEADER: \def\R{\mathbb{R}}
 #+LATEX_HEADER: \def\C{\mathbb{C}}
+#+LATEX_HEADER: \def\F{\mathbb{F}}
 #+LATEX_HEADER: \DeclareMathOperator{\dmn}{dmn}
 #+LATEX_HEADER: \DeclareMathOperator{\rng}{rng}
+#+LATEX_HEADER: \DeclareMathOperator{\im}{Im}
 # #+LATEX_HEADER: \newcommand{\card}[1]{\left\lvert #1 \right\rvert}
 #+LATEX_HEADER: \newcommand{\abs}[1]{\lvert #1 \rvert}

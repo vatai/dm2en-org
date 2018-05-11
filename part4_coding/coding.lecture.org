@@ -52,7 +52,7 @@
      :BEAMER_env: theorem
      :END:
      The *self-information* of the individual message $a_j$ is $I_j =
-     -\log^r p_j$, where $1 < r \in \R$ is the *unit of
+     -\log_r p_j$, where $1 < r \in \R$ is the *unit of
      information*. If $r=2$, then the unit of information is called a
      *bit*, or in the case of $r = e \approx 2.71$ it is called a
      *nat*.
@@ -101,8 +101,8 @@
      &\ge -\log_r \left( \sum_{j=1}^k p_j \frac{1}{p_j} \right) =
      -\log_r k.
      \end{align*}
-** Coding
-*** Basics
+** Source coding
+*** Basics of coding theory
 **** Coding
      In the broadest sense, *coding* is modeled (in mathematics) as a
      map between two sets. If this map is
@@ -167,7 +167,7 @@
        $\varphi$ is an *fixed-length* or *block code*.
      - If there is a $\vartheta \in B^+$ (a *comma*), such that
        $\vartheta$ is a suffix of every code-word, but none of the
-       code-words can be written as $\alpha \theta \beta$ where
+       code-words can be written as $\alpha \vartheta \beta$ where
        $\beta$ is not the empty string, then $\varphi$ is a
        *comma-separated code*.
 *** Property of prefix codes
@@ -233,8 +233,8 @@
      :BEAMER_env: theorem
      :END:
      Let $A = \{a_1, a_2, \ldots, a_n\}$ be the character set and $r
-     \ge 2$ the number of elements of $B$, the encoding character and
-     $\varphi : A \to B^+$ injective map.  If $\psi$ defined by
+     \ge 2$ the number of elements of $B$, the encoding character set
+     and $\varphi : A \to B^+$ injective map.  If $\psi$ defined by
      $\varphi$ is lossless, and $\ell_j = \abs{ \varphi(a_j) }$ is the
      length of the code-word corresponding to $a_j$, then
      \[\sum_{j=1}^n r^{-\ell_j} \le 1.\]
@@ -244,15 +244,16 @@
      1$, then there is a $\varphi : A \to B^+$ character encoding,
      /which is a prefix code/, such that the length of $\varphi(a_j)$
      is $\ell_j$.
+** Optimal codes
 *** Expected code-word length
 **** Expected code-word length                                 :B_definition:
      :PROPERTIES:
      :BEAMER_env: definition
      :END:
-     Let $A = \{a_1, a_2, \ldots, a_k \}$ be a character set with
-     distribution $p_1, p_2, \ldots, p_k$, $\varphi: A \to B^+$
+     Let $A = \{a_1, a_2, \ldots, a_n \}$ be a character set with
+     distribution $p_1, p_2, \ldots, p_n$, $\varphi: A \to B^+$
      injective map, and $\ell_j = \abs{\varphi(a_j)}$. Then
-     $\overline{\ell} = \sum_{j=1}^k p_j \ell_j$ is the *expected
+     $\overline{\ell} = \sum_{j=1}^n p_j \ell_j$ is the *expected
      code-word length*.
 **** Optimal code                                              :B_definition:
      :PROPERTIES:
@@ -281,411 +282,1619 @@
        Let $\ell$ be the expected code-word length of this code.
      - If $p_j \ell_j > \ell$, the code cannot be optimal (why?), so
        we can consider only codes with $\ell_j \le \frac{\ell}{p_j}$
-       (for each $j = 1, 2, \ldots, k$).
+       (for each $j = 1, 2, \ldots, n$).
      - There is a finite number of such codes (why?), and a finite
        subset of $\R$ has a minimal element.
-* COMMENT  From hungarian slides
-\begin{frame}[t]{Betűnkénti kódolás}
-\begin{block}{Tétel (Shannon tétele zajmentes csatornára)}
-Legyen $A=\{a_1,a_2,\ldots,a_n\}$ a kódolandó ábécé,
-$p_1,p_2,\ldots,p_n$ a betűk eloszlása, $\varphi:A\to B^+$ injektív leképezés,
-$B$ elemeinek a száma $r\ge 2$, továbbá $l_j=|\varphi(a_j)|$.\\
-Ha a $\varphi$ által meghatározott betűnkénti kódolás felbontható,
-akkor $H_r(p_1,p_2,\ldots,p_n)\le\overline{l}$.
-\end{block}
-\begin{block}{Bizonyítás}
-$$\overline{l}-H_r(p_1,p_2,\ldots,p_n)=\sum_{j=1}^n p_jl_j+\sum_{j=1}^n p_j\log_rp_j=$$
-$$=\sum_{j=1}^n p_j\cdot\left (-\log_r(r^{-l_j})\right )+\sum_{j=1}^n p_j\cdot\left (-\log_r\frac{1}{p_j}\right )=
-\sum_{j=1}^n p_j\cdot\left (-\log_r\frac{r^{-l_j}}{p_j}\right )\ge$$
-\small$$\ge-\log_r\left(\sum_{j=1}^nr^{-l_j}\right)\ge -\log_r1=0$$
-\normalsize
+*** Shannon's theorem on noiseless channels
+**** Shannon's source coding theorem                              :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $A = \{a_1, a_2, \ldots, a_n \}$ be a character and $p_1,
+     p_2, \ldots, p_n$ the letter distribution, $\varphi : A \to B^+$
+     injective, and $r \ge 2$ the number of elements of $B$, and
+     $\ell_j = \abs{\varphi(a_j)}$.  If the character encoding defined
+     by $\varphi$ is lossless, then $H_r(p_1, p_2, \ldots, p_n) \le
+     \overline{\ell}$
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We will show that $\overline{\ell} - H_r(p_1,p_2,\ldots,p_n) \ge
+     0$. By definition this difference is $\sum_{j=1}^n p_j l_j +
+     \sum_{j=1}^n p_j\log_r p_j$. By the definition of the logarithm:
+     $\sum_{j=1}^n p_j \cdot \left( -\log_r (r^{-l_j}) \right) +
+     \sum_{j=1}^n p_j \cdot \left( -\log_r \frac{1}{p_j} \right)$.
+     Then combining the two sums, using the Jensen and McMillan
+     inequality: $\sum_{j=1}^n p_j \cdot \left( -\log_r
+     \frac{r^{-l_j}}{p_j} \right) \ge -\log_r \left( \sum_{j=1}^n
+     r^{-l_j} \right) \ge -\log_r 1 = 0$.
+*** The existence of Shannon code
+**** Existence of Shannon's code                                  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     With the notation of the previous theorem, if $n>1$, then there
+     exists a prefix code such that: $\overline{\ell} < H_r(p_1, p_2,
+     \ldots, p_n) + 1$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Choose $l_1,l_2,\ldots,l_n$ integers such that $r^{-l_j} \le p_j
+     < r^{-l_j+1}$, if $j = 1, 2, \ldots, n$ (Why is this possible?).
+     Then $\sum_{j=1}^n r^{-l_j} \le \sum_{j=1}^n p_j = 1$, so by the
+     McMillan inequality there exists such a prefix code $l_j$ for
+     word-lengths. Since $l_j < 1 - \log_r p_j$ (Why?), so
+     $\overline{\ell} = \sum_{j=1}^n p_j l_j < \sum_{j=1}^n p_j (1 -
+     \log_r p_j) = 1 + H_r(p_1, p_2, \ldots, p_n)$.
+*** Constructing an optimal code: Huffman code 
+    Let $\{a_1, a_2, \ldots, a_n\}$ be the character set (or the set
+    of messages), with the corresponding $p_1, p_2, \ldots, p_n$
+    distribution, and let $r$ be the number of elements of the
+    encoding character set.
+    1. Sort the list of $(a_j, p_j)$ by descending relative frequency;
+    2. Let $t \gets [(n-2) \bmod (r-1)] + 2$;
+    3. Replace the last $t$ entries by a combined entry $(a,p)$: where
+       $a$ is the combination of the last $t$ $a_j$'s, and $p$ the sum
+       of the last $t$ $p_j$'s;
+    4. Sort the list again; set $t \gets r$; go to step 3.
+    In the last step you should be left with a single entry, which
+    describes the a method to obtain the Huffman-code corresponding to
+    the given character set and distribution.
+*** Example
+    Let $A=\{a,b,\ldots,j\}$ be the charset., with relfreq.:
+    $0,17;0,02;0,13;0,02;0,01;0,31;0,02;0,17;0,06;0,09$, and the $B =
+    \{0,1,2\}$ the encoding charset.  $10-2=4\cdot(3-1)+0$, so
+    $t=0+2=2$.
+
+    \vspace{0.3cm} \scriptsize
+    \begin{tabular}{ccc}
+    \begin{tabular}{cl}
+    f & \ \ \ 0,31\\
+    a & \ \ \ 0,17\\
+    h & \ \ \ 0,17\\
+    c & \ \ \ 0,13\\
+    j & \ \ \ 0,09\\
+    i & \ \ \ 0,06\\
+    b & \ \ \ 0,02\\
+    d & \ \ \ 0,02\\
+    \begin{tabular}{c}
+    g\\
+    e
+    \end{tabular} &
+    $\color{black}{\left .\begin{tabular}{l}
+    0,02\\
+    0,01
+    \end{tabular}\right\}0,03}$
+    \end{tabular}
+    
+    \begin{tabular}{cl}
+    f & \ \ \ 0,31\\
+    a & \ \ \ 0,17\\
+    h & \ \ \ 0,17\\
+    c & \ \ \ 0,13\\
+    j & \ \ \ 0,09\\
+    i & \ \ \ 0,06\\
+    \begin{tabular}{c}
+    (g,e)\\
+    b\\
+    d
+    \end{tabular} &
+    $\color{black}{\left .\begin{tabular}{l}
+    0,03\\
+    0,02\\
+    0,02
+    \end{tabular}\right\}0,07}$
+    \end{tabular}
+    
+    \begin{tabular}{cl}
+    f & \ \ \ 0,31\\
+    a & \ \ \ 0,17\\
+    h & \ \ \ 0,17\\
+    c & \ \ \ 0,13\\
+    \begin{tabular}{c}
+    j\\
+    ((g,e),b,d)\\
+    i
+    \end{tabular} &
+    $\color{black}{\left .\begin{tabular}{l}
+    0,09\\
+    0,07\\
+    0,06
+    \end{tabular}\right\}0,22}$
+    \end{tabular}
+    
+    \end{tabular}\\
+    \vspace{0.3cm}
+    \begin{tabular}{cc}
+    \begin{tabular}{cl}
+    f & \ \ \ 0,31\\
+    (j,((g,e),b,d),i) & \ \ \ 0,22\\
+    \begin{tabular}{c}
+    a\\
+    h\\
+    c
+    \end{tabular} &
+    $\color{black}{\left .\begin{tabular}{l}
+    0,17\\
+    0,17\\
+    0,13
+    \end{tabular}\right\}0,47}$
+    \end{tabular}
+    
+    \begin{tabular}{cl}
+    (a,h,c) & \ \ 0,47\\
+    f & \ \ 0,31\\
+    (j,((g,e),b,d),i) & \ \ 0,22
+    \end{tabular}
+
+    \end{tabular}
+*** Example: $((a, h, c), f, (j, ((g, e), b, d), i))$
+****                                                               :B_column:
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :END:
+     Entropy: $\approx 1,73$.
+     
+     Expected word length: $1,79$.
+    
+     | Subtree:                | Prefix |
+     | $(a,h,c)$               |      0 |
+     | $f$                     |      1 |
+     | $(j,((g, e), b, d), i)$ |      2 |
+     
+     | First branch: |    |
+     | $a$           | 00 |
+     | $h$           | 01 |
+     | $c$           | 02 |
+     
+     | Second branch: |   |
+     | $f$            | 1 |
+****                                                               :B_column:
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :END:
+     | Third branch:    |    |
+     | $j$              | 20 |
+     | $((g, e), b, d)$ | 21 |
+     | $i$              | 22 |
+
+     Third branch, second subbranch:
+     | $(g,e)$ | 210 |
+     | $b$     | 211 |
+     | $d$     | 212 |
+
+     First subbranch of the above:
+     | $g$ | 2100 |
+     | $e$ | 2101 |
+*** Example in Python
+**** Example program
+     See this python example:
+     https://github.com/vatai/dm2en-org/blob/master/part4_coding/Huffman-code.ipynb
+*** Huffman code is optimal
+**** Huffman code is optimal                                         :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Huffman code is an optimal code.
+**** Shannon code                                                 :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Using the parameters from the previous example:
+     | $f$ | 0,31 |
+     | $a$ | 0,17 |
+     | $h$ | 0,17 |
+     | $c$ | 0,13 |
+     | $j$ | 0,09 |
+     | $i$ | 0,06 |
+     | $b$ | 0,02 |
+     | $d$ | 0,02 |
+     | $g$ | 0,02 |
+     | $e$ | 0,01 |
+*** Shannon code continued                                      :B_fullframe:
+    :PROPERTIES:
+    :BEAMER_env: fullframe
+    :END:
+     The appropriate word-code lengths are:
+     - $\frac{1}{9} \le 0,31;0,17;0,13 < \frac{1}{3}$: so $2$ for $f$,
+       $a$, $h$ and $c$;
+     - $\frac{1}{27} \le 0,09;0,06 < \frac{1}{9}$: so $3$ for $j$ and $i$;
+     - $\frac{1}{81} \le 0,02 < \frac{1}{27}$: so $4$ for $b$, $d$ and $g$;
+     - $\frac{1}{243}\le 0,01 < \frac{1}{81}$: so $5$ for $e$.
+     $\varphi(f) = 00$, $\varphi(a) = 01$, $\varphi(h) = 02$. $02 + 1
+     =_3 10$ so $\varphi(c) = 10$. $10 + 1 =_3 11$, but
+     $\abs{\varphi(j)}$ should be 3 so we pad it with $0$, \ie
+     $\varphi(j) = 110$ etc.
+****  
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :END:
+     | $f$ |    00 |
+     | $a$ |    01 |
+     | $h$ |    02 |
+     | $c$ |    10 |
+     | $j$ |   110 |
+     | $i$ |   111 |
+****  
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :END:
+     | $b$ |  1120 |
+     | $d$ |  1121 |
+     | $g$ |  1122 |
+     | $e$ | 12000 |
+     Expected code-word length: $2,3<1,73+1$.
+*** Code tree
+    # Seemed interesting: https://plus.maths.org/content/os/issue10/features/infotheory/index
+**** Code tree                                                 :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A *code tree* is a labeled directed graph to help visualise
+     character encodings.  Let $\varphi : A \to B^\ast$ a character
+     encoding.  The set of all the prefixes of all the code-words in
+     $\rng(\varphi)$, is a partially order set with the "is a prefix
+     of" ordering.  The Hasse diagram of this partially ordered set is
+     a directed tree, with the empty string as at its root, and the
+     level of each string (\ie prefix) in the tree is equal to the
+     length of the string.
+     
+     The edges are labeled with letters from the encoding character
+     set: let $\beta = \alpha b$, then the edge label of the edge from
+     $\alpha$ to $\beta$ is $b$.  The label of vertex of $\varphi(a)$
+     (for $a \in A$) is $a$, while the label of prefixes which are not
+     in $\rng(\varphi)$ are "empty".
+*** Code from code tree
+    The construction of a code tree be reversed: 
+
+    Consider a finite directed tree, which has
+    - edges labeled with elements from the set $B$, so that no two
+      edges coming from one vertex have the same, and
+    - vertices are labeled with the finite character set $A$, so that
+      every leaf has a label.
+    
+    Given a tree described above, reading the edge labels, starting
+    from root to the vertex with label $a \in A$, we obtain the
+    code-word $\varphi(a) \in B^{\ast}$.
+*** Code tree example
+**** Huffman-code :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{tikzpicture}[
+     scale=0.8,
+     leaf/.style = {draw},
+     inner/.style={draw,circle,inner sep=1},
+     level 1/.style = {sibling distance=3cm},
+     level 2/.style = {sibling distance=2cm},
+     level distance = 1cm
+     ]
+     \node[inner] {} 
+      child { node[inner] {} 
+       child { node[leaf] {a} edge from parent node[above] {0}}
+       child { node[leaf] {h} edge from parent node[left] {1}}
+       child { node[leaf] {c} edge from parent node[above] {2}}
+       edge from parent node[above] {0}
+       }
+      child { node[leaf] {f} edge from parent node[left] {1}}
+      child {  node[inner] {} 
+       child { node[leaf] {j} edge from parent node[above] {0}}
+       child { node[inner] {}
+        child { node[inner] {}  
+         child { node[leaf] {g} edge from parent node[left] {0}}
+         child { node[leaf] {e} edge from parent node[right] {1}} 
+         edge from parent node[above] {0}}
+        child { node[leaf] {b} edge from parent node[left] {1}}
+        child { node[leaf] {d} edge from parent node[above] {2}} 
+        edge from parent node[left] {1}}
+       child { node[leaf] {i} edge from parent node[above] {2} }
+       edge from parent node[above] {2}} 
+       ;
+     \end{tikzpicture}
+     #+END_EXPORT
+     
+     $\varphi(a)=00$, $\varphi(b)=211$, $\varphi(c)=02$, $\varphi(d)=212$, $\varphi(e)=2101$,
+     $\varphi(f)=1$, $\varphi(g)=2100$, $\varphi(h)=01$, $\varphi(i)=22$, $\varphi(j)=20$.
+     
+     Set of prefixes of code-words:
+     $\{\lambda,1,00,0,01,02,20,2,22,211,21,212,2100,210,2101\}$
+*** Code tree example
+**** Shannon code :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+    #+BEGIN_EXPORT latex
+     \begin{tikzpicture}[
+     scale=0.8,
+     leaf/.style = {draw},
+     inner/.style={draw,circle,inner sep=1},
+     level 1/.style = {sibling distance=4cm},
+     level 2/.style = {sibling distance=2cm},
+     level distance = 1cm
+     ]
+     \node[inner] {} 
+      child { node[inner] {} 
+       child { node[leaf] {f} edge from parent node[above] {0}}
+       child { node[leaf] {a} edge from parent node[left] {1}}
+       child { node[leaf] {h} edge from parent node[above] {2}}
+       edge from parent node[above] {0}
+       }
+      child { node[inner] {} 
+       child { node[inner] {} 
+        child { node[leaf] {c} edge from parent node[above] {0}}
+        child { node[inner] {}
+         child { node[leaf] {j}  
+          edge from parent node[above] {0}}
+         child { node[leaf] {i} edge from parent node[left] {1}}
+         child { node[leaf] {g} 
+          child { node[leaf] {b} edge from parent node[above] {0}}
+          child { node[leaf] {d} edge from parent node[left] {1}} 
+          child { node[leaf] {g} edge from parent node[above] {2}} 
+          edge from parent node[above] {2}} 
+         edge from parent node[left] {1}}
+        child { node[inner, xshift=3cm, yshift=0.5cm] {}
+         child { node[inner] {} 
+          child { node[inner] {} 
+           child { node[leaf] {e} edge from parent node[left] {0}}
+          edge from parent node[left] {0}}
+         edge from parent node[left] {0}}
+        edge from parent node[above] {2} }
+        edge from parent node[left] {1}} 
+      edge from parent node[above] {1}}
+       ;
+     \end{tikzpicture}
+    #+END_EXPORT
+    $\varphi(a)=01$, $\varphi(b)=1120$, $\varphi(c)=10$,
+    $\varphi(d)=1121$, $\varphi(e)=12000$, $\varphi(f)=00$,
+    $\varphi(g)=1122$, $\varphi(h)=02$, $\varphi(i)=111$,
+    $\varphi(j)=110$.  
+    
+    Set of prefixes of code-words: \small$\{01, 0, \lambda, 1120, 112, 11,
+    1, 10, 1121, 12000, 1200, 120, 12, 00, 1122, 02, 111, 110\}$
+* Error control
+** Error detection
+*** Error control - ISBN
+**** ISBN - International Standard Book Number                    :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let $d_1,d_2,\ldots,d_n$ be a sequence of (decimal) digits.
+      ($n\le 10)$.  We extend the sequence with the \(n+1\)-th digit,
+      for which $d_{n+1} = \sum_{j=1}^n j \cdot d_j\bmod 11$, if it is
+      not $10$, otherwise $d_{n+1}$ is $X$.
+
+     If there is an error in one of the digits, then this property
+     breaks: if $d_{n+1}$ is mistyped the error is obvious. If we
+     write $d_j'$ instead of $d_j$ (for $j \le n$), then the sum
+     changes by $j(d_j'-d_j)$, which is not divisible by $11$ (Why?).
+
+     If $j<n$ and $d_j$ is switched with $d_{j+1}$: the sum increases by $j
+     d_{j+1} + (j+1) d_j - j d_j - (j+1) d_{j+1} = d_j - d_{j+1}$
+     which is divisible by $11$ only if $d_j=d_{j+1}$.
+
+     Note: from 2013 there are 13 digits.
+*** Error control - Parity
+**** Parity bit :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Let us extend an $n$ long binary sequence with an \(n+1\)-th
+     digit, which is $1$ if there was an odd number of \(1\)'s in the
+     sequence, otherwise it is $0$.  If there is one error, we can
+     detect it.
+**** 2D parity bit                                                :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :BEAMER_col: 0.6
+     :END:
+     | /         |          |           | >        |           |
+     | $b_{0,0}$ | $\cdots$ | $b_{0,j}$ | $\cdots$ | $b_{0,n}$ |
+     | $\vdots$  | $\ddots$ | $\vdots$  | $\ddots$ | $\vdots$  |
+     | $b_{i,0}$ | $\cdots$ | $b_{i,j}$ | $\cdots$ | $b_{i,n}$ |
+     | $\vdots$  | $\ddots$ | $\vdots$  | $\ddots$ | $\vdots$  |
+     |-----------+----------+-----------+----------+-----------|
+     | $b_{m,0}$ | $\cdots$ | $b_{m,j}$ | $\cdots$ | $b_{m,n}$ |
+****  :BMCOL:
+     :PROPERTIES:
+     :BEAMER_col: 0.4
+     :END:
+     $b_{i,n}$ at the end of each row, and $b_{m,j}$ at the end of
+     each column are (1D) parity bits.  We can correct any (single)
+     error, and we can detect any two errors.
+*** \(t\)-error detecting codes
+**** \(t\)-error detecting code                                :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A code is *\(t\)-error detecting* ($t \in \N$), if it can detect
+     an error when the received message differs from the original
+     message in any $t$ or less positions.  The code is *exactly
+     \(t\)-error detecting*, if it is \(t\)-error detecting, but not
+     \(t+1\)-error detecting.
+**** \(t\)-error detecting codes                                  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     _ISBN_: \(1\)-error detecting; _Parity bit_: \(1\)-error
+     detecting; _2D parity bit_: \(2\)-error detecting.
+**** Error correction
+     - ARQ: Automatic Retransmission Request
+     - FEC: Forward Error Correction (\eg 2D parity bit)
+*** Hamming distance
+**** Hamming distance                                          :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $A$ be a character set, $u, v \in A^n$ ($n \in \N$).  Then
+     the *Hamming distance* of $u$ and $v$ is the number of positions
+     they differ, \ie $d(u,v) = \abs{ \{i: u_i \ne v_i \land 1 \le i
+     \le n\}}$.
+**** HRS
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     |     / |       |     |       |       |   |     |       |       |     |
+     |     0 |     1 |   1 |     1 |     0 |   | A   | N     | N     | A   |
+     |     1 |     0 |   1 |     0 |     1 |   | A   | L     | M     | A   |
+     |-------+-------+-----+-------+-------+---+-----+-------+-------+-----|
+     | $\ne$ | $\ne$ | $=$ | $\ne$ | $\ne$ |   | $=$ | $\ne$ | $\ne$ | $=$ |
+     #+BEGIN_CENTER
+     $d(01110, 10101) = 4$ and $d(ANNA, ALMA) = 2$.
+     #+END_CENTER
+*** Hamming code
+**** Properties of Hamming distance                               :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     For any $u, v, w \in A^n$:
+     1. $d(u,v) \ge 0$;
+     2. $d(u,v) = 0 \iff u = v$;
+     3. $d(u,v) = d(v,u)$ (symmetry);
+     4. $d(u,v) \le d(u,w) + d(w,v)$ (triangle inequality).
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     1-3 is trivial. 4: if $u$ and $v$ are different at a position,
+     then at least one of $u,w$ or $w,v$ pairs are different.
+*** Code distance
+**** Code distance                                             :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *distance of a code $C$* ($d(C)$) ($C$ is the set of
+     code-words) is the minimum of the distances between any two
+     different code-word.
+**** Code distance                                                :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{tikzpicture}
+     \draw (0,0) node {(0,0)$\mapsto$ (0,0,0,0,0)};
+     \draw (0,-0.5) node {(0,1)$\mapsto$ (0,1,1,1,0)};
+     \draw (0,-1) node {(1,0)$\mapsto$ (1,0,1,0,1)};
+     \draw (0,-1.5) node {(1,1)$\mapsto$ (1,1,0,1,1)};
+     \begin{scope}[xshift=6]
+     \draw (1.7,-0.25) node {3};
+     \draw (1.7,-0.75) node {4};
+     \draw (1.7,-1.25) node {3};
+     \draw [-, thin] (1.4,0) -- (1.5,0);
+     \draw [-, thin] (1.4,-0.4) -- (1.5,-0.4);
+     \draw [-, thin] (1.4,-0.6) -- (1.5,-0.6);
+     \draw [-, thin] (1.4,-0.9) -- (1.5,-0.9);
+     \draw [-, thin] (1.4,-1.1) -- (1.5,-1.1);
+     \draw [-, thin] (1.4,-1.5) -- (1.5,-1.5);
+     \draw [-, thin] (1.5,-0.4) -- (1.5,0);
+     \draw [-, thin] (1.5,-0.6) -- (1.5,-0.9);
+     \draw [-, thin] (1.5,-1.5) -- (1.5,-1.1);
+     
+     \draw [-, thin] (1.9,0) -- (2,0);
+     \draw [-, thin] (1.9,-1) -- (2,-1);
+     \draw [-, thin] (2,0) -- (2,-1);
+     \draw (2.2,-0.5) node {3};
+     
+     \draw [-, thin] (2.4,-0.5) -- (2.5,-0.5);
+     \draw [-, thin] (2.4,-1.5) -- (2.5,-1.5);
+     \draw [-, thin] (2.5,-0.5) -- (2.5,-1.5);
+     \draw (2.7,-1) node {3};
+     
+     \draw [-, thin] (2.9,0) -- (3,0);
+     \draw [-, thin] (2.9,-1.5) -- (3,-1.5);
+     \draw [-, thin] (3,0) -- (3,-1.5);
+     \draw (3.2,-0.75) node {4};
+     \end{scope}
+     \end{tikzpicture}
+     #+END_EXPORT
+     
+     The distance of the code is $3$.
+     
+     So how to decode $(0,1,0,0,0)$?
+** Error Correction
+*** Error correction
+**** Minimum distance decoding                                 :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     When received string $u'$ is not in $C$, *minimal distance
+     decoding* dictates to decode $u'$ to the code-word with minimal
+     distance to $u'$.  If there are multiple code-words with minimal
+     distance to $u'$ then we may choose any one of them, but must
+     always choose the same one.
+**** \(t\)-error detecting code                                :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A code is *\(t\)-error detecting* ($t \in \N$), if it can detect
+     an error when the received message differs from the original
+     message in any $t$ or less positions.  The code is *exactly
+     \(t\)-error detecting*, if it is \(t\)-error detecting, but not
+     \(t+1\)-error detecting.
+*** Error detection as a function of code distance
+**** Remark
+     If the distance of the code is $d$, then using minimum distance
+     decoding, the code is \(t\)-error detecting for $t < \frac{d}{2}$.
+**** Previous example                                             :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     The previous code has $d(C) = 3$ so it is \(1\)-error detecting.
+     $(0, 0, 0, 0, 0) \rightsquigarrow (1, 0, 0, 0, 1) \rightarrow (1,
+     0, 1, 0, 1)$.
+**** Repetition code                                              :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     - $a \mapsto (a, a, a)$: $d(C) = 3$, so the code is \(1\)-error detecting;
+     - $a \mapsto (a, a, a, a, a)$: $d(C) = 5$, so the code is
+       \(2\)-error detecting.
+*** Singleton bound
+**** Singleton bound                                              :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $C \subset A^n$, $\abs{A} = q$ and $d(C) = d$, then $\abs{C}
+     \le q^{n-d+1}$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     By discarding the same $d-1$ positions form all code-words, then
+     the shortened $n - d + 1$ long strings are still all
+     different. The number of such words is the RHS of the inequality.
+**** MDS - maximal distance separable code                     :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     If the Singleton bound applies to a code with equality, the code
+     is a *maximal distance separable code*.
+**** Repetition code                                              :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     For the \(n\)-times repetition code: $d = n$ and $\abs{C} = q$.
+*** Hamming bound
+**** Hamming bound                                                :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $C \subset A^n$, $|A|=q$ and $C$ is \(t\)-error correcting
+     \[\abs{C} \sum_{j=0}^t \binom{n}{j} (q-1)^j \le q^n.\]
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Since $C$ is \(t\)-error correcting, for any two different
+     code-words, the two sets of strings with distance less than or
+     equal $t$ are disjoint. (Why?)  The number of strings with
+     distance $j$ from a code-word is $\binom{n}{j}(q-1)^j$ (Why?), so
+     the number of strings with distance at most $t$ is $\sum_{j=0}^t
+     \binom{n}{j}(q-1)^j$. The RHS has the number of $n$ long strings
+     (Why?).
+*** Perfect code
+**** Perfect code                                              :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     If the Hamming bound applies to a code with equality, then the
+     code is a perfect code.
+**** Not perfect code                                             :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     For the code for the code distance: $\abs{C} = 4$, $n = 5$, $q =
+     2$ and $t = 1$.
+     - LHS: $4 (\binom{5}{0}(2-1)^0 + \binom{5}{1}(2-1)^0) = 4(5+1) =
+       24$;
+     - RHS: $2^5 = 32$.
+     The code is not perfect!
+*** Error detection as a function of distance
+**** Let $d$ be the distance of a code
+     If a message has at least $1$ but less than $d$ errors, then the
+     message with the errors is different from all code-words, because
+     any two code-words have distance at least $d$, meaning the any at
+     most $d-1$ errors will be detected, so the code is \(t\)-error
+     detecting. But since the code distance is $d$, there are two
+     code-words with distance $d$ so $d$ errors can occur in one of
+     the these code-words transforming it into the other one, so in
+     this case $d$ errors could not be detected, so the code with
+     code-distance $d$ is exactly \(d-1\)-error detecting.
+*** Error correction as a function of distance
+**** Let $d$ be the distance of a code, with mini.dist.decoding
+     The code-word with $t$ errors, with $t < \frac{d}{2}$, because of
+     the triangle inequality, has distance $> \frac{d}{2}$ from any
+     other code-word except the originaly sent. (Why? $d \le d(u,v)
+     < \frac{d}{2} + d(u',v)$)
+     
+     Let $u,v$ be code-words with $d(u,v) = d$, and let $u'$ be the
+     string obtained by switching the characters of $u$, at $t$ (out
+     of the $d$ positions where $u$ and $v$ differ), with the
+     corresponding characters of $v$, where $t \ge \frac{d}{2}$. Then
+     $d(u, u') = t$, $d(u', v) = d - t$ where $d -t \le \frac{d}{2}
+     \le t$.  If the code is \(t\)-error correcting, then we should do
+     the correct decoding to $u$, but because $d(u',v) \le d(u, u')$,
+     so minimal distance decoding would decode it to $v$.  So the code
+     with code distance $d$ is exactly \(\left\lfloor \frac{d-1}{2}
+     \right\rfloor\)-error correcting.
+** Linear codes
+*** Linear codes
+**** Linear code                                               :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $\F$ be a finite field, and $\mathbb{F}^n$ is a
+     vector space with the element-wise addition and multiplying each
+     element of a vector with a single element of $\F$.  The
+     kernel of a subspace of $\F^n$ is a *linear code*.  In
+     this setup, elements of $\F$ are the characters, elements
+     of $\F^n$ are the words/string, and the elements of the
+     subspace are the code-words.
+**** Notation
+     If the subspace is \(k\)-dimensional, the code distance is $d$,
+     $\abs{\F} = q$, then the code is the $[n,k,d]_q$ linear
+     code.  Sometimes, $q$ and/or $d$ is not important, and then they
+     can be omitted \ie the $[n,k]$ code.
+*** Weight
+**** Remarks
+     The Singleton bound for the linear code $q^k \le q^{n - d + 1}$
+     simplifies to $k \le n - d + 1$.
+**** Code weight                                               :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *weight* of the string $u \in \F^n$ is the number of non-zero
+     characters in $u$, and is denoted by $w(u)$.  The *weight of the
+     code $C$* is the minimum of weights of non-zero code-words: 
+     \[w(K) = \min_{u \ne 0} w(u).\]
+*** Examples
+**** Notation                                                     :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     1. The example for the code distance is a $[5,2,3]_2$ linear code:
+        | $(0,0) \mapsto (0,0,0,0,0)$ | $(0,1) \mapsto (0,1,1,1,0)$ |
+        | $(1,0) \mapsto (1,0,1,0,1)$ | $(1,1) \mapsto (1,1,0,1,1)$ |
+     2. Repetition code over $\F_q$ is linear: \eg the \(3\)-times
+        repetition code is a $[3,1,3]_q$ linear code.
+     3. Parity bit is an $[n, n-1, 2]_2$ linear code: $(b_1, \ldots,
+        b_k) \mapsto (b_1, \ldots, b_k, \sum_{j=1}^k b_j)$
+*** Distance and weight
+**** Weight defined as distance form the $0$ vector
+     $w(u) = d(u,0)$ where $0$ is $(0, 0, \ldots, 0)$ the \(n\)-long
+     zero vector.
+**** Code weight and code distance for linear codes               :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     If $C$ is a linear code, then $d(C) = w(C)$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $d(u,v) = w(u - v)$ (why?), and since $C$ is linear, if $u, v \in
+     C$, then so is $u - v \in C$, so the two minima are the same.
+*** Generator matrix
+    Encoding messages with linear codes is just a matrix
+    multiplication.
+**** Generator matrix                                          :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Let $G : \F_q^k \to \F_q^n$ be a full rank linear map, and
+     $\mathbf{G} \in \F_q^{n \times k}$ the corresponding matrix. If
+     $C = \im(G)$ then $\mathbf{G}$ is the *generator matrix* of the
+     code $C$.
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+      & & &
+      \begin{pmatrix} 
+      m_1 \\  \vdots \\ m_k 
+      \end{pmatrix}\\
+      & & \begin{pmatrix} 
+      g_{11} & g_{12} & \cdots & g_{1k} \\
+      g_{22} & g_{22} & \cdots & g_{2k} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      g_{n2} & g_{n2} & \cdots & g_{nk} \\
+      \end{pmatrix} 
+      & 
+      \begin{pmatrix} 
+      c_1 \\ c_2 \\ \cdots \\ c_k 
+      \end{pmatrix}
+     \end{align*}
+     #+END_EXPORT
+*** Check matrices
+**** Check matrix                                              :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     $\mathbf{H} \in \F_q^{(n-k) \times n}$ is a *check matrix* of a
+     $[n,k,d]_q$ code, if $\mathbf{H}v = 0 \iff v$ is a code-word.
+**** Remark
+     $\mathbf{H}$ is a check matrix for the $\mathbf{G}$ generator
+     matrix iff $\ker(\mathbf{H}) = \im(\mathbf{G})$.
+*** Generator and check matrix example 1
+**** The example from code distance                               :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     \mathbf{G} = \begin{pmatrix}
+     1 & 0 \\ 0 & 1 \\
+     1 & 1 \\ 0 & 1 \\
+     1 & 0 \end{pmatrix}
+     & &
+     \mathbf{H} = \begin{pmatrix}
+     1 & 1 & 1 & 0 & 0 \\
+     0 & 1 & 0 & 1 & 0 \\
+     1 & 0 & 0 & 0 & 1
+     \end{pmatrix}
+     \end{align*}
+     #+END_EXPORT
+*** Generator and check matrix example 2
+**** Repetition code (3 times)                                    :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     \mathbf{G} = \begin{pmatrix}
+     1 \\ 1 \\ 1 \end{pmatrix}
+     & &
+     \mathbf{H} = \begin{pmatrix}
+     -1 & 1 & 0 \\
+     -1 & 0 & 1 
+     \end{pmatrix}
+     \end{align*}
+     #+END_EXPORT
+*** Generator matrix example 3
+**** Parity bit                                                   :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     \mathbf{G} = \begin{pmatrix}
+     1 & 0 & \cdots & 0 \\
+     0 & 1 & \ddots & 0 \\
+     \vdots & \ddots & \ddots & 0 \\
+     0 & \cdots & 0 & 1 \\
+     1 & 1 & \cdots & 1
+     \end{pmatrix}
+     & &
+     \mathbf{H} = \begin{pmatrix}
+     1 & 1 & \cdots & 1
+     \end{pmatrix}
+     \end{align*}
+     #+END_EXPORT
+*** Systematic codes
+**** Systematic code                                           :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A code is *systematic* if the first $k$ characters of the
+     code-words are identical to the original messages.  The first $k$
+     characters of a code word is the *message segment* and the last
+     $n-k$ characters are the *parity segment*.
+**** Systematic codes                                             :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     1. Repetition code (\eg 3 times repetition):
+        $(\underbrace{a,}_{\text{msg.seg.}}
+        \underbrace{a,a}_{\text{parity seg.}})$
+     2. Parity bit: $(\underbrace{b_1, b_2, \ldots,
+        b_{n-1}}_{\text{msg.seg.}}, \underbrace{\textstyle
+        \sum_{j=1}^{n-1}b_j}_{\text{par.seg.}})$
+*** Useful properties of systematic codes
+**** Remark
+     Decoding systematic codes is trivial: we just have to discard the
+     last $n-k$ characters.
+**** Generator matrix for systematic codes
+     The generator matrix of a systematic code always has the
+     following special form: \[\mathbb{G} = \begin{pmatrix}
+     \mathbf{I}_k \\ \mathbf{P} \end{pmatrix} \] where $\mathbf{I}_k
+     \in \F_q^{k \times k}$ is the identity matrix, and $\mathbf{P}
+     \in \F_q^{(n-k) \times k}$.
+*** Error check matrix of systematic codes
+**** Error check matrix of systematic codes                       :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $\mathbf{G} \in \F_q^{n \times k}$ be a generator matrix for
+     a systematic code, \ie $\mathbf{G} = \begin{pmatrix} \mathbf{I}_k
+     \\ \mathbf{P} \end{pmatrix}$. Then $\mathbf{H} = \begin{pmatrix}
+     -\mathbf{P} & \mathbf{I}_{n-k} \end{pmatrix}$ is the check
+     matrix.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $\mathbf{HG} = \begin{pmatrix} -\mathbf{P} &
+     \mathbf{I_{n-k}}\end{pmatrix} \cdot \begin{pmatrix} \mathbf{I_k}
+     \\ \mathbf{P} \end{pmatrix} = -\mathbf{P} + \mathbf{P} =
+     \mathbf{0} \in \F_q^{(n-x)\times k}$. So for every code-word
+     $\mathbf{H}(\mathbf{G}u) = (\mathbf{HG})u = \mathbf{0}u =
+     \underline{0}$, \ie $\im(\mathbf{G}) \subset \ker(\mathbf{H})$,
+     and since $\dim(\im(\mathbf{G})) = \dim(\ker(\mathbf(H)))$, we
+     have $\im(\mathbf{G}) = \ker(\mathbf{H})$.
+*** Structure of the error check matrix
+**** Columns of error check matrices and weights                  :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Let $\mathbf{H}$ be the check matrix of a $[n,k]$ linear code.
+     $\mathbf{H}$ has $\ell$ number of linearly dependent columns, iff
+     there is a code-word, with weight at most $\ell$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Let $\vec{h}_i$ be the \(i\)-th column of $\mathbf{H}$.
+
+     $\Rightarrow$: $\sum_{j=1}^{\ell} u_j \cdot \vec{h}_{k_j} =
+     \vec{0}$.  Consider the vector which has $u_j$ in position
+     \(k_j\), and zero in all other positions.  This
+     will be a code-word (why?) and it will have weight $\le \ell$.
+
+     $\Leftarrow$: let $\vec{u} = (u_1, u_2, \ldots, u_n)^{\top}$ be a
+     code-word with weight at most $\ell$. Then the columns of
+     $\mathbf{H}$, corresponding to the non-zero elements of
+     $\vec{u}$, are linearly dependent.
+*** Code distance and the columns of the check matrix
+**** Corollary                                                   :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     The code distance is the smallest positive integer $\ell$, such
+     that the check matrix has $\ell$ linearly dependent columns.
+**** Code distance from $\mathbf{H}$                              :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     Using the example for code distance:
+     \[ \mathbf{H} = \begin{pmatrix}
+     1 & 1 & 1 & 0 & 0\\
+     0 & 1 & 0 & 1 & 0\\
+     1 & 0 & 0 & 0 & 1
+     \end{pmatrix} \]
+
+     No column is $\vec{0}$, so there is no $1$ linearly dependent
+     column (there must be at least $2$). But non of the columns is a
+     multiple (equal in $\F_2$) another, so there are no $2$ linearly
+     dependent column vectors.  Finally, columns 1, 3 and 5 are
+     linearly dependent, ergo $d(C) = 3$.
+*** Syndrome decoding
+    $\mathbf{H}$ can be useful for decoding:
+**** Syndrome                                                  :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     Given a string $\vec{v} \in \F_q^n$, $\vec{s} = \mathbf{H}\vec{v}
+     \in \F_q^{n-k}$ is the *syndrome* of $\vec{v}$.
+**** Note
+     $\vec{v}$ is a code-word iff $\vec{s} = 0$.
+**** Error vector                                              :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     $\vec{c}$ is a code-word, $\vec{v}$ the received word. $\vec{e} =
+     \vec{v} - \vec{c}$ is the *error vector*.
+**** Syndrome of error vectors                                    :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     $\mathbf{H} \vec{v} = \mathbf{H} \vec{e}$.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     $\mathbf{H} \vec{v} = \mathbf{H}(\vec{c} + \vec{e}) = \mathbf{H}
+     \vec{c} + \mathbf{H} \vec{e} = \vec{0} + \mathbf{H} \vec{e} =
+     \mathbf{H} \vec{e}$.
+*** Syndrome co\-sets
+    MO: from $\vec{v}$ we calculate the syndrome $\vec{s} = \mathbf{H}
+    \vec{v}$, based on which we estimate the error $\vec{e}$ from
+    which we can calculate the correct code-word $\vec{c} = \vec{v} -
+    \vec{e}$.
+**** Co\-set                                                   :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     The *co\-set* of an error $\vec{e}$ is the set $\{\vec{e} +
+     \vec{c} : \vec{c} \text{ is a code-word}\}$.
+
+     Note: the co\-set of $\vec{c} = \vec{0}$ is the set of code-words $C$.
+**** Syndromes within a co\-set                                   :B_theorem:
+     :PROPERTIES:
+     :BEAMER_env: theorem
+     :END:
+     Strings in a given co\-set have the same syndrome.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     Homework! It's not too hard!
+*** Syndrome decoding
+**** Co\-set leader
+     For each syndrome $\vec{s}$, let $\vec{e_s}$ be the string with
+     minimal weight which has syndrome $\vec{s}$.  $\vec{e_s}$ is the
+     *co\-set leader* of the syndrome $\vec{s}$, and co\-set can be
+     written as: $\{\vec{e_s} + \vec{c} : \vec{c} \in C\}$.
+**** Syndrome decoding
+     Given a string $\vec{v}$, calculate the syndrome $\vec{s} =
+     \mathbf{H} \vec{v}$, and the co\-set leader $\vec{e_s}$. We
+     decode $\vec{v}$ to $\vec{c} = \vec{v} - \vec{e_s}$.
+*** Syndrome decoding and minimal distance decoding
+**** Syndrome decoding is minimal distance decoding
+     Let $\vec{c}$ be a code-word, $\vec{v} = \vec{c} + \vec{e}$ is
+     the received string, where $\vec{e}$ is the error and $w(\vec{e})
+     < \frac{d}{2}$ with $d$ as the code distance. Then syndrome
+     decoding is the same as minimal distance decoding.
+**** Proof                                                          :B_proof:
+     :PROPERTIES:
+     :BEAMER_env: proof
+     :END:
+     We have $\vec{s} = \mathbf{H} \vec{v} = \mathbf{H} \vec{e}$, and
+     based on the definition of $\vec{e_s}$, $\vec{s} = \mathbf{H}
+     \vec{e_s}$.  So $\vec{e}$ and $\vec{e_s}$ belong to the same
+     co\-set and $w(\vec{e_s}) \le w(\vec{e})$. $w(\vec{e} -
+     \vec{e_s}) = d(\vec{e}, \vec{e_s}) \le d(\vec{e}, \vec{0}) +
+     d(\vec{0}, \vec{e_s}) < d$.  But $\mathbf{H}(\vec{e} - \vec{e_s})
+     = 0$, so $\vec{e} - \vec{e_s}$ is a code-word (why?), ergo
+     $\vec{e} = \vec{e_s}$.
+*** Syndrome decoding example
+**** The example for code distance                                :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     - for $\vec{v} = (1, 1, 0, 1, 1)^{\top}$, $\mathbf{H} \vec{v} =
+       \vec{0}$, so $\vec{v}$ is a code-word;
+     - for $\vec{v} = (1, 1, 0, 0, 1)^{\top}$, $\mathbf{H} \vec{v} =
+       (0, 1, 0)^{\top} = \vec{s}$.
+     What is the co\-set leader for $\vec{s}$?  The weight of $(0, 0,
+     0, 1, 0)^{\top}$ is $1$ and has syndrome $(0, 1, 0)^{\top}$, so
+     this is the co\-set leader. Ergo: $\vec{c} = \vec{v} - \vec{e_s}
+     = (1, 1, 0, 0, 1)^{\top} - (0, 0, 0, 1, 0)^{\top} = (1, 1, 0, 1,
+     1)^{\top}$.
+*** Hamming code
+**** Hamming code                                              :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A \(1\)-error correcting perfect linear code is *Hamming code*.
+**** Reminder
+     - A \(t\)-error correcting code $C$ code is perfect if \[\abs{C}
+       \sum_{j=0}^t \binom{n}{j} (q-1)^j = q^n.\]
+     - The distance of a code is the smallest positive integer $\ell$,
+       such that the check matrix has $\ell$ number of linear
+       dependent column vectors.
+*** Construction of Hamming code (binary case)
+    For a \(1\)-error correcting code, we may choose the columns of
+    $\mathbf{H}$ to be all the different non-zero \(r\)-long vectors
+    (why will this be a \(1\)-error correcting code?).  From the
+    Hamming bound $2^k (1+n) \le 2^n$, by making it an equality, we
+    obtain: $n = 2^{n-k} - 1$ and this is the same as the number of
+    different non-zero \(r\)-long vectors.
+    
+    For $n = 2^r - 1$ let $k = n - log(n+1)$. The possible pairs:
+    | $n$ | 3 | 7 | 15 | 31 | 63 | 127 |
+    | $k$ | 1 | 4 | 11 | 26 | 57 | 120 |
+    
+    *Decoding*: If there is only one error, then the error vector
+    consists of one $1$ and $0$ in all other positions, \ie the error
+    vector will be a column of $\mathbf{H}$.  The index of this column
+    is the index of the damaged bit.
+*** Hamming code example
+**** Hamming code with $n = 7$ and $k = 4$                        :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     #+BEGIN_EXPORT latex
+     \begin{align*}
+     \mathbf{H} = 
+     \begin{pmatrix}
+     1 & 0 & 1 & 1 & 1 & 0 & 0\\
+     1 & 1 & 0 & 1 & 0 & 1 & 0\\
+     1 & 1 & 1 & 0 & 0 & 0 & 1
+     \end{pmatrix} & & 
+     \mathbf{H} = 
+     \begin{pmatrix}
+     1 & 0 & 0 & 0\\
+     0 & 1 & 0 & 0\\
+     0 & 0 & 1 & 0\\
+     0 & 0 & 0 & 1\\
+     1 & 0 & 1 & 1\\
+     1 & 1 & 0 & 1\\
+     1 & 1 & 1 & 0
+     \end{pmatrix}
+     \end{align*}
+     #+END_EXPORT
+     For $\vec{v} = (1, 1, 0, 0, 1, 1, 1)^{\top}$, $\textbf{H} \vec{v}
+     = (0,1,1)^{\top} = \vec{s}$, which is the \(2\)-nd column of
+     $\mathbf{H}$ so the corrected message is $c = (1, 0, 0, 0, 1, 1,
+     1)^{\top}$.
+*** Other codes
+**** Some codes
+     - Teletext: $[7, 4]$ Hamming code extended with a parity bit;
+     - Satellite TV (DBS): $[15, 11]$ Hamming code extended with a
+       parity bit.
+**** Cyclic code                                               :B_definition:
+     :PROPERTIES:
+     :BEAMER_env: definition
+     :END:
+     A code $C \subset \F_q^n$ is *cyclic*, if $(u_1, u_2, \ldots,
+     u_{n-1}, u_n) \in C$ implies $(u_2, u_3, \ldots, u_n, u_1) \in
+     C$.
+**** Cyclic code                                                  :B_example:
+     :PROPERTIES:
+     :BEAMER_env: example
+     :END:
+     $C = \{000, 101, 110, 011, 111 \}$ is a binary cyclic code (which
+     is sometimes called a Cyclic Redundancy Check or CRC).
+
+     Note: $C$ is not linear: $101 + 111 = 010 \not\in C$.
+* COMMENT From Hungarian slides
 \end{block}
 \end{frame}
 
-\begin{frame}[t]{Betűnkénti kódolás}
-\begin{block}{Tétel (Shannon kód létezése)}
-Az előző tétel jelöléseivel, ha $n>1$, akkor van olyan prefix kód, amire
-$\overline{l}<H_r(p_1,p_2,\ldots,p_n)+1$.
-\end{block}
-\begin{block}{Bizonyítás}
-Válasszunk olyan $l_1,l_2,\ldots,l_n$ természetes számokat,
-amelyekre $r^{-l_j}\le p_j<r^{-l_j+1}$, ha $j=1,2,\ldots,n$ (Miért tudunk ilyeneket választani?).
-Ekkor $\sum_{j=1}^nr^{-l_j}\le\sum_{j=1}^np_j=1$, így a McMillan-egyenlőtlenség megfordítása miatt létezik prefix kód az adott $l_j$ hosszakkal. Mivel $l_j<1-\log_rp_j$ (Miért?), ezért
-$$\overline{l}=\sum_{j=1}^n p_jl_j<\sum_{j=1}^n p_j(1-\log_rp_j)=1+H_r(p_1,p_2,\ldots,p_n)\color{black}{.}$$
-\end{block}
-\end{frame}
-
-\begin{frame}[t]{Optimális kódkonstrukció: Huffman-kód}
-Legyen $\{a_1,a_2,\ldots,a_n\}$ az üzenetek halmaza, a hozzájuk tartozó eloszlás pedig 
-$\{p_1,p_2,\ldots,p_n\}$, a kódábécé elemszáma $r$.\\
-Rendezzük relatív gyakoriság szerint csökkenő sorrendbe a betűket.\\
-Osszuk el maradékosan $n-2$-t $r-1$-gyel: $n-2=q(r-1)+m\quad 0\le m<r-1$, és legyen $t=m+2$.\\Helyettesítsük az utolsó $t$ betűt egy új betűvel, amihez az elhagyott betűk relatív gyakoriságainak összegét rendeljük,
-és az így kapott gyakoriságoknak megfelelően helyezzük el az új betűt a sorozatban.\\
-Ezek után ismételjük meg az előző redukciót, de most már minden lépésben $r$
-betűvel csökkentve a kódolandó halmazt, mígnem már csak $r$ betű marad.\\
-Most a redukált ábécé legfeljebb $r$ betűt tartalmaz, és ha volt redukció,
-akkor pontosan $r$-et.\\
-Ezeket a kódoló ábécé elemeivel kódoljuk,
-majd a redukciónak megfelelően visszafelé haladva,
-az összevont betűk kódját az összevonásként kapott betű már meglévő kódjának a kódoló ábécé különböző betűivel való kiegészítésével kapjuk.
-\begin{block}{}
-\end{block}
-\end{frame}
-
-\begin{frame}[t]{Példa Huffman-kódra}
-Legyen $A=\{a,b,\ldots,j\}$, a relatív gyakoriságok
-$0,17;0,02;0,13;0,02;0,01;0,31;0,02;0,17;0,06;0,09$, a kódoló ábécé pedig $\{0,1,2\}$.
-$10-2=4\cdot(3-1)+0$, így $t=0+2=2$.\\
-\vspace{0.3cm}
-\scriptsize
-\begin{tabular}{ccc}
-\begin{tabular}{cl}
-f & \ \ \ 0,31\\
-a & \ \ \ 0,17\\
-h & \ \ \ 0,17\\
-c & \ \ \ 0,13\\
-j & \ \ \ 0,09\\
-i & \ \ \ 0,06\\
-b & \ \ \ 0,02\\
-d & \ \ \ 0,02\\
-\begin{tabular}{c}
-g\\
-e
-\end{tabular} &
-$\color{black}{\left .\begin{tabular}{l}
-0,02\\
-0,01
-\end{tabular}\right\}0,03}$
-\end{tabular}
-
-\begin{tabular}{cl}
-f & \ \ \ 0,31\\
-a & \ \ \ 0,17\\
-h & \ \ \ 0,17\\
-c & \ \ \ 0,13\\
-j & \ \ \ 0,09\\
-i & \ \ \ 0,06\\
-\begin{tabular}{c}
-(g,e)\\
-b\\
-d
-\end{tabular} &
-$\color{black}{\left .\begin{tabular}{l}
-0,03\\
-0,02\\
-0,02
-\end{tabular}\right\}0,07}$
-\end{tabular}
-
-\begin{tabular}{cl}
-f & \ \ \ 0,31\\
-a & \ \ \ 0,17\\
-h & \ \ \ 0,17\\
-c & \ \ \ 0,13\\
-\begin{tabular}{c}
-j\\
-((g,e),b,d)\\
-i
-\end{tabular} &
-$\color{black}{\left .\begin{tabular}{l}
-0,09\\
-0,07\\
-0,06
-\end{tabular}\right\}0,22}$
-\end{tabular}
-
-\end{tabular}\\
-\vspace{0.3cm}
-\begin{tabular}{cc}
-\begin{tabular}{cl}
-f & \ \ \ 0,31\\
-(j,((g,e),b,d),i) & \ \ \ 0,22\\
-\begin{tabular}{c}
-a\\
-h\\
-c
-\end{tabular} &
-$\color{black}{\left .\begin{tabular}{l}
-0,17\\
-0,17\\
-0,13
-\end{tabular}\right\}0,47}$
-\end{tabular}
-
-\begin{tabular}{cl}
-(a,h,c) & \ \ 0,47\\
-f & \ \ 0,31\\
-(j,((g,e),b,d),i) & \ \ 0,22
-\end{tabular}
-
-\end{tabular}
-\begin{block}{}
-\end{block}
-\end{frame}
-
-\begin{frame}[t]{Példa Huffman-kódra folyt.}
-\begin{tabular}{cl}
-(a,h,c) & \ \ 0,47\\
-f & \ \ 0,31\\
-(j,((g,e),b,d),i) & \ \ 0,22
-\end{tabular}
-
-\vspace{0.3cm}
-Kódolás:\\
-\hspace{0.5cm}(a,h,c)$\color{black}{\mapsto}$0\hspace{1.7cm}a$\color{black}{\mapsto}$00\\
-\hspace{3.7cm}h$\color{black}{\mapsto}$01\\
-\hspace{3.7cm}c$\color{black}{\mapsto}$02\\
-\hspace{1cm}f$\color{black}{\mapsto}$1\\
-(j,((g,e),b,d),i)$\color{black}{\mapsto}$2\hspace{1cm}j$\color{black}{\mapsto}$20\\
-\hspace{3.1cm}((g,e),b,d)$\color{black}{\mapsto}$21\hspace{1cm}(g,e)$\color{black}{\mapsto}$210
-\hspace{1cm}g$\color{black}{\mapsto}$2100\\
-\hspace{9.05cm}e$\color{black}{\mapsto}$2101\\
-\hspace{6.8cm}b$\color{black}{\mapsto}$211\\
-\hspace{6.8cm}d$\color{black}{\mapsto}$212\\
-\hspace{3.7cm}i$\color{black}{\mapsto}$22\\
-Entrópia: $\approx 1,73$.\\
-Átlagos szóhossz: $1,79.$
-\end{frame}
-
-\begin{frame}[t]{Betűnkénti kódolás}
-\begin{block}{Tétel (NB)}
-A Huffman-kód optimális.
-\end{block}
-\begin{block}{Példa Shannon-kódra}
-Az előző példában használt ábécét és eloszlást fogjuk használni. Rendezzük sorba
-az ábécét relatív gyakoriságok szerinti csökkenő sorrendben:\\
-\begin{tabular}{cl}
-f & 0,31\\
-a & 0,17\\
-h & 0,17\\
-c & 0,13\\
-j & 0,09\\
-i & 0,06\\
-b & 0,02\\
-d & 0,02\\
-g & 0,02\\
-e & 0,01
-\end{tabular}
-\end{block}
-\end{frame}
-
-\begin{frame}[t]{Példa Shannon-kódra folyt.}
-Határozzuk meg a szükséges szóhosszúságokat:
-$\frac{1}{9}\le 0,31;0,17;0,13<\frac{1}{3}$, ezért f, a, h és c kódhossza 2.\\
-$\frac{1}{27}\le 0,09;0,06<\frac{1}{9}$, ezért j és i kódhossza 3.\\
-$\frac{1}{81}\le 0,02<\frac{1}{27}$, ezért b, d és g kódhossza 4.\\
-$\frac{1}{243}\le 0,01<\frac{1}{81}$, ezért e kódhossza 5.\\
-Az f kódja 00, az a kódja 01, a h kódja 02, és ez utóbbihoz 1-et adva hármas alapú számrendszerben kapjuk c kódját, ami 10. Ehhez 1-et adva 11-et kapunk, de j kódjának hossza 3, ezért ezt még ki kell egészíteni jobbról egy 0-val, tehát j kódja 110. Hasonlóan folytatva
-megkapjuk a teljes kódot:\\
-\scriptsize
-
-\begin{tabular}{cl}
-f & 00\\
-a & 01\\
-h & 02\\
-c & 10\\
-j & 110\\
-i & 111\\
-b & 1120\\
-d & 1121\\
-g & 1122\\
-e & 12000
-\end{tabular}\\
-\normalsize
-Átlagos szóhossz: $2,3<1,73+1$.
-\end{frame}
-
-\begin{frame}[t]{Betűnkénti kódolás}
-\small
-\begin{block}{Kódfa}
-A betűnkénti kódolás szemléltethető egy címkézett irányított fával.\\
-Legyen $\varphi:A\to B^*$ egy betűnkénti kódolás, és tekintsük $\rng(\varphi)$ prefixeinek halmazát. Ez a halmaz részbenrendezett a ,,prefixe'' relációra. Vegyük ennek a Hasse-diagramját. Így egy irányított fát kapunk, aminek a gyökere az üres szó,
-és minden szó a hosszának megfelelő szinten van.\\
-A fa éleit címkézzük úgy $B$ elemeivel, hogy ha $\beta=\alpha b$ valamely $b\in B$-re,
-akkor az $\alpha$-ból $\beta$-ba vezető él címkéje legyen $b$.\\
-A kódfa csúcsait is megcímkézhetjük: az $a\in A$ kódjának megfelelő csúcs címkéje legyen $a\in A$; azon csúcs címkéje, amely nincsen $\rng(\varphi)$-ben, legyen ,,üres''.
-\end{block}
-\footnotesize 
+\begin{frame}[t]{Lineáris kódok}
 \begin{block}{Megjegyzés}
-Az előbbi konstrukció meg is fordítható. Tekintsünk egy véges, élcímkézett irányított fát, ahol az élcímkék halmaza $B$, az egy csúcsból kiinduló élek mind különböző címkéjűek,
-továbbá az $A$ véges ábécének a csúcsokra való leképezését, amelynél minden levél előáll képként.\\
-Az $a\in A$ betű kódja legyen az a szó, amelyet úgy kapunk,
-hogy a gyökértől az $a$-nak megfelelő csúcsig haladó irányított út mentén összeolvassuk az élek címkéit.
+A $[7,4]$-es Hamming-kódot egy paritásbittel kiegészítve kapjuk a teletextnél használt kódolást.\\
+A $[15,11]$-es Hamming-kódot egy paritásbittel kiegészítve a műholdas műsorszórásnál (DBS) használják.
+\end{block}
+\pause
+\begin{block}{Definíció}
+A $K\subset\mathbb{F}_q^n$ kód \alert{ciklikus}, ha minden $(u_1,u_2,\ldots,u_{n-1},u_n)\in K$
+esetén $(u_2,u_3,\ldots,u_n,u_1)\in K$.
+\end{block}
+\pause
+\begin{block}{Példa}
+$K=\{000,101,110,011,111\}$ bináris kód ciklikus.
+\end{block}
+\pause
+\begin{block}{Megjegyzés}
+Ez nem lineáris kód: $101+111=010\not\in K$.
 \end{block}
 \end{frame}
 
-\begin{frame}[t]{Kódfa}
+\begin{frame}[t]{Címkézett gráfok}
+\begin{block}{Algoritmus(Kruskal)}
+Egy élsúlyozott gráf esetén az összes csúcsot tartalmazó üres részgráfból kiindulva minden lépésben vegyük hozzá a minimális súlyú olyan élt, amivel nem keletkezik kör.
+\end{block}
+\pause
+\begin{block}{Tétel}
+A Kruskal-algoritmus egy minimális súlyú feszítőerdőt határoz meg. Összefüggő gráf esetén minimális súlyú feszítőfát kapunk.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+Elég összefüggő gráfra bizonyítani (Miért?).\\
+Összefüggő gráf esetén az algoritmus nyilván feszítőfát eredményez (Miért?).\\
+Indirekt tfh. van az algoritmus által meghatározott $F$ feszítőfánál kisebb súlyú feszítőfája a gráfnak. Ha több ilyen van, akkor  $F'$ legyen az a minimális súlyú, amelyiknek a legtöbb közös éle van $F$-fel. Legyen $e'$ olyan éle $F'$-nek, ami nem éle $F$-nek. (Miért van ilyen?)
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Címkézett gráfok}
+\begin{block}{Biz.folyt.}
+Az $F$-hez $e'$ hozzávételével kapott gráfban van egy $K$ kör (Miért?). Ezen kör tetszőleges $e$ élére $w(e)\le w(e')$ (Miért?). Az $F'$-ből az $e'$ törlésével kapott gráf nem összefüggő (Miért?), és pontosan 2 komponense van (Miért?). A $K$-nak van olyan éle ($e''$), aminek a végpontjai az $F'$-ből az $e'$ törlésével kapott gráf különböző komponenseiben vannak (Miért?).
+Tekintsük azt a gráfot, amit $F'$-ből az $e'$ törlésével és az $e''$ hozzávételével kapunk. Az így kapott gráf is feszítőfa (Miért?), és $w(e'')<w(e')$ esetén kisebb súlyú, mint $F'$, míg $w(e'')=w(e')$ esetén ugyanakkora súlyú, de több közös éle van $F$-fel. Mindkét esetben ellentmondásra jutottunk.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A maradékos osztás tétele és következményei}
+\begin{block}{Tétel (polinomok maradékos osztása)}
+Legyen $R$ egységelemes integritási tartomány, $f,g\in R[x],$ és tegyük fel, hogy $g$ főegyütthatója egység $R$-ben. Ekkor egyértelműen léteznek olyan $q,r\in R[x]$ polinomok, melyekre $f=qg+r$, ahol $deg(r)<deg(g)$.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+Egyértelműség: Tekintsük $f$ két megfelelő előállítását:\\
+$f=qg+r=q^*g+r^*$, amiből:\\
+$$g(q-q^*)=r^*-r{\color{black}.}$$
+Ha a bal oldal nem $0$, akkor a foka legalább $k$ (Miért?), de a jobb oldal foka legfeljebb $k-1$ (Miért?), tehát\\
+$0=g(q-q^*)=r^*-r$, és így\\
+$q=q^*$ és $r=r^*$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A maradékos osztás tétele és következményei}
+\begin{block}{Bizonyítás folyt.}
+Létezés: $f=0$ esetén $q=0$ és $r=0$ jó választás. $f\neq 0$ esetén $f$ foka szerinti TI:
+$0=deg(f)=deg(g)$ esetén $f=f_0=f_0\cdot g_0^{-1}g_0+0$,
+$0=deg(f)<deg(g)$ esetén $f=0\cdot g+f$.\\
+Ha $deg(f)<deg(g)$, akkor $q=0$ és $r=f$
+esetén megfelelő előállítást kapunk.\\
+Legyen $f$ főegyütthatója $f_n$, $g$ főegyütthatója $g_k$. $n\ge k$ esetén legyen
+$f^*(x)=f(x)-f_ng_k^{-1}g(x)x^{n-k}$.\\
+$deg(f^*)<deg(f)$ (Miért?) miatt $f^*$-ra használhatjuk az indukciós feltevést, vagyis léteznek
+$q^*,r^*\in R[x]$ polinomok, amikre $f^*=q^*g+r^*$.
+$f(x)=f^*(x)+f_ng_k^{-1}g(x)x^{n-k}=q^*(x)g(x)+r^*(x)+f_ng_k^{-1}g(x)x^{n-k}=$\\
+$=(q^*(x)+f_ng_k^{-1}x^{n-k})g(x)+r^*(x)$,\\
+így $q(x)=q^*(x)+f_ng_k^{-1}x^{n-k}$ és $r(x)=r^*(x)$ jó választás.
+\end{block}
+\pause
+\begin{block}{Definíció}
+$c\in R$ esetén $(x-c)\in R[x]$ a \alert{$c$-hez tartozó gyöktényező}.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A maradékos osztás tétele és következményei}
+\begin{block}{Következmény (gyöktényező leválasztása)}
+Ha $0\ne f\in R[x]$, és $c\in R$ gyöke $f$-nek, akkor létezik olyan $q\in R[x]$, amire $f(x)=(x-c)q(x)$.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+Osszuk el maradékosan $f$-et $(x-c)$-vel (Miért lehet?):
+$$f(x)=q(x)(x-c)+r(x){\color{black}.}$$
+Mivel $deg(r(x))<deg(x-c)=1$, ezért $r$ konstans polinom. Helyettesítsünk be $c$-t,
+így azt kapjuk, hogy\\
+$0=f(c)=q(c)(c-c)+r(c)=r(c)$,\\
+amiből $r=0$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A maradékos osztás tétele és következményei}
+\begin{block}{Következmény}
+Az $f\ne 0$ polinomnak legfeljebb $deg(f)$ gyöke van.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+$f$ foka szerinti TI:\\
+$deg(f)=0$-ra igaz az állítás (Miért?).\\
+Ha $deg(f)>0$, és $f(c)=0$, akkor $f(x)=(x-c)g(x)$ (Miért?),
+ahol $deg(g)+1=deg(f)$ (Miért?).
+Ha $d$ gyöke $f$-nek, akkor $d-c=0$, amiből $d=c$, vagy $d$ gyöke $g$-nek (Miért?).
+Innen következik az állítás.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A maradékos osztás tétele és következményei}
+\begin{block}{Következmény}
+Ha két, legfeljebb $n$-ed fokú polinomnak $n+1$ különböző helyen ugyanaz a helyettesítési értéke, akkor egyenlőek.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+A két polinom különbsége legfeljebb $n$-ed fokú, és $n+1$ gyöke van (Miért?), ezért nullpolinom (Miért?), vagyis a polinomok egyenlőek.
+\end{block}
+\pause
+\begin{block}{Következmény}
+Ha $R$ végtelen, akkor két különböző $R[x]$-beli polinomhoz nem tartozik ugyanaz a polinomfüggvény.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+Ellenkező esetben a polinomok különbségének végtelen sok gyöke lenne (Miért?).
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomok felbonthatósága}
+\begin{block}{Tétel (Schönemann-Eisenstein)}
+Legyen $f(x)=f_nx^n+f_{n-1}x^{n-1}+\ldots+f_1x+f_0\in\Z[x],$ $f_n\ne 0$ legalább elsőfokú primitív polinom. Ha található olyan $p\in\Z$ prím, melyre
+\begin{itemize}
+\item $p$$\not|f_n$,
+\item $p|f_j$, ha $0\le j<n$,
+\item $p^2$$\not|f_0$,
+\end{itemize}
+akkor $f$ felbonthatatlan $\Z$ fölött.
+\end{block}
+\pause
+\begin{block}{Bizonyítás}
+Tfh. $f=gh$. Mivel $p$ nem osztja $f$ főegyütthatóját, ezért sem a $g$, sem a $h$
+főegyütthatóját nem osztja (Miért?). Legyen $m$ a legkisebb olyan index, amelyre $p$$\not|g_m$,
+és $o$ a legkisebb olyan index, amelyre $p$$\not|h_o$. Ha $k=m+o$, akkor
+\small{$$p\not|f_k=\sum_{i+j=k}g_ih_j\color{black}{,}$$}
+mivel $p$ osztja az összeg minden tagját, kivéve azt, amelyben $i=m$ és $j=o$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomok felbonthatósága}
+\begin{block}{Bizonyítás folyt.}
+Így $m+o=deg(f)$, ahonnan $m=deg(g)$ és $o=deg(h)$. Viszont $m$ és $o$ nem lehet
+egyszerre pozitív, mert akkor $p^2|f_0=g_0h_0$ teljesülne. Így az egyik polinom konstans,
+és ha nem lenne egység, akkor $f$ nem lenne primitív.
+\end{block}
+\pause
+\begin{block}{Megjegyzés}
+A feltételben $f_n$ és $f_0$ szerepe felcserélhető.
+\end{block}
+\pause
+\begin{block}{Megjegyzés}
+A tétel nem használható test fölötti polinom irreducibilitásának bizonyítására,
+mert testben nem léteznek prímek, hiszen minden nem-nulla elem egység.
+\end{block}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[t]{Polinomkódok}
+
+\begin{block}{Definíció}
+Lineáris kódolás esetén a $k$ hosszú kódolandó szavak tekinthetők $\mathbb{F}_q$ feletti,
+$k$-nál alacsonyabb fokú polinomnak is (a betűket $0$-tól indexelve):\\
+\begin{center}
+$a_0a_1\ldots a_{k-1}\leftrightarrow a_0+a_1x+\ldots+a_{k-1}x^{k-1}$.
+\end{center}
+Ha a kódolást úgy végezzük, hogy ezt a polinomot beszorozzuk
+egy rögzített, $m$-ed fokú $g(x)$ polinommal, akkor lineáris kódot kapunk
+$n=k+m$ hosszú kódszavakkal.\\
+Az ilyen típusú lineáris kódolást \alert{polinomkódolásnak} nevezzük,
+$g(x)$ a kód \alert{generátorpolinomja}, a többszörösei a kódszavak.
+\end{block}
+ \small
+\begin{block}{Megjegyzés}
+A generátorpolinomról feltehető, hogy főpolinom, mostantól fel is tesszük.
+\end{block}
+\begin{block}{Definíció}
+A $K\subset\mathbb{F}_q^n$ kód \alert{ciklikus}, ha minden $(u_1,u_2,\ldots,u_{n-1},u_n)\in K$
+esetén $(u_2,u_3,\ldots,u_n,u_1)\in K$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+
+\begin{block}{Tétel}
+Legyen $K$ egy $[n,k]_q$ paraméterű lineáris ciklikus kód,
+és $g(x)\in K$ egy minimális fokszámú főpolinom. Ekkor
+\begin{enumerate}[1)]
+\item $g(x)$ egyértelmű, $deg(g)=n-k$;
+\item ha $f(x)\in\mathbb{F}_q[x]$, $deg(f)<n$, akkor:
+$f(x)\in K\Longleftrightarrow g(x)|f(x)$.
+\end{enumerate}
+\end{block}
+\begin{block}{Bizonyítás}
+Legyen $h(x)\in K$ egy minimális fokú polinom: $h(x)=c_0+c_1x+\ldots+c_rx^r$, $c_r\ne 0$.\\
+Mivel $K$ lineáris, ezért $\frac{1}{c_r}h(x)\in K$ főpolinom.\\
+Ha létezne $g_1(x),g_2(x)\in K$ minimális fokszámú ($r$) főpolinom, akkor $g_1(x)-g_2(x)\in K$
+egy kisebb fokú polinom, ami ellentmondás, így $g(x)=\frac{1}{c_r}h(x)$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+\begin{block}{Bizonyítás folyt.}
+Mivel $K$ ciklikus, így $g(x),xg(x),\ldots,x^{n-r-1}g(x)\in K$ (Miért?).\\
+A linearitás miatt $\forall u_0,u_1,\dots,u_{n-r-1}\in\mathbb{F}_q$-ra
+$(u_0+u_1x+\dots+u_{n-r-1}x^{n-r-1})g(x)=u(x)g(x)\in K$, így
+$g(x)$ legfeljebb $n$-ed fokú többszörösei kódszavak.\\
+Legyen most $f(x)\in K$ tetszőleges. Kellene, hogy $g(x)|f(x)$.\\
+Osszuk el maradékosan $f(x)$-et $g(x)$-szel:\\
+$f(x)=q(x)g(x)+r(x)$, $deg(r(x))<deg(g(x))$, $deg(q(x))\le n-r-1$.\\
+$r(x)=f(x)-q(x)g(x)\in K\Longrightarrow r(x)=0$ (Miért?)\\
+Tehát minden kódszó előáll $(u_0+u_1x+\dots+u_{n-r-1}x^{n-r-1})g(x)$
+alakban. Ezek alapján $q^{n-r}=q^k$, és így $r=n-k$.
+\end{block}
+\begin{block}{Megjegyzés}
+Tehát a lineáris ciklikus kódok polinomkódok.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+\begin{block}{Tétel}
+Ha $g(x)$ egy $[n,k]$ paraméterű lineáris ciklikus kód generátorpolinomja,
+akkor $g(x)|x^n-1$.
+\end{block}
+\begin{block}{Bizonyítás}
+$x^{k-1}g(x)\in K$ főpolinom. Legyen $c_1(x)=x^kg(x)-(x^n-1)$.\\
+$K$ ciklikussága miatt $c_1(x)$ is kódszó, és így:\\
+$g(x)|c_1(x)=x^kg(x)-(x^n-1)\Longrightarrow g(x)|x^n-1$.
+\end{block}
+\begin{block}{Definíció}
+Legyen $g(x)$ egy $[n,k]$ paraméterű lineáris ciklikus kód
+generátorpolinomja. Ekkor $h(x)=\frac{x^n-1}{g(x)}$ a
+\alert{paritásellenőrző polinom}.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+\begin{block}{Tétel}
+Legyen $h(x)$ egy $[n,k]$ paraméterű lineáris ciklikus kód
+paritásellenőrző polinomja. Egy $c(x)\in\mathbb{F}_q[x]$ pontosan akkor kódszó, ha\\
+$c(x)h(x)\equiv 0\pmod{x^n-1}$ és
+$deg(c(x))<n$.
+\end{block}
+\begin{block}{Bizonyítás}
+Az nyilvánvaló, hogy $deg(c(x))<n$.\\
+$\Longrightarrow$\\
+\small
+$c(x)\in K\Rightarrow c(x)=u(x)g(x)\Rightarrow
+c(x)h(x)=u(x)g(x)h(x)=u(x)(x^n-1)$,\\
+\normalsize és így $c(x)h(x)\equiv 0\pmod{x^n-1}$.\\
+$\Longleftarrow$\\
+$c(x)h(x)\equiv 0\pmod{x^n-1}\Rightarrow c(x)h(x)=a(x)(x^n-1)\Rightarrow$\\
+$\Rightarrow c(x)=a(x)\frac{x^n-1}{h(x)}=a(x)g(x)$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+\begin{block}{Állítás}
+Ha $g(x)$ egy $[n,k]$ paraméterű lineáris kód generátorpolinomja és $g(x)|x^n-1$, akkor a kód ciklikus.
+\end{block}
+\begin{block}{Bizonyítás}
+$a_{n-1}+a_0x+\ldots+a_{n-2}x^{n-1}=x(a_0+\ldots+a_{n-1}x^{n-1})-a_{n-1}(x^n-1)$,\\
+így $(a_0a_1\ldots a_{n-1})\in K$ esetén $(a_{n-1}a_0a_1\ldots a_{n-2})\in K$ is teljesül.
+\end{block}
+\begin{block}{Megjegyzés}
+Polinomkódolás egy változatával készíthetünk szisztematikus kódot:\\
+ha $p(x)$ az üzenetpolinom, akkor $p(x)x^r$ maradékosan elosztva $g(x)$-szel:\\
+$p(x)x^r=q(x)g(x)+r(x)$.\\
+Legyen a kódszó $p(x)x^r-r(x)$, így a kódszó végén az eredeti üzenet betűi állnak (Miért?).\\
+A vett szó ellenőrzése a $g(x)$-szel való oszthatóság alapján történik.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Polinomkódok}
+\begin{block}{Definíció}
+A bináris ciklikus polinomkódokat \alert{CRC (Cyclic Redundancy Check) kódoknak} nevezzük.\\
+A kódolás az előző \color{blue}Megjegyzés \color{black} alapján történik.
+\end{block}
 \begin{block}{Példa}
+Tekintsünk egy $[7,4]_2$ CRC kódot a $g(x)=x^3+x+1$ generátorpolinommal.\\
+Mi lesz a $0011$ üzenethez tartozó kódszó?\\
+$0011\leftrightarrow u(x)=x^3+x^2$\\
+$x^3u(x)=x^6+x^5=g(x)(x^3+x^2+x)+x\Rightarrow c(x)=x^6+x^5+x\leftrightarrow 0100011$.
+\end{block}
+\begin{block}{Példák}
+\begin{tabular}{ccccc}
+CRC-1 & paritásbit & $g(x)=x+1$ & $d=2$ & $n$ tetszőleges\\
+%CRC-3 & GSM & $g(x)=x^3+x+1$ & $d=3$ & $n=2^3-1$\\
+CRC-5 & USB & $g(x)=x^5+x^2+1$ & $d=3$ & $n=2^5-1$\\
+CRC-8 & ATM & $g(x)=x^8+x^2+x+1$ & $d=4$ & $n=2^7-1$
+\end{tabular}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Gazdaságos kódolás}
+Eddig betűnkénti kódolással foglalkoztunk, amely nem képes kihasználni,
+ha az egymás után következő betűk nem függetlenek egymástól.
+Ha egy karaktersorozat sokszor fordul elő, érdemes ezt egyben kezelni.
+\begin{block}{Definíció}
+A \alert{szótárkódok} alapgondolata, hogy egy $\varphi\in A^*\to B^*$
+\alert{szótárt} használunk a kódolásra, mely értelmezési tartománya tartalmazza $A$-t.
+\end{block}
+\begin{block}{Példa (LZW)}
+$A$-beli sorozatokat kódolunk, a kódolás során a szótár bővül.\\
+Legyen adva egy kezdeti szótárunk (az $A$ elemeit kódoljuk valahogyan).\\
+Egy lépésben az $\underbrace{\overbrace{a_1a_2\ldots a_n}^{\textrm{\color{black}benne van,}}a_{n+1}}_{\textrm{\color{black}nincs benne a szótárban}}$ sorozatot olvassuk be. Ekkor
+elküldjük az $a_1a_2\ldots a_n$-hez tartozó kódszót, és az $a_1a_2\ldots a_na_{n+1}$-et
+betesszük a szótárba.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Gazdaságos kódolás}
+\begin{block}{Példa}
+Kódoljuk a $gugogogogol$ szót. Legyen az eredeti kódolás az ASCII kód:\\
+$g\leftrightarrow 67$, $u\leftrightarrow 75$, $o\leftrightarrow 6F$ és $l\leftrightarrow 6C$.
+\[\begin{array}{cccc}
+ & \textrm{\color{black}Kódolandó szó} & \textrm{\color{black}Kódszó} & \textrm{\color{black}Bejegyzés}\\
+\underline{g}ugogogogol & g & 67 & (gu,80)\\
+\underline{u}gogogogol & u & 75 & (ug,81)\\
+\underline{g}ogogogol & g & 67 & (go,82)\\
+\underline{o}gogogol & o & 6F & (og,83)\\
+\underline{go}gogol & go & 82 & (gog,84)\\
+\underline{gog}ol & gog & 84 & (gogo,85)\\
+\underline{o}l & o & 6F & (ol,86)\\
+\underline{l} & l & 6C &
+\end{array}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Gazdaságos kódolás}
+\begin{block}{Példa folyt.}
+A dekódolás:
+\[\begin{array}{cccc}
+\textrm{\color{black}Kapott szó} & \textrm{\color{black}Szótárbejegyzés} & \textrm{\color{black}Dekódolt szó} & \textrm{\color{black}Új szótárbejegyzés}\\
+67 & (g,67) & g & -\\
+75 & (u,75) & u & (gu,80)\\
+67 & (g,67) & g & (ug,81)\\
+6F & (o,6F) & o & (go,82)\\
+82 & (go,82) & go & (og,83)\\
+84 & (gog,84) & gog & (gog,84)\\
+6F & (o,6F) & o & (gogo,85)\\
+6C & (l,6C) & l & (ol,86)
+\end{array}
+\]
+\small
+A dekódolásnál csak egyetlen esetben lehet baj:\\
+$\underline{a_1a_2\ldots a_n}a_{n+1}\ldots a_{n+m}$ kódolása esetén $a_1a_2\ldots a_n$
+benne van a szótárban, $a_1a_2\ldots a_na_{n+1}$még nincs, így bekerül.
+Ha $a_{n+1}a_{n+2}\ldots a_{n+m}=a_1a_2\ldots a_{n+1}$, akkor a fogadó fél egy még nála be nem jegyzett kódszót kap. De ekkor $a_1=a_{n+1}$, így mégis tudjuk az új bejegyzést:
+$a_1a_2\ldots a_na_1$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{A kommunikáció vázlatos ábrája}
+\begin{block}{Emlékeztető}
 \begin{center}
 \begin{tikzpicture}
-\filldraw [black] (0,0) circle (1pt)
-		 (-3,-1) circle (1pt)
-		 (0,-1) circle (1pt)
-		 (3,-1) circle (1pt)
-		 (-4.5,-2) circle (1pt)
-		 (-3,-2) circle (1pt)
-		 (-1.5,-2) circle (1pt)
-		 (1.5,-2) circle (1pt)
-		 (3,-2) circle (1pt)
-		 (4.5,-2) circle (1pt)
-		 (1.8,-3) circle (1pt)
-		 (3,-3) circle (1pt)
-		 (4.2,-3) circle (1pt)
-		 (1.2,-4) circle (1pt)
-		 (1.8,-4) circle (1pt);
-		
-\draw [->, thin,>=latex] (0,0) -- (-3,-1);
-\draw [->, thin,>=latex] (0,0) -- (0,-1);
-\draw [->, thin,>=latex] (0,0) -- (3,-1);
-\draw [<-, thin,>=latex] (-4.5,-2) -- (-3,-1);
-\draw [<-, thin,>=latex] (-3,-2) -- (-3,-1);
-\draw [<-, thin,>=latex] (1.5,-2) -- (3,-1);
-\draw [<-, thin,>=latex] (4.5,-2) -- (3,-1);
-\draw [<-, thin,>=latex] (3,-2) -- (3,-1);
-\draw [<-, thin,>=latex] (-1.5,-2) -- (-3,-1);
-\draw [->, thin,>=latex] (3,-2) -- (1.8,-3);
-\draw [->, thin,>=latex] (3,-2) -- (3,-3);
-\draw [->, thin,>=latex] (3,-2) -- (4.2,-3);
-\draw [->, thin,>=latex] (1.8,-3) -- (1.2,-4);
-\draw [->, thin,>=latex] (1.8,-3) -- (1.8,-4);
 
-\draw (-1.5,-0.3) node[scale=0.8] {0};
-\draw (-0.1,-0.4) node[scale=0.8] {1};
-\draw (1.5,-0.3) node[scale=0.8] {2};
-\draw (0,-1.2) node[scale=0.8] {f};
-\draw (-3.8,-1.3) node[scale=0.8] {0};
-\draw (-3.1,-1.5) node[scale=0.8] {1};
-\draw (-2.2,-1.3) node[scale=0.8] {2};
-\draw (-4.5,-2.2) node[scale=0.8] {a};
-\draw (-3,-2.2) node[scale=0.8] {h};
-\draw (-1.5,-2.2) node[scale=0.8] {c};
-\draw (3.8,-1.3) node[scale=0.8] {2};
-\draw (2.9,-1.5) node[scale=0.8] {1};
-\draw (2.2,-1.3) node[scale=0.8] {0};
-\draw (4.5,-2.2) node[scale=0.8] {i};
-\draw (1.5,-2.2) node[scale=0.8] {j};
-\draw (3.6,-2.3) node[scale=0.8] {2};
-\draw (2.9,-2.5) node[scale=0.8] {1};
-\draw (2.4,-2.3) node[scale=0.8] {0};
-\draw (4.2,-3.2) node[scale=0.8] {d};
-\draw (3,-3.2) node[scale=0.8] {b};
-\draw (1.7,-3.5) node[scale=0.8] {1};
-\draw (1.4,-3.4) node[scale=0.8] {0};
-\draw (1.2,-4.2) node[scale=0.8] {g};
-\draw (1.8,-4.2) node[scale=0.8] {e};
+\draw (0,0) node {Adó};
+\draw (1.6,0) node {Csatorna};
+\draw (3.2,0) node {Vevő};
+\draw (1.6,-0.8) node[scale=0.7] {A kommunikáció vázlatos ábrája};
+\draw [-, thin] (-0.5,0.3) -- (0.5,0.3);
+\draw [-, thin] (-0.5,-0.3) -- (0.5,-0.3);
+\draw [-, thin] (-0.5,0.3) -- (-0.5,-0.3);
+\draw [-, thin] (0.5,0.3) -- (0.5,-0.3);
+\draw [-, thin] (0.8,0.3) -- (2.4,0.3);
+\draw [-, thin] (0.8,-0.3) -- (2.4,-0.3);
+\draw [-, thin] (0.8,0.3) -- (0.8,-0.3);
+\draw [-, thin] (2.4,0.3) -- (2.4,-0.3);
+\draw [-, thin] (2.7,0.3) -- (3.7,0.3);
+\draw [-, thin] (2.7,-0.3) -- (3.7,-0.3);
+\draw [-, thin] (2.7,0.3) -- (2.7,-0.3);
+\draw [-, thin] (3.7,0.3) -- (3.7,-0.3);
+\draw [->, thin] (0.5,0) -- (0.8,0);
+\draw [->, thin] (2.4,0) -- (2.7,0);
 
 \end{tikzpicture}
 \end{center}
-A Huffman-kódos példában szereplő kódhoz tartozó kódfa.\\
-$\varphi(a)=$00, $\varphi(b)=$211, $\varphi(c)=$02, $\varphi(d)=$212, $\varphi(e)=$2101,
-$\varphi(f)=$1, $\varphi(g)=$2100, $\varphi(h)=$01, $\varphi(i)=$22, $\varphi(j)=$20.\\
-A kódszavak prefixeinek halmaza:
-$\{\lambda,1,00,0,01,02,20,2,22,211,21,212,2100,210,2101\}$
+
 \end{block}
 \end{frame}
 
-\begin{frame}[t]{Kódfa}
-\begin{block}{Példa}
+\begin{frame}[t]{A kommunikáció részletes ábrája}
+
 \begin{center}
-
-
-\resizebox{!}{4.4cm}{
-
 \begin{tikzpicture}
-\filldraw [black] (0,0) circle (1pt)
-		 (-3,-1) circle (1pt)
-		 (0,-1) circle (1pt)
-%		 (3,-1) circle (1pt)
-		 (-4.5,-2) circle (1pt)
-		 (-3,-2) circle (1pt)
-		 (-1.5,-2) circle (1pt)
-		 (-1,-2) circle (1pt)
-		 (0,-2) circle (1pt)
-		 (3.2,-2) circle (1pt)
-%		 (3,-2) circle (1pt)
-%		 (4.5,-2) circle (1pt)
-		 (-0.8,-3) circle (1pt)
-		 (0,-3) circle (1pt)
-		 (0.8,-3) circle (1pt)
-		 (2.4,-3) circle (1pt)
-%		 (4.2,-3) circle (1pt)
-		 (0.2,-4) circle (1pt)
-		 (0.8,-4) circle (1pt)
-     (1.4,-4) circle (1pt)
-     (1.8,-4) circle (1pt)
-     (1.5,-5) circle (1pt);
-		
-\draw [->, thin,>=latex] (0,0) -- (-3,-1);
-\draw [->, thin,>=latex] (0,0) -- (0,-1);
-%\draw [->, thin,>=latex] (0,0) -- (3,-1);
-\draw [<-, thin,>=latex] (-4.5,-2) -- (-3,-1);
-\draw [<-, thin,>=latex] (-3,-2) -- (-3,-1);
-%\draw [<-, thin,>=latex] (1.5,-2) -- (3,-1);
-%\draw [<-, thin,>=latex] (4.5,-2) -- (3,-1);
-%\draw [<-, thin,>=latex] (3,-2) -- (3,-1);
-\draw [<-, thin,>=latex] (-1.5,-2) -- (-3,-1);
-%\draw [->, thin,>=latex] (3,-2) -- (1.8,-3);
-%\draw [->, thin,>=latex] (3,-2) -- (3,-3);
-%\draw [->, thin,>=latex] (3,-2) -- (4.2,-3);
-%\draw [->, thin,>=latex] (1.8,-3) -- (1.2,-4);
-%\draw [->, thin,>=latex] (1.8,-3) -- (1.8,-4);
 
-\draw [->, thin,>=latex] (0,-1) -- (0,-2);
-\draw [->, thin,>=latex] (0,-1) -- (-1,-2);
-\draw [->, thin,>=latex] (0,-2) -- (-0.8,-3);
-\draw [->, thin,>=latex] (0,-2) -- (0,-3);
-\draw [->, thin,>=latex] (0,-2) -- (0.8,-3);
-\draw [->, thin,>=latex] (0.8,-3) -- (0.2,-4);
-\draw [->, thin,>=latex] (0.8,-3) -- (0.8,-4);
-\draw [->, thin,>=latex] (0.8,-3) -- (1.4,-4);
+\draw (0,0) node {Adó};
+\draw (1.6,0.2) node {Üzenet-};
+\draw (1.6,-0.2) node {kódoló};
+\draw (3.7,0.2) node {Gazdaságos};
+\draw (3.7,-0.2) node {kódoló};
+\draw (6,0.2) node {Hitelesítő,};
+\draw (6,-0.2) node {titkosító};
+\draw (8.3,0.2) node {Csatorna-};
+\draw (8.3,-0.2) node {kódoló};
+\draw (8.3,-1.3) node {Csatorna};
+\draw (8.3,-2.4) node {Hiba-};
+\draw (8.3,-2.8) node {dekóder};
+\draw (6,-2.4) node {Visszafejtő,};
+\draw (6,-2.8) node {ellenőrző};
+\draw (3.7,-2.4) node {Gazdaságos};
+\draw (3.7,-2.8) node {dekódoló};
+\draw (1.6,-2.4) node {Üzenet-};
+\draw (1.6,-2.8) node {dekódoló};
+\draw (0,-2.6) node {Vevő};
+\draw (6.74,-1.3) node {Zaj};
+\draw (4.4,-3.6) node[scale=0.7] {A kommunikáció részletes ábrája};
 
-\draw [->, thin,>=latex] (0,-1) -- (3.2,-2);
-\draw [->, thin,>=latex] (3.2,-2) -- (2.4,-3);
-\draw [->, thin,>=latex] (2.4,-3) -- (1.8,-4);
-\draw [->, thin,>=latex] (1.8,-4) -- (1.5,-5);
+\draw [-, thin] (-0.5,0.5) -- (0.5,0.5);
+\draw [-, thin] (-0.5,-0.5) -- (0.5,-0.5);
+\draw [-, thin] (-0.5,0.5) -- (-0.5,-0.5);
+\draw [-, thin] (0.5,0.5) -- (0.5,-0.5);
 
-\draw (-1.5,-0.3) node[scale=0.8] {0};
-\draw (-0.1,-0.4) node[scale=0.8] {1};
-%\draw (1.5,-0.3) node[scale=0.8] {2};
-%\draw (0,-1.2) node[scale=0.8] {f};
-\draw (-3.8,-1.3) node[scale=0.8] {0};
-\draw (-3.1,-1.5) node[scale=0.8] {1};
-\draw (-2.2,-1.3) node[scale=0.8] {2};
-\draw (-4.5,-2.2) node[scale=0.8] {f};
-\draw (-3,-2.2) node[scale=0.8] {a};
-\draw (-1.5,-2.2) node[scale=0.8] {h};
-\draw (-1,-2.2) node[scale=0.8] {c};
-\draw (1.6,-1.3) node[scale=0.8] {2};
-\draw (-0.1,-1.5) node[scale=0.8] {1};
-\draw (-0.5,-1.3) node[scale=0.8] {0};
-\draw (0,-3.2) node[scale=0.8] {i};
-\draw (-0.8,-3.2) node[scale=0.8] {j};
-\draw (0.4,-2.3) node[scale=0.8] {2};
-\draw (-0.1,-2.5) node[scale=0.8] {1};
-\draw (2.7,-2.4) node[scale=0.8] {0};
-\draw (-0.4,-2.3) node[scale=0.8] {0};
-\draw (0.8,-4.2) node[scale=0.8] {d};
-\draw (0.2,-4.2) node[scale=0.8] {b};
-\draw (0.7,-3.5) node[scale=0.8] {1};
-\draw (0.4,-3.4) node[scale=0.8] {0};
-\draw (1.2,-3.4) node[scale=0.8] {2};
-\draw (2,-3.4) node[scale=0.8] {0};
-\draw (1.4,-4.2) node[scale=0.8] {g};
-\draw (1.5,-5.2) node[scale=0.8] {e};
-\draw (1.55,-4.5) node[scale=0.8] {0};
+\draw [-, thin] (0.8,0.5) -- (2.4,0.5);
+\draw [-, thin] (0.8,-0.5) -- (2.4,-0.5);
+\draw [-, thin] (0.8,0.5) -- (0.8,-0.5);
+\draw [-, thin] (2.4,0.5) -- (2.4,-0.5);
+
+\draw [-, thin] (2.7,0.5) -- (4.7,0.5);
+\draw [-, thin] (2.7,-0.5) -- (4.7,-0.5);
+\draw [-, thin] (2.7,0.5) -- (2.7,-0.5);
+\draw [-, thin] (4.7,0.5) -- (4.7,-0.5);
+
+\draw [-, thin] (5,0.5) -- (7,0.5);
+\draw [-, thin] (5,-0.5) -- (7,-0.5);
+\draw [-, thin] (5,0.5) -- (5,-0.5);
+\draw [-, thin] (7,0.5) -- (7,-0.5);
+
+\draw [-, thin] (7.3,0.5) -- (9.3,0.5);
+\draw [-, thin] (7.3,-0.5) -- (9.3,-0.5);
+\draw [-, thin] (7.3,0.5) -- (7.3,-0.5);
+\draw [-, thin] (9.3,0.5) -- (9.3,-0.5);
+
+\draw [-, thin] (7.3,-0.8) -- (9.3,-0.8);
+\draw [-, thin] (7.3,-1.8) -- (9.3,-1.8);
+\draw [-, thin] (7.3,-0.8) -- (7.3,-1.8);
+\draw [-, thin] (9.3,-0.8) -- (9.3,-1.8);
+
+\draw [-, thin] (7.3,-2.1) -- (9.3,-2.1);
+\draw [-, thin] (7.3,-3.1) -- (9.3,-3.1);
+\draw [-, thin] (7.3,-2.1) -- (7.3,-3.1);
+\draw [-, thin] (9.3,-2.1) -- (9.3,-3.1);
+
+\draw [-, thin] (-0.5,-2.1) -- (0.5,-2.1);
+\draw [-, thin] (-0.5,-3.1) -- (0.5,-3.1);
+\draw [-, thin] (-0.5,-2.1) -- (-0.5,-3.1);
+\draw [-, thin] (0.5,-2.1) -- (0.5,-3.1);
+
+\draw [-, thin] (0.8,-2.1) -- (2.4,-2.1);
+\draw [-, thin] (0.8,-3.1) -- (2.4,-3.1);
+\draw [-, thin] (0.8,-2.1) -- (0.8,-3.1);
+\draw [-, thin] (2.4,-2.1) -- (2.4,-3.1);
+
+\draw [-, thin] (2.7,-2.1) -- (4.7,-2.1);
+\draw [-, thin] (2.7,-3.1) -- (4.7,-3.1);
+\draw [-, thin] (2.7,-2.1) -- (2.7,-3.1);
+\draw [-, thin] (4.7,-2.1) -- (4.7,-3.1);
+
+\draw [-, thin] (5,-2.1) -- (7,-2.1);
+\draw [-, thin] (5,-3.1) -- (7,-3.1);
+\draw [-, thin] (5,-2.1) -- (5,-3.1);
+\draw [-, thin] (7,-2.1) -- (7,-3.1);
+
+\draw [-, thin] (7.1,-1) -- (6.4,-1);
+\draw [-, thin] (7.1,-1.6) -- (6.4,-1.6);
+\draw [-, thin] (7.1,-1) -- (7.1,-1.6);
+\draw [-, thin] (6.4,-1) -- (6.4,-1.6);
+
+\draw [->, thin] (0.5,0) -- (0.8,0);
+\draw [->, thin] (2.4,0) -- (2.7,0);
+\draw [->, thin] (4.7,0) -- (5,0);
+\draw [->, thin] (7,0) -- (7.3,0);
+\draw [->, thin] (8.3,-0.5) -- (8.3,-0.8);
+\draw [->, thin] (8.3,-1.8) -- (8.3,-2.1);
+\draw [<-, thin] (0.5,-2.6) -- (0.8,-2.6);
+\draw [<-, thin] (2.4,-2.6) -- (2.7,-2.6);
+\draw [<-, thin] (4.7,-2.6) -- (5,-2.6);
+\draw [<-, thin] (7,-2.6) -- (7.3,-2.6);
+\draw [->, thin] (7.1,-1.3) -- (7.3,-1.3);
 
 \end{tikzpicture}
-
-
-}
-
-
 \end{center}
-A Shannon-kódos példában szereplő kódhoz tartozó kódfa.\\
-$\varphi(a)=$01, $\varphi(b)=$1120, $\varphi(c)=$10, $\varphi(d)=$1121, $\varphi(e)=$12000,
-$\varphi(f)=$00, $\varphi(g)=$1122, $\varphi(h)=$02, $\varphi(i)=$111, $\varphi(j)=$110.\\
-A kódszavak prefixeinek halmaza:
-\small$\{01,0,\lambda,1120,112,11,1,10,1121,12000,1200,120,12,00,1122,02,111,110\}$
-\end{block}
+\bigskip
+Az üzenetkódolás és a gazdaságos kódolás együttesen a forráskódolás.\\
+A titkosítással és hitelesítéssel a kriptográfia foglalkozik.\\
+A hibakorlátozó kódolást a csatornakódolásnál használjuk.
 \end{frame}
-# "~/Dropbox/dm2gabor/eloadas/dm2C/dm2_eaC_08_17tav.tex"
+
+%\begin{frame}[t]{Polinomkódok}
+%\begin{block}{Megjegyzés}
+%Egy polinomkód generálható a generátorpolinom
+%($g(x)=g_0+g_1x+\ldots+g_{r-1}x^{r-1}+x^{r}$) és az üzenetpolinomok szorzásával, így a generátorpolinom eltoltjaiból álló mátrix jó lesz generátormátrixnak:
+%\[\mathbf{G} =
+%\left( \begin{array}{cccc}
+%g_0 & 0 & 0 & 0\\
+%g_1 & g_0 & \ddots & 0\\
+%g_2 & g_1 & \ddots & 0\\
+%\vdots & \vdots & \ddots & 0\\
+%g_{r-1} & g_{r-2} & \ddots & 0\\
+%1 & g_{r-1} & \ddots & 0\\
+%0 & 1 & 0 & g_0\\
+%0 & 0 & 0 & \vdots\\
+%\vdots & \vdots & 0 & g_{r-1}\\
+%0 & 0 & 1 & 1
+%\end{array} \right)\]\\
+
+%\end{block}
+%\end{frame}
+%\[\mathbf{G} =
+%\left( \begin{array}{ccccccc}
+%g_0 & g_1 & \cdots & g_{r-1}& 0 & \cdots & 0\\
+%0 & g_0 & \ddots & 0\\
+%0 & g_1 & \ddots & 0\\
+%\vdots & \vdots & \ddots & 0\\
+%0 & g_{r-2} & \ddots & 0\\
+%0 & g_{r-1} & \ddots & 0\\
+%0 & 1 & 0 & g_0\\
+%0 & 0 & 0 & \vdots\\
+%\vdots & \vdots & 0 & g_{r-1}\\
+%0 & 0 & 1 & 1
+%\end{array} \right)\]\\
+# "~/Dropbox/dm2gabor/eloadas/dm2C/dm2_eaC_10_17tav.tex"
