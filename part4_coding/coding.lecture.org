@@ -181,7 +181,7 @@
      :BEAMER_env: proof
      :END:
      Constructive: Start by reading the characters into a buffer until
-     the characters in the buffer don't correspond to a
+     the characters in the buffer correspond to a
      code-word. When this happens, the read sub\-string can be decoded
      using $\varphi^{-1}$, because it is not prefix of any other
      code-word. The buffer can be discarded, and the process repeated
@@ -968,7 +968,7 @@
      The *weight* of the string $u \in \F^n$ is the number of non-zero
      characters in $u$, and is denoted by $w(u)$.  The *weight of the
      code $C$* is the minimum of weights of non-zero code-words: 
-     \[w(K) = \min_{u \ne 0} w(u).\]
+     \[w(C) = \min_{u \ne 0} w(u).\]
 *** Examples
 **** Notation                                                     :B_example:
      :PROPERTIES:
@@ -1136,10 +1136,10 @@
      $\mathbf{HG} = \begin{pmatrix} -\mathbf{P} &
      \mathbf{I_{n-k}}\end{pmatrix} \cdot \begin{pmatrix} \mathbf{I_k}
      \\ \mathbf{P} \end{pmatrix} = -\mathbf{P} + \mathbf{P} =
-     \mathbf{0} \in \F_q^{(n-x)\times k}$. So for every code-word
+     \mathbf{0} \in \F_q^{(n-k)\times k}$. So for every code-word
      $\mathbf{H}(\mathbf{G}u) = (\mathbf{HG})u = \mathbf{0}u =
      \underline{0}$, \ie $\im(\mathbf{G}) \subset \ker(\mathbf{H})$,
-     and since $\dim(\im(\mathbf{G})) = \dim(\ker(\mathbf(H)))$, we
+     and since $\dim(\im(\mathbf{G})) = \dim(\ker(\mathbf{H}))$, we
      have $\im(\mathbf{G}) = \ker(\mathbf{H})$.
 *** Structure of the error check matrix
 **** Columns of error check matrices and weights                  :B_theorem:

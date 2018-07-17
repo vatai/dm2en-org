@@ -177,8 +177,8 @@
      :BEAMER_env: proof
      :END:
      The proof is pretty simple, we just need to use the structure
-     preserving property of $\varphi$.  Let $(G,\ast)$,
-     $(G',\diamond)$ and $\varphi : G \to G'$.
+     preserving property of $\varphi$.  Let $(G,\diamond)$,
+     $(G',\ast)$ and $\varphi : G \to G'$.
      \begin{multline*}
      \varphi(a) \ast (\varphi(b) \ast \varphi(c)) 
      = \varphi(a) \ast \varphi (b \diamond c)
@@ -918,7 +918,7 @@
      :END:
      Let $(R,+,*)$ and $(R',+',*')$ be two sets with two operations
      each, and $\varphi:R\to R'$.  The map (\ie function) $\varphi$ is
-     structure preserving if for each $a,b \in G$: \[ \varphi(a + b) =
+     structure preserving if for each $a,b \in R$: \[ \varphi(a + b) =
      \varphi(a) +' \varphi(b) \text{ and } \varphi(a * b) = \varphi(a)
      *' \varphi(b) \]
 *** Names of homomorphisms
