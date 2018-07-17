@@ -106,7 +106,7 @@
 **** Coding
      In the broadest sense, *coding* is modeled (in mathematics) as a
      map between two sets. If this map is
-     invertible, the the coding is *lossless* or *invertible*, and
+     invertible, then the coding is *lossless* or *invertible*, and
      *lossy* otherwise.  
 **** Different fields of coding theory
      - *Data compression* or, *source coding*
@@ -982,7 +982,7 @@
      3. Parity bit is an $[n, n-1, 2]_2$ linear code: $(b_1, \ldots,
         b_k) \mapsto (b_1, \ldots, b_k, \sum_{j=1}^k b_j)$
 *** Distance and weight
-**** Weight defined as distance form the $0$ vector
+**** Weight defined as distance from the $0$ vector
      $w(u) = d(u,0)$ where $0$ is $(0, 0, \ldots, 0)$ the \(n\)-long
      zero vector.
 **** Code weight and code distance for linear codes               :B_theorem:
