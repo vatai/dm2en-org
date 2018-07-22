@@ -458,7 +458,7 @@
        $(\varphi|_{E\setminus E'},E\setminus E',V)$. 
      - If $G$ is a simple graph with $n$ vertices, then the
        *complement of $G$* is the complement of $G$ with regards to
-       $K_n$, \ie the complement of a simple graph is the complete graph with
+       $K_n$, \ie the complement of a simple graph is the graph with
        the same vertices only the edges missing from the original
        graph.
        

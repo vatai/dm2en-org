@@ -180,8 +180,8 @@
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     Constructive: Start by reading the characters into a buffer until
-     the characters in the buffer correspond to a
+     Constructive: Start by reading the characters into a buffer while
+     the characters in the buffer don't correspond to a
      code-word. When this happens, the read sub\-string can be decoded
      using $\varphi^{-1}$, because it is not prefix of any other
      code-word. The buffer can be discarded, and the process repeated

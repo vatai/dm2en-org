@@ -1353,7 +1353,7 @@
      :PROPERTIES:
      :BEAMER_env: theorem
      :END:
-     Let $R$ be a Euclidean domain.  If $p\in R$ is irreducible, $p$
+     Let $R$ be an Euclidean domain.  If $p\in R$ is irreducible, $p$
      is prime.
 **** Proof							    :B_proof:
      :PROPERTIES:
