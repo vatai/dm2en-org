@@ -106,7 +106,7 @@
 **** Coding
      In the broadest sense, *coding* is modeled (in mathematics) as a
      map between two sets. If this map is
-     invertible, the the coding is *lossless* or *invertible*, and
+     invertible, then the coding is *lossless* or *invertible*, and
      *lossy* otherwise.  
 **** Different fields of coding theory
      - *Data compression* or, *source coding*
@@ -180,7 +180,7 @@
      :PROPERTIES:
      :BEAMER_env: proof
      :END:
-     Constructive: Start by reading the characters into a buffer until
+     Constructive: Start by reading the characters into a buffer while
      the characters in the buffer don't correspond to a
      code-word. When this happens, the read sub\-string can be decoded
      using $\varphi^{-1}$, because it is not prefix of any other
@@ -968,7 +968,7 @@
      The *weight* of the string $u \in \F^n$ is the number of non-zero
      characters in $u$, and is denoted by $w(u)$.  The *weight of the
      code $C$* is the minimum of weights of non-zero code-words: 
-     \[w(K) = \min_{u \ne 0} w(u).\]
+     \[w(C) = \min_{u \ne 0} w(u).\]
 *** Examples
 **** Notation                                                     :B_example:
      :PROPERTIES:
@@ -982,7 +982,7 @@
      3. Parity bit is an $[n, n-1, 2]_2$ linear code: $(b_1, \ldots,
         b_k) \mapsto (b_1, \ldots, b_k, \sum_{j=1}^k b_j)$
 *** Distance and weight
-**** Weight defined as distance form the $0$ vector
+**** Weight defined as distance from the $0$ vector
      $w(u) = d(u,0)$ where $0$ is $(0, 0, \ldots, 0)$ the \(n\)-long
      zero vector.
 **** Code weight and code distance for linear codes               :B_theorem:
@@ -1136,10 +1136,10 @@
      $\mathbf{HG} = \begin{pmatrix} -\mathbf{P} &
      \mathbf{I_{n-k}}\end{pmatrix} \cdot \begin{pmatrix} \mathbf{I_k}
      \\ \mathbf{P} \end{pmatrix} = -\mathbf{P} + \mathbf{P} =
-     \mathbf{0} \in \F_q^{(n-x)\times k}$. So for every code-word
+     \mathbf{0} \in \F_q^{(n-k)\times k}$. So for every code-word
      $\mathbf{H}(\mathbf{G}u) = (\mathbf{HG})u = \mathbf{0}u =
      \underline{0}$, \ie $\im(\mathbf{G}) \subset \ker(\mathbf{H})$,
-     and since $\dim(\im(\mathbf{G})) = \dim(\ker(\mathbf(H)))$, we
+     and since $\dim(\im(\mathbf{G})) = \dim(\ker(\mathbf{H}))$, we
      have $\im(\mathbf{G}) = \ker(\mathbf{H})$.
 *** Structure of the error check matrix
 **** Columns of error check matrices and weights                  :B_theorem:

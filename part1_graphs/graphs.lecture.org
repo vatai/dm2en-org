@@ -1060,7 +1060,7 @@
 	$v_n$.
      6. At most one of these two edges can be present in $H$,
 	otherwise the cycle $v_1, v_2, \ldots, v_{i-1}, v_n,
-	v_{n-1}. \ldots, v_i$ would be a Hamiltonian cycle.
+	v_{n-1}. \ldots, v_i, v_1$,  would be a Hamiltonian cycle.
      7. The total number of edges connected to either $v_1$ or $v_n$ is
 	at most equal to the number of choices of $i$, which is $n-1$.
      8. So in $H$, $\deg(v) + \deg(w)<n$.
